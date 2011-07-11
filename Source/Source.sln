@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comsec.Sugar", "Comsec.Sugar\Comsec.Sugar.csproj", "{EDB78F77-9123-4821-817B-F3F91E973A7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comsec.Sugar.Test", "Comsec.Sugar.Test\Comsec.Sugar.Test.csproj", "{10B86AFC-AD6C-477C-B53A-BC08E28C966F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDB78F77-9123-4821-817B-F3F91E973A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDB78F77-9123-4821-817B-F3F91E973A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDB78F77-9123-4821-817B-F3F91E973A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDB78F77-9123-4821-817B-F3F91E973A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
