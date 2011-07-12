@@ -46,6 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitmapExtensions.cs" />
+    <Compile Include="Command\BaseConsole.cs" />
+    <Compile Include="Command\IConsole.cs" />
+    <Compile Include="Command\Parameter.cs" />
+    <Compile Include="Command\ParameterParser.cs" />
+    <Compile Include="Command\Parameters.cs" />
     <Compile Include="Html\HtmlDocument.cs" />
     <Compile Include="Net\HttpRequest.cs" />
     <Compile Include="Net\HttpResponse.cs" />
