@@ -43,14 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Net\HttpResponseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensionsTest.cs" />
+    <Compile Include="Xml\XmlMediatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Comsec.Sugar\Comsec.Sugar.csproj">
       <Project>{EDB78F77-9123-4821-817B-F3F91E973A7D}</Project>
       <Name>Comsec.Sugar</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Html\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

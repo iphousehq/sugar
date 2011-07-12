@@ -36,5 +36,20 @@ namespace Comsec.Sugar
 
             Assert.IsNull(decoded);
         }
+
+        [Test]
+        public void TestStartsWithAndIgnoreCase()
+        {
+            var value = "Bonjour";
+
+            var result = value.StartsWith("BON", true);
+            Assert.IsFalse(result);
+
+            result = value.StartsWith("bon", false);
+            Assert.IsTrue(result);
+
+            result = value.StartsWith("jour", true);
+            Assert.IsFalse(result);
+        }
     }
 }
