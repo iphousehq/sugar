@@ -1,0 +1,19 @@
+<project name="clean-stage">
+
+	<target name="Clean">
+
+		<delete dir="${artifacts.dir}"/>
+		<mkdir dir="${artifacts.dir}" />
+
+		<delete>
+			<fileset basedir="${root.dir}\">
+	          <include name="**\bin\Release\**\*" />
+	          <include name="**\obj\Release\**\*" />
+              <include name="**\bin\Debug\**\*" />
+	          <include name="**\obj\Debug\**\*" />
+			</fileset>
+		</delete>
+
+	</target>
+
+</project>

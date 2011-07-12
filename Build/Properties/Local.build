@@ -1,0 +1,9 @@
+<project name="Core" basedir="." default="SetProperties">
+
+	<target name="SetProperties">
+
+		<property name="stages" value="Clean,Compile,RunNUnit" readonly="false"/>
+
+	</target>
+
+</project>

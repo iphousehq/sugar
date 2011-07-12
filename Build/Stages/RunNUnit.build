@@ -1,0 +1,11 @@
+<project name="run-nunit-stage">
+	<target name="RunNUnit">
+
+    <exec program="nunit-console.exe" basedir="${root.dir}\Build\Resources\NUnit" workingdir=".">
+      <arg value="${root.dir}\Source\Comsec.Sugar.Test\bin\Release\Comsec.Sugar.Test.dll" />
+      <arg value="/xml:${root.dir}\Artifacts\TestResult.xml"/>
+      <arg value="/framework=4.0"/>      
+    </exec>
+
+	</target>
+</project>

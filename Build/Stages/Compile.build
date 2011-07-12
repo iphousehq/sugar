@@ -1,0 +1,22 @@
+<project name="compile-stage">
+	<target name="Compile">
+
+		<exec basedir="${root.dir}\Source" program="${dotnet40}\msbuild.exe">
+			<arg value="${root.dir}\Source\Sugar.sln" />
+			<arg value="/t:Build" />
+			<arg value="/p:Configuration=Release" />
+			<arg value="/verbosity:quiet" />
+		</exec>
+
+  		<!-- Save for later -->
+    	<zip zipfile="${artifacts.dir}\Comsec.Sugar.${git.revision}.zip">
+			<fileset basedir="${root.dir}\Source\Comsec.Sugar\bin\Release">
+				<include name="**/*.dll" />
+				<include name="**/*.pdb" />
+				<include name="**/*.exe" />
+				<include name="**/*.config" />
+			</fileset>
+		</zip>
+
+	</target>
+</project>

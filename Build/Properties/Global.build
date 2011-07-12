@@ -1,0 +1,30 @@
+<project name="Comsec" basedir="." default="SetGlobalProperties">
+
+	<target name="SetGlobalProperties">
+
+		<property name="artifacts.dir" value="${root.dir}\Artifacts" readonly="true" />
+
+		<property name="dotnet40" value="C:\Windows\Microsoft.NET\Framework\v4.0.30319" overwrite="false" />
+
+		<property name="revision" value="Local" />
+
+		<!-- Build number from Hudson (hopefully) -->
+		<if test="${environment::variable-exists('BUILD_NUMBER')}">
+			<property name="revision" value="${environment::get-variable('BUILD_NUMBER')}" />
+		</if>
+
+		<delete dir="${artifacts.dir}" if="${directory::exists(artifacts.dir)}" />
+		<mkdir dir="${artifacts.dir}" />
+
+		<!-- Retrieve GIT revision number if running under Jenkins (last 8 digit of SHA1 hash) -->
+    	<property name="git.revision" value="0"/>
+    	<if test="${environment::variable-exists('GIT_COMMIT')}">
+			<property name="git.revision" value="${environment::get-variable('GIT_COMMIT')}" />
+			<property name="git.revision" value="${string::substring(git.revision, 32, 8)}" />
+		</if>
+               
+      	<echo message="Using revision number: ${git.revision}"/>
+
+	</target>
+
+</project>
