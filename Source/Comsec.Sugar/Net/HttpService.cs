@@ -2,7 +2,6 @@
 using System.IO;
 using System.Net;
 using System.Text;
-using Comsec.Lib.Net;
 
 namespace Comsec.Sugar.Net
 {
@@ -51,7 +50,10 @@ namespace Comsec.Sugar.Net
                 webRequest.Method = "GET";
                 webRequest.Timeout = 10000;
                 webRequest.UserAgent = request.UserAgent;
+                webRequest.ContentType = request.ContentType;
                 ServicePointManager.ServerCertificateValidationCallback += delegate { return true; }; // to allow HTTPS
+
+                webRequest.Headers.Add(request.Headers);
 
                 if (request.UseAuthentication)
                 {

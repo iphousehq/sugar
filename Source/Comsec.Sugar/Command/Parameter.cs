@@ -1,4 +1,4 @@
-﻿namespace Comsec.Lib.Console
+﻿namespace Comsec.Sugar.Command
 {
     /// <summary>
     /// Represents a command line argument

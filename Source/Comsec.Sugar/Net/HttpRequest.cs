@@ -1,17 +1,22 @@
-﻿using System.Web;
+﻿using System.Collections.Specialized;
 
-namespace Comsec.Lib.Net
+namespace Comsec.Sugar.Net
 {
     /// <summary>
     /// Represents a request to download a file from the internet
     /// </summary>
     public class HttpRequest
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HttpRequest"/> class.
+        /// </summary>
         public HttpRequest()
         {
             UserAgent = "Mozilla/5.0 (Windows; U; Windows NT 6.1; pl; rv:1.9.1) Gecko/20090624 Firefox/3.5 (.NET CLR 3.5.30729)";
 
             Retries = 3;
+
+            Headers = new NameValueCollection();
         }
 
         /// <summary>
@@ -39,6 +44,14 @@ namespace Comsec.Lib.Net
         public string UserAgent { get; set; }
 
         /// <summary>
+        /// Gets or sets the content type.
+        /// </summary>
+        /// <value>
+        /// The content tent.
+        /// </value>
+        public string ContentType { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to use basic authentication.
         /// </summary>
         /// <value>
@@ -62,5 +75,26 @@ namespace Comsec.Lib.Net
         /// The retries.
         /// </value>
         public int Retries { get; set; }
+
+        /// <summary>
+        /// Gets or sets the headers.
+        /// </summary>
+        /// <value>
+        /// The headers.
+        /// </value>
+        public NameValueCollection Headers { get; private set; }
+
+        /// <summary>
+        /// Adds the specified header to the request.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public HttpRequest WithHeader(string name, string value)
+        {
+            Headers.Add(name, value);
+            
+            return this;
+        }
     }
 }

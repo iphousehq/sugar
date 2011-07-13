@@ -59,6 +59,19 @@ namespace Comsec.Sugar.Xml
             Document.LoadXml(xml);
         }
 
+        private XmlMediator(string xml, XmlNamespaceManager manager)
+        {
+            Document = new XmlDocument();
+            Manager = new XmlNamespaceManager(Document.NameTable);
+
+            foreach (string i in manager)
+            {
+                Manager.AddNamespace(i, i);
+            }
+
+            Document.LoadXml(xml);
+        }
+
         /// <summary>
         /// Loads the XML.
         /// </summary>
@@ -95,11 +108,23 @@ namespace Comsec.Sugar.Xml
             return result;
         }
 
-        private XmlNodeList GetNodes(string xpath)
+        public IList<XmlMediator> GetMediators(string xpath)
         {
+            var results = new List<XmlMediator>();
+
             var nodes = Document.SelectNodes(xpath, Manager);
 
-            return nodes;
+            if (nodes != null)
+            {
+                foreach (XmlNode node in nodes)
+                {
+                    var mediator = new XmlMediator(node.OuterXml, Manager);
+
+                    results.Add(mediator);
+                }
+            }
+
+            return results;
         }
 
         public IList<string> GetInnerTextList(string xpath)
@@ -117,18 +142,5 @@ namespace Comsec.Sugar.Xml
         }
 
 
-        public IList<T> GetItems<T>(string nodeListXpath, Func<XmlNode, XmlNamespaceManager, T> itemGenerator)
-        {
-            var items = new List<T>();
-
-            foreach (XmlNode node in GetNodes(nodeListXpath))
-            {
-                var item = itemGenerator.Invoke(node, Manager);
-
-                items.Add(item);
-            }
-
-            return items;
-        }
     }
 }

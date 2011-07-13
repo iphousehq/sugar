@@ -46,5 +46,15 @@ namespace Comsec.Sugar.Xml
 
             Assert.AreEqual("Baz", value);
         }
+
+        [Test]
+        public void TestGetMediators()
+        {
+            var xml = new XmlMediator(@"<node><value attribute='test'>Hello World</value></node>");
+
+            var value = xml.GetMediators("//value");
+
+            Assert.AreEqual(string.Empty, value);
+        }
     }
 }

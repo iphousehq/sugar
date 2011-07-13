@@ -1,5 +1,4 @@
-﻿using Comsec.Lib.Net;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Comsec.Sugar.Net
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Comsec.Lib.Console
+namespace Comsec.Sugar.Command
 {
     /// <summary>
     /// Console class interface

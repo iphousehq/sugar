@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using Comsec.Lib.Console;
 
 namespace Comsec.Sugar.Command
 {

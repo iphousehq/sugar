@@ -2,10 +2,9 @@
 using System.Drawing;
 using System.Text;
 using System.Xml;
-using Comsec.Sugar;
 using Comsec.Sugar.Html;
 
-namespace Comsec.Lib.Net
+namespace Comsec.Sugar.Net
 {
     /// <summary>
     /// Represents a file downloaded from the internet.

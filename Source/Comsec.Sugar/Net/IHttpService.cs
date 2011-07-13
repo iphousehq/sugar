@@ -1,4 +1,4 @@
-﻿namespace Comsec.Lib.Net
+﻿namespace Comsec.Sugar.Net
 {
     /// <summary>
     /// Interface to define access to downloading content over the internet

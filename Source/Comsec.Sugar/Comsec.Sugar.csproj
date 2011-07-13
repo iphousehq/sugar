@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitmapExtensions.cs" />
+    <Compile Include="Command\BaseCommandConsole.cs" />
     <Compile Include="Command\BaseConsole.cs" />
+    <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\IConsole.cs" />
     <Compile Include="Command\Parameter.cs" />
     <Compile Include="Command\ParameterParser.cs" />

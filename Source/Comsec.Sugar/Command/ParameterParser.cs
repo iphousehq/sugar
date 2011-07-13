@@ -1,4 +1,4 @@
-﻿namespace Comsec.Lib.Console
+﻿namespace Comsec.Sugar.Command
 {
     /// <summary>
     /// Parses a string array to return a argument list.
