@@ -51,5 +51,62 @@ namespace Comsec.Sugar
             result = value.StartsWith("jour", true);
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public void TestSubStringEmptyString()
+        {
+            Assert.AreEqual(string.Empty, string.Empty.SubstringAfterChar("c"));
+        }
+
+        [Test]
+        public void TestSubStringWithNonMatchingString()
+        {
+            Assert.AreEqual("banana", "banana".SubstringAfterChar("c"));
+        }
+
+        [Test]
+        public void TestSubStringWithMatchingString()
+        {
+            Assert.AreEqual("ana", "banana".SubstringAfterChar("n"));
+        }
+
+
+        [Test]
+        public void TestSubStringBeforeWithMatchingString()
+        {
+            Assert.AreEqual("ba", "banana".SubstringBeforeChar("n"));
+        }
+
+        [Test]
+        public void TestSubStringBeforeLastWithMatchingString()
+        {
+            Assert.AreEqual("bana", "banana".SubstringBeforeLastChar("n"));
+        }
+
+
+        [Test]
+        public void TestSubStringAfterLastChar()
+        {
+            Assert.AreEqual("ba", "ab-ban-ba".SubstringAfterLastChar("-"));
+        }
+
+        [Test]
+        public void TestKeep()
+        {
+            Assert.AreEqual("12", "1234".Keep("12"));
+        }
+
+        [Test]
+        public void TestKeepWhenNull()
+        {
+            Assert.AreEqual(string.Empty, ((string) null).Keep("12"));
+        }
+
+        [Test]
+        public void TestIsNumeric()
+        {
+            Assert.IsTrue("1234".IsNumeric());
+            Assert.IsFalse("Hello".IsNumeric());
+        }
     }
 }

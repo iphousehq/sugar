@@ -17,6 +17,8 @@ namespace Comsec.Sugar.Net
             Retries = 3;
 
             Headers = new NameValueCollection();
+
+            Timeout = 10000;
         }
 
         /// <summary>
@@ -38,6 +40,14 @@ namespace Comsec.Sugar.Net
         public string Password { get; set; }
 
         /// <summary>
+        /// Gets or sets the data.
+        /// </summary>
+        /// <value>
+        /// The data.
+        /// </value>
+        public string Data { get; set; }
+
+        /// <summary>
         /// Gets or sets the user agent.
         /// </summary>
         /// <value>The user agent.</value>
@@ -50,6 +60,14 @@ namespace Comsec.Sugar.Net
         /// The content tent.
         /// </value>
         public string ContentType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the timeout.
+        /// </summary>
+        /// <value>
+        /// The timeout.
+        /// </value>
+        public int Timeout { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use basic authentication.

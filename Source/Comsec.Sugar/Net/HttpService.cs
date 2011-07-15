@@ -34,10 +34,15 @@ namespace Comsec.Sugar.Net
         /// <returns></returns>
         public HttpResponse Get(HttpRequest request)
         {
-            return Retry.This(() => GetAction(request), request.Retries, 5000);
+            return Retry.This(() => GetAction(request, "GET"), request.Retries, 5000);
         }
 
-        private static HttpResponse GetAction(HttpRequest request)
+        public HttpResponse Post(HttpRequest request)
+        {
+            return Retry.This(() => GetAction(request, "POST"), request.Retries, 5000);
+        }
+
+        private static HttpResponse GetAction(HttpRequest request, string action)
         {
             var result = new HttpResponse { Url = request.Url };
 
@@ -47,8 +52,8 @@ namespace Comsec.Sugar.Net
 
                 webRequest.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
                 webRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-                webRequest.Method = "GET";
-                webRequest.Timeout = 10000;
+                webRequest.Method = action;
+                webRequest.Timeout = request.Timeout;
                 webRequest.UserAgent = request.UserAgent;
                 webRequest.ContentType = request.ContentType;
                 ServicePointManager.ServerCertificateValidationCallback += delegate { return true; }; // to allow HTTPS
@@ -68,6 +73,20 @@ namespace Comsec.Sugar.Net
                     else
                     {
                         webRequest.Credentials = new NetworkCredential(request.Username, request.Password);
+                    }
+                }
+
+                if (action == "POST")
+                {
+                    using (var stream = webRequest.GetRequestStream())
+                    {
+                        var encoder = new UTF8Encoding();
+
+                        byte[] data = encoder.GetBytes(request.Data);
+
+                        stream.Write(data, 0, data.Length);
+
+                        stream.Close();
                     }
                 }
 

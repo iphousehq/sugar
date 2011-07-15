@@ -249,6 +249,20 @@ namespace Comsec.Sugar.Net
         }
 
         /// <summary>
+        /// Gets a value indicating whether this instance has sub domain.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance has sub domain; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasSubDomain
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(SubDomain);                
+            }
+        }
+
+        /// <summary>
         /// Equalses the specified URL.
         /// </summary>
         /// <param name="url">The URL.</param>

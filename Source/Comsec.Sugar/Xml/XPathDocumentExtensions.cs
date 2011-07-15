@@ -92,6 +92,31 @@ namespace Comsec.Sugar.Xml
             return result;
         }
 
+        /// <summary>
+        /// Gets the inner XML from the matching elements.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="xpath">The xpath.</param>
+        /// <returns></returns>
+        public static IList<string> GetInnerXmlList(this XPathDocument document, string xpath)
+        {
+            var results = new List<string>();
+
+            var iterator = GetIterator(document, xpath);
+
+            if (iterator.Count > 0)
+            {
+                while (iterator.MoveNext())
+                {
+                    if (iterator.Current == null) break;
+
+                    results.Add(iterator.Current.InnerXml);
+                }
+            }
+
+            return results;
+        }
+
         private static string AddPrefixToXPath(string xpath, string prefix)
         {
             return System.Text.RegularExpressions.Regex.Replace(xpath, @"(^(?![A-Za-z0-9\-\.]+::)|[A-Za-z0-9\-\.]+::|[@|/])(?'Expression'[A-Za-z0-9\-\.]+)", x =>

@@ -44,7 +44,18 @@ namespace Comsec.Sugar.Xml
             var value = xml.GetInnerXml("//value");
 
             Assert.AreEqual("Hello World", value);
+        }
 
+        [Test]
+        public void TestGetInnerXmlList()
+        {
+            var xml = @"<node><value>Hello World</value><value>Again</value></node>".ToXPath();
+
+            var results = xml.GetInnerXmlList("//value");
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual("Hello World", results[0]);
+            Assert.AreEqual("Again", results[1]);
         }
 
         [Test]

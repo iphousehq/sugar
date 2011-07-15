@@ -26,5 +26,7 @@
         /// <param name="request">The request.</param>
         /// <returns></returns>
         HttpResponse Get(HttpRequest request);
+
+        HttpResponse Post(HttpRequest request);
     }
 }
