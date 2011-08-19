@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EDB78F77-9123-4821-817B-F3F91E973A7D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sugar</RootNamespace>
+    <AssemblyName>Sugar</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\References\HtmlAgilityPack\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BitmapExtensions.cs" />
+    <Compile Include="Command\BaseCommandConsole.cs" />
+    <Compile Include="Command\BaseConsole.cs" />
+    <Compile Include="Command\BoundCommand.cs" />
+    <Compile Include="Command\FlagAttribute.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\ParameterAttribute.cs" />
+    <Compile Include="Command\ParameterBinder.cs" />
+    <Compile Include="Command\ParameterParser.cs" />
+    <Compile Include="Command\Parameters.cs" />
+    <Compile Include="Config\Config.cs" />
+    <Compile Include="Config\ConfigLine.cs" />
+    <Compile Include="Html\HtmlDocument.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="Int32Extensions.cs" />
+    <Compile Include="IO\FileService.cs" />
+    <Compile Include="IO\IFileService.cs" />
+    <Compile Include="Net\DomainName.cs" />
+    <Compile Include="Net\HttpRequest.cs" />
+    <Compile Include="Net\HttpResponse.cs" />
+    <Compile Include="Net\HttpService.cs" />
+    <Compile Include="Net\IHttpService.cs" />
+    <Compile Include="Net\Url.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Retry.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="StringExtensions.cs" />
+    <Compile Include="TextTable.cs" />
+    <Compile Include="Xml\XPathDocumentExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

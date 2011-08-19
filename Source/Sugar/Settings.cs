@@ -1,0 +1,6 @@
+﻿namespace Sugar
+{
+    class Settings
+    {
+    }
+}
