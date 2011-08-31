@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.Net;
 using System.Text;
 using System.Xml;
-using Sugar.Html;
+using HtmlAgilityPack;
 
 namespace Sugar.Net
 {
@@ -11,6 +12,14 @@ namespace Sugar.Net
     /// </summary>
     public class HttpResponse
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HttpResponse"/> class.
+        /// </summary>
+        public HttpResponse()
+        {
+            Cookies = new CookieContainer();
+        }
+
         /// <summary>
         /// Gets or sets the URL.
         /// </summary>
@@ -28,6 +37,22 @@ namespace Sugar.Net
         /// </summary>
         /// <value>The web exception.</value>
         public Exception Exception { get; set; }
+
+        /// <summary>
+        /// Gets the cookies.
+        /// </summary>
+        /// <value>
+        /// The cookies.
+        /// </value>
+        public CookieContainer Cookies { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user agent used to make this response.
+        /// </summary>
+        /// <value>
+        /// The user agent.
+        /// </value>
+        public UserAgent UserAgent { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether the download operation completed successfully.
@@ -75,7 +100,11 @@ namespace Sugar.Net
         /// <returns></returns>
         public HtmlDocument ToHtml()
         {
-            return new HtmlDocument(ToString());
+            var document = new HtmlDocument();
+
+            document.LoadHtml(ToString());
+
+            return document;
         }
 
         /// <summary>

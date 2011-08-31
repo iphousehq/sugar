@@ -27,6 +27,8 @@ namespace Sugar.Command
 
                 foreach (var @switch in switches)
                 {
+                    if (string.IsNullOrWhiteSpace(@switch)) continue;
+
                     parameters.Switches.Add(@switch);
                 }
             }

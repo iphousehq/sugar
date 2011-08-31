@@ -9,7 +9,7 @@ namespace Sugar.Html
         [Test]
         public void TestLoadImageUrlFromHtml()
         {
-            var html = new HtmlDocument("<img src='http://www.google.com/google.jpg' alt='Google'/>");
+            var html = Html.Load("<img src='http://www.google.com/google.jpg' alt='Google'/>");
 
             var urls = html.GetAttributeList("//img", "src");
 
@@ -20,7 +20,7 @@ namespace Sugar.Html
         [Test]
         public void TestLoadImagesUrlFromHtml()
         {
-            var html = new HtmlDocument("<img src='http://www.google.com/google.jpg' alt='Google'/>"
+            var html = Html.Load("<img src='http://www.google.com/google.jpg' alt='Google'/>"
                                         + "<img src='http://www.yahoo.com/yahoo.jpg' alt='Yahoo'/>");
 
             var urls = html.GetAttributeList("//img", "src");
@@ -33,7 +33,7 @@ namespace Sugar.Html
         [Test]
         public void TestGetDocumentBaseFromRootUrlHtmlNoBaseTag()
         {
-            var html = new HtmlDocument("");
+            var html = Html.Load("");
 
             var url = html.GetDocumentBaseUrl("http://www.example.com");
 
@@ -43,7 +43,7 @@ namespace Sugar.Html
         [Test]
         public void TestGetDocumentBaseFromNonRootedUrlHtmlNoBaseTag()
         {
-            var html = new HtmlDocument("");
+            var html = Html.Load("");
 
             var url = html.GetDocumentBaseUrl("http://www.example.com/images");
 
@@ -53,7 +53,7 @@ namespace Sugar.Html
         [Test]
         public void TestGetDocumentBaseFromNonRootedUrlHtmlWithNonRootedBaseTag()
         {
-            var html = new HtmlDocument("<base href='images' />");
+            var html = Html.Load("<base href='images' />");
 
             var url = html.GetDocumentBaseUrl("http://www.example.com/assets");
 
@@ -63,7 +63,7 @@ namespace Sugar.Html
         [Test]
         public void TestGetDocumentBaseFromRootedUrlHtmlWithNonRootedBaseTag()
         {
-            var html = new HtmlDocument("<base href='images' />");
+            var html = Html.Load("<base href='images' />");
 
             var url = html.GetDocumentBaseUrl("http://www.example.com");
 
@@ -73,7 +73,7 @@ namespace Sugar.Html
         [Test]
         public void TestGetDocumentBaseFromRootedUrlHtmlWithSpacesWithNonRootedBaseTag()
         {
-            var html = new HtmlDocument("<base href='images' />");
+            var html = Html.Load("<base href='images' />");
 
             var url = html.GetDocumentBaseUrl(" http://www.example.com ");
 
@@ -84,7 +84,7 @@ namespace Sugar.Html
         [Test]
         public void TestGetDocumentBaseFromRootedUrlHtmlWithNonRootedBaseTagWithSpaces()
         {
-            var html = new HtmlDocument("<base href=' images ' />");
+            var html = Html.Load("<base href=' images ' />");
 
             var url = html.GetDocumentBaseUrl("http://www.example.com");
 
@@ -94,7 +94,7 @@ namespace Sugar.Html
         [Test]
         public void TestGetDocumentBaseFromNonRootedUrlHtmlWithRootedBaseTag()
         {
-            var html = new HtmlDocument("<base href='/images' />");
+            var html = Html.Load("<base href='/images' />");
 
             var url = html.GetDocumentBaseUrl("http://www.example.com/assets");
 
@@ -105,7 +105,7 @@ namespace Sugar.Html
         [Test]
         public void TestGetDocumentBaseFromRootedUrlHtmlWithHttpBaseTag()
         {
-            var html = new HtmlDocument("<base href='http://example.com/images' />");
+            var html = Html.Load("<base href='http://example.com/images' />");
 
             var url = html.GetDocumentBaseUrl("http://www.example.com");
 
@@ -115,7 +115,7 @@ namespace Sugar.Html
         [Test]
         public void TestGetDocumentBaseFromNonRootedUrlHtmlWithHttpBaseTag()
         {
-            var html = new HtmlDocument("<base href='http://example.com/images' />");
+            var html = Html.Load("<base href='http://example.com/images' />");
 
             var url = html.GetDocumentBaseUrl("http://www.example.com/assets");
 
@@ -129,7 +129,7 @@ namespace Sugar.Html
 
             var imageUrl = "http://www.example.com/image.jpg";
 
-            var result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            var result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("http://www.example.com/image.jpg", result);
         }
@@ -141,7 +141,7 @@ namespace Sugar.Html
 
             var imageUrl = "/image.jpg";
 
-            var result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            var result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("http://www.example.com/image.jpg", result);
         }
@@ -153,7 +153,7 @@ namespace Sugar.Html
 
             var imageUrl = "image.jpg";
 
-            var result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            var result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("http://www.example.com/image.jpg", result);
         }
@@ -165,13 +165,13 @@ namespace Sugar.Html
 
             var imageUrl = "http://www.example.com/image.jpg";
 
-            var result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            var result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("http://www.example.com/image.jpg", result);
 
             imageUrl = "HTTP://WWW.TWEED-JACKET.COM/img/HOME PAGE PHOTOS/Carron-Jacket-Waistcoat-and.jpg";
 
-            result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("HTTP://WWW.TWEED-JACKET.COM/img/HOME PAGE PHOTOS/Carron-Jacket-Waistcoat-and.jpg", result);
         }
@@ -183,7 +183,7 @@ namespace Sugar.Html
 
             var imageUrl = " /image.jpg ";
 
-            var result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            var result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("http://www.example.com/image.jpg", result);
         }
@@ -195,7 +195,7 @@ namespace Sugar.Html
 
             var imageUrl = " image.jpg ";
 
-            var result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            var result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("http://www.example.com/image.jpg", result);
         }
@@ -207,7 +207,7 @@ namespace Sugar.Html
 
             var imageUrl = " http://www.example.com/image.jpg ";
 
-            var result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            var result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("http://www.example.com/image.jpg", result);
         }
@@ -219,7 +219,7 @@ namespace Sugar.Html
 
             var imageUrl = " /image.jpg ";
 
-            var result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            var result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("http://www.example.com/image.jpg", result);
         }
@@ -231,7 +231,7 @@ namespace Sugar.Html
 
             var imageUrl = "/image.jpg";
 
-            var result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            var result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("http://www.example.com/image.jpg", result);
         }
@@ -243,9 +243,93 @@ namespace Sugar.Html
 
             var imageUrl = "image.jpg";
 
-            var result = HtmlDocument.GetFullImageUrl(imageUrl, baseUrl);
+            var result = Html.GetFullImageUrl(imageUrl, baseUrl);
 
             Assert.AreEqual("http://www.example.com/assets/image.jpg", result);
+        }
+
+        [Test]
+        public void TestInnerHtml()
+        {
+            var document = Html.Load("<html>hello</html>");
+
+            Assert.AreEqual("<html>hello</html>", document.GetInnerHtml());
+        }
+
+        [Test]
+        public void TestInnerHtmlWithXPath()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span></html>");
+
+            Assert.AreEqual("<b>hello</b>", document.GetInnerHtml("//p"));
+        }
+
+        [Test]
+        public void TestInnerHtmlListWithXPath()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p>hi</p></html>");
+
+            Assert.AreEqual("<b>hello</b>", document.GetInnerHtmlList("//p")[0]);
+            Assert.AreEqual("hi", document.GetInnerHtmlList("//p")[1]);
+        }
+
+        [Test]
+        public void TestInnerText()
+        {
+            var document = Html.Load("<html>hello</html>");
+
+            Assert.AreEqual("hello", document.GetInnerText());
+        }
+
+        [Test]
+        public void TestInnerTextWithXPath()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span></html>");
+
+            Assert.AreEqual("hello", document.GetInnerText("//p"));
+        }
+
+        [Test]
+        public void TestInnerTextListWithXPath()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p>hi</p></html>");
+
+            Assert.AreEqual("hello", document.GetInnerTextList("//p")[0]);
+            Assert.AreEqual("hi", document.GetInnerTextList("//p")[1]);
+        }
+
+        [Test]
+        public void TestGetAttribute()
+        {
+            var document = Html.Load("<html><p><b href='value'>hello</b></p><span>world</span><p>hi</p></html>");
+
+            Assert.AreEqual("value", document.GetAttribute("//b", "href"));
+        }
+
+        [Test]
+        public void TestGetAttributeList()
+        {
+            var document = Html.Load("<html><p><b href='value'>hello</b></p><span>world</span><p><b href='2'>hi</b></p></html>");
+
+            Assert.AreEqual("value", document.GetAttributeList("//b", "href")[0]);
+            Assert.AreEqual("2", document.GetAttributeList("//b", "href")[1]);
+        }
+
+        [Test]
+        public void TestGetNodes()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p>hi</p></html>");
+
+            Assert.AreEqual("<b>hello</b>", document.GetNodes("//p")[0].GetInnerHtml());
+            Assert.AreEqual("hi", document.GetNodes("//p")[1].GetInnerText());
+        }
+
+        [Test]
+        public void TestContains()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p>hi</p></html>");
+
+            Assert.IsTrue(document.Contains("hello"));
         }
     }
 }

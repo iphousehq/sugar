@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Web;
 
 namespace Sugar
@@ -9,6 +10,8 @@ namespace Sugar
     /// </summary>
     public static class StringExtensions
     {
+#if !CLIENT
+
         /// <summary>
         /// HTML Decodes this string.
         /// </summary>
@@ -39,6 +42,17 @@ namespace Sugar
             return HttpUtility.UrlEncode(value);
         }
 
+        /// <summary>
+        /// URL decodes this string.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string UrlDecode(this string value)
+        {
+            return HttpUtility.UrlDecode(value);
+        }
+
+#endif
         /// <summary>
         /// Determines whether the string starts with the specified value.
         /// </summary>
@@ -236,6 +250,25 @@ namespace Sugar
             return results;
         }
 
+        public static string Join(this IEnumerable<string> values, string seperator = "")
+        {
+            var sb = new StringBuilder();
+
+            if (values != null)
+            {
+                foreach (var value in values)
+                {
+                    if (string.IsNullOrWhiteSpace(value)) continue;
+
+                    if (sb.Length > 0) sb.Append(seperator);
+
+                    sb.Append(value);
+                }
+            }
+
+            return sb.ToString();
+        }
+
         /// <summary>
         /// Determines whether the specified value contains any of the characters in the given input.
         /// </summary>
@@ -260,9 +293,52 @@ namespace Sugar
             return result;
         }
 
+        /// <summary>
+        /// Determines whether the given string contains any numeric values.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if  the given string contains any numeric values; otherwise, <c>false</c>.
+        /// </returns>
         public static bool ContainsAnyNumeric(this string value)
         {
             return ContainsAny(value, "1234567890");
+        }
+
+        /// <summary>
+        /// Prepends the specified value to the given string.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="prependWith">The prepend with.</param>
+        /// <returns></returns>
+        public static string Prepend(this string value, string prependWith)
+        {
+            var result = prependWith;
+
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                result = string.Concat(result, value);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Formats the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="format">The format.</param>
+        /// <returns></returns>
+        public static string FormatWith(this object value, string format)
+        {
+            var result = string.Empty;
+
+            if (value != null)
+            {
+                result = string.Format(format, value);
+            }
+
+            return result;
         }
     }
 }

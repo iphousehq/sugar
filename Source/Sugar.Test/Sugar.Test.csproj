@@ -30,9 +30,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ClientProfile|AnyCPU'">
+    <OutputPath>bin\ClientProfile\</OutputPath>
+    <DefineConstants>TRACE;CLIENT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMoq">
       <HintPath>..\..\References\Moq\AutoMoq.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\References\HtmlAgilityPack\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\References\Moq\Moq.dll</HintPath>
@@ -55,14 +68,18 @@
     <Compile Include="Command\ParametersTest.cs" />
     <Compile Include="Command\ParameterBinderTest.cs" />
     <Compile Include="Command\ParameterParserTest.cs" />
-    <Compile Include="Config\ConfigLineTest.cs" />
-    <Compile Include="Config\ConfigTest.cs" />
+    <Compile Include="Configuration\ConfigLineTest.cs" />
+    <Compile Include="Configuration\ConfigTest.cs" />
+    <Compile Include="DateTimeExtensionsTest.cs" />
+    <Compile Include="EnumerableExtensionsTest.cs" />
     <Compile Include="Html\HtmlDocumentTest.cs" />
+    <Compile Include="Html\HtmlNodeExtensionsTest.cs" />
     <Compile Include="Int32ExtensionsTest.cs" />
     <Compile Include="IO\FileServiceTest.cs" />
     <Compile Include="Net\HttpRequestTest.cs" />
     <Compile Include="Net\HttpResponseTest.cs" />
     <Compile Include="Net\UrlTest.cs" />
+    <Compile Include="Net\UserAgentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensionsTest.cs" />
     <Compile Include="TextTableTest.cs" />
@@ -77,6 +94,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Samples\Child\Test.txt" />
+    <Content Include="Samples\node-extension.html" />
     <Content Include="Samples\Two.txt" />
     <Content Include="Samples\One.txt" />
   </ItemGroup>

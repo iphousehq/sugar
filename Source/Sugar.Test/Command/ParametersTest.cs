@@ -285,6 +285,16 @@ namespace Sugar.Command
         }
 
         [Test]
+        public void TestReplaceParameterWithNoSwitch()
+        {
+            var parameters = parser.Parse("flag one", new string[0]);
+
+            parameters.Replace("flag", "three");
+
+            Assert.AreEqual("three one", parameters.ToString());
+        }
+
+        [Test]
         public void TestAsCustomType()
         {
             var parameters = parser.Parse("-flag 123.45");
@@ -322,7 +332,6 @@ namespace Sugar.Command
             Assert.AreEqual(false, parameters.ContainsAny("boat", "another", "flag"));
         }
 
-
         [Test]
         public void TestHasValue()
         {
@@ -331,6 +340,16 @@ namespace Sugar.Command
             Assert.AreEqual(true, parameters.HasValue("flag"));
             Assert.AreEqual(false, parameters.HasValue("boat"));
             Assert.AreEqual(false, parameters.HasValue("dog"));
+        }
+
+        [Test]
+        public void TestHasValueWithNoPrefix()
+        {
+            var parameters = parser.Parse("flag red boat fish", new[] { "" });
+
+            Assert.AreEqual(true, parameters.HasValue("flag"));
+            Assert.AreEqual(true, parameters.HasValue("boat"));
+            Assert.AreEqual(false, parameters.HasValue("fish"));
         }
     }
 }

@@ -294,11 +294,20 @@ namespace Sugar.Command
 
             if (index <= -1) return;
 
-            var length = AsStrings(name).Count;
+            if (Switches.Count > 0)
+            {
+                var length = AsStrings(name).Count;
 
-            if (index + 1 + length <= Count) RemoveRange(index + 1, length);
+                if (index + 1 + length <= Count) RemoveRange(index + 1, length);
 
-            InsertRange(index + 1, values);
+                InsertRange(index + 1, values);
+            }
+            else
+            {
+                RemoveAt(index);
+
+                InsertRange(index, values);                
+            }
         }
 
         /// <summary>

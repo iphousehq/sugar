@@ -12,6 +12,8 @@
     <AssemblyName>Sugar</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +31,16 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ClientProfile|AnyCPU'">
+    <OutputPath>bin\ClientProfile\</OutputPath>
+    <DefineConstants>TRACE;CLIENT</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
@@ -55,19 +67,25 @@
     <Compile Include="Command\ParameterBinder.cs" />
     <Compile Include="Command\ParameterParser.cs" />
     <Compile Include="Command\Parameters.cs" />
-    <Compile Include="Config\Config.cs" />
-    <Compile Include="Config\ConfigLine.cs" />
-    <Compile Include="Html\HtmlDocument.cs" />
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\ConfigLine.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="DoubleExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="Html\HtmlDocumentExtensions.cs" />
+    <Compile Include="Html\HtmlNodeExtensions.cs" />
     <Compile Include="Int32Extensions.cs" />
     <Compile Include="IO\FileService.cs" />
     <Compile Include="IO\IFileService.cs" />
     <Compile Include="Net\DomainName.cs" />
+    <Compile Include="Net\HttpQuery.cs" />
     <Compile Include="Net\HttpRequest.cs" />
     <Compile Include="Net\HttpResponse.cs" />
     <Compile Include="Net\HttpService.cs" />
+    <Compile Include="Net\HttpVerb.cs" />
     <Compile Include="Net\IHttpService.cs" />
     <Compile Include="Net\Url.cs" />
+    <Compile Include="Net\UserAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Retry.cs" />
     <Compile Include="Settings.cs" />

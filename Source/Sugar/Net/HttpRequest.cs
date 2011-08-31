@@ -1,4 +1,7 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
+using System.Net;
+using System.Text;
 
 namespace Sugar.Net
 {
@@ -12,14 +15,21 @@ namespace Sugar.Net
         /// </summary>
         public HttpRequest()
         {
-            UserAgent = "Mozilla/5.0 (Windows; U; Windows NT 6.1; pl; rv:1.9.1) Gecko/20090624 Firefox/3.5 (.NET CLR 3.5.30729)";
-
             Retries = 3;
-
-            Headers = new NameValueCollection();
-
             Timeout = 10000;
+            Verb = HttpVerb.Get;
+            UserAgent = UserAgent.Custom("");
+            Headers = new NameValueCollection();
+            Cookies = new CookieContainer();
         }
+
+        /// <summary>
+        /// Gets or sets the verb.
+        /// </summary>
+        /// <value>
+        /// The verb.
+        /// </value>
+        public HttpVerb Verb { get; set; }
 
         /// <summary>
         /// Gets or sets the URL to download.
@@ -51,7 +61,7 @@ namespace Sugar.Net
         /// Gets or sets the user agent.
         /// </summary>
         /// <value>The user agent.</value>
-        public string UserAgent { get; set; }
+        public UserAgent UserAgent { get; set; }
 
         /// <summary>
         /// Gets or sets the content type.
@@ -103,16 +113,55 @@ namespace Sugar.Net
         public NameValueCollection Headers { get; private set; }
 
         /// <summary>
-        /// Adds the specified header to the request.
+        /// Gets the cookies.
         /// </summary>
-        /// <param name="name">The name.</param>
-        /// <param name="value">The value.</param>
+        public CookieContainer Cookies { get; set; }
+
+        /// <summary>
+        /// Gets or sets the referer.
+        /// </summary>
+        /// <value>
+        /// The referer.
+        /// </value>
+        public string Referer { get; set; }
+
+        /// <summary>
+        /// Converts this instance to a <see cref="WebRequest"/>
+        /// </summary>
         /// <returns></returns>
-        public HttpRequest WithHeader(string name, string value)
+        public WebRequest ToWebRequest()
         {
-            Headers.Add(name, value);
-            
-            return this;
-        }
+            var request = (HttpWebRequest)WebRequest.Create(Url);
+
+            request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            request.Method = Verb.ToString().ToUpper();
+            request.Timeout = Timeout;
+            if (UserAgent != null) request.UserAgent = UserAgent.ToString();
+            request.ContentType = ContentType;
+            request.Referer = Referer;
+            ServicePointManager.ServerCertificateValidationCallback += delegate { return true; }; // to allow HTTPS
+
+            request.Headers.Add(Headers);
+            request.CookieContainer = Cookies;
+
+            if (UseAuthentication)
+            {
+                if (UseBasicAuthentication)
+                {
+                    var header = string.Concat(Username, ":", Password);
+
+                    var encoded = Convert.ToBase64String(Encoding.Default.GetBytes(header));
+
+                    request.Headers["Authorization"] = "Basic " + encoded;
+                }
+                else
+                {
+                    request.Credentials = new NetworkCredential(Username, Password);
+                }
+            }
+
+            return request;
+        }     
     }
 }

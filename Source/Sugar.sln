@@ -7,14 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Test", "Sugar.Test\Su
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		ClientProfile|Any CPU = ClientProfile|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDB78F77-9123-4821-817B-F3F91E973A7D}.ClientProfile|Any CPU.ActiveCfg = ClientProfile|Any CPU
+		{EDB78F77-9123-4821-817B-F3F91E973A7D}.ClientProfile|Any CPU.Build.0 = ClientProfile|Any CPU
 		{EDB78F77-9123-4821-817B-F3F91E973A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDB78F77-9123-4821-817B-F3F91E973A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDB78F77-9123-4821-817B-F3F91E973A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDB78F77-9123-4821-817B-F3F91E973A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.ClientProfile|Any CPU.ActiveCfg = ClientProfile|Any CPU
+		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.ClientProfile|Any CPU.Build.0 = ClientProfile|Any CPU
 		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Release|Any CPU.ActiveCfg = Release|Any CPU

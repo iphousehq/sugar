@@ -7,6 +7,7 @@ namespace Sugar
     [TestFixture]
     public class StringExtensionsTest
     {
+#if !CLIENT
         [Test]
         public void TestHtmlDecode()
         {
@@ -18,7 +19,7 @@ namespace Sugar
         [Test]
         public void TestHtmlDecodeNullValue()
         {
-            var decoded = ((string) null).HtmlDecode();
+            var decoded = ((string)null).HtmlDecode();
 
             Assert.IsNull(decoded);
         }
@@ -34,11 +35,11 @@ namespace Sugar
         [Test]
         public void TestHtmlEncodeNullValue()
         {
-            var decoded = ((string) null).HtmlEncode();
+            var decoded = ((string)null).HtmlEncode();
 
             Assert.IsNull(decoded);
         }
-
+#endif
         [Test]
         public void TestStartsWithAndIgnoreCase()
         {
@@ -101,7 +102,7 @@ namespace Sugar
         [Test]
         public void TestKeepWhenNull()
         {
-            Assert.AreEqual(string.Empty, ((string) null).Keep("12"));
+            Assert.AreEqual(string.Empty, ((string)null).Keep("12"));
         }
 
         [Test]
@@ -152,6 +153,16 @@ namespace Sugar
             var result = "onethreetwothreethreefour".Split("three", StringSplitOptions.RemoveEmptyEntries);
 
             Assert.AreEqual(3, result.Count());
+        }
+
+        [Test]
+        public void TestJoinStrings()
+        {
+            Assert.AreEqual("onetwo", new[] { "one", "two" }.Join());
+            Assert.AreEqual("one two", new[] { "one", "two" }.Join(" "));
+            Assert.AreEqual("one two", new[] { "one", "", null, "two" }.Join(" "));
+            Assert.AreEqual("", new string[0].Join(" "));
+            Assert.AreEqual("", ((string[])null).Join(" "));
         }
     }
 }

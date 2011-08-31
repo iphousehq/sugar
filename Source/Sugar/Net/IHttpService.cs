@@ -1,4 +1,6 @@
-﻿namespace Sugar.Net
+﻿using System.Net;
+
+namespace Sugar.Net
 {
     /// <summary>
     /// Interface to define access to downloading content over the internet
@@ -6,27 +8,83 @@
     public interface IHttpService
     {
         /// <summary>
-        /// Gets the contents of the specified URL.
+        /// Downloads the specified request.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        HttpResponse Download(HttpRequest request);
+
+        /// <summary>
+        /// Downloads the specified URL.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="verb">The verb.</param>
+        /// <param name="agent">The agent.</param>
+        /// <param name="cookies">The cookies.</param>
+        /// <param name="referer">The referer.</param>
+        /// <returns></returns>
+        HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "");
+
+        /// <summary>
+        /// Builds a HTTP request from the given arguments.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="verb">The verb.</param>
+        /// <param name="agent">The agent.</param>
+        /// <param name="cookies">The cookies.</param>
+        /// <param name="referer">The referer.</param>
+        /// <returns></returns>
+        HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "");
+
+        /// <summary>
+        /// Gets the specified URL.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="agent">The agent.</param>
+        /// <param name="cookies">The cookies.</param>
+        /// <param name="referer">The referer.</param>
+        /// <returns></returns>
+        HttpResponse Get(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "");
+
+        /// <summary>
+        /// Gets the specified URL.
         /// </summary>
         /// <param name="url">The URL.</param>
         /// <returns></returns>
         HttpResponse Get(string url);
 
         /// <summary>
-        /// Gets the specified URL.
+        /// POSTs to the specified URL.
         /// </summary>
         /// <param name="url">The URL.</param>
-        /// <param name="userAgent">The user agent.</param>
+        /// <param name="agent">The agent.</param>
+        /// <param name="cookies">The cookies.</param>
+        /// <param name="referer">The referer.</param>
         /// <returns></returns>
-        HttpResponse Get(string url, string userAgent);
+        HttpResponse Post(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "");
 
         /// <summary>
-        /// Gets the content specified in the given request.
+        /// POSTs to the specified URL.
         /// </summary>
-        /// <param name="request">The request.</param>
+        /// <param name="url">The URL.</param>
         /// <returns></returns>
-        HttpResponse Get(HttpRequest request);
+        HttpResponse Post(string url);
 
-        HttpResponse Post(HttpRequest request);
+        /// <summary>
+        /// Gets the HEAD of the specified URL.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="agent">The agent.</param>
+        /// <param name="cookies">The cookies.</param>
+        /// <param name="referer">The referer.</param>
+        /// <returns></returns>
+        HttpResponse Head(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "");
+
+        /// <summary>
+        /// Gets the HEAD of the specified URL.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
+        HttpResponse Head(string url);
     }
 }

@@ -45,11 +45,12 @@ namespace Sugar.IO
 
             var filenames = service.GetFilenames("*", 1);
 
-            Assert.AreEqual(4, filenames.Count);
+            Assert.AreEqual(5, filenames.Count);
             Assert.IsTrue(filenames[0].EndsWith("\\Samples\\Child\\Test.txt"));
             Assert.IsTrue(filenames[1].EndsWith("\\Samples\\grass.jpg"));
-            Assert.IsTrue(filenames[2].EndsWith("\\Samples\\One.txt"));
-            Assert.IsTrue(filenames[3].EndsWith("\\Samples\\Two.txt"));
+            Assert.IsTrue(filenames[2].EndsWith("\\Samples\\node-extension.html"));
+            Assert.IsTrue(filenames[3].EndsWith("\\Samples\\One.txt"));
+            Assert.IsTrue(filenames[4].EndsWith("\\Samples\\Two.txt"));
         }
 
         [Test]

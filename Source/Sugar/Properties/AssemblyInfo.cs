@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Comsec.Sugar")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Sugar")]
+[assembly: AssemblyDescription("Syntactic Sugar for .NET")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Comsec.Sugar")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
+[assembly: AssemblyCompany("CSi")]
+[assembly: AssemblyProduct("Sugar")]
+[assembly: AssemblyCopyright("Copyright © CSi 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
