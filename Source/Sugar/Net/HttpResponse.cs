@@ -102,7 +102,10 @@ namespace Sugar.Net
         {
             var document = new HtmlDocument();
 
-            document.LoadHtml(ToString());
+            if (!string.IsNullOrWhiteSpace(ToString()))
+            {
+                document.LoadHtml(ToString());
+            }
 
             return document;
         }
