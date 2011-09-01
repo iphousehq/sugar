@@ -2,18 +2,18 @@
 {
     public abstract class BoundCommand<T> : ICommand where T : class, new()
     {
-        private T options;
+        protected T OptionsBound;
 
-        public bool CanExecute(Parameters parameters)
+        public virtual bool CanExecute(Parameters parameters)
         {
-            options = new ParameterBinder().Bind<T>(parameters);
+            OptionsBound = new ParameterBinder().Bind<T>(parameters);
 
-            return options != null;
+            return OptionsBound != null;
         }
 
         public void Execute(Parameters parameters)
         {
-            Execute(options);
+            Execute(OptionsBound);
         }
 
         public abstract void Execute(T options);
