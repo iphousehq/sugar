@@ -351,5 +351,13 @@ namespace Sugar.Command
             Assert.AreEqual(true, parameters.HasValue("boat"));
             Assert.AreEqual(false, parameters.HasValue("fish"));
         }
+
+        [Test]
+        public void TestToStringWithQuotedParameter()
+        {
+            var parameters = parser.Parse(@"flag ""red boat""", new[] { "" }).ToString();
+
+            Assert.AreEqual(@"flag ""red boat""", parameters);
+        }
     }
 }

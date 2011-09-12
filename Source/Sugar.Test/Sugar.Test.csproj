@@ -63,7 +63,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayExtensionsTest.cs" />
     <Compile Include="BitmapExtensionsTest.cs" />
+    <Compile Include="CollectionExtensionsTest.cs" />
     <Compile Include="Command\BoundCommandTest.cs" />
     <Compile Include="Command\ParametersTest.cs" />
     <Compile Include="Command\ParameterBinderTest.cs" />

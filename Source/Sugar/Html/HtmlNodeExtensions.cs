@@ -14,7 +14,7 @@ namespace Sugar.Html
         /// Updates the document HTML.
         /// </summary>
         /// <param name="document">The document.</param>
-        public static void UpdateDocumentHtml(this HtmlAgilityPack.HtmlDocument document)
+        public static void UpdateDocumentHtml(this HtmlDocument document)
         {
             document.DocumentNode.InnerHtml = document.DocumentNode.WriteContentTo();
         }
@@ -25,9 +25,9 @@ namespace Sugar.Html
         /// <param name="node">The node.</param>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public static IEnumerable<HtmlNode> DescendantsAndSelf(this HtmlNode node, string name)
+        public static IEnumerable<HtmlNode> DescendantsAndSelfWithName(this HtmlNode node, string name)
         {
-            return node.DescendantsAndSelf().Where(n => n.Name == name).Select(n => n);
+            return node.DescendantsAndSelf().Where(n => n.Name == name);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Sugar.Html
         /// </summary>
         /// <param name="document">The document.</param>
         /// <param name="name">The name of the attribute to remove.</param>
-        public static void RemoveAllAttributes(this HtmlAgilityPack.HtmlDocument document, string name)
+        public static void RemoveAllAttributes(this HtmlDocument document, string name)
         {
             foreach (var node in document.DocumentNode.DescendantsAndSelf())
             {

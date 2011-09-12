@@ -72,7 +72,7 @@ namespace Sugar.Html
         {
             var node = document.DocumentNode.SelectSingleNode(@"//p[@id='self']");
 
-            var results = node.DescendantsAndSelf("p");
+            var results = node.DescendantsAndSelfWithName("p");
 
             Assert.AreEqual(2, results.Count());
         }

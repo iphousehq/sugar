@@ -86,5 +86,11 @@ namespace Sugar.Net
         /// <param name="url">The URL.</param>
         /// <returns></returns>
         HttpResponse Head(string url);
+
+        /// <summary>
+        /// Creates an <see cref="HttpQuery"/> object.
+        /// </summary>
+        /// <returns></returns>
+        HttpQuery Query();
     }
 }

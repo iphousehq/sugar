@@ -57,7 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayExtensions.cs" />
     <Compile Include="BitmapExtensions.cs" />
+    <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Command\BaseCommandConsole.cs" />
     <Compile Include="Command\BaseConsole.cs" />
     <Compile Include="Command\BoundCommand.cs" />

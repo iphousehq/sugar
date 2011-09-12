@@ -261,8 +261,18 @@ namespace Sugar.Command
             foreach (var parameter in this)
             {
                 if (sb.Length > 0) sb.Append(" ");
+                
+                if (parameter.Contains(" "))
+                {
+                    sb.Append(@"""");
+                }
 
                 sb.Append(parameter);
+
+                if (parameter.Contains(" "))
+                {
+                    sb.Append(@"""");
+                }
             }
 
             return sb.ToString();

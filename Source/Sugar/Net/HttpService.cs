@@ -179,5 +179,14 @@ namespace Sugar.Net
         {
             return Head(url, null);
         }
+
+        /// <summary>
+        /// Creates an <see cref="HttpQuery"/> object.
+        /// </summary>
+        /// <returns></returns>
+        public HttpQuery Query()
+        {
+            return new HttpQuery(this);
+        }
     }
 }
