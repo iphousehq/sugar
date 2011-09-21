@@ -50,6 +50,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +80,7 @@
     <Compile Include="Int32Extensions.cs" />
     <Compile Include="IO\FileService.cs" />
     <Compile Include="IO\IFileService.cs" />
+    <Compile Include="JsonHelper.cs" />
     <Compile Include="Net\DomainName.cs" />
     <Compile Include="Net\HttpQuery.cs" />
     <Compile Include="Net\HttpRequest.cs" />

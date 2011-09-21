@@ -51,7 +51,7 @@ namespace Sugar.Net
         /// requests.
         /// </param>
         /// <returns></returns>
-        public HttpQuery Get(string url, UserAgent agent = null, CookieContainer cookies = null, bool persistState = true)
+        public virtual HttpQuery Get(string url, UserAgent agent = null, CookieContainer cookies = null, bool persistState = true)
         {
             Request = HttpService.Build(url, HttpVerb.Get, agent, cookies);
 
