@@ -23,54 +23,48 @@ namespace Sugar.Net
                                  UserAgent = request.UserAgent
                              };
 
-            try
+            var webRequest = request.ToWebRequest();
+
+            // Post request data
+            if (request.Verb == HttpVerb.Post)
             {
-                var webRequest = request.ToWebRequest();
-
-                // Post request data
-                if (request.Verb == HttpVerb.Post)
+                using (var stream = webRequest.GetRequestStream())
                 {
-                    using (var stream = webRequest.GetRequestStream())
-                    {
-                        var encoder = new UTF8Encoding();
+                    var encoder = new UTF8Encoding();
 
-                        var data = encoder.GetBytes(request.Data);
+                    var data = encoder.GetBytes(request.Data);
 
-                        stream.Write(data, 0, data.Length);
+                    stream.Write(data, 0, data.Length);
 
-                        stream.Close();
-                    }
+                    stream.Close();
                 }
-
-                // Download response
-                using (var response = webRequest.GetResponse() as HttpWebResponse)
-                using (var stream = response.GetResponseStream())
-                using (var memoryStream = new MemoryStream())
-                {
-                    var buffer = new byte[2048];
-
-                    int bytesRead;
-
-                    do
-                    {
-                        bytesRead = stream.Read(buffer, 0, buffer.Length);
-
-                        memoryStream.Write(buffer, 0, bytesRead);
-                    }
-                    while (bytesRead != 0);
-
-                    if (memoryStream.Length > 0) result.Bytes = memoryStream.ToArray();
-
-                    result.Cookies = new CookieContainer();
-                    result.Cookies.Add(response.Cookies);
-                }
-
-
             }
-            catch (Exception ex)
+
+            // Download response
+            using (var response = webRequest.GetResponse() as HttpWebResponse)
+            using (var stream = response.GetResponseStream())
+            using (var memoryStream = new MemoryStream())
             {
-                result.Exception = ex;
+                var buffer = new byte[2048];
+
+                int bytesRead;
+
+                do
+                {
+                    bytesRead = stream.Read(buffer, 0, buffer.Length);
+
+                    memoryStream.Write(buffer, 0, bytesRead);
+                }
+                while (bytesRead != 0);
+
+                if (memoryStream.Length > 0) result.Bytes = memoryStream.ToArray();
+
+                result.Cookies = new CookieContainer();
+                result.Cookies.Add(response.Cookies);
             }
+
+
+
 
             return result;
         }
@@ -102,13 +96,32 @@ namespace Sugar.Net
         /// <param name="cookies">The cookies.</param>
         /// <param name="referer">The referer.</param>
         /// <returns></returns>
+        /// <remarks>
+        /// Will retry to download 3 times by default.
+        /// </remarks>
         public HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "")
         {
             if (agent == null) agent = UserAgent.Custom(string.Empty);
 
             var request = Build(url, verb, agent, cookies, referer);
 
-            return Retry.This(() => Download(request), request.Retries, request.Timeout);
+            HttpResponse response;
+
+            try
+            {
+                response = Retry.This(() => Download(request), request.Retries, request.Timeout);
+            }
+            catch (Exception ex)
+            {
+                response = new HttpResponse
+                               {
+                                   Exception = ex,
+                                   Url = url,
+                                   UserAgent = agent
+                               };
+            }
+
+            return response;
         }
 
         /// <summary>

@@ -75,6 +75,7 @@
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="DoubleExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="EnumExtensions.cs" />
     <Compile Include="Html\HtmlDocumentExtensions.cs" />
     <Compile Include="Html\HtmlNodeExtensions.cs" />
     <Compile Include="Int32Extensions.cs" />
