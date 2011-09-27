@@ -118,5 +118,14 @@ namespace Sugar.Net
         {
             return Bytes.ToBitmap();
         }
+
+        /// <summary>
+        /// Returns a dynamic representations of this instance's JSON data.
+        /// </summary>
+        /// <returns></returns>
+        public dynamic ToJson()
+        {
+            return ToString().DecodeJson();
+        }
     }
 }
