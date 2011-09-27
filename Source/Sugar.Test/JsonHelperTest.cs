@@ -48,5 +48,20 @@ namespace Sugar
                 index++;
             }
         }
+
+        [Test]
+        public void TestHasMember()
+        {
+            var raw = @"{ 
+                            ""glossary"": { 
+                                ""title"": ""example glossary""
+                                }
+                          }";
+
+            var json = (DynamicJsonObject) raw.DecodeJson();
+
+            Assert.AreEqual(true, json.HasMember("glossary"));
+            Assert.AreEqual(false, json.HasMember("bob"));
+        }
     }
 }

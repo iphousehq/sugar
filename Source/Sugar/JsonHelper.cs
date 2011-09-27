@@ -54,46 +54,58 @@ namespace Sugar
             }
         }
 
-        private sealed class DynamicJsonObject : DynamicObject
+    }
+
+    public class DynamicJsonObject : DynamicObject
+    {
+        private readonly IDictionary<string, object> _dictionary;
+
+
+
+        public DynamicJsonObject(IDictionary<string, object> dictionary)
         {
-            private readonly IDictionary<string, object> _dictionary;
-
-            public DynamicJsonObject(IDictionary<string, object> dictionary)
-            {
-                if (dictionary == null)
-                    throw new ArgumentNullException("dictionary");
-                _dictionary = dictionary;
-            }
-
-            public override bool TryGetMember(GetMemberBinder binder, out object result)
-            {
-                if (!_dictionary.TryGetValue(binder.Name, out result))
-                {
-                    // return null to avoid exception.  caller can check for null this way...
-                    result = null;
-                    return true;
-                }
-
-                var dictionary = result as IDictionary<string, object>;
-                if (dictionary != null)
-                {
-                    result = new DynamicJsonObject(dictionary);
-                    return true;
-                }
-
-                var arrayList = result as ArrayList;
-                if (arrayList != null && arrayList.Count > 0)
-                {
-                    if (arrayList[0] is IDictionary<string, object>)
-                        result = new List<object>(arrayList.Cast<IDictionary<string, object>>().Select(x => new DynamicJsonObject(x)));
-                    else
-                        result = new List<object>(arrayList.Cast<object>());
-                }
-
-                return true;
-            }
+            if (dictionary == null)
+                throw new ArgumentNullException("dictionary");
+            _dictionary = dictionary;
         }
 
+        public override bool TryGetMember(GetMemberBinder binder, out object result)
+        {
+            if (!_dictionary.TryGetValue(binder.Name, out result))
+            {
+                // return null to avoid exception.  caller can check for null this way...
+                result = null;
+                return true;
+            }
 
-    }
+            var dictionary = result as IDictionary<string, object>;
+            if (dictionary != null)
+            {
+                result = new DynamicJsonObject(dictionary);
+                return true;
+            }
+
+            var arrayList = result as ArrayList;
+            if (arrayList != null && arrayList.Count > 0)
+            {
+                if (arrayList[0] is IDictionary<string, object>)
+                    result =
+                        new List<object>(
+                            arrayList.Cast<IDictionary<string, object>>().Select(x => new DynamicJsonObject(x)));
+                else
+                    result = new List<object>(arrayList.Cast<object>());
+            }
+
+            return true;
+
+        }
+
+        public bool HasMember(string name)
+            {
+                return _dictionary.Keys.Contains(name);
+            }
+
+        }
+
 }
+      
