@@ -33,6 +33,12 @@ namespace Sugar
             return result.ToString();
         }
 
+        /// <summary>
+        /// Converts a CSV string to list of <see cref="T"/> objects.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static IList<T> FromCsv<T>(this string value)
         {
             var results = new List<T>();
