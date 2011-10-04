@@ -164,5 +164,18 @@ namespace Sugar
             Assert.AreEqual("", new string[0].Join(" "));
             Assert.AreEqual("", ((string[])null).Join(" "));
         }
+
+        [Test]
+        public void TestJoinPhrases()
+        {
+            var phrases = new[] { "one", "two", "three" };
+
+            Assert.AreEqual("one, two or three", phrases.JoinPhrases());
+            Assert.AreEqual("one, two and three", phrases.JoinPhrases(lastSeperator: "and"));
+
+            var morePhrases = new[] { "one", "two three", "four" };
+
+            Assert.AreEqual(@"one, ""two three"" or four", morePhrases.JoinPhrases());
+        }
     }
 }

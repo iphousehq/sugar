@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Web;
 
@@ -263,6 +264,47 @@ namespace Sugar
                     if (sb.Length > 0) sb.Append(seperator);
 
                     sb.Append(value);
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        public static string JoinPhrases(this IList<string> values, string seperator = ",", string lastSeperator = "or")
+        {
+            var sb = new StringBuilder();
+
+            if (values != null)
+            {
+                for(var i = 0; i < values.Count; i++)
+                {
+                    var value = values[i];
+
+                    if (string.IsNullOrWhiteSpace(value)) continue;
+
+                    if (sb.Length > 0)
+                    {
+                        if (i == values.Count - 1)
+                        {
+                            sb.Append(" ");
+                            sb.Append(lastSeperator);
+                            sb.Append(" ");
+                        }
+                        else
+                        {
+                            sb.Append(seperator);
+                            sb.Append(" ");
+                        }
+                    }
+
+                    if (value.Contains(" "))
+                    {
+                        sb.AppendFormat(@"""{0}""", value);
+                    }
+                    else
+                    {
+                        sb.Append(value);
+                    }
                 }
             }
 
