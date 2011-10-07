@@ -91,6 +91,7 @@
     <Compile Include="Net\IHttpService.cs" />
     <Compile Include="Net\Url.cs" />
     <Compile Include="Net\UserAgent.cs" />
+    <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Retry.cs" />
     <Compile Include="Settings.cs" />
