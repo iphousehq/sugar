@@ -43,6 +43,9 @@ namespace Sugar
 
         private static void ToDump(object @object, int depth, StringBuilder sb, string name = null)
         {
+            // Prevent too much recursion
+            if (depth > 4) return;
+
             if (string.IsNullOrWhiteSpace(name))
             {
                 name = @object.GetType().Name;
@@ -120,7 +123,7 @@ namespace Sugar
                         }
                         else if (property.PropertyType.IsPrimitive)
                         {
-                            sb.Append(" ".Repeat(2*(depth + 1)));
+                            sb.Append(" ".Repeat(2 * (depth + 1)));
                             sb.AppendFormat(@"""{0}"": ""{1}""", property.Name, value);
                         }
                         else if (property.PropertyType == typeof(DateTime))
@@ -132,12 +135,12 @@ namespace Sugar
                         {
                             if (value == null)
                             {
-                                sb.Append(" ".Repeat(2*(depth + 1)));
+                                sb.Append(" ".Repeat(2 * (depth + 1)));
                                 sb.AppendFormat(@"""{0}"": null", property.Name);
                             }
                             else
                             {
-                                sb.Append(" ".Repeat(2*(depth + 1)));
+                                sb.Append(" ".Repeat(2 * (depth + 1)));
                                 sb.AppendFormat(@"""{0}"": ""{1}""", property.Name, value);
                             }
                         }
@@ -155,7 +158,7 @@ namespace Sugar
                             sb.AppendLine(string.Empty);
                         }
                     }
-                    sb.Append(" ".Repeat(2*depth));
+                    sb.Append(" ".Repeat(2 * depth));
                     sb.Append("}");
                 }
             }
