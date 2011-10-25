@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections;
-using System.Linq;
 using System.Text;
 
 namespace Sugar
 {
     public static class ObjectExtensions
     {
-        public static string ToDump(this object @object, int depth = 1)
+        public static string ToDump(this object @object, int depth = 1, bool enumerate = true)
         {
             var sb = new StringBuilder();
 
@@ -24,7 +23,7 @@ namespace Sugar
                 }
                 else
                 {
-                    ToDump(@object, 1, sb);
+                    ToDump(@object, 1, sb, enumerate: enumerate);
 
                     sb.AppendLine(string.Empty);
                 }
@@ -41,7 +40,7 @@ namespace Sugar
             return sb.ToString();
         }
 
-        private static void ToDump(object @object, int depth, StringBuilder sb, string name = null)
+        private static void ToDump(object @object, int depth, StringBuilder sb, string name = null, bool enumerate = true)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -60,33 +59,43 @@ namespace Sugar
                 if (@object is IEnumerable)
                 {
                     var enumerable = @object as IEnumerable;
-                    sb.AppendLine(": [");
 
-                    var first = true;
-
-                    foreach (var element in enumerable)
+                    if (enumerate)
                     {
-                        if (!first)
-                        {
-                            sb.AppendLine(",");
+                        sb.AppendLine(": [");
 
-                        }
-                        first = false;
+                        var first = true;
 
-                        if (element != null)
+                        foreach (var element in enumerable)
                         {
-                            ToDump(element, depth + 1, sb);
+                            if (!first)
+                            {
+                                sb.AppendLine(",");
+
+                            }
+                            first = false;
+
+                            if (element != null)
+                            {
+                                ToDump(element, depth + 1, sb);
+                            }
+                            else
+                            {
+                                sb.Append(" ".Repeat(2*(depth + 1)));
+                                sb.Append("null");
+                            }
                         }
-                        else
-                        {
-                            sb.Append(" ".Repeat(2 * (depth + 1)));
-                            sb.Append("null");
-                        }
+
+                        sb.AppendLine(string.Empty);
+                        sb.Append(" ".Repeat(2*depth));
+                        sb.Append("]");
                     }
-
-                    sb.AppendLine(string.Empty);
-                    sb.Append(" ".Repeat(2 * depth));
-                    sb.Append("]");
+                    else
+                    {
+                        sb.Append(": [ ");
+                        sb.Append(@object.GetType().ToGenericFullName());
+                        sb.Append(" ]");
+                    }
                 }
                 else
                 {
@@ -143,14 +152,14 @@ namespace Sugar
                         }
                         else
                         {
-                            ToDump(value, depth + 1, sb, property.Name);
+                            ToDump(value, depth + 1, sb, property.Name, enumerate);
                         }
 
                         if (i < properties.Length - 1 && properties.Length > 1)
                         {
                             sb.AppendLine(",");
                         }
-                        else //if (!complexType)
+                        else
                         {
                             sb.AppendLine(string.Empty);
                         }

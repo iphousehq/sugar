@@ -35,14 +35,7 @@ namespace Sugar.Command
             Arguments = new ParameterParser().Parse(args);
 
             // Check user input
-            if (!Validate())
-            {
-                ShowMessage();
-            }
-            else
-            {
-                Main();      
-            }
+            Main();      
 
             // Pause if in debug mode
             PauseIfInDebuggerAttached();
@@ -61,10 +54,5 @@ namespace Sugar.Command
         {
             return true;
         }
-
-        /// <summary>
-        /// Shows the help message about the application.
-        /// </summary>
-        public abstract void ShowMessage();
     }
 }

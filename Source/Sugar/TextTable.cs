@@ -108,8 +108,10 @@ namespace Sugar
 
                     if (columnBuilder.Length > 0) columnBuilder.Append(ColumnSeperator);
 
-                    if (column.IsNumeric())
+                    if (column.IsNumeric() || column.StartsWith("/"))
                     {
+                        if (column.StartsWith("/")) column = column.Substring(1);
+
                         columnBuilder.Append(column.PadLeft(widths[i]));
                     }
                     else
