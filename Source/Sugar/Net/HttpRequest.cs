@@ -16,9 +16,9 @@ namespace Sugar.Net
         public HttpRequest()
         {
             Retries = 3;
-            Timeout = 10000;
+            Timeout = 30000;
             Verb = HttpVerb.Get;
-            UserAgent = UserAgent.Custom("");
+            UserAgent = UserAgent.Firefox(5);
             Headers = new NameValueCollection();
             Cookies = new CookieContainer();
         }

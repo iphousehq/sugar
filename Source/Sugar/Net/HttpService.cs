@@ -15,7 +15,7 @@ namespace Sugar.Net
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        public HttpResponse Download(HttpRequest request)
+        private static HttpResponse InternalDownload(HttpRequest request)
         {
             var result = new HttpResponse
                              {
@@ -88,6 +88,32 @@ namespace Sugar.Net
         }
 
         /// <summary>
+        /// Downloads the specified request.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        public HttpResponse Download(HttpRequest request)
+        {
+            HttpResponse response;
+
+            try
+            {
+                response = Retry.This(() => InternalDownload(request), request.Retries, request.Timeout);
+            }
+            catch (Exception ex)
+            {
+                response = new HttpResponse
+                {
+                    Exception = ex,
+                    Url = request.Url,
+                    UserAgent = request.UserAgent
+                };
+            }
+
+            return response;
+        }
+
+        /// <summary>
         /// Downloads the specified URL.
         /// </summary>
         /// <param name="url">The URL.</param>
@@ -105,23 +131,7 @@ namespace Sugar.Net
 
             var request = Build(url, verb, agent, cookies, referer);
 
-            HttpResponse response;
-
-            try
-            {
-                response = Retry.This(() => Download(request), request.Retries, request.Timeout);
-            }
-            catch (Exception ex)
-            {
-                response = new HttpResponse
-                               {
-                                   Exception = ex,
-                                   Url = url,
-                                   UserAgent = agent
-                               };
-            }
-
-            return response;
+            return Download(request);
         }
 
         /// <summary>
