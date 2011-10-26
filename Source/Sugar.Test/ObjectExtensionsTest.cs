@@ -121,6 +121,22 @@ namespace Sugar
         }
 
         [Test]
+        public void TestDumpIgnoreEnumerable()
+        {
+            var bar = new Baz();
+            bar.Foos.Add(new Foo { Name = "one" });
+            bar.Foos.Add(null);
+            bar.Foos.Add(new Foo { Name = "two" });
+
+            var dump = bar.ToDump(enumerate: false);
+
+            var lines = dump.Split(Environment.NewLine);
+
+            Console.WriteLine(dump);
+            Assert.AreEqual(@"{", lines[0]);
+        }
+
+        [Test]
         public void TestDumpErrorThrowingTypes()
         {
             var bar = new Tricky {Name = "Tricky"};

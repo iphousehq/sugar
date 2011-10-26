@@ -17,9 +17,5 @@
         }
 
         public abstract void Execute(T options);
-
-        public abstract string Description { get; }
-
-        public abstract string Help { get; }
     }
 }

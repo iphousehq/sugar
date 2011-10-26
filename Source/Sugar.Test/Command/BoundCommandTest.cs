@@ -15,17 +15,7 @@ namespace Sugar.Command
 
             public override void Execute(Options options)
             {
-            }
-
-            public override string Description
-            {
-                get { return string.Empty; }
-            }
-
-            public override string Help
-            {
-                get { return string.Empty; }
-            }
+            }           
         }
 
         [Test]

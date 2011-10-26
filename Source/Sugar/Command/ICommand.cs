@@ -19,15 +19,5 @@
         /// </summary>
         /// <param name="parameters">The parameters.</param>
         void Execute(Parameters parameters);
-
-        /// <summary>
-        /// Gets the description of this command.
-        /// </summary>
-        string Description { get; }
-
-        /// <summary>
-        /// Gets the help text associated with this command.
-        /// </summary>
-        string Help { get; }
     }
 }

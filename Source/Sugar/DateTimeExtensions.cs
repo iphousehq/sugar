@@ -106,5 +106,55 @@ namespace Sugar
                     CultureInfo.InvariantCulture,
                     DateTimeStyles.None, out time);
         }
+
+        /// <summary>
+        /// Converts <see cref="DateTime"/> objects to a string representing the time passed since
+        /// the current time.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns></returns>
+        public static string ToTimeAgo(this DateTime? dateTime)
+        {
+            return dateTime.HasValue ? dateTime.Value.ToTimeAgo() : "Never";
+        }
+
+        /// <summary>
+        /// Converts <see cref="DateTime"/> objects to a string representing the time passed since
+        /// the current time.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns></returns>
+        public static string ToTimeAgo(this DateTime dateTime)
+        {
+            var value = string.Empty;
+
+            var secondsAgo = dateTime.Subtract(DateTime.Now).TotalSeconds * -1;
+
+            var daysAgo = dateTime.Subtract(DateTime.Now).TotalDays * -1;
+
+            if (daysAgo >= 365) value = "over a year ago";
+
+            if (daysAgo > 3650) value = "never";
+
+            if (daysAgo < 365) value = "about " + Convert.ToInt32(daysAgo / 30) + " months ago";
+
+            if (daysAgo < 31) value = Convert.ToInt32(daysAgo) + " days ago";
+
+            if (secondsAgo < 172800) value = "a day ago";
+
+            if (secondsAgo < 86400) value = Convert.ToInt32(secondsAgo / 3600) + " hours ago";
+
+            if (secondsAgo < 7200) value = "an hour ago";
+
+            if (secondsAgo < 7200) value = "an hour ago";
+
+            if (secondsAgo < 3600) value = Convert.ToInt32(secondsAgo / 60) + " minutes ago";
+
+            if (secondsAgo < 300) value = "a few minutes ago";
+
+            if (secondsAgo < 60) value = "a few seconds ago";
+
+            return value;
+        }
     }
 }
