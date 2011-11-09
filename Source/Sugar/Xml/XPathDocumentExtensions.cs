@@ -131,6 +131,34 @@ namespace Sugar.Xml
         }
 
         /// <summary>
+        /// Gets items from the matching elements..
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="document">The document.</param>
+        /// <param name="xpath">The xpath.</param>
+        /// <param name="func">The function used to extract an element..</param>
+        /// <param name="namespaceSearchDepth">The namespace search depth.</param>
+        /// <returns></returns>
+        public static IList<T> GetItems<T>(this XPathDocument document, string xpath, Func<string, T> func, int namespaceSearchDepth = 1)
+        {
+            var results = new List<T>();
+
+            var iterator = GetIterator(document, xpath, namespaceSearchDepth);
+
+            if(iterator.Count > 0)
+            {
+                while (iterator.MoveNext())
+                {
+                    if (iterator.Current == null) break;
+
+                    results.Add(func.Invoke(iterator.Current.OuterXml));
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
         /// Gets the attribute from the matching XPath.
         /// </summary>
         /// <param name="document">The document.</param>

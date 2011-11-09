@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using System.Xml;
+using System.Xml.XPath;
+using NUnit.Framework;
 
 namespace Sugar.Xml
 {
@@ -144,6 +147,51 @@ namespace Sugar.Xml
             var value = xml.GetAttribute("//value", "attribute");
 
             Assert.AreEqual("test", value);
+        }
+
+        [Test]
+        public void TestGetItemsSingleItem()
+        {
+            var xml = @"<node><key>This is the key!</key><value attribute='test'>Hello World</value></node>".ToXPath();
+
+            var value = xml.GetItems("//node", x =>
+            {
+                var nodeXml = x.ToXPath();
+
+                return new KeyValuePair<string, string>(
+                    nodeXml.GetInnerXml("//key"),
+                    nodeXml.GetInnerXml("//value"));
+            });
+
+            Assert.AreEqual(1, value.Count);
+            Assert.AreEqual("This is the key!", value[0].Key);
+            Assert.AreEqual("Hello World", value[0].Value);
+        }
+
+        [Test]
+        public void TestGetItemsMultipleItems()
+        {
+            var xml = @"
+<nodes>
+<node><key>This is the key!</key><value attribute='test'>Hello World</value></node>
+<node><key>This is also a key!</key><value attribute='test'>Hello YOU</value></node>
+</nodes>"
+                .ToXPath();
+
+            var value = xml.GetItems("//node", x =>
+            {
+                var nodeXml = x.ToXPath();
+
+                return new KeyValuePair<string, string>(
+                    nodeXml.GetInnerXml("//key"),
+                    nodeXml.GetInnerXml("//value"));
+            });
+
+            Assert.AreEqual(2, value.Count);
+            Assert.AreEqual("This is the key!", value[0].Key);
+            Assert.AreEqual("Hello World", value[0].Value);
+            Assert.AreEqual("This is also a key!", value[1].Key);
+            Assert.AreEqual("Hello YOU", value[1].Value);
         }
     }
 }

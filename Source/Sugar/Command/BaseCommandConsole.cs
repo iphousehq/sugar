@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Sugar.Command
 {
     /// <summary>
     /// Console base class that can execute <see cref="ICommand"/> instances.
     /// </summary>
-    public class BaseCommandConsole : BaseConsole
+    public abstract class BaseCommandConsole : BaseConsole
     {
         /// <summary>
         /// Gets or sets the commands.
@@ -24,22 +23,30 @@ namespace Sugar.Command
             Commands = new List<ICommand>();
         }
 
+        /// <summary>
+        /// Entry point for the program logic
+        /// </summary>
         protected override void Main()
         {
+            var fired = false;
+
             foreach (var command in Commands)
             {
                 if (!command.CanExecute(Arguments)) continue;
                 
-                command.Execute(Arguments);                
+                command.Execute(Arguments);
+
+                fired = true;
+
+                break;
             }            
+
+            if (!fired) Default();
         }
 
-        public override void ShowMessage()
-        {
-            foreach (var command in Commands)
-            {
-                Console.WriteLine(command.Description);
-            }
-        }
+        /// <summary>
+        /// Method to be called if no command has been fired.
+        /// </summary>
+        public abstract void Default();
     }
 }

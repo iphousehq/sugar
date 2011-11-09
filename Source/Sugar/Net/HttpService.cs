@@ -15,7 +15,7 @@ namespace Sugar.Net
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        public HttpResponse Download(HttpRequest request)
+        private static HttpResponse InternalDownload(HttpRequest request)
         {
             var result = new HttpResponse
                              {
@@ -63,20 +63,19 @@ namespace Sugar.Net
                 result.Cookies.Add(response.Cookies);
             }
 
-
-
-
             return result;
         }
 
-        public HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "")
+        public HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500)
         {
             var request = new HttpRequest
             {
                 Url = url,
-                UserAgent = agent,
+                UserAgent = agent ?? UserAgent.Firefox(),
                 Verb = verb,
-                Referer = referer
+                Referer = referer,
+                Retries = retries,
+                Timeout = timeout
             };
 
             if (cookies != null)
@@ -88,6 +87,32 @@ namespace Sugar.Net
         }
 
         /// <summary>
+        /// Downloads the specified request.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        public HttpResponse Download(HttpRequest request)
+        {
+            HttpResponse response;
+
+            try
+            {
+                response = Retry.This(() => InternalDownload(request), request.Retries, request.Timeout);
+            }
+            catch (Exception ex)
+            {
+                response = new HttpResponse
+                {
+                    Exception = ex,
+                    Url = request.Url,
+                    UserAgent = request.UserAgent
+                };
+            }
+
+            return response;
+        }
+
+        /// <summary>
         /// Downloads the specified URL.
         /// </summary>
         /// <param name="url">The URL.</param>
@@ -95,33 +120,19 @@ namespace Sugar.Net
         /// <param name="agent">The agent.</param>
         /// <param name="cookies">The cookies.</param>
         /// <param name="referer">The referer.</param>
+        /// <param name="retries">The retries.</param>
+        /// <param name="timeout">The timeout.</param>
         /// <returns></returns>
         /// <remarks>
         /// Will retry to download 3 times by default.
         /// </remarks>
-        public HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "")
+        public HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500)
         {
-            if (agent == null) agent = UserAgent.Custom(string.Empty);
+            if (agent == null) agent = UserAgent.Firefox();
 
-            var request = Build(url, verb, agent, cookies, referer);
+            var request = Build(url, verb, agent, cookies, referer, retries, timeout);
 
-            HttpResponse response;
-
-            try
-            {
-                response = Retry.This(() => Download(request), request.Retries, request.Timeout);
-            }
-            catch (Exception ex)
-            {
-                response = new HttpResponse
-                               {
-                                   Exception = ex,
-                                   Url = url,
-                                   UserAgent = agent
-                               };
-            }
-
-            return response;
+            return Download(request);
         }
 
         /// <summary>
@@ -131,10 +142,12 @@ namespace Sugar.Net
         /// <param name="agent">The agent.</param>
         /// <param name="cookies">The cookies.</param>
         /// <param name="referer">The referer.</param>
+        /// <param name="retries">The retries.</param>
+        /// <param name="timeout">The timeout.</param>
         /// <returns></returns>
-        public HttpResponse Get(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "")
+        public HttpResponse Get(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500)
         {
-            return Download(url, HttpVerb.Get, agent, cookies, referer);
+            return Download(url, HttpVerb.Get, agent, cookies, referer, retries, timeout);
         }
 
         /// <summary>
@@ -154,10 +167,12 @@ namespace Sugar.Net
         /// <param name="agent">The agent.</param>
         /// <param name="cookies">The cookies.</param>
         /// <param name="referer">The referer.</param>
+        /// <param name="retries">The retries.</param>
+        /// <param name="timeout">The timeout.</param>
         /// <returns></returns>
-        public HttpResponse Post(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "")
+        public HttpResponse Post(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500)
         {
-            return Download(url, HttpVerb.Post, agent, cookies, referer);
+            return Download(url, HttpVerb.Post, agent, cookies, referer, retries, timeout);
         }
 
         /// <summary>
@@ -177,10 +192,12 @@ namespace Sugar.Net
         /// <param name="agent">The agent.</param>
         /// <param name="cookies">The cookies.</param>
         /// <param name="referer">The referer.</param>
+        /// <param name="retries">The retries.</param>
+        /// <param name="timeout">The timeout.</param>
         /// <returns></returns>
-        public HttpResponse Head(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "")
+        public HttpResponse Head(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500)
         {
-            return Download(url, HttpVerb.Post, agent, cookies, referer);
+            return Download(url, HttpVerb.Post, agent, cookies, referer, retries, timeout);
         }
 
         /// <summary>
