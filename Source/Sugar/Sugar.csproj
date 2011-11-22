@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensions.cs" />
+    <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="BitmapExtensions.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Command\BaseCommandConsole.cs" />
