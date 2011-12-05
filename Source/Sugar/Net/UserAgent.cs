@@ -35,6 +35,9 @@ namespace Sugar.Net
                 case 9:
                     return new UserAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1)");
 
+                case 10:
+                    return new UserAgent("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)");
+
                 default:
                     throw new ApplicationException("Unsupported IE user agent version: " + version + " - IE 6-9 supported");
             }
@@ -43,24 +46,10 @@ namespace Sugar.Net
         /// <summary>
         /// Returns a Firefox user agent
         /// </summary>
-        /// <param name="version">The version.</param>
         /// <returns></returns>
-        public static UserAgent Firefox(int version = 5)
+        public static UserAgent Firefox()
         {
-            switch (version)
-            {
-                case 3:
-                    return new UserAgent("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.1) Gecko/2008070208 Firefox/3.0.0");
-
-                case 4:
-                    return new UserAgent("Mozilla/5.0 (Windows NT 6.1; rv:2.0) Gecko/20110319 Firefox/4.0");
-
-                case 5:
-                    return new UserAgent("Mozilla/5.0 (Windows NT 5.0; rv:5.0) Gecko/20100101 Firefox/5.0");
-
-                default:
-                    throw new ApplicationException("Unsupported Firefox user agent version: " + version + " - Firefox 6-9 supported");
-            }
+            return new UserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:8.0.1) Gecko/20100101 Firefox/8.0.1");
         }
 
         /// <summary>
@@ -69,7 +58,7 @@ namespace Sugar.Net
         /// <returns></returns>
         public static UserAgent Chrome()
         {
-            return new UserAgent("Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/13.0.782.43 Safari/535.1");
+            return new UserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2");
         }
 
         /// <summary>
