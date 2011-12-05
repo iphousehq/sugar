@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Globalization;
 
@@ -156,5 +158,27 @@ namespace Sugar
 
             return value;
         }
+
+        public static IEnumerable<DateTime> MonthsUntil(this DateTime from, DateTime until)
+        {
+            var results = new List<DateTime>();
+
+            var current = new DateTime(from.Year, from.Month, 1);
+            var end = new DateTime(until.Year, until.Month, 1);
+
+            if(current > end)
+            {
+                return results;
+            }
+
+            while(current <= end)
+            {
+                results.Add(current);
+
+                current = current.AddMonths(1);
+            }
+
+            return results;
+        } 
     }
 }

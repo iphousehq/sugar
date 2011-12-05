@@ -16,7 +16,7 @@ namespace Sugar
         public static TResult ToEnum<TResult>(this Enum source)
         {
             // Can't add generic type rescription on enum :(
-            if (!typeof(TResult).IsEnum) throw new Exception("TResult must be an enumeration");
+            if (!typeof(TResult).IsEnum) throw new ArgumentException("TResult must be an enumeration");
 
             string value = source.ToString();
 

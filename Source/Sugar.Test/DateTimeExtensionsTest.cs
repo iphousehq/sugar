@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Sugar
@@ -76,6 +78,55 @@ namespace Sugar
             Assert.AreEqual(23, time.Hour);
             Assert.AreEqual(59, time.Minute);
             Assert.AreEqual(55, time.Second);
+        }
+
+        [Test]
+        public void TestMonthsUntil()
+        {
+            var expected = new List<DateTime>
+                               {
+                                   new DateTime(2011, 1, 1),
+                                   new DateTime(2011, 2, 1),
+                                   new DateTime(2011, 3, 1),
+                                   new DateTime(2011, 4, 1)
+                               };
+
+            var results = new DateTime(2011, 1, 1).MonthsUntil(new DateTime(2011, 4, 1));
+
+            Assert.AreEqual(expected.Count, results.Count());
+        }
+
+        [Test]
+        public void TestMonthsUntilDaysIncorrectlyFormatted()
+        {
+            var expected = new List<DateTime>
+                               {
+                                   new DateTime(2011, 1, 1),
+                                   new DateTime(2011, 2, 1),
+                                   new DateTime(2011, 3, 1),
+                                   new DateTime(2011, 4, 1)
+                               };
+
+            var results = new DateTime(2011, 1, 15).MonthsUntil(new DateTime(2011, 4, 23));
+
+            Assert.AreEqual(expected.Count, results.Count());
+        }
+
+        [Test]
+        public void TestMonthsUntilBoundsAreInCorrect()
+        {
+            var results = new DateTime(2011, 2, 1).MonthsUntil(new DateTime(2011, 1, 1));
+
+            Assert.AreEqual(0, results.Count());
+        }
+
+        [Test]
+        public void TestMonthsUntilSameMonth()
+        {
+            var results = new DateTime(2011, 1, 1).MonthsUntil(new DateTime(2011, 1, 1));
+
+            Assert.AreEqual(1, results.Count());
+            Assert.AreEqual(new DateTime(2011, 1, 1), results.First());
         }
     }
 }

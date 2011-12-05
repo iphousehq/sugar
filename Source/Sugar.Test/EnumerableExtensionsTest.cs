@@ -1,10 +1,31 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace Sugar
 {
     [TestFixture]
     public class EnumerableExtensionsTest
     {
+        [Test]
+        public void TestToCsvFromNull()
+        {
+            List<int> list = null;
+
+            var csv = list.ToCsv();
+
+            Assert.IsEmpty(csv);
+        }
+
+        [Test]
+        public void TestMethodName()
+        {
+            var list = new List<int> { 1, 2, 3 };
+
+            var csv = list.ToCsv();
+
+            Assert.AreEqual("1,2,3", csv);
+        }
+        
         [Test]
         public void TestFromOneFieldString()
         {

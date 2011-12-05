@@ -30,7 +30,7 @@ namespace Sugar
             }
             catch(Exception ex)
             {
-                Assert.AreEqual(typeof(Exception), ex.GetType());
+                Assert.AreEqual(typeof(ArgumentException), ex.GetType());
                 Assert.AreEqual("TResult must be an enumeration", ex.Message);
             }
         }
