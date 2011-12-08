@@ -128,5 +128,37 @@ namespace Sugar
             Assert.AreEqual(1, results.Count());
             Assert.AreEqual(new DateTime(2011, 1, 1), results.First());
         }
+
+        [Test]
+        public void TesDaysUntil()
+        {
+            var expected = new List<DateTime>
+                               {
+                                   new DateTime(2011, 1, 1),
+                                   new DateTime(2011, 1, 2),
+                                   new DateTime(2011, 1, 3),
+                                   new DateTime(2011, 1, 4),
+                                   new DateTime(2011, 1, 5),
+                                   new DateTime(2011, 1, 6),
+                                   new DateTime(2011, 1, 7),
+                                   new DateTime(2011, 1, 8),
+                                   new DateTime(2011, 1, 9),
+                                   new DateTime(2011, 1, 10),
+                                   new DateTime(2011, 1, 11),
+                                   new DateTime(2011, 1, 12),
+                                   new DateTime(2011, 1, 13),
+                                   new DateTime(2011, 1, 14),
+                                   new DateTime(2011, 1, 15),
+                                   new DateTime(2011, 1, 16),
+                                   new DateTime(2011, 1, 17),
+                                   new DateTime(2011, 1, 18),
+                                   new DateTime(2011, 1, 19),
+                                   new DateTime(2011, 1, 20),
+                               };
+
+            var results = new DateTime(2011, 1, 1).DaysUntil(new DateTime(2011, 1, 20));
+
+            Assert.AreEqual(expected.Count, results.Count());
+        }
     }
 }

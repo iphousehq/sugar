@@ -179,6 +179,28 @@ namespace Sugar
             }
 
             return results;
-        } 
+        }
+
+        public static IEnumerable<DateTime> DaysUntil(this DateTime from, DateTime until)
+        {
+            var results = new List<DateTime>();
+
+            var current = from;
+            var end = until;
+
+            if (current > end)
+            {
+                return results;
+            }
+
+            while (current <= end)
+            {
+                results.Add(current);
+
+                current = current.AddDays(1);
+            }
+
+            return results;
+        }
     }
 }
