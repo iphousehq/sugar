@@ -130,7 +130,7 @@ namespace Sugar
         }
 
         [Test]
-        public void TesDaysUntil()
+        public void TestDaysUntil()
         {
             var expected = new List<DateTime>
                                {
