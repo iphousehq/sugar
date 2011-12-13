@@ -17,13 +17,23 @@ namespace Sugar
         }
 
         [Test]
-        public void TestMethodName()
+        public void TestToCsvFromListOfInts()
         {
             var list = new List<int> { 1, 2, 3 };
 
             var csv = list.ToCsv();
 
             Assert.AreEqual("1,2,3", csv);
+        }
+
+        [Test]
+        public void TestToCsvFromListOfIntsWithCustomSeparators()
+        {
+            var list = new List<int> { 1, 2, 3 };
+
+            var csv = list.ToCsv(", ", " and ");
+
+            Assert.AreEqual("1, 2 and 3", csv);
         }
         
         [Test]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Sugar
@@ -14,18 +15,27 @@ namespace Sugar
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="values">The values.</param>
-        /// <param name="seperator">The seperator.</param>
+        /// <param name="separator">The seperator.</param>
+        /// <param name="lastSeparator">The last separator (is set to separator when null or empty).</param>
         /// <returns></returns>
-        public static string ToCsv<T>(this IEnumerable<T> values, string seperator = ",")
+        public static string ToCsv<T>(this IEnumerable<T> values, string separator = ",", string lastSeparator = null)
         {
             var result = new StringBuilder();
 
             if (values != null)
             {
+                if (String.IsNullOrEmpty(lastSeparator))
+                {
+                    lastSeparator = separator;
+                }
+
+                var total = values.Count();
+
                 foreach (var value in values)
                 {
-                    if (result.Length > 0) result.Append(seperator);
-
+                    if (result.Length - 1 == total) result.Append(lastSeparator);
+                    else if (result.Length > 0) result.Append(separator);
+                    
                     result.Append(value);
                 }
             }
