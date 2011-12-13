@@ -17,6 +17,16 @@ namespace Sugar
         }
 
         [Test]
+        public void TestToCsvFromListWithOneEntry()
+        {
+            var list = new List<int> { 1};
+
+            var csv = list.ToCsv();
+
+            Assert.AreEqual("1", csv);
+        }
+
+        [Test]
         public void TestToCsvFromListOfInts()
         {
             var list = new List<int> { 1, 2, 3 };

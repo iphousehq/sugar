@@ -34,8 +34,10 @@ namespace Sugar
 
                 foreach (var value in values)
                 {
-                    if (index == lastIndex) result.Append(lastSeparator);
-                    else if (result.Length > 0) result.Append(separator);
+                    if (result.Length > 0)
+                    {
+                        result.Append(index == lastIndex ? lastSeparator : separator);
+                    }
 
                     result.Append(value);
                     index++;
