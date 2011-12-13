@@ -35,6 +35,16 @@ namespace Sugar
 
             Assert.AreEqual("1, 2 and 3", csv);
         }
+
+        [Test]
+        public void TestToCsvFromListOfStringsWithCustomSeparators()
+        {
+            var list = new List<string> { "One", "Two", "Three" };
+
+            var csv = list.ToCsv(", ", " and ");
+
+            Assert.AreEqual("One, Two and Three", csv);
+        }
         
         [Test]
         public void TestFromOneFieldString()

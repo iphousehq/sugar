@@ -29,14 +29,16 @@ namespace Sugar
                     lastSeparator = separator;
                 }
 
-                var total = values.Count();
+                var lastIndex = values.Count() - 1;
+                var index = 0;
 
                 foreach (var value in values)
                 {
-                    if (result.Length - 1 == total) result.Append(lastSeparator);
+                    if (index == lastIndex) result.Append(lastSeparator);
                     else if (result.Length > 0) result.Append(separator);
-                    
+
                     result.Append(value);
+                    index++;
                 }
             }
 
