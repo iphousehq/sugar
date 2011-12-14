@@ -81,6 +81,7 @@ namespace Sugar
             var result = Enum
                 .GetValues(typeof (TEnum))
                 .Cast<int>()
+                .Where(input.Contains)
                 .Aggregate(0, (current, i) => current | i);
 
             return (Enum)Enum.ToObject(typeof(TEnum), result);

@@ -146,6 +146,16 @@ namespace Sugar
         }
 
         [Test]
+        public void TestCombineFlagsSingle()
+        {
+            var list = new List<int> { 2 };
+
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+
+            Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
+        }
+
+        [Test]
         public void TestCombineFlagsOutsideRange()
         {
             var list = new List<int> { 1, 2, 4 };
@@ -153,6 +163,16 @@ namespace Sugar
             var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
 
             Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
+            Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
+        }
+
+        [Test]
+        public void TestCombineFlagsSingleOutsideRange()
+        {
+            var list = new List<int> { 2, 4 };
+
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+
             Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
         }
     }
