@@ -20,7 +20,7 @@ namespace Sugar
             // Can't add generic type rescription on enum :(
             if (!typeof(TResult).IsEnum) throw new ArgumentException("TResult must be an enumeration");
 
-            string value = source.ToString();
+            var value = source.ToString();
 
             try
             {
@@ -42,6 +42,48 @@ namespace Sugar
             return Enum.GetValues(input.GetType())
                 .Cast<Enum>()
                 .Where(input.HasFlag);
+        }
+
+
+        /// <summary>
+        /// Gets the values of the flags that are selected.
+        /// </summary>
+        /// <typeparam name="TEnum">The type of the enum.</typeparam>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        public static IEnumerable<int> GetFlagsValues<TEnum>(this Enum input)
+        {
+            // Can't add generic type rescription on enum :(
+            if (!typeof(TEnum).IsEnum) throw new ArgumentException("TEnum must be an enumeration");
+
+            return Enum.GetValues(typeof (TEnum))
+                .Cast<int>()
+                .Select(value => new
+                {
+                    value, 
+                    enumValue = (Enum) Enum.ToObject(typeof (TEnum), value)
+                })
+                .Where(@t => input.HasFlag(@t.enumValue))
+                .Select(@t => @t.value);
+        }
+
+        /// <summary>
+        /// Combines an enumerable of integers to a single flags enum value.
+        /// </summary>
+        /// <typeparam name="TEnum">The type of the enum.</typeparam>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        public static Enum CombineToFlagsEnum<TEnum>(this IEnumerable<int> input)
+        {
+            // Can't add generic type rescription on enum :(
+            if (!typeof(TEnum).IsEnum) throw new ArgumentException("TEnum must be an enumeration");
+
+            var result = Enum
+                .GetValues(typeof (TEnum))
+                .Cast<int>()
+                .Aggregate(0, (current, i) => current | i);
+
+            return (Enum)Enum.ToObject(typeof(TEnum), result);
         }
     }
 }

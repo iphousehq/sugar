@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
@@ -17,7 +18,7 @@ namespace Sugar
         private enum SomeFlagsEnum
         {
             Bob = 1 << 0,
-            Thursday = 1 << 2
+            Thursday = 1 << 1
         }
 
         [Test]
@@ -78,6 +79,81 @@ namespace Sugar
             Assert.AreEqual(2, result.Count());
             Assert.AreEqual(SomeFlagsEnum.Bob, result[0]);
             Assert.AreEqual(SomeFlagsEnum.Thursday, result[1]);
+        }
+
+        [Test]
+        public void TestGetFlagsValuesNotEnum()
+        {
+            const SomeFlagsEnum input = SomeFlagsEnum.Bob | SomeFlagsEnum.Thursday;
+
+            try
+            {
+                input.GetFlagsValues<int>();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.AreEqual("TEnum must be an enumeration", ex.Message);
+            }
+        }
+
+        [Test]
+        public void TestGetFlagsValuesSingle()
+        {
+            const SomeFlagsEnum input = SomeFlagsEnum.Thursday;
+
+            var result = input.GetFlagsValues<SomeFlagsEnum>().ToList();
+
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(2, result[0]);
+        }
+
+        [Test]
+        public void TestGetFlagsValuesMultiple()
+        {
+            const SomeFlagsEnum input = SomeFlagsEnum.Bob | SomeFlagsEnum.Thursday;
+
+            var result = input.GetFlagsValues<SomeFlagsEnum>().ToList();
+
+            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(1, result[0]);
+            Assert.AreEqual(2, result[1]);
+        }
+
+        [Test]
+        public void TestCombineFlagsNotEnum()
+        {
+            var list = new List<int> {1, 2};
+
+            try
+            {
+                list.CombineToFlagsEnum<int>();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.AreEqual("TEnum must be an enumeration", ex.Message);
+            }
+        }
+
+        [Test]
+        public void TestCombineFlags()
+        {
+            var list = new List<int> { 1, 2 };
+
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+
+            Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
+            Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
+        }
+
+        [Test]
+        public void TestCombineFlagsOutsideRange()
+        {
+            var list = new List<int> { 1, 2, 4 };
+
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+
+            Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
+            Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
         }
     }
 }
