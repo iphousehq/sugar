@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Sugar
@@ -10,6 +11,13 @@ namespace Sugar
         {
             Bob = 40,
             Thursday = 50
+        }
+
+        [Flags]
+        private enum SomeFlagsEnum
+        {
+            Bob = 1 << 0,
+            Thursday = 1 << 2
         }
 
         [Test]
@@ -47,6 +55,29 @@ namespace Sugar
                 Assert.AreEqual(typeof(InvalidCastException), ex.GetType());
                 Assert.AreEqual("Error converting System.DayOfWeek (value 'Tuesday') to Sugar.EnumExtensionsTest+SomeEnum", ex.Message);
             }
+        }
+
+        [Test]
+        public void TestGetFlagsSingle()
+        {
+            const SomeFlagsEnum input = SomeFlagsEnum.Bob;
+
+            var result = input.GetFlags().ToList();
+
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(SomeFlagsEnum.Bob, result[0]);
+        }
+
+        [Test]
+        public void TestGetFlagsMultiple()
+        {
+            const SomeFlagsEnum input = SomeFlagsEnum.Bob | SomeFlagsEnum.Thursday;
+
+            var result = input.GetFlags().ToList();
+
+            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(SomeFlagsEnum.Bob, result[0]);
+            Assert.AreEqual(SomeFlagsEnum.Thursday, result[1]);
         }
     }
 }

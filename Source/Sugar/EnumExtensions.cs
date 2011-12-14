@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sugar
 {
@@ -30,5 +32,16 @@ namespace Sugar
             }
         }
 
+        /// <summary>
+        /// Gets the flags that are selected.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        public static IEnumerable<Enum> GetFlags(this Enum input)
+        {
+            return Enum.GetValues(input.GetType())
+                .Cast<Enum>()
+                .Where(input.HasFlag);
+        }
     }
 }
