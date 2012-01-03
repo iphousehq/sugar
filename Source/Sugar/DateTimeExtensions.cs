@@ -185,8 +185,8 @@ namespace Sugar
         {
             var results = new List<DateTime>();
 
-            var current = from;
-            var end = until;
+            var current = new DateTime(from.Year, from.Month, from.Day);
+            var end = new DateTime(until.Year, until.Month, until.Day);
 
             if (current > end)
             {
