@@ -59,6 +59,16 @@ namespace Sugar
         }
 
         [Test]
+        public void TestGetFlagsEmpty()
+        {
+            const SomeFlagsEnum input = new SomeFlagsEnum();
+
+            var result = input.GetFlags().ToList();
+
+            Assert.AreEqual(0, result.Count());
+        }
+
+        [Test]
         public void TestGetFlagsSingle()
         {
             const SomeFlagsEnum input = SomeFlagsEnum.Bob;
@@ -94,6 +104,16 @@ namespace Sugar
             {
                 Assert.AreEqual("TEnum must be an enumeration", ex.Message);
             }
+        }
+
+        [Test]
+        public void TestGetFlagsValuesEmpty()
+        {
+            const SomeFlagsEnum input = new SomeFlagsEnum();
+
+            var result = input.GetFlagsValues<SomeFlagsEnum>().ToList();
+
+            Assert.AreEqual(0, result.Count());
         }
 
         [Test]
