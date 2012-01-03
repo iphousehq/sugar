@@ -44,7 +44,6 @@ namespace Sugar
                 .Where(input.HasFlag);
         }
 
-
         /// <summary>
         /// Gets the values of the flags that are selected.
         /// </summary>
