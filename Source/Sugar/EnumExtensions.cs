@@ -44,7 +44,6 @@ namespace Sugar
                 .Where(input.HasFlag);
         }
 
-
         /// <summary>
         /// Gets the values of the flags that are selected.
         /// </summary>
@@ -67,6 +66,17 @@ namespace Sugar
                 .Select(@t => @t.value);
         }
 
+
+        /// <summary>
+        /// Combines all enumerable values to a single flags enum.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        public static Enum CombineAllToFlagsEnum(this Enum input)
+        {
+            return Combine(input.GetType(), null);
+        }
+
         /// <summary>
         /// Combines an enumerable of integers to a single flags enum value.
         /// </summary>
@@ -75,16 +85,21 @@ namespace Sugar
         /// <returns></returns>
         public static Enum CombineToFlagsEnum<TEnum>(this IEnumerable<int> input)
         {
-            // Can't add generic type rescription on enum :(
-            if (!typeof(TEnum).IsEnum) throw new ArgumentException("TEnum must be an enumeration");
+            return Combine(typeof(TEnum), input);
+        }
+
+        private static Enum Combine(Type enumType, IEnumerable<int> input)
+        {
+            // Can't add generic type description on enum :(
+            if (!enumType.IsEnum) throw new ArgumentException("Enum type must be an enumeration");
 
             var result = Enum
-                .GetValues(typeof (TEnum))
+                .GetValues(enumType)
                 .Cast<int>()
-                .Where(input.Contains)
-                .Aggregate(0, (current, i) => current | i);
+                .Where(value => input == null || input.Contains(value))
+                .Aggregate(0, (current, value) => current | value);
 
-            return (Enum)Enum.ToObject(typeof(TEnum), result);
+            return (Enum)Enum.ToObject(enumType, result);
         }
     }
 }
