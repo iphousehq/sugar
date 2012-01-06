@@ -299,6 +299,14 @@ namespace Sugar.Html
         }
 
         [Test]
+        public void TestGetAttributeFromRootNode()
+        {
+            var document = Html.Load("<html class='test'><p><b href='value'>hello</b></p><span>world</span><p>hi</p></html>");
+
+            Assert.AreEqual("test", document.GetAttribute("class"));
+        }
+
+        [Test]
         public void TestGetAttribute()
         {
             var document = Html.Load("<html><p><b href='value'>hello</b></p><span>world</span><p>hi</p></html>");
@@ -320,8 +328,16 @@ namespace Sugar.Html
         {
             var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p>hi</p></html>");
 
-            Assert.AreEqual("<b>hello</b>", document.GetNodes("//p")[0].GetInnerHtml());
+            Assert.AreEqual("<p><b>hello</b></p>", document.GetNodes("//p")[0].GetInnerHtml());
             Assert.AreEqual("hi", document.GetNodes("//p")[1].GetInnerText());
+        }
+
+        [Test]
+        public void TestGetNodesGetAttributes()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p class='test'>hi</p></html>");
+
+            Assert.AreEqual("test", document.GetNodes("//p")[1].GetAttribute("class"));
         }
 
         [Test]

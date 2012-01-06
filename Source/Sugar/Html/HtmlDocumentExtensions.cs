@@ -84,6 +84,26 @@ namespace Sugar.Html
         }
 
         /// <summary>
+        /// Gets the attribute from the root node.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="attributeName">Name of the attribute.</param>
+        /// <returns></returns>
+        public static string GetAttribute(this HtmlDocument document, string attributeName)
+        {
+            var result = string.Empty;
+
+            if (document.DocumentNode.ChildNodes.Count > 0)
+            {
+                var node = document.DocumentNode.ChildNodes[0];
+
+                result = node.GetAttributeValue(attributeName, string.Empty);
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Gets the attribute.
         /// </summary>
         /// <param name="document">The document.</param>
@@ -280,7 +300,7 @@ namespace Sugar.Html
                 {
                     var result = new HtmlDocument();
 
-                    result.LoadHtml(node.InnerHtml);
+                    result.LoadHtml(node.OuterHtml);
 
                     results.Add(result);
                 }
