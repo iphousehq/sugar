@@ -59,6 +59,16 @@ namespace Sugar
         }
 
         [Test]
+        public void TestGetFlagsEmpty()
+        {
+            const SomeFlagsEnum input = new SomeFlagsEnum();
+
+            var result = input.GetFlags().ToList();
+
+            Assert.AreEqual(0, result.Count());
+        }
+
+        [Test]
         public void TestGetFlagsSingle()
         {
             const SomeFlagsEnum input = SomeFlagsEnum.Bob;
@@ -97,6 +107,16 @@ namespace Sugar
         }
 
         [Test]
+        public void TestGetFlagsValuesEmpty()
+        {
+            const SomeFlagsEnum input = new SomeFlagsEnum();
+
+            var result = input.GetFlagsValues<SomeFlagsEnum>().ToList();
+
+            Assert.AreEqual(0, result.Count());
+        }
+
+        [Test]
         public void TestGetFlagsValuesSingle()
         {
             const SomeFlagsEnum input = SomeFlagsEnum.Thursday;
@@ -130,7 +150,7 @@ namespace Sugar
             }
             catch (ArgumentException ex)
             {
-                Assert.AreEqual("TEnum must be an enumeration", ex.Message);
+                Assert.AreEqual("Enum type must be an enumeration", ex.Message);
             }
         }
 
@@ -173,6 +193,15 @@ namespace Sugar
 
             var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
 
+            Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
+        }
+
+        [Test]
+        public void TestCombineAllFlags()
+        {
+            var result = new SomeFlagsEnum().CombineAllToFlagsEnum();
+
+            Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
             Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
         }
     }
