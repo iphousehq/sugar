@@ -283,6 +283,27 @@ namespace Sugar.Html
         }
 
         /// <summary>
+        /// Gets a HtmlDocument object of the first node matchding the given XPath.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="xpath">The xpath.</param>
+        /// <returns></returns>
+        public static HtmlDocument GetNode(this HtmlDocument document, string xpath)
+        {
+            var results = document.GetNodes(xpath);
+
+            if (results.FirstOrDefault() == null)
+            {
+                var doc = new HtmlDocument();
+                doc.LoadHtml(string.Empty);
+
+                return doc;                
+            }
+
+            return results.FirstOrDefault();
+        }
+
+        /// <summary>
         /// Gets HtmlDocument objects of the nodes matchding the given XPath.
         /// </summary>
         /// <param name="document">The document.</param>
