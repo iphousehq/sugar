@@ -28,6 +28,15 @@ namespace Sugar.Command
         /// </summary>
         protected override void Main()
         {
+            if (!Execute()) Default();
+        }
+
+        /// <summary>
+        /// Executes the commands based upon the <see cref="BaseConsole.Arguments"/> collection.
+        /// </summary>
+        /// <returns></returns>
+        public bool Execute()
+        {
             var fired = false;
 
             foreach (var command in Commands)
@@ -39,9 +48,8 @@ namespace Sugar.Command
                 fired = true;
 
                 break;
-            }            
-
-            if (!fired) Default();
+            }
+            return fired;
         }
 
         /// <summary>

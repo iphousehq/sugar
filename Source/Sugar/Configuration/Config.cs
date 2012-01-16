@@ -7,7 +7,7 @@ using Sugar.IO;
 namespace Sugar.Configuration
 {
     /// <summary>
-    /// Class to wrap basic accesing of config files
+    /// Class to wrap basic accessing of configuration files
     /// </summary>
     public class Config
     {
@@ -30,18 +30,25 @@ namespace Sugar.Configuration
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Config"/> class.
+        /// Initializes a new instance of the <see cref="Config"/> class from the given file.
         /// </summary>
         /// <param name="filename">The filename.</param>
-        public static Config FromFile(string filename)
+        /// <param name="fileService">The file service to use to load the configuration.</param>
+        /// <returns></returns>
+        public static Config FromFile(string filename, IFileService fileService = null)
         {
-            var config = new Config();
+            var fs = fileService ?? new FileService();
 
-            var allText = config.FileService.ReadAllText(filename);
+            var allText = fs.ReadAllText(filename);
 
             return FromText(allText);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Config"/> class from the given text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <returns></returns>
         public static Config FromText(string text)
         {
             var lines = new Config().Parse(text);
@@ -50,7 +57,7 @@ namespace Sugar.Configuration
         }
 
         /// <summary>
-        /// Froms the config lines.
+        /// Initializes a new instance of the <see cref="Config"/> class from the given Config lines.
         /// </summary>
         /// <param name="lines">The lines.</param>
         /// <returns></returns>
@@ -74,6 +81,14 @@ namespace Sugar.Configuration
         /// The file service.
         /// </value>
         public IFileService FileService { get; set; }
+
+        /// <summary>
+        /// Gets or sets the filename that this Configuration was loaded from.
+        /// </summary>
+        /// <value>
+        /// The filename.
+        /// </value>
+        public string Filename { get; set; }
 
         /// <summary>
         /// Reads the configuration values from the specified filename.

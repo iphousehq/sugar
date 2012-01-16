@@ -30,5 +30,11 @@ namespace Sugar.IO
         /// <param name="path">The path.</param>
         /// <param name="contents">The contents.</param>
         void WriteAllText(string path, string contents);
+
+        /// <summary>
+        /// Gets the user's profile data directory.
+        /// </summary>
+        /// <returns></returns>
+        string GetUserDataDirectory();
     }
 }

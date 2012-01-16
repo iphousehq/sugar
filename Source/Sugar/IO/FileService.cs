@@ -50,7 +50,14 @@ namespace Sugar.IO
         /// <returns></returns>
         public string ReadAllText(string path)
         {
-            return File.ReadAllText(path);
+            var result = string.Empty;
+
+            if (File.Exists(path))
+            {
+                result = File.ReadAllText(path);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -61,6 +68,15 @@ namespace Sugar.IO
         public void WriteAllText(string path, string contents)
         {
             File.WriteAllText(path, contents);
+        }
+
+        /// <summary>
+        /// Gets the user's profile data directory.
+        /// </summary>
+        /// <returns></returns>
+        public string GetUserDataDirectory()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         }
 
         public bool IsIgnored(string filename, string pattern)

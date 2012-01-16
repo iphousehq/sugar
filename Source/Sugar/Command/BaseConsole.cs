@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Sugar.Command
@@ -39,6 +40,25 @@ namespace Sugar.Command
 
             // Pause if in debug mode
             PauseIfInDebuggerAttached();
+        }
+
+        /// <summary>
+        /// Sets the console arguments.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        protected void SetArguments(string args)
+        {
+            Arguments = new ParameterParser().Parse(args, new List<string>());
+        }
+
+        /// <summary>
+        /// Sets the console arguments.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <param name="switches">The command switches, e.g. a leading "-", "--" or "/".</param>
+        protected void SetArguments(string args, IList<string> switches)
+        {
+            Arguments = new ParameterParser().Parse(args, switches);
         }
 
         /// <summary>
