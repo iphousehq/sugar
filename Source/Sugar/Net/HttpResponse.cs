@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Net;
 using System.Text;
 using System.Xml;
-using HtmlAgilityPack;
 
 namespace Sugar.Net
 {
@@ -95,37 +94,12 @@ namespace Sugar.Net
         }
 
         /// <summary>
-        /// Returns the HTML representation of the response.
-        /// </summary>
-        /// <returns></returns>
-        public HtmlDocument ToHtml()
-        {
-            var document = new HtmlDocument();
-
-            if (!string.IsNullOrWhiteSpace(ToString()))
-            {
-                document.LoadHtml(ToString());
-            }
-
-            return document;
-        }
-
-        /// <summary>
         /// Returns the Bitmap represenation of the response.
         /// </summary>
         /// <returns></returns>
         public virtual Bitmap ToBitmap()
         {
             return Bytes.ToBitmap();
-        }
-
-        /// <summary>
-        /// Returns a dynamic representations of this instance's JSON data.
-        /// </summary>
-        /// <returns></returns>
-        public dynamic ToJson()
-        {
-            return ToString().DecodeJson();
         }
     }
 }
