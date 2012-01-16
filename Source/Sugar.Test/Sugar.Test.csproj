@@ -96,6 +96,14 @@
     <Compile Include="Xml\XPathDocumentExtensionsTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sugar.Html\Sugar.Html.csproj">
+      <Project>{DB536D0A-ACCD-49D0-815F-3F8A848DA981}</Project>
+      <Name>Sugar.Html</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj">
+      <Project>{28EB8FD3-3904-467F-B256-81EDD21EF6E4}</Project>
+      <Name>Sugar.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sugar\Sugar.csproj">
       <Project>{EDB78F77-9123-4821-817B-F3F91E973A7D}</Project>
       <Name>Comsec.Sugar</Name>
