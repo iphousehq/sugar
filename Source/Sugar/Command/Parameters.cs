@@ -10,6 +10,26 @@ namespace Sugar.Command
     /// </summary>
     public class Parameters : List<string>, ICloneable
     {
+        private static Parameters current;
+
+        /// <summary>
+        /// Gets the current command line arguments.
+        /// </summary>
+        public static Parameters Current
+        {
+            get
+            {
+                if (current == null)
+                {
+                    var args = Environment.CommandLine;
+
+                    current = new ParameterParser().Parse(args);
+                }
+
+                return current;
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Parameters"/> class.
         /// </summary>
