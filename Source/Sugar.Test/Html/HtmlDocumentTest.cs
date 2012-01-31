@@ -333,6 +333,14 @@ namespace Sugar.Html
         }
 
         [Test]
+        public void TestGetNodesWithPartialClass()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p class='test off'>hi</p></html>");
+
+            Assert.AreEqual("hi", document.GetNodes("//p[contains(@class,'test')]")[0].GetInnerText());
+        }
+
+        [Test]
         public void TestGetNodesGetAttributes()
         {
             var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p class='test'>hi</p></html>");

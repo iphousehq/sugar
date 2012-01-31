@@ -197,6 +197,53 @@ namespace Sugar
         }
 
         [Test]
+        public void TestCombineStringFlagsNotEnum()
+        {
+            var list = new List<string> { "Bob", "Thursday" };
+
+            try
+            {
+                list.CombineToFlagsEnum<SomeFlagsEnum>();
+            }
+            catch (ArgumentException ex)
+            {
+                Assert.AreEqual("Enum type must be an enumeration", ex.Message);
+            }
+        }
+
+        [Test]
+        public void TestCombineStringFlags()
+        {
+            var list = new List<string> { "Bob", "Thursday" };
+
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+
+            Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
+            Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
+        }
+
+        [Test]
+        public void TestCombineStringFlagsSingle()
+        {
+            var list = new List<string> { "Thursday" };
+
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+
+            Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
+        }
+
+        [Test]
+        public void TestCombineStringFlagsOutsideRange()
+        {
+            var list = new List<string> { "Bob", "Thursday", "Fake" };
+
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+
+            Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
+            Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
+        }
+
+        [Test]
         public void TestCombineAllFlags()
         {
             var result = new SomeFlagsEnum().CombineAllToFlagsEnum();
