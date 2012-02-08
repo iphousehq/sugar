@@ -11,6 +11,26 @@ namespace Sugar.Command
     public class Parameters : List<string>, ICloneable
     {
         private static Parameters current;
+        private static string filename;
+
+        /// <summary>
+        /// Initializes the static members.
+        /// </summary>
+        private static void InitializeStaticMembers()
+        {
+            // Only perform once
+            if (current != null) return;
+
+            // Get the current command line
+            var args = Environment.CommandLine;
+            current = new ParameterParser().Parse(args);
+
+            // Set current filename
+            filename = current[0];
+
+            // Remove filename from parameters
+            current.RemoveAt(0);
+        }
 
         /// <summary>
         /// Gets the current command line arguments.
@@ -19,14 +39,22 @@ namespace Sugar.Command
         {
             get
             {
-                if (current == null)
-                {
-                    var args = Environment.CommandLine;
-
-                    current = new ParameterParser().Parse(args);
-                }
+                InitializeStaticMembers();
 
                 return current;
+            }
+        }
+        
+        /// <summary>
+        /// Gets the current filename of the executable.
+        /// </summary>
+        public static string Filename
+        {
+            get
+            {
+                InitializeStaticMembers();
+
+                return filename;
             }
         }
 
@@ -42,7 +70,8 @@ namespace Sugar.Command
         /// Initializes a new instance of the <see cref="Parameters"/> class.
         /// </summary>
         /// <param name="args">The args.</param>
-        public Parameters(string args) : this()
+        public Parameters(string args)
+            : this()
         {
             if (string.IsNullOrEmpty(args)) return;
 
@@ -55,7 +84,8 @@ namespace Sugar.Command
         /// Initializes a new instance of the <see cref="Parameters"/> class.
         /// </summary>
         /// <param name="parameters">The parameters.</param>
-        public Parameters(IEnumerable<string> parameters) : this()
+        public Parameters(IEnumerable<string> parameters)
+            : this()
         {
             foreach (var parameter in parameters)
             {
@@ -89,7 +119,7 @@ namespace Sugar.Command
         /// <returns></returns>
         public string AsString(string name, string @default)
         {
-            return AsStrings(name, new[] { @default}).First();
+            return AsStrings(name, new[] { @default }).First();
         }
 
         /// <summary>
@@ -264,7 +294,7 @@ namespace Sugar.Command
 
             return result;
         }
-      
+
         /// <summary>
         /// Clones this instance.
         /// </summary>
@@ -273,7 +303,7 @@ namespace Sugar.Command
         {
             return new Parameters(this);
         }
-      
+
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -281,7 +311,7 @@ namespace Sugar.Command
             foreach (var parameter in this)
             {
                 if (sb.Length > 0) sb.Append(" ");
-                
+
                 if (parameter.Contains(" "))
                 {
                     sb.Append(@"""");
@@ -336,7 +366,7 @@ namespace Sugar.Command
             {
                 RemoveAt(index);
 
-                InsertRange(index, values);                
+                InsertRange(index, values);
             }
         }
 
@@ -354,7 +384,7 @@ namespace Sugar.Command
 
         public T AsCustomType<T>(string name)
         {
-            return (T) AsCustomType(name, typeof(T));
+            return (T)AsCustomType(name, typeof(T));
         }
 
         public object AsCustomType(string name, Type type)
