@@ -64,7 +64,14 @@ namespace Sugar
 
             for (var i = 0; i < values.Length; i++)
             {
-                row[i] = values[i].ToString();
+                if (values[i] != null)
+                {
+                    row[i] = values[i].ToString();
+                }
+                else
+                {
+                    row[i] = string.Empty;
+                }
 
                 if (row[i].Length > widths[i]) widths[i] = row[i].Length;
             }
