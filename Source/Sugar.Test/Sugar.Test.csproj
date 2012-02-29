@@ -78,6 +78,7 @@
     <Compile Include="DateTimeExtensionsTest.cs" />
     <Compile Include="EnumerableExtensionsTest.cs" />
     <Compile Include="EnumExtensionsTest.cs" />
+    <Compile Include="HtmlBuilderTest.cs" />
     <Compile Include="Html\HtmlDocumentTest.cs" />
     <Compile Include="Html\HtmlNodeExtensionsTest.cs" />
     <Compile Include="Int32ExtensionsTest.cs" />

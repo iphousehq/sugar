@@ -71,6 +71,7 @@
     <Compile Include="DoubleExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="EnumExtensions.cs" />
+    <Compile Include="HtmlBuilder.cs" />
     <Compile Include="Int32Extensions.cs" />
     <Compile Include="IO\FileService.cs" />
     <Compile Include="IO\IFileService.cs" />
