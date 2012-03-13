@@ -1,0 +1,129 @@
+<Configuration>
+  <SharedSolutionTemplateManager>
+    <LiveTemplates>
+      <Template uid="ad9403bc-aac1-4243-aa02-2fd1f68e0fa3" shortcut="ad" description="Anonymous double property" text="public double $PropertyName$ { get; set; }" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="PropertyName" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="13767d55-0350-4525-94a1-8397dbc1c5ef" shortcut="ad8" description="Anonymous DateTime property" text="public DateTime $PropertyName$ { get; set; }$END$" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="PropertyName" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="34925b40-c6e2-4c34-aceb-824127c1f679" shortcut="af" description="Anonymous float property" text="public float $PropertyName$ { get; set; }" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="PropertyName" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="376be57a-cf99-4e6b-9b7e-5634b600f041" shortcut="ai" description="Anonymous int property" text="public int $PropertyName$ { get; set; }" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="PropertyName" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="2962ec78-cf20-453b-b4c3-51bde999ae2f" shortcut="as" description="Anonymous string property" text="public string $PropertyName$ { get; set; }$END$" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="PropertyName" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="f1ecf0cf-4281-474d-8253-ae1ade520531" shortcut="b" description="Block" text="{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="d4ed6706-7c1b-483a-b245-e957fdfe10f7" shortcut="gs" description="{ get; set; } block" text="{ get; set; }" reformat="False" shortenQualifiedReferences="False">
+        <Context>
+          <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="da5cda53-e726-4281-81f0-2340b283c905" shortcut="m" description="Method" text="public $ReturnType$ $MethodName$($Parameters$)&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="ReturnType" expression="" initialRange="0" />
+          <Variable name="MethodName" expression="" initialRange="0" />
+          <Variable name="Parameters" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="c5c50d8f-f4af-4241-9bcf-6963ad79ce5b" shortcut="p" description="public" text="public " reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="b8b9d540-a583-456f-8daa-2ef4e6520f15" shortcut="pm" description="Private Mock&lt;T&gt; variable" text="private Mock&lt;$Type$&gt; $VariableName$;" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="Type" expression="" initialRange="0" />
+          <Variable name="VariableName" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="9fbbcc62-bd9b-4741-b665-cc8e490b07b1" shortcut="sm" description="SetUp method" text="[SetUp]&#xD;&#xA;public void Setup()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="7cea90e8-d3f1-4f98-8426-54bfae4e0420" shortcut="tf" description="Test Fixture attribute" text="[TestFixture]" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="f5242a15-2dfc-405c-82f8-7a8e2989b151" shortcut="tm" description="test method" text="[Test]&#xD;&#xA;public void Test$MethodName$()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <CSharpContext context="TypeMember" minimumLanguageVersion="2.0" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="MethodName" expression="" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+    </LiveTemplates>
+  </SharedSolutionTemplateManager>
+</Configuration>
