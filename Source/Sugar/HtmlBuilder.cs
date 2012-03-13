@@ -12,7 +12,9 @@ namespace Sugar
         private readonly StringBuilder sb = new StringBuilder();
         private readonly string tag;
         private readonly IDictionary<string, string> attrs = new Dictionary<string, string>();
-        private bool flushed = false;
+        private bool flushed;
+        private bool ignoreNextAttribute;
+        private bool ignoredAttribute;
         
         #region Constructors
 
@@ -59,6 +61,12 @@ namespace Sugar
         /// <returns></returns>
         public HtmlBuilder Attribute(string name, object value, bool replace = false)
         {
+            if (ignoreNextAttribute && !ignoredAttribute)
+            {
+                ignoredAttribute = true;
+                return this;
+            }
+
             if (attrs.ContainsKey(name) && replace)
             {
                 attrs[name] = value.ToString();                                
@@ -73,6 +81,17 @@ namespace Sugar
             }
 
             return this;
+        }
+
+        /// <summary>
+        /// Sets the tag's class.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="replace">if set to <c>true</c> [replace].</param>
+        /// <returns></returns>
+        public HtmlBuilder Type(string value, bool replace = false)
+        {
+            return Attribute("type", value, replace);
         }
 
         /// <summary>
@@ -350,6 +369,47 @@ namespace Sugar
             FlushAttributes();
 
             return new HtmlBuilder(name, sb, attributes);
+        }
+
+        public HtmlBuilder If(bool condition)
+        {
+            ignoreNextAttribute = !condition;
+            ignoredAttribute = false;
+            return this;
+        }
+
+        public HtmlBuilder Not()
+        {
+            ignoreNextAttribute = !ignoreNextAttribute;
+            return this;
+        }
+
+        public HtmlBuilder IfNullOrEmpty(object value)
+        {
+            ignoreNextAttribute = !(value is string) ? value != null : !string.IsNullOrEmpty(value as string);
+            ignoredAttribute = false;
+            return this;
+        }
+
+        public HtmlBuilder IfNotNullOrEmpty(object value)
+        {
+            IfNullOrEmpty(value);
+            ignoreNextAttribute = !ignoreNextAttribute;
+            return this;
+        }
+
+        public HtmlBuilder Else()
+        {
+            ignoreNextAttribute = !ignoreNextAttribute;
+            ignoredAttribute = false;
+            return this;
+        }
+
+        public HtmlBuilder InnerText(string value, params object[] args)
+        {
+            FlushAttributes();
+            sb.AppendFormat(value, args);
+            return this;
         }
 
         #endregion
