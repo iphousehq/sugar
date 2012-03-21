@@ -203,6 +203,28 @@ namespace Sugar
             return results;
         }
 
+        public static IEnumerable<DateTime> WeeksUntil(this DateTime from, DateTime until, DayOfWeek weekStart)
+        {
+            var results = new List<DateTime>();
+
+            var current = new DateTime(from.Year, from.Month, from.Day).StartOfWeek(weekStart);
+            var end = new DateTime(until.Year, until.Month, until.Day).StartOfWeek(weekStart);
+
+            if (current > end)
+            {
+                return results;
+            }
+
+            while (current <= end)
+            {
+                results.Add(current);
+
+                current = current.AddDays(7);
+            }
+
+            return results;
+        }
+
         public static IEnumerable<DateTime> DaysUntil(this DateTime from, DateTime until)
         {
             var results = new List<DateTime>();
