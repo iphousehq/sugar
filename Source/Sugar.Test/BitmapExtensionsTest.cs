@@ -80,5 +80,21 @@ namespace Sugar
                 Assert.AreEqual("image/jpeg", mime);
             }
         }
+
+        [Test]
+        public void GetImageFormatFromMimeType()
+        {
+            var format = "image/png".GetImageFormatFromMimeType();
+
+            Assert.AreEqual(ImageFormat.Png, format);
+        }
+
+        [Test]
+        public void GetImageFormatFromMimeTypeNotRecognised()
+        {
+            var format = "wtf".GetImageFormatFromMimeType();
+
+            Assert.AreEqual(ImageFormat.Jpeg, format);
+        }
     }
 }
