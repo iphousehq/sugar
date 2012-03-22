@@ -2,6 +2,7 @@
 using System.Drawing.Imaging;
 using System.IO;
 using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace Sugar
@@ -50,9 +51,9 @@ namespace Sugar
         /// <remarks>This gives better results than using the Bitmap(image, size) constructor</remarks>
         public static Bitmap ResizeImage(this Image image, Size newSize)
         {
-            Bitmap result = new Bitmap(newSize.Width, newSize.Height);
+            var result = new Bitmap(newSize.Width, newSize.Height);
 
-            using (Graphics graphics = Graphics.FromImage(result))
+            using (var graphics = Graphics.FromImage(result))
             {
                 graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -107,6 +108,22 @@ namespace Sugar
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Gets the MIME type of the bitmap image.
+        /// </summary>
+        /// <param name="bitmap">The bitmap.</param>
+        /// <returns></returns>
+        public static string GetMimeType(this Bitmap bitmap)
+        {
+            foreach (var codec in ImageCodecInfo.GetImageDecoders()
+                .Where(codec => codec.FormatID == bitmap.RawFormat.Guid))
+            {
+                return codec.MimeType;
+            }
+
+            return "image/unknown";
         }
     }
 }

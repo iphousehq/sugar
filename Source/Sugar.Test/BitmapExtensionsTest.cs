@@ -69,5 +69,16 @@ namespace Sugar
 
             Assert.IsNull(reconstructedImage);
         }
+
+        [Test]
+        public void TestGetMimeType()
+        {
+            using (var image = new Bitmap(ImageLocation))
+            {
+                var mime = image.GetMimeType();
+
+                Assert.AreEqual("image/jpeg", mime);
+            }
+        }
     }
 }
