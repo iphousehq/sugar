@@ -59,6 +59,7 @@
     <Compile Include="Command\BaseCommandConsole.cs" />
     <Compile Include="Command\BaseConsole.cs" />
     <Compile Include="Command\BoundCommand.cs" />
+    <Compile Include="Command\ParameterPrinter.cs" />
     <Compile Include="Command\FlagAttribute.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\ParameterAttribute.cs" />

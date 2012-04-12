@@ -70,22 +70,30 @@ namespace Sugar.Command
         /// Initializes a new instance of the <see cref="Parameters"/> class.
         /// </summary>
         /// <param name="args">The args.</param>
-        public Parameters(string args)
-            : this()
+        public Parameters(string args) : this()
         {
             if (string.IsNullOrEmpty(args)) return;
 
-            var array = args.Split(' ');
+            AddRange(new ParameterParser().Parse(args));
+        }
 
-            AddRange(new ParameterParser().Parse(array));
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Parameters"/> class.
+        /// </summary>
+        /// <param name="args">The args.</param>
+        /// <param name="switches">The switches.</param>
+        public Parameters(string args, IEnumerable<string> switches)
+        {
+            if (string.IsNullOrEmpty(args)) return;
+
+            AddRange(new ParameterParser().Parse(args, switches));
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Parameters"/> class.
         /// </summary>
         /// <param name="parameters">The parameters.</param>
-        public Parameters(IEnumerable<string> parameters)
-            : this()
+        public Parameters(IEnumerable<string> parameters) : this()
         {
             foreach (var parameter in parameters)
             {

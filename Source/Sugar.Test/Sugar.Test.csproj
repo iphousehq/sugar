@@ -70,6 +70,7 @@
     <Compile Include="BitmapExtensionsTest.cs" />
     <Compile Include="CollectionExtensionsTest.cs" />
     <Compile Include="Command\BoundCommandTest.cs" />
+    <Compile Include="Command\ParameterPrinterTest.cs" />
     <Compile Include="Command\ParametersTest.cs" />
     <Compile Include="Command\ParameterBinderTest.cs" />
     <Compile Include="Command\ParameterParserTest.cs" />

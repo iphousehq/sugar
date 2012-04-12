@@ -44,13 +44,30 @@ namespace Sugar.Command
         /// <returns></returns>
         public Parameters Parse(string args, IEnumerable<string> switches = null)
         {
-            var matches = Regex
-                .Matches(args, @"\""(?<match>.*)""|(?<match>[^\s""]+)")
-                .Cast<Match>()
-                .Select(m => m.Groups["match"].Value)
-                .ToList();
+            var matches = Regex.Split(args, @"(?<!""\b[^""]*)\s+(?![^""]*\b"")");
 
-            return Parse(matches, switches);
+            var parameters = new List<string>();
+
+            foreach (var match in matches)
+            {
+                if (match.StartsWith(@""""))
+                {
+                    var noQuote = match.Substring(1);
+
+                    if (match.EndsWith(@""""))
+                    {
+                        noQuote = noQuote.Substring(0, noQuote.Length - 1);
+                    }
+
+                    parameters.Add(noQuote);
+                }
+                else
+                {
+                    parameters.Add(match);                    
+                }
+            }
+
+            return Parse(parameters, switches);
         }
     }
 }

@@ -35,6 +35,17 @@ namespace Sugar.Command
             Assert.AreEqual("four", parameters[2]);
         }
 
+        [Test]
+        public void TestParseParametersWithTwoQuotes()
+        {
+            var parameters = parser.Parse(@"one ""two three"" four ""five six""");
+
+            Assert.AreEqual(4, parameters.Count);
+            Assert.AreEqual("one", parameters[0]);
+            Assert.AreEqual("two three", parameters[1]);
+            Assert.AreEqual("four", parameters[2]);
+            Assert.AreEqual("five six", parameters[3]);
+        }
 
         [Test]
         public void TestParseParametersWithQuotesAndOddCharacters()
@@ -50,11 +61,9 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse(@"one ""two three four");
 
-            Assert.AreEqual(4, parameters.Count);
+            Assert.AreEqual(2, parameters.Count);
             Assert.AreEqual("one", parameters[0]);
-            Assert.AreEqual("two", parameters[1]);
-            Assert.AreEqual("three", parameters[2]);
-            Assert.AreEqual("four", parameters[3]);
+            Assert.AreEqual("two three four", parameters[1]);
         }
 
         [Test]
