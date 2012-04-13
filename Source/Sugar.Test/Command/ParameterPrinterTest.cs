@@ -73,5 +73,13 @@ namespace Sugar.Command
             Assert.AreEqual(@"-flag -first ""abc""", results[3]);
             Assert.AreEqual(@"-flag -command [-set]", results[4]);
         }
+
+        [Test]
+        public void TestPrintObjectsFromAssemly()
+        {
+            var results = printer.Print("-", typeof(Foo).Assembly, "Fizz");
+
+            Assert.AreEqual(2, results.Count);
+        }
     }
 }

@@ -11,7 +11,25 @@ namespace Sugar.Command
     public class ParameterPrinter
     {
         /// <summary>
-        /// Binds the specified parameters.
+        /// Prints the parameters required to bind to the given types in an assembly with
+        /// the specified name.
+        /// </summary>
+        /// <param name="switch">The @switch.</param>
+        /// <param name="assembly">The assembly.</param>
+        /// <param name="className">Name of the class.</param>
+        /// <returns></returns>
+        public IList<string> Print(string @switch, Assembly assembly, string className = "Options")
+        {
+            var types = assembly
+                .GetTypes()
+                .Where(t => t.Name == className)
+                .ToArray();
+
+            return Print(@switch, types);
+        }
+
+        /// <summary>
+        /// Prints the parameters required to bind to the given types
         /// </summary>
         /// <param name="switch">The @switch.</param>
         /// <param name="types">The types.</param>
