@@ -183,6 +183,48 @@ namespace Sugar
         }
 
         [Test]
+        public void TestWeeksUntilWeekStartWednesday()
+        {
+            var expected = new List<DateTime>
+                               {
+                                   new DateTime(2011, 12, 28),
+                                   new DateTime(2012, 1, 4),
+                                   new DateTime(2012, 1, 11),
+                                   new DateTime(2012, 1, 18),
+                                   new DateTime(2012, 1, 25),
+                                   new DateTime(2012, 2, 1),
+                                   new DateTime(2012, 2, 8),
+                               };
+
+            var results = new DateTime(2011, 12, 29).WeeksUntil(new DateTime(2012, 2, 7), DayOfWeek.Wednesday);
+
+            Assert.AreEqual(expected.Count, results.Count());
+            Assert.AreEqual(expected[0], results.ElementAt(0));
+            Assert.AreEqual(expected[6], results.ElementAt(6));
+        }
+
+        [Test]
+        public void TestWeeksUntilWeekStartFriday()
+        {
+            var expected = new List<DateTime>
+                               {
+                                   new DateTime(2011, 12, 30),
+                                   new DateTime(2012, 1, 6),
+                                   new DateTime(2012, 1, 13),
+                                   new DateTime(2012, 1, 20),
+                                   new DateTime(2012, 1, 27),
+                                   new DateTime(2012, 2, 3),
+                                   new DateTime(2012, 2, 10),
+                               };
+
+            var results = new DateTime(2011, 12, 29).WeeksUntil(new DateTime(2012, 2, 7), DayOfWeek.Friday);
+
+            Assert.AreEqual(expected.Count, results.Count());
+            Assert.AreEqual(expected[0], results.ElementAt(0));
+            Assert.AreEqual(expected[6], results.ElementAt(6));
+        }
+
+        [Test]
         public void TestWeeksUntilLeapYearTest()
         {
             var expected = new List<DateTime>

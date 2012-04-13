@@ -162,5 +162,22 @@ namespace Sugar
             Assert.AreEqual("test1", results[1]);
             Assert.AreEqual("test3", results[2]);
         }
+
+        [Test]
+        public void TestRemoveAndInsertItemsAtEnd()
+        {
+            var collection = new List<String>
+            {
+                "test1",
+                "test2",
+                "test3"
+            };
+
+            var results = collection.RemoveAndInsertAt(0, 2);
+
+            Assert.AreEqual("test2", results[0]);
+            Assert.AreEqual("test3", results[1]);
+            Assert.AreEqual("test1", results[2]);
+        }
     }
 }

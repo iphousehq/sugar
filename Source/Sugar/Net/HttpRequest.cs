@@ -140,7 +140,9 @@ namespace Sugar.Net
             if (UserAgent != null) request.UserAgent = UserAgent.ToString();
             request.ContentType = ContentType;
             request.Referer = Referer;
+            request.Proxy = WebRequest.DefaultWebProxy; // force default proxy
             ServicePointManager.ServerCertificateValidationCallback += delegate { return true; }; // to allow HTTPS
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3; // force ssl over tls
 
             request.Headers.Add(Headers);
             request.CookieContainer = Cookies;
