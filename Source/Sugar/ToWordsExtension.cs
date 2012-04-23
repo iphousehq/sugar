@@ -6,6 +6,39 @@ namespace Sugar
     {
         private const char WordDelimiter = '\n';
 
+        /// <summary>
+        /// Split a string into words.
+        /// This is done recursively on the result to ensure words in quotes are split.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static IList<string> ToWordsRecursive(this string value)
+        {
+            var split = new List<string>();
+
+            if (value.Contains(" "))
+            {
+                var words = value.ToWords();
+
+                foreach (var w in words)
+                {
+                    split.AddRange(ToWordsRecursive(w));
+                }
+            }
+            else
+            {
+                split.Add(value.ToLower());
+            }
+
+            return split;
+        }
+
+        /// <summary>
+        /// Split a string into words.
+        /// Words enclosed in quotes will not be split.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static IList<string> ToWords(this string value)
         {
             var words = new List<char>();

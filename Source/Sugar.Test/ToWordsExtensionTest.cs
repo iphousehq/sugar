@@ -210,5 +210,16 @@ namespace Sugar
             Assert.AreEqual("one", words[0]);
             Assert.AreEqual("two,; three", words[1]);
         }
+
+        [Test]
+        public void TestResursive()
+        {
+            var words = @"""one two"" three".ToWordsRecursive();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+            Assert.AreEqual("three", words[2]);
+        }
     }
 }
