@@ -16,18 +16,18 @@ namespace Sugar
         {
             var split = new List<string>();
 
-            if (value.Contains(" "))
-            {
-                var words = value.ToWords();
+            var words = value.ToWords();
 
-                foreach (var w in words)
-                {
-                    split.AddRange(ToWordsRecursive(w));
-                }
-            }
-            else
+            foreach (var word in words)
             {
-                split.Add(value.ToLower());
+                if(word.Contains(" "))
+                {
+                   split.AddRange(ToWordsRecursive(word)); 
+                }
+                else
+                {
+                    split.Add(word.ToLower());
+                }
             }
 
             return split;
