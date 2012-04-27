@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 
 namespace Sugar
 {
@@ -131,6 +133,52 @@ namespace Sugar
                 .Aggregate(0, (current, value) => current | (int) value);
 
             return (Enum)Enum.ToObject(enumType, result);
+        }
+
+        /// <summary>
+        /// Gets the description.
+        /// </summary>
+        /// <param name="enumerationValue">The enumeration value.</param>
+        /// <returns></returns>
+        public static string GetDescription(this Enum enumerationValue)
+        {
+            return GetAttributeFromEnumConstant<DescriptionAttribute>(enumerationValue, enumerationValue.ToString());
+        }
+
+        /// <summary>
+        /// Gets the attribute from enum constant.
+        /// </summary>
+        /// <typeparam name="T">The type of attribute to obtain.</typeparam>
+        /// <param name="enumerationValue">The enumeration value.</param>
+        /// <param name="defaultValue">The default value to return if the attribute is not found.</param>
+        /// <returns></returns>
+        public static string GetAttributeFromEnumConstant<T>(Enum enumerationValue, string defaultValue) where T : Attribute
+        {
+            var result = defaultValue;
+
+            var type = enumerationValue.GetType();
+
+            // Tries to find a DescriptionAttribute for a potential friendly name for the enum
+            var memberInfo = type.GetMember(enumerationValue.ToString());
+
+            if (memberInfo.Length > 0)
+            {
+                var attrs = memberInfo[0].GetCustomAttributes(typeof(T), true);
+
+                if (attrs.Length > 0)
+                {
+                    var attr = ((T)attrs[0]);
+
+                    // Pull out the description value
+                    var property = attr.GetType().GetProperty("Description", BindingFlags.Public | BindingFlags.Instance);
+                    if (property != null)
+                    {
+                        result = property.GetValue(attr, null).ToString();
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

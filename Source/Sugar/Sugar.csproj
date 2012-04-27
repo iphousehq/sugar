@@ -54,6 +54,15 @@
   <ItemGroup>
     <Compile Include="ArrayExtensions.cs" />
     <Compile Include="AssemblyExtensions.cs" />
+    <Compile Include="Mime\ApplicationMime.cs" />
+    <Compile Include="Mime\ApplicationMimeType.cs" />
+    <Compile Include="Mime\AudioMime.cs" />
+    <Compile Include="Mime\AudioMimeType.cs" />
+    <Compile Include="Mime\CommonMimeTypes.cs" />
+    <Compile Include="Mime\ImageMime.cs" />
+    <Compile Include="Mime\ImageMimeType.cs" />
+    <Compile Include="Mime\BaseMime.cs" />
+    <Compile Include="Mime\BaseMimeType.cs" />
     <Compile Include="BitmapExtensions.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Command\BaseCommandConsole.cs" />
@@ -76,6 +85,10 @@
     <Compile Include="Int32Extensions.cs" />
     <Compile Include="IO\FileService.cs" />
     <Compile Include="IO\IFileService.cs" />
+    <Compile Include="Mime\TextMime.cs" />
+    <Compile Include="Mime\TextMimeType.cs" />
+    <Compile Include="Mime\VideoMime.cs" />
+    <Compile Include="Mime\VideoMimeType.cs" />
     <Compile Include="Net\DomainName.cs" />
     <Compile Include="Net\HttpQuery.cs" />
     <Compile Include="Net\HttpRequest.cs" />

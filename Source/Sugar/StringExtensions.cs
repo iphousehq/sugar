@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Sugar.Mime;
 
 namespace Sugar
 {
@@ -344,111 +345,18 @@ namespace Sugar
         /// <returns></returns>
         public static string GetMimeType(this string filename)
         {
-            var mimeTypes = new Dictionary<string, string>
-            {
-                {".aif", "audio/aiff"},
-                {".aifc", "audio/aiff"},
-                {".aiff", "audio/aiff"},
-                {".asp", "text/asp"},
-                {".au", "audio/basic"},
-                {".avi", "video/avi"},
-                {".bin", "application/octet-stream"},
-                {".bmp", "image/bmp"},
-                {".c", "text/x-c"},
-                {".c++", "text/plain"},
-                {".class", "application/java"},
-                {".com", "application/octet-stream"},
-                {".cpp", "text/x-c"},
-                {".css", "text/css"},
-                {".csv", "text/csv"},
-                {".doc", "application/msword"},
-                {".docx", "application/msword"},
-                {".dvi", "application/x-dvi"},
-                {".exe", "application/octet-stream"},
-                {".gif", "image/gif"},
-                {".gz", "application/x-compressed"},
-                {".gzip", "application/x-gzip"},
-                {".h", "text/plain"},
-                {".help", "application/x-helpfile"},
-                {".hh", "text/plain"},
-                {".htm", "text/html"},
-                {".html", "text/html"},
-                {".htmls", "text/html"},
-                {".ico", "image/x-icon"},
-                {".java", "text/x-java-source"},
-                {".jpe", "image/jpeg"},
-                {".jpeg", "image/jpeg"},
-                {".jpg", "image/jpeg"},
-                {".js", "application/x-javascript"},
-                {".log", "text/plain"},
-                {".m3u", "audio/x-mpequrl"},
-                {".mid", "audio/midi"},
-                {".midi", "audio/midi"},
-                {".mjpg", "video/x-motion-jpeg"},
-                {".mov", "video/quicktime"},
-                {".mp2", "audio/mpeg"},
-                {".mp3", "audio/mpeg3"},
-                {".mp4", "video/mpeg4"},
-                {".mpeg", "video/mpeg"},
-                {".mpg", "video/mpeg"},
-                {".pct", "image/x-pict"},
-                {".pdf", "application/pdf"},
-                {".pic", "image/pict"},
-                {".pict", "image/pict"},
-                {".png", "image/png"},
-                {".pps", "application/vnd.ms-powerpoint"},
-                {".ppt", "application/vnd.ms-powerpoint"},
-                {".psd", "application/octet-stream"},
-                {".qif", "image/x-quicktime"},
-                {".qt", "video/quicktime"},
-                {".qtc", "video/x-qtc"},
-                {".qti", "image/x-quicktime"},
-                {".qtif", "image/x-quicktime"},
-                {".ra", "audio/x-realaudio"},
-                {".ram", "audio/x-pn-realaudio"},
-                {".rgb", "image/x-rgb"},
-                {".rm", "application/vnd.rn-realmedia"},
-                {".rmi", "audio/mid"},
-                {".rmm", "audio/x-pn-realaudio"},
-                {".rmp", "audio/x-pn-realaudio"},
-                {".rtf", "text/richtext"},
-                {".shtml", "text/html"},
-                {".snd", "audio/basic"},
-                {".sprite", "application/x-sprite"},
-                {".svf", "image/x-dwg"},
-                {".swf", "application/x-shockwave-flash"},
-                {".text", "text/plain"},
-                {".tif", "image/tiff"},
-                {".tiff", "image/tiff"},
-                {".txt", "text/plain"},
-                {".wav", "audio/wav"},
-                {".word ", "application/msword"},
-                {".xif", "image/vnd.xiff"},
-                {".xl", "application/excel"},
-                {".xla", "application/excel"},
-                {".xlb", "application/excel"},
-                {".xlc", "application/excel"},
-                {".xld ", "application/excel"},
-                {".xlk", "application/excel"},
-                {".xll", "application/excel"},
-                {".xlm", "application/excel"},
-                {".xls", "application/excel"},
-                {".xlsx", "application/excel"},
-                {".xlt", "application/excel"},
-                {".xlv", "application/excel"},
-                {".xlw", "application/excel"},
-                {".xml", "text/xml"},
-                {".zip", "application/x-compressed"}
-            };
+            var mimeTypes = CommonMimeTypes.Generate();
 
             var extension = Path.GetExtension(filename);
 
             if (string.IsNullOrEmpty(extension)) extension = "";
 
+            extension = extension.Replace(".", "");
 
-            return mimeTypes.ContainsKey(extension)
-                       ? mimeTypes[extension]
-                       : "application/unknown";
+            var type =  mimeTypes
+                .FirstOrDefault(m => m.Extensions.Contains(extension));
+
+            return type == null ? "application/unknown" : type.ToString();
         }
     }
 }
