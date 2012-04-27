@@ -177,5 +177,13 @@ namespace Sugar
 
             Assert.AreEqual(@"one, ""two three"" or four", morePhrases.JoinPhrases());
         }
+
+        [Test]
+        public void TestGetMimeType()
+        {
+            var mimeType = "something.jpg".GetMimeType();
+
+            Assert.AreEqual("image/jpeg", mimeType);
+        }
     }
 }
