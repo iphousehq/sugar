@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
+using Sugar.Mime;
 
 namespace Sugar
 {
@@ -183,7 +184,8 @@ namespace Sugar
         {
             var mimeType = "something.jpg".GetMimeType();
 
-            Assert.AreEqual("image/jpeg", mimeType);
+            Assert.AreEqual(BaseMimeType.Image, mimeType.BaseMimeType);
+            Assert.AreEqual(ImageMimeType.Jpeg, mimeType.MimeType);
         }
     }
 }

@@ -343,7 +343,7 @@ namespace Sugar
         /// </summary>
         /// <param name="filename">The filename.</param>
         /// <returns></returns>
-        public static string GetMimeType(this string filename)
+        public static BaseMime GetMimeType(this string filename)
         {
             var mimeTypes = CommonMimeTypes.Generate();
 
@@ -353,10 +353,8 @@ namespace Sugar
 
             extension = extension.Replace(".", "");
 
-            var type =  mimeTypes
+            return mimeTypes
                 .FirstOrDefault(m => m.Extensions.Contains(extension));
-
-            return type == null ? "application/unknown" : type.ToString();
         }
     }
 }
