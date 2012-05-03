@@ -212,7 +212,45 @@ namespace Sugar
         }
 
         [Test]
-        public void TestResursive()
+        public void TestResursiveSingleWord()
+        {
+            var words = @"one".ToWordsRecursive();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestResursiveSingleWordInQuotes()
+        {
+            var words = @"""one""".ToWordsRecursive();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestResursiveMultipleWords()
+        {
+            var words = @"one two".ToWordsRecursive();
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+        }
+
+        [Test]
+        public void TestResursiveMultipleWordsInQuotes()
+        {
+            var words = @"""one two""".ToWordsRecursive();
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+        }
+
+        [Test]
+        public void TestResursiveMultipleWordsInQuotesWithExtra()
         {
             var words = @"""one two"" three".ToWordsRecursive();
 
@@ -221,5 +259,7 @@ namespace Sugar
             Assert.AreEqual("two", words[1]);
             Assert.AreEqual("three", words[2]);
         }
+
+        
     }
 }

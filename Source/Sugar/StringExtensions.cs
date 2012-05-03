@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
+using Sugar.Mime;
 
 namespace Sugar
 {
@@ -130,12 +133,9 @@ namespace Sugar
 
             if (value != null)
             {
-                foreach (var @char in value.ToCharArray())
-                {
-                    if (!keepTheseCharacters.Contains(@char.ToString())) continue;
-
-                    result += @char;
-                }
+                result = value.ToCharArray()
+                    .Where(@char => keepTheseCharacters.Contains(@char.ToString()))
+                    .Aggregate(result, (current, @char) => current + @char);
             }
 
             return result;
@@ -336,6 +336,25 @@ namespace Sugar
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Gets the content type of a file from the filename (best guess)
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <returns></returns>
+        public static BaseMime GetMimeType(this string filename)
+        {
+            var mimeTypes = CommonMimeTypes.Generate();
+
+            var extension = Path.GetExtension(filename);
+
+            if (string.IsNullOrEmpty(extension)) extension = "";
+
+            extension = extension.Replace(".", "");
+
+            return mimeTypes
+                .FirstOrDefault(m => m.Extensions.Contains(extension));
         }
     }
 }

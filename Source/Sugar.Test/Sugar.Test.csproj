@@ -86,6 +86,7 @@
     <Compile Include="Int32ExtensionsTest.cs" />
     <Compile Include="IO\FileServiceTest.cs" />
     <Compile Include="JsonHelperTest.cs" />
+    <Compile Include="Mime\MimeTypeTest.cs" />
     <Compile Include="Net\HttpRequestTest.cs" />
     <Compile Include="Net\HttpResponseTest.cs" />
     <Compile Include="Net\UrlTest.cs" />

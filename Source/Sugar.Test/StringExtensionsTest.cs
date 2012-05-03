@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
+using Sugar.Mime;
 
 namespace Sugar
 {
@@ -176,6 +177,15 @@ namespace Sugar
             var morePhrases = new[] { "one", "two three", "four" };
 
             Assert.AreEqual(@"one, ""two three"" or four", morePhrases.JoinPhrases());
+        }
+
+        [Test]
+        public void TestGetMimeType()
+        {
+            var mimeType = "something.jpg".GetMimeType();
+
+            Assert.AreEqual(BaseMimeType.Image, mimeType.BaseMimeType);
+            Assert.AreEqual(ImageMimeType.Jpeg, mimeType.MimeType);
         }
     }
 }
