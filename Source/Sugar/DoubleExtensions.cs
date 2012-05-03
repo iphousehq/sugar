@@ -26,5 +26,21 @@ namespace Sugar
             return result;
         }
 
+        /// <summary>
+        /// Gets the date time from this Unix timestamp.
+        /// </summary>
+        /// <param name="time">The time.</param>
+        /// <returns></returns>
+        public static DateTime FromUnixTimestamp(this double time)
+        {
+            //create a new DateTime value based on the Unix Epoch
+            var converted = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+
+            //add the timestamp to the value
+            var newDateTime = converted.AddSeconds(time);
+
+            //return the value in string format
+            return newDateTime.ToLocalTime();
+        }
     }
 }
