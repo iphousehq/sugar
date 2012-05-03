@@ -207,18 +207,19 @@ namespace Sugar.Xml
 
             return results;
         }
-       
+
         /// <summary>
         /// Gets a list of navigators from the given XPath.
         /// </summary>
         /// <param name="document">The document.</param>
         /// <param name="xpath">The xpath.</param>
+        /// <param name="namespaceSearchDepth">The namespace search depth.</param>
         /// <returns></returns>
-        public static IList<XPathDocument> GetMatches(this IXPathNavigable document, string xpath)
+        public static IList<XPathDocument> GetMatches(this IXPathNavigable document, string xpath, int namespaceSearchDepth = 1)
         {
             var results = new List<XPathDocument>();
 
-            var iterator = GetIterator(document, xpath);
+            var iterator = GetIterator(document, xpath, namespaceSearchDepth);
 
             if (iterator.Count > 0)
             {
