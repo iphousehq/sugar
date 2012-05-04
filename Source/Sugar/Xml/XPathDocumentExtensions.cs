@@ -81,6 +81,38 @@ namespace Sugar.Xml
         }
 
         /// <summary>
+        /// Gets the namespaces in the XML document.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="depth">The ndoe depth to search.</param>
+        /// <returns></returns>
+        public static IDictionary<string, string> GetNamespaceDictionary(this IXPathNavigable document, int depth = 1)
+        {
+            var results = new Dictionary<string, string>();
+
+            var navigator = document.CreateNavigator();
+
+            while (depth > 0)
+            {
+                navigator.MoveToFollowing(XPathNodeType.Element);
+
+                var namespaces = navigator.GetNamespacesInScope(XmlNamespaceScope.ExcludeXml);
+
+                if (namespaces != null)
+                {
+                    foreach (var name in namespaces.Where(name => !results.ContainsKey(name.Key)))
+                    {
+                        results.Add(name.Key, name.Value);
+                    }
+                }
+
+                depth--;
+            }
+
+            return results;
+        }
+
+        /// <summary>
         /// Gets the inner XML.
         /// </summary>
         /// <param name="document">The document.</param>
@@ -145,7 +177,7 @@ namespace Sugar.Xml
 
             var iterator = GetIterator(document, xpath, namespaceSearchDepth);
 
-            if(iterator.Count > 0)
+            if (iterator.Count > 0)
             {
                 while (iterator.MoveNext())
                 {
@@ -215,17 +247,29 @@ namespace Sugar.Xml
         /// <param name="xpath">The xpath.</param>
         /// <param name="namespaceSearchDepth">The namespace search depth.</param>
         /// <returns></returns>
-        public static IList<XPathDocument> GetMatches(this IXPathNavigable document, string xpath, int namespaceSearchDepth = 1)
+        public static IList<IXPathNavigable> GetMatches(this IXPathNavigable document, string xpath, int namespaceSearchDepth = 1)
         {
-            var results = new List<XPathDocument>();
+            var results = new List<IXPathNavigable>();
 
+            var namespaces = GetNamespaceDictionary(document, namespaceSearchDepth);
             var iterator = GetIterator(document, xpath, namespaceSearchDepth);
 
             if (iterator.Count > 0)
             {
                 while (iterator.MoveNext())
                 {
-                    var result = new XPathDocument(new StringReader(iterator.Current.OuterXml));
+                    if (iterator.Current == null) continue;
+
+                    var result = new XmlDocument();
+                    result.LoadXml(iterator.Current.OuterXml);
+
+                    if (result.DocumentElement != null)
+                    {
+                        foreach (var ns in namespaces)
+                        {
+                            result.DocumentElement.SetAttribute(ns.Key, ns.Value);
+                        }
+                    }
 
                     results.Add(result);
                 }
