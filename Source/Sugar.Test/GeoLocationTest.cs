@@ -134,10 +134,10 @@ namespace Sugar
 
             var box = location.GetBoundingBox(1000);
 
-            Assert.AreEqual(-0.156960984, box[0], 0.0001);
-            Assert.AreEqual(-0.156960984, box[1], 0.0001);
-            Assert.AreEqual(0.156960984, box[2], 0.0001);
-            Assert.AreEqual(0.156960984, box[3], 0.0001);
+            Assert.AreEqual(-8.99320193, box[0], 0.0001);
+            Assert.AreEqual(-8.99320193, box[1], 0.0001);
+            Assert.AreEqual(8.99320193, box[2], 0.0001);
+            Assert.AreEqual(8.99320193, box[3], 0.0001);
         }
 
         [Test]
@@ -159,10 +159,10 @@ namespace Sugar
 
             var box = loc.GetBoundingBox(1000);
 
-            Assert.AreEqual(1.37892876, box[0], 0.0001);
-            Assert.AreEqual(-3.14159265, box[1], 0.0001);
-            Assert.AreEqual(1.57079633, box[2], 0.0001);
-            Assert.AreEqual(3.14159265, box[3], 0.0001);
+            Assert.AreEqual(79.0067982, box[0], 0.0001);
+            Assert.AreEqual(-180, box[1], 0.0001);
+            Assert.AreEqual(90, box[2], 0.0001);
+            Assert.AreEqual(180, box[3], 0.0001);
         }
     }
 }

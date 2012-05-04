@@ -112,7 +112,7 @@ namespace Sugar
         }
 
         /// <summary>
-        /// Calcualte the bounding box of all points on the surface of a sphere that
+        /// Calcualte the bounding box (in degrees) of all points on the surface of a sphere that
         /// have a great circle distance less than the given distance.
         /// <seealso cref="http://en.wikipedia.org/wiki/Great-circle_distance"/>
         /// </summary>
@@ -149,7 +149,7 @@ namespace Sugar
                 maxLon = maxiumumLongitude;
             }
 
-            return new[]{minLat, minLon, maxLat,  maxLon};
+            return new[] { minLat.ToDegrees(), minLon.ToDegrees(), maxLat.ToDegrees(), maxLon.ToDegrees() };
         }
     }
 }
