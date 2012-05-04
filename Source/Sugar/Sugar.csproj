@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="ArrayExtensions.cs" />
     <Compile Include="AssemblyExtensions.cs" />
+    <Compile Include="GeoLocation.cs" />
     <Compile Include="Mime\ApplicationMime.cs" />
     <Compile Include="Mime\ApplicationMimeType.cs" />
     <Compile Include="Mime\AudioMime.cs" />
