@@ -27,7 +27,7 @@ namespace Sugar.Xml
         /// </summary>
         /// <param name="document">The document.</param>
         /// <returns></returns>
-        public static string GetNamespace(this XPathDocument document)
+        public static string GetNamespace(this IXPathNavigable document)
         {
             var navigator = document.CreateNavigator();
 
@@ -52,7 +52,7 @@ namespace Sugar.Xml
         /// <param name="document">The document.</param>
         /// <param name="depth">The ndoe depth to search.</param>
         /// <returns></returns>
-        public static IList<string> GetNamespaces(this XPathDocument document, int depth = 1)
+        public static IList<string> GetNamespaces(this IXPathNavigable document, int depth = 1)
         {
             var results = new List<string>();
 
@@ -87,7 +87,7 @@ namespace Sugar.Xml
         /// <param name="xpath">The xpath.</param>
         /// <param name="namespaceSearchDepth">The namespace search depth.</param>
         /// <returns></returns>
-        public static string GetInnerXml(this XPathDocument document, string xpath, int namespaceSearchDepth = 1)
+        public static string GetInnerXml(this IXPathNavigable document, string xpath, int namespaceSearchDepth = 1)
         {
             var result = string.Empty;
 
@@ -111,7 +111,7 @@ namespace Sugar.Xml
         /// <param name="xpath">The xpath.</param>
         /// <param name="namespaceSearchDepth">The namespace search depth.</param>
         /// <returns></returns>
-        public static IList<string> GetInnerXmlList(this XPathDocument document, string xpath, int namespaceSearchDepth = 1)
+        public static IList<string> GetInnerXmlList(this IXPathNavigable document, string xpath, int namespaceSearchDepth = 1)
         {
             var results = new List<string>();
 
@@ -139,7 +139,7 @@ namespace Sugar.Xml
         /// <param name="func">The function used to extract an element..</param>
         /// <param name="namespaceSearchDepth">The namespace search depth.</param>
         /// <returns></returns>
-        public static IList<T> GetItems<T>(this XPathDocument document, string xpath, Func<string, T> func, int namespaceSearchDepth = 1)
+        public static IList<T> GetItems<T>(this IXPathNavigable document, string xpath, Func<string, T> func, int namespaceSearchDepth = 1)
         {
             var results = new List<T>();
 
@@ -165,7 +165,7 @@ namespace Sugar.Xml
         /// <param name="xpath">The xpath.</param>
         /// <param name="attribute">The attribute.</param>
         /// <returns></returns>
-        public static string GetAttribute(this XPathDocument document, string xpath, string attribute)
+        public static string GetAttribute(this IXPathNavigable document, string xpath, string attribute)
         {
             var result = string.Empty;
 
@@ -189,7 +189,7 @@ namespace Sugar.Xml
         /// <param name="xpath">The xpath.</param>
         /// <param name="attribute">The attribute.</param>
         /// <returns></returns>
-        public static IList<string> GetAttributeList(this XPathDocument document, string xpath, string attribute)
+        public static IList<string> GetAttributeList(this IXPathNavigable document, string xpath, string attribute)
         {
             var results = new List<string>();
 
@@ -214,7 +214,7 @@ namespace Sugar.Xml
         /// <param name="document">The document.</param>
         /// <param name="xpath">The xpath.</param>
         /// <returns></returns>
-        public static IList<XPathDocument> GetMatches(this XPathDocument document, string xpath)
+        public static IList<XPathDocument> GetMatches(this IXPathNavigable document, string xpath)
         {
             var results = new List<XPathDocument>();
 
@@ -233,7 +233,7 @@ namespace Sugar.Xml
             return results;
         }
 
-        private static XPathNodeIterator GetIterator(XPathDocument document, string xpath, int namespaceSearchDepth = 1)
+        private static XPathNodeIterator GetIterator(IXPathNavigable document, string xpath, int namespaceSearchDepth = 1)
         {
             var navigator = document.CreateNavigator();
 

@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Net;
 using System.Text;
 using System.Xml;
+using System.Xml.XPath;
+using Sugar.Xml;
 
 namespace Sugar.Net
 {
@@ -91,6 +93,15 @@ namespace Sugar.Net
             document.LoadXml(ToString());
 
             return document;
+        }
+
+        /// <summary>
+        /// Returns an XML representation of the response.
+        /// </summary>
+        /// <returns></returns>
+        public XPathDocument ToXPath()
+        {
+            return ToString().ToXPath();
         }
 
         /// <summary>
