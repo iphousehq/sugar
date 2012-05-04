@@ -80,6 +80,7 @@
     <Compile Include="DoubleExtensionsTest.cs" />
     <Compile Include="EnumerableExtensionsTest.cs" />
     <Compile Include="EnumExtensionsTest.cs" />
+    <Compile Include="GeoLocationTest.cs" />
     <Compile Include="HtmlBuilderTest.cs" />
     <Compile Include="Html\HtmlDocumentTest.cs" />
     <Compile Include="Html\HtmlNodeExtensionsTest.cs" />
