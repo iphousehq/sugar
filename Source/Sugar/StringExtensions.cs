@@ -345,7 +345,7 @@ namespace Sugar
         /// <returns></returns>
         public static BaseMime GetMimeType(this string filename)
         {
-            var mimeTypes = CommonMimeTypes.Generate();
+            var mimeTypes = MimeTypes.Generate();
 
             var extension = Path.GetExtension(filename);
 
