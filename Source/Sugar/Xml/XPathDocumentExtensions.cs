@@ -267,7 +267,10 @@ namespace Sugar.Xml
                     {
                         foreach (var ns in namespaces)
                         {
-                            result.DocumentElement.SetAttribute(ns.Key, ns.Value);
+                            if (!string.IsNullOrEmpty(ns.Key))
+                            {
+                                result.DocumentElement.SetAttribute(ns.Key, ns.Value);
+                            }
                         }
                     }
 
