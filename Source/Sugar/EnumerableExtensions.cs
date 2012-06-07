@@ -105,5 +105,100 @@ namespace Sugar
         {
             return value.FromCsv<string>();
         }
+
+        /// <summary>
+        /// Returns distinct elements from a sequence by comparing the given values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Distinct<T>(this IEnumerable<T> collection, Func<T, long> selector)
+        {
+            return collection.Distinct<T, long>(selector);
+        }
+
+        /// <summary>
+        /// Returns distinct elements from a sequence by comparing the given values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Distinct<T>(this IEnumerable<T> collection, Func<T, ulong> selector)
+        {
+            return collection.Distinct<T, ulong>(selector);
+        }
+
+        /// <summary>
+        /// Returns distinct elements from a sequence by comparing the given values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Distinct<T>(this IEnumerable<T> collection, Func<T, double> selector)
+        {
+            return collection.Distinct<T, double>(selector);
+        }
+
+        /// <summary>
+        /// Returns distinct elements from a sequence by comparing the given values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Distinct<T>(this IEnumerable<T> collection, Func<T, string> selector)
+        {
+            return collection.Distinct<T, string>(selector);
+        }
+
+        /// <summary>
+        /// Returns distinct elements from a sequence by comparing the given values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Distinct<T>(this IEnumerable<T> collection, Func<T, bool> selector)
+        {
+            return collection.Distinct<T, bool>(selector);
+        }
+
+        /// <summary>
+        /// Returns distinct elements from a sequence by comparing the given values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Distinct<T>(this IEnumerable<T> collection, Func<T, char> selector)
+        {
+            return collection.Distinct<T, char>(selector);
+        }
+
+        /// <summary>
+        /// Returns distinct elements from a sequence by comparing the given values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TPrim">The type of the prim.</typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="selector">The selector.</param>
+        /// <returns></returns>
+        private static IEnumerable<T> Distinct<T, TPrim>(this IEnumerable<T> collection, Func<T, TPrim> selector) where TPrim: IComparable
+        {
+            var results = new List<T>();
+
+            foreach (var element in collection
+                .Where(element => results
+                    .Select(selector)
+                    .All(r => !r.Equals(selector(element)))))
+            {
+                results.Add(element);
+            }
+
+            return results;
+        }
     }
 }
