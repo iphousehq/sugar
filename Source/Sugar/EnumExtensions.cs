@@ -50,15 +50,16 @@ namespace Sugar
         /// Gets the values of the flags that are selected.
         /// </summary>
         /// <typeparam name="TEnum">The type of the enum.</typeparam>
+        /// <typeparam name="TResult">The type of the result.</typeparam>
         /// <param name="input">The input.</param>
         /// <returns></returns>
-        public static IEnumerable<int> GetFlagsValues<TEnum>(this Enum input)
+        public static IEnumerable<TResult> GetFlagsValues<TEnum, TResult>(this Enum input)
         {
             // Can't add generic type rescription on enum :(
             if (!typeof(TEnum).IsEnum) throw new ArgumentException("TEnum must be an enumeration");
 
             return Enum.GetValues(typeof (TEnum))
-                .Cast<int>()
+                .Cast<TResult>()
                 .Select(value => new
                 {
                     value, 
@@ -72,34 +73,38 @@ namespace Sugar
         /// <summary>
         /// Combines all enumerable values to a single flags enum.
         /// </summary>
+        /// <typeparam name="TResult">The type of the result.</typeparam>
         /// <param name="input">The input.</param>
+        /// <param name="aggregateFunc">The aggregate func.</param>
         /// <returns></returns>
-        public static Enum CombineAllToFlagsEnum(this Enum input)
+        public static Enum CombineAllToFlagsEnum<TResult>(this Enum input, Func<TResult, TResult, TResult> aggregateFunc)
         {
-            return Combine(input.GetType(), (IEnumerable<int>) null);
+            return Combine(input.GetType(), (IEnumerable<TResult>)null, aggregateFunc);
         }
 
         /// <summary>
         /// Combines an enumerable of integers to a single flags enum value.
         /// </summary>
         /// <typeparam name="TEnum">The type of the enum.</typeparam>
+        /// <typeparam name="TResult">The type of the result.</typeparam>
         /// <param name="input">The input.</param>
+        /// <param name="aggregateFunc">The aggregate func.</param>
         /// <returns></returns>
-        public static Enum CombineToFlagsEnum<TEnum>(this IEnumerable<int> input)
+        public static Enum CombineToFlagsEnum<TEnum, TResult>(this IEnumerable<TResult> input, Func<TResult, TResult, TResult> aggregateFunc)
         {
-            return Combine(typeof(TEnum), input);
+            return Combine(typeof(TEnum), input, aggregateFunc);
         }
 
-        private static Enum Combine(Type enumType, IEnumerable<int> input)
+        private static Enum Combine<TResult>(Type enumType, IEnumerable<TResult> input, Func<TResult, TResult, TResult> aggregateFunc)
         {
             // Can't add generic type description on enum :(
             if (!enumType.IsEnum) throw new ArgumentException("Enum type must be an enumeration");
 
             var result = Enum
                 .GetValues(enumType)
-                .Cast<int>()
+                .Cast<TResult>()
                 .Where(value => input == null || input.Contains(value))
-                .Aggregate(0, (current, value) => current | value);
+                .Aggregate(default(TResult), aggregateFunc);
 
             return (Enum)Enum.ToObject(enumType, result);
         }
@@ -108,14 +113,16 @@ namespace Sugar
         /// Combines an enumerable of integers to a single flags enum value.
         /// </summary>
         /// <typeparam name="TEnum">The type of the enum.</typeparam>
+        /// <typeparam name="TResult">The type of the result.</typeparam>
         /// <param name="input">The input.</param>
+        /// <param name="aggregateFunc">The aggregate func.</param>
         /// <returns></returns>
-        public static Enum CombineToFlagsEnum<TEnum>(this IEnumerable<string> input)
+        public static Enum CombineToFlagsEnum<TEnum, TResult>(this IEnumerable<string> input, Func<TResult, TResult, TResult> aggregateFunc)
         {
-            return Combine(typeof(TEnum), input);
+            return Combine(typeof(TEnum), input, aggregateFunc);
         }
 
-        private static Enum Combine(Type enumType, IEnumerable<string> input)
+        private static Enum Combine<TResult>(Type enumType, IEnumerable<string> input, Func<TResult, TResult, TResult> aggregateFunc)
         {
             // Can't add generic type description on enum :(
             if (!enumType.IsEnum) throw new ArgumentException("Enum type must be an enumeration");
@@ -125,12 +132,12 @@ namespace Sugar
                 .Cast<object>()
                 .Select(value => new
                 {
-                    value, 
+                    value = (TResult) value, 
                     stringValue = value.ToString()
                 })
                 .Where(@t => input == null || input.Contains(@t.stringValue))
                 .Select(@t => @t.value)
-                .Aggregate(0, (current, value) => current | (int) value);
+                .Aggregate(default(TResult), aggregateFunc);
 
             return (Enum)Enum.ToObject(enumType, result);
         }

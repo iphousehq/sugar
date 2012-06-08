@@ -98,7 +98,7 @@ namespace Sugar
 
             try
             {
-                input.GetFlagsValues<int>();
+                input.GetFlagsValues<int, int>();
             }
             catch (ArgumentException ex)
             {
@@ -111,7 +111,7 @@ namespace Sugar
         {
             const SomeFlagsEnum input = new SomeFlagsEnum();
 
-            var result = input.GetFlagsValues<SomeFlagsEnum>().ToList();
+            var result = input.GetFlagsValues<SomeFlagsEnum, int>().ToList();
 
             Assert.AreEqual(0, result.Count());
         }
@@ -121,7 +121,7 @@ namespace Sugar
         {
             const SomeFlagsEnum input = SomeFlagsEnum.Thursday;
 
-            var result = input.GetFlagsValues<SomeFlagsEnum>().ToList();
+            var result = input.GetFlagsValues<SomeFlagsEnum, int>().ToList();
 
             Assert.AreEqual(1, result.Count());
             Assert.AreEqual(2, result[0]);
@@ -132,7 +132,7 @@ namespace Sugar
         {
             const SomeFlagsEnum input = SomeFlagsEnum.Bob | SomeFlagsEnum.Thursday;
 
-            var result = input.GetFlagsValues<SomeFlagsEnum>().ToList();
+            var result = input.GetFlagsValues<SomeFlagsEnum, int>().ToList();
 
             Assert.AreEqual(2, result.Count());
             Assert.AreEqual(1, result[0]);
@@ -142,11 +142,11 @@ namespace Sugar
         [Test]
         public void TestCombineFlagsNotEnum()
         {
-            var list = new List<int> {1, 2};
+            var list = new List<int> { 1, 2 };
 
             try
             {
-                list.CombineToFlagsEnum<int>();
+                list.CombineToFlagsEnum<int, int>((a, b) => a | b);
             }
             catch (ArgumentException ex)
             {
@@ -159,7 +159,7 @@ namespace Sugar
         {
             var list = new List<int> { 1, 2 };
 
-            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum, int>((a, b) => a | b);
 
             Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
             Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
@@ -170,7 +170,7 @@ namespace Sugar
         {
             var list = new List<int> { 2 };
 
-            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum, int>((a, b) => a | b);
 
             Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
         }
@@ -180,7 +180,7 @@ namespace Sugar
         {
             var list = new List<int> { 1, 2, 4 };
 
-            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum, int>((a, b) => a | b);
 
             Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
             Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
@@ -191,7 +191,7 @@ namespace Sugar
         {
             var list = new List<int> { 2, 4 };
 
-            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum, int>((a, b) => a | b);
 
             Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
         }
@@ -203,7 +203,7 @@ namespace Sugar
 
             try
             {
-                list.CombineToFlagsEnum<SomeFlagsEnum>();
+                list.CombineToFlagsEnum<SomeFlagsEnum, int>((a, b) => a | b);
             }
             catch (ArgumentException ex)
             {
@@ -216,7 +216,7 @@ namespace Sugar
         {
             var list = new List<string> { "Bob", "Thursday" };
 
-            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum, int>((a, b) => a | b);
 
             Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
             Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
@@ -227,7 +227,7 @@ namespace Sugar
         {
             var list = new List<string> { "Thursday" };
 
-            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum, int>((a, b) => a | b);
 
             Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
         }
@@ -237,7 +237,7 @@ namespace Sugar
         {
             var list = new List<string> { "Bob", "Thursday", "Fake" };
 
-            var result = list.CombineToFlagsEnum<SomeFlagsEnum>();
+            var result = list.CombineToFlagsEnum<SomeFlagsEnum, int>((a, b) => a | b);
 
             Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
             Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
@@ -246,7 +246,7 @@ namespace Sugar
         [Test]
         public void TestCombineAllFlags()
         {
-            var result = new SomeFlagsEnum().CombineAllToFlagsEnum();
+            var result = new SomeFlagsEnum().CombineAllToFlagsEnum<int>((a, b) => a | b);
 
             Assert.True(result.HasFlag(SomeFlagsEnum.Bob));
             Assert.True(result.HasFlag(SomeFlagsEnum.Thursday));
