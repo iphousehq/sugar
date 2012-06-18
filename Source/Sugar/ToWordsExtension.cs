@@ -8,26 +8,33 @@ namespace Sugar
 
         /// <summary>
         /// Split a string into words.
-        /// This is done recursively on the result to ensure words in quotes are split.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="ignoreQuotes">if set to <c>true</c> [ignore quotes].</param>
         /// <returns></returns>
-        public static IList<string> ToWordsRecursive(this string value)
+        public static IList<string> ToWords(this string value, bool ignoreQuotes = false)
         {
             var split = new List<string>();
 
-            var words = value.ToWords();
+            var words = value.ConvertToWords();
 
-            foreach (var word in words)
+            if(ignoreQuotes)
             {
-                if(word.Contains(" "))
+                foreach (var word in words)
                 {
-                   split.AddRange(ToWordsRecursive(word)); 
+                    if (word.Contains(" "))
+                    {
+                        split.AddRange(ToWords(word, true));
+                    }
+                    else
+                    {
+                        split.Add(word);
+                    }
                 }
-                else
-                {
-                    split.Add(word.ToLower());
-                }
+            }
+            else
+            {
+                split.AddRange(words);
             }
 
             return split;
@@ -39,7 +46,7 @@ namespace Sugar
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public static IList<string> ToWords(this string value)
+        private static IEnumerable<string> ConvertToWords(this string value)
         {
             var words = new List<char>();
 

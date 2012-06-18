@@ -214,7 +214,7 @@ namespace Sugar
         [Test]
         public void TestResursiveSingleWord()
         {
-            var words = @"one".ToWordsRecursive();
+            var words = @"one".ToWords(true);
 
             Assert.AreEqual(1, words.Count);
             Assert.AreEqual("one", words[0]);
@@ -223,7 +223,7 @@ namespace Sugar
         [Test]
         public void TestResursiveSingleWordInQuotes()
         {
-            var words = @"""one""".ToWordsRecursive();
+            var words = @"""one""".ToWords(true);
 
             Assert.AreEqual(1, words.Count);
             Assert.AreEqual("one", words[0]);
@@ -232,7 +232,7 @@ namespace Sugar
         [Test]
         public void TestResursiveMultipleWords()
         {
-            var words = @"one two".ToWordsRecursive();
+            var words = @"one two".ToWords(true);
 
             Assert.AreEqual(2, words.Count);
             Assert.AreEqual("one", words[0]);
@@ -242,7 +242,7 @@ namespace Sugar
         [Test]
         public void TestResursiveMultipleWordsInQuotes()
         {
-            var words = @"""one two""".ToWordsRecursive();
+            var words = @"""one two""".ToWords(true);
 
             Assert.AreEqual(2, words.Count);
             Assert.AreEqual("one", words[0]);
@@ -252,7 +252,7 @@ namespace Sugar
         [Test]
         public void TestResursiveMultipleWordsInQuotesWithExtra()
         {
-            var words = @"""one two"" three".ToWordsRecursive();
+            var words = @"""one two"" three".ToWords(true);
 
             Assert.AreEqual(3, words.Count);
             Assert.AreEqual("one", words[0]);
