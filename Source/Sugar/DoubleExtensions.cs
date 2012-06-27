@@ -106,7 +106,7 @@ namespace Sugar
 
             const string format = "{0}{1}";
 
-            var numberPart = number.ToString();
+            var numberPart = string.Format("{0:0.00}", value);
 
             var wordPart = "";
 
