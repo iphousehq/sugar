@@ -19,7 +19,7 @@ namespace Sugar
         {
             var result = 500.00.Format();
 
-            Assert.AreEqual("500", result);
+            Assert.AreEqual("500.00", result);
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace Sugar
         {
             var result = (-500.00).Format();
 
-            Assert.AreEqual("500", result);
+            Assert.AreEqual("-500.00", result);
         }
 
         [Test]
