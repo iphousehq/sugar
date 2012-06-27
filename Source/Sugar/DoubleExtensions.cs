@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Sugar
 {
@@ -72,6 +73,72 @@ namespace Sugar
 
             //return the value in string format
             return newDateTime.ToLocalTime();
+        }
+
+        /// <summary>
+        /// Formats the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string Format(this double value)
+        {
+            var bands = new List<dynamic>
+            {
+                new
+                {
+                    Name = "thousand",
+                    Value = Math.Pow(10, 3)
+                },
+                new
+                {
+                    Name = "million",
+                    Value = Math.Pow(10, 6)
+                },
+                new
+                {
+                    Name = "billion",
+                    Value = Math.Pow(10, 9)
+                }
+            };
+            
+            
+            var number = Math.Abs(value);
+
+            const string format = "{0}{1}";
+
+            var numberPart = number.ToString();
+
+            var wordPart = "";
+
+            for (var i = 0; i < bands.Count; i++)
+            {
+                if (number >= bands[i].Value)
+                {
+                    if(i + 1 < bands.Count)
+                    {
+                        if(number < bands[i + 1].Value)
+                        {
+                            numberPart = (number / bands[i].Value).ToString();
+
+                            wordPart = " " + bands[i].Name;
+
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        numberPart = (number / bands[i].Value).ToString();
+
+                        wordPart = " " + bands[i].Name;
+
+                        break;
+                    }
+
+                   
+                }
+            }
+
+            return string.Format(format, numberPart, wordPart);
         }
     }
 }
