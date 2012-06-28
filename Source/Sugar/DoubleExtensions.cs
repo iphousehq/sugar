@@ -106,7 +106,7 @@ namespace Sugar
 
             const string format = "{0}{1}";
 
-            var numberPart = string.Format("{0:0.00}", value);
+            var numberPart = value;
 
             var wordPart = "";
 
@@ -118,7 +118,7 @@ namespace Sugar
                     {
                         if(number < bands[i + 1].Value)
                         {
-                            numberPart = (number / bands[i].Value).ToString();
+                            numberPart = (number / bands[i].Value);
 
                             wordPart = " " + bands[i].Name;
 
@@ -127,7 +127,7 @@ namespace Sugar
                     }
                     else
                     {
-                        numberPart = (number / bands[i].Value).ToString();
+                        numberPart = (number / bands[i].Value);
 
                         wordPart = " " + bands[i].Name;
 
@@ -138,7 +138,7 @@ namespace Sugar
                 }
             }
 
-            return string.Format(format, numberPart, wordPart);
+            return string.Format(format, Math.Round(numberPart, 1), wordPart);
         }
     }
 }
