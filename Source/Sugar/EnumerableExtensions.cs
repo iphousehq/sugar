@@ -200,5 +200,35 @@ namespace Sugar
 
             return results;
         }
+
+        /// <summary>
+        /// Reindexes the specified collection, using the given index as the first element.  Items before the index are
+        /// appended to the end.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <param name="index">The index.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Reindex<T>(this IEnumerable<T> collection, int index)
+        {
+            var results = new List<T>();
+            var count = collection.Count();
+
+            if (index >= count)
+            {
+                throw new ArgumentException("Can't reindex a list at a position greater than the contents of the list.");
+            }
+
+            for (var i = index; i < count; i++)
+            {
+                results.Add(collection.ElementAt(i));
+            }
+
+            for (var i = 0; i < index; i++)
+            {
+                results.Add(collection.ElementAt(i));
+            }
+
+            return results;
+        }
     }
 }
