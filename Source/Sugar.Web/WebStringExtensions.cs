@@ -5,7 +5,7 @@ namespace Sugar
     /// <summary>
     /// Extension methods for strings.
     /// </summary>
-    public static class StringExtensions
+    public static class WebStringExtensions
     {        
         /// <summary>
         /// HTML Decodes this string.
