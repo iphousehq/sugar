@@ -253,7 +253,6 @@ namespace Sugar
             return results;
         }
 
-
         /// <summary>
         /// Strips the specified string collection of the empty values.
         /// </summary>
@@ -268,6 +267,26 @@ namespace Sugar
                 if (!string.IsNullOrWhiteSpace(candidate))
                 {
                     results.Add(candidate);
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Trims all the values in the given collection.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <returns></returns>
+        public static IEnumerable<string> Trim(this IEnumerable<string> collection)
+        {
+            var results = new List<string>();
+
+            foreach (var item in collection)
+            {
+                if (item != null)
+                {
+                    results.Add(item.Trim());
                 }
             }
 

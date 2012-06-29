@@ -351,5 +351,18 @@ namespace Sugar
             Assert.AreEqual("one", results[0]);
             Assert.AreEqual("three", results[1]);
         }
+
+
+        [Test]
+        public void TestTrimListOfString()
+        {
+            var list = new List<string> { "   one    ", "three             \n    \r     ", null };
+
+            var results = list.Trim().ToList();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual("one", results[0]);
+            Assert.AreEqual("three", results[1]);
+        }
     }
 }
