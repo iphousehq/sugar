@@ -314,5 +314,42 @@ namespace Sugar
 
             Assert.Throws<ArgumentException>(() => list.Reindex(2));
         }
+
+        [Test]
+        public void TestStripListRemovesValue()
+        {
+            var list = new List<string> { "one", "two", "three" };
+
+            var results = list.Strip("two").ToList();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual("one", results[0]);
+            Assert.AreEqual("three", results[1]);
+        }
+
+        [Test]
+        public void TestStripListRemovesValueWhenNoMatches()
+        {
+            var list = new List<string> { "one", "two", "three" };
+
+            var results = list.Strip(null).ToList();
+
+            Assert.AreEqual(3, results.Count);
+            Assert.AreEqual("one", results[0]);
+            Assert.AreEqual("two", results[1]);
+            Assert.AreEqual("three", results[2]);
+        }
+
+        [Test]
+        public void TestStripListRemovesEmptyValues()
+        {
+            var list = new List<string> { "one", "", "three", null, string.Empty };
+
+            var results = list.StripNullOrWhitespace().ToList();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual("one", results[0]);
+            Assert.AreEqual("three", results[1]);
+        }
     }
 }

@@ -230,5 +230,48 @@ namespace Sugar
 
             return results;
         }
+
+        /// <summary>
+        /// Strips the specified collection of the given value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="toStrip">To strip.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Strip<T>(this IEnumerable<T> collection, T toStrip)
+        {
+            var results = new List<T>();
+
+            foreach (var candidate in collection)
+            {
+                if (!Equals(toStrip, candidate))
+                {
+                    results.Add(candidate);
+                }
+            }
+
+            return results;
+        }
+
+
+        /// <summary>
+        /// Strips the specified string collection of the empty values.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <returns></returns>
+        public static IEnumerable<string> StripNullOrWhitespace(this IEnumerable<string> collection)
+        {
+            var results = new List<string>();
+
+            foreach (var candidate in collection)
+            {
+                if (!string.IsNullOrWhiteSpace(candidate))
+                {
+                    results.Add(candidate);
+                }
+            }
+
+            return results;
+        }
     }
 }
