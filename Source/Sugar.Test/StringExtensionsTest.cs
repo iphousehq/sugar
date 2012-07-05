@@ -187,5 +187,14 @@ namespace Sugar
             Assert.AreEqual(BaseMimeType.Image, mimeType.BaseMimeType);
             Assert.AreEqual(ImageMimeType.Jpeg, mimeType.MimeType);
         }
+
+        [Test]
+        public void TestGetMimeTypeCapitalised()
+        {
+            var mimeType = "something.JPG".GetMimeType();
+
+            Assert.AreEqual(BaseMimeType.Image, mimeType.BaseMimeType);
+            Assert.AreEqual(ImageMimeType.Jpeg, mimeType.MimeType);
+        }
     }
 }
