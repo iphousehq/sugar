@@ -87,17 +87,20 @@ namespace Sugar
                 new
                 {
                     Name = "thousand",
-                    Value = Math.Pow(10, 3)
+                    Value = Math.Pow(10, 3),
+                    DecimalPlaces = 0
                 },
                 new
                 {
                     Name = "million",
-                    Value = Math.Pow(10, 6)
+                    Value = Math.Pow(10, 6),
+                    DecimalPlaces = 1
                 },
                 new
                 {
                     Name = "billion",
-                    Value = Math.Pow(10, 9)
+                    Value = Math.Pow(10, 9),
+                    DecimalPlaces = 1
                 }
             };
             
@@ -118,7 +121,7 @@ namespace Sugar
                     {
                         if(number < bands[i + 1].Value)
                         {
-                            numberPart = (number / bands[i].Value);
+                            numberPart = Math.Round((number / bands[i].Value), bands[i].DecimalPlaces);
 
                             wordPart = " " + bands[i].Name;
 
@@ -127,18 +130,16 @@ namespace Sugar
                     }
                     else
                     {
-                        numberPart = (number / bands[i].Value);
+                        numberPart = Math.Round((number / bands[i].Value), bands[i].DecimalPlaces);
 
                         wordPart = " " + bands[i].Name;
 
                         break;
                     }
-
-                   
                 }
             }
 
-            return string.Format(format, Math.Round(numberPart, 1), wordPart);
+            return string.Format(format, numberPart, wordPart);
         }
     }
 }

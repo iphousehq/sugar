@@ -35,7 +35,7 @@ namespace Sugar
         {
             var result = 1500.00.Format();
 
-            Assert.AreEqual("1.5 thousand", result);
+            Assert.AreEqual("2 thousand", result);
         }
 
         [Test]

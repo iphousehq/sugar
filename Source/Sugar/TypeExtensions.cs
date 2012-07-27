@@ -40,5 +40,20 @@ namespace Sugar
 
             return result;
         }
+
+        /// <summary>
+        /// Determines whether the specified type has attribute.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="type">The type.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified type has attribute; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool HasAttribute<T>(this Type type)
+        {
+            var attributes = type.GetCustomAttributes(typeof (T), false);
+
+            return attributes.Length > 0;
+        }
     }
 }
