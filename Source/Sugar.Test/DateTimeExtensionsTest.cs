@@ -286,5 +286,21 @@ namespace Sugar
             var result8 = new DateTime(2011, 12, 11).StartOfWeek(DayOfWeek.Monday);
             Assert.AreEqual(new DateTime(2011, 12, 5), result8);
         }
+
+        [Test]
+        public void TestEndOfMonth()
+        {
+            //beginning
+            var result = new DateTime(2012, 1, 1).EndOfMonth();
+            Assert.AreEqual(new DateTime(2012, 1, 31, 23, 59, 59), result);
+
+            //middle
+            result = new DateTime(2012, 1, 10).EndOfMonth();
+            Assert.AreEqual(new DateTime(2012, 1, 31, 23, 59, 59), result);
+
+            //end
+            result = new DateTime(2012, 1, 31).EndOfMonth();
+            Assert.AreEqual(new DateTime(2012, 1, 31, 23, 59, 59), result);
+        }
     }
 }

@@ -200,5 +200,97 @@ namespace Sugar
 
             return results;
         }
+
+        /// <summary>
+        /// Reindexes the specified collection, using the given index as the first element.  Items before the index are
+        /// appended to the end.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <param name="index">The index.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Reindex<T>(this IEnumerable<T> collection, int index)
+        {
+            var results = new List<T>();
+            var count = collection.Count();
+
+            if (index >= count)
+            {
+                throw new ArgumentException("Can't reindex a list at a position greater than the contents of the list.");
+            }
+
+            for (var i = index; i < count; i++)
+            {
+                results.Add(collection.ElementAt(i));
+            }
+
+            for (var i = 0; i < index; i++)
+            {
+                results.Add(collection.ElementAt(i));
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Strips the specified collection of the given value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="toStrip">To strip.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Strip<T>(this IEnumerable<T> collection, T toStrip)
+        {
+            var results = new List<T>();
+
+            foreach (var candidate in collection)
+            {
+                if (!Equals(toStrip, candidate))
+                {
+                    results.Add(candidate);
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Strips the specified string collection of the empty values.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <returns></returns>
+        public static IEnumerable<string> StripNullOrWhitespace(this IEnumerable<string> collection)
+        {
+            var results = new List<string>();
+
+            foreach (var candidate in collection)
+            {
+                if (!string.IsNullOrWhiteSpace(candidate))
+                {
+                    results.Add(candidate);
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Trims all the values in the given collection.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <returns></returns>
+        public static IEnumerable<string> Trim(this IEnumerable<string> collection)
+        {
+            var results = new List<string>();
+
+            foreach (var item in collection)
+            {
+                if (item != null)
+                {
+                    results.Add(item.Trim());
+                }
+            }
+
+            return results;
+        }
     }
 }

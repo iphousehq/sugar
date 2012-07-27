@@ -33,6 +33,19 @@ namespace Sugar.Command
         }
 
         /// <summary>
+        /// Sets the current command line to the given value.
+        /// </summary>
+        /// <param name="commandLine">The command line.</param>
+        public static void SetCurrent(string commandLine)
+        {
+            InitializeStaticMembers();
+
+            current = new ParameterParser().Parse(commandLine);
+        }
+
+
+
+        /// <summary>
         /// Gets the current command line arguments.
         /// </summary>
         public static Parameters Current

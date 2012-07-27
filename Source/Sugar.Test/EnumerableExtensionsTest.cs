@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
@@ -20,7 +21,7 @@ namespace Sugar
         [Test]
         public void TestToCsvFromListWithOneEntry()
         {
-            var list = new List<int> { 1};
+            var list = new List<int> { 1 };
 
             var csv = list.ToCsv();
 
@@ -56,7 +57,7 @@ namespace Sugar
 
             Assert.AreEqual("One, Two and Three", csv);
         }
-        
+
         [Test]
         public void TestFromOneFieldString()
         {
@@ -109,7 +110,7 @@ namespace Sugar
             Assert.AreEqual(3, results[2]);
         }
 
-#region Distinct Test Class
+        #region Distinct Test Class
 
         internal class DistinctTestClass
         {
@@ -130,7 +131,7 @@ namespace Sugar
             public char Char { get; set; }
         }
 
-#endregion
+        #endregion
 
         [Test]
         public void TestDistinctInt()
@@ -280,6 +281,88 @@ namespace Sugar
             Assert.AreEqual('1', results[0].Char);
             Assert.AreEqual('2', results[1].Char);
             Assert.AreEqual('3', results[2].Char);
+        }
+
+        [Test]
+        public void TestReindexList()
+        {
+            var list = new List<string> { "one", "two", "three", "four" };
+
+            var result = list.Reindex(2).ToList();
+
+            Assert.AreEqual("three", result[0]);
+            Assert.AreEqual("four", result[1]);
+            Assert.AreEqual("one", result[2]);
+            Assert.AreEqual("two", result[3]);
+        }
+
+        [Test]
+        public void TestReindexListAtZero()
+        {
+            var list = new List<string> { "one", "two" };
+
+            var result = list.Reindex(0).ToList();
+
+            Assert.AreEqual("one", result[0]);
+            Assert.AreEqual("two", result[1]);
+        }
+
+        [Test]
+        public void TestReindexListWhenOutOfRange()
+        {
+            var list = new List<string> { "one", "two" };
+
+            Assert.Throws<ArgumentException>(() => list.Reindex(2));
+        }
+
+        [Test]
+        public void TestStripListRemovesValue()
+        {
+            var list = new List<string> { "one", "two", "three" };
+
+            var results = list.Strip("two").ToList();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual("one", results[0]);
+            Assert.AreEqual("three", results[1]);
+        }
+
+        [Test]
+        public void TestStripListRemovesValueWhenNoMatches()
+        {
+            var list = new List<string> { "one", "two", "three" };
+
+            var results = list.Strip(null).ToList();
+
+            Assert.AreEqual(3, results.Count);
+            Assert.AreEqual("one", results[0]);
+            Assert.AreEqual("two", results[1]);
+            Assert.AreEqual("three", results[2]);
+        }
+
+        [Test]
+        public void TestStripListRemovesEmptyValues()
+        {
+            var list = new List<string> { "one", "", "three", null, string.Empty };
+
+            var results = list.StripNullOrWhitespace().ToList();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual("one", results[0]);
+            Assert.AreEqual("three", results[1]);
+        }
+
+
+        [Test]
+        public void TestTrimListOfString()
+        {
+            var list = new List<string> { "   one    ", "three             \n    \r     ", null };
+
+            var results = list.Trim().ToList();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual("one", results[0]);
+            Assert.AreEqual("three", results[1]);
         }
     }
 }

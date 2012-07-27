@@ -41,6 +41,12 @@ namespace Sugar.Mime
         /// Icon
         /// </summary>
         [Description("x-icon")]
-        Icon
+        Icon,
+
+        /// <summary>
+        /// Gif
+        /// </summary>
+        [Description("gif")]
+        Gif
     }
 }

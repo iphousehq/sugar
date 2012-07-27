@@ -394,6 +394,18 @@ namespace Sugar.Mime
             }
         }
 
+        public static ImageMime Gif
+        {
+            get
+            {
+                return new ImageMime
+                {
+                    ImageMimeType = ImageMimeType.Gif,
+                    Extensions = new List<string> { "gif" }
+                };
+            }
+        }
+
         #endregion
 
         #region Text

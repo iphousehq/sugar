@@ -258,5 +258,12 @@ namespace Sugar
 
             return dt.AddDays(- takeDays);
         }
+
+        public static DateTime EndOfMonth(this DateTime dt)
+        {
+            int numberOfDays = DateTime.DaysInMonth(dt.Year, dt.Month);
+
+            return new DateTime(dt.Year, dt.Month, numberOfDays, 23, 59, 59);
+        }
     }
 }

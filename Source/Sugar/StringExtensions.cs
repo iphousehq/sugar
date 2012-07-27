@@ -351,7 +351,7 @@ namespace Sugar
 
             if (string.IsNullOrEmpty(extension)) extension = "";
 
-            extension = extension.Replace(".", "");
+            extension = extension.Replace(".", "").ToLower();
 
             return mimeTypes
                 .FirstOrDefault(m => m.Extensions.Contains(extension));
