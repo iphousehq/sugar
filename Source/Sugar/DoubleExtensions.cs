@@ -79,27 +79,31 @@ namespace Sugar
         /// Formats the specified value.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="useText">if set to <c>true</c> [use text].</param>
         /// <returns></returns>
-        public static string Format(this double value)
+        public static string Format(this double value, bool useText = false)
         {
             var bands = new List<dynamic>
             {
                 new
                 {
                     Name = "thousand",
-                    Value = Math.Pow(10, 3),
+                    Value = Math.Pow(10, 5),
+                    RoundingValue = Math.Pow(10, 3),
                     DecimalPlaces = 0
                 },
                 new
                 {
                     Name = "million",
                     Value = Math.Pow(10, 6),
+                    RoundingValue = Math.Pow(10, 6),
                     DecimalPlaces = 1
                 },
                 new
                 {
                     Name = "billion",
                     Value = Math.Pow(10, 9),
+                    RoundingValue = Math.Pow(10, 9),
                     DecimalPlaces = 1
                 }
             };
@@ -109,17 +113,28 @@ namespace Sugar
 
             const string format = "{0}{1}";
 
-            var numberPart = value;
+            var numberPart = Math.Round(value, 2);
 
             var wordPart = "";
 
-            for (var i = 0; i < bands.Count; i++)
+            if(useText)
             {
-                if (number >= bands[i].Value)
+                for (var i = 0; i < bands.Count; i++)
                 {
-                    if(i + 1 < bands.Count)
+                    if (number >= bands[i].Value)
                     {
-                        if(number < bands[i + 1].Value)
+                        if (i + 1 < bands.Count)
+                        {
+                            if (number < bands[i + 1].Value)
+                            {
+                                numberPart = Math.Round((number / bands[i].RoundingValue), bands[i].DecimalPlaces);
+
+                                wordPart = " " + bands[i].Name;
+
+                                break;
+                            }
+                        }
+                        else
                         {
                             numberPart = Math.Round((number / bands[i].Value), bands[i].DecimalPlaces);
 
@@ -128,18 +143,10 @@ namespace Sugar
                             break;
                         }
                     }
-                    else
-                    {
-                        numberPart = Math.Round((number / bands[i].Value), bands[i].DecimalPlaces);
-
-                        wordPart = " " + bands[i].Name;
-
-                        break;
-                    }
                 }
             }
 
-            return string.Format(format, numberPart, wordPart);
+            return string.Format(format, numberPart.ToString("###,###,###,##0.##"), wordPart);
         }
     }
 }
