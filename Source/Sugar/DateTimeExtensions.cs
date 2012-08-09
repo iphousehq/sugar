@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Globalization;
+using System.Linq;
 
 namespace Sugar
 {
@@ -110,55 +110,87 @@ namespace Sugar
         }
 
         /// <summary>
-        /// Converts <see cref="DateTime"/> objects to a string representing the time passed since
-        /// the current time.
+        /// Converts <see cref="DateTime"/> objects to a string representing the time elapsed or time until the given date time.
         /// </summary>
         /// <param name="dateTime">The date time.</param>
         /// <returns></returns>
-        public static string ToTimeAgo(this DateTime? dateTime)
+        public static string ToHumanReadableString(this DateTime? dateTime)
         {
-            return dateTime.HasValue ? dateTime.Value.ToTimeAgo() : "Never";
+            return dateTime.HasValue
+                       ? dateTime.Value.ToHumanReadableString()
+                       : DateTime.MinValue.ToHumanReadableString();
         }
 
         /// <summary>
-        /// Converts <see cref="DateTime"/> objects to a string representing the time passed since
-        /// the current time.
+        /// Converts <see cref="DateTime"/> objects to a string representing the time elapsed or time until the given date time.
         /// </summary>
         /// <param name="dateTime">The date time.</param>
         /// <returns></returns>
-        public static string ToTimeAgo(this DateTime dateTime)
+        public static string ToHumanReadableString(this DateTime dateTime)
         {
-            var value = string.Empty;
+            var value = "never";
 
-            var secondsAgo = dateTime.Subtract(DateTime.Now).TotalSeconds * -1;
+            var now = DateTime.Now;
 
-            var daysAgo = dateTime.Subtract(DateTime.Now).TotalDays * -1;
+            var timeElapsed = ToAbsHumanReadableString(dateTime, now);
 
-            if (daysAgo >= 365) value = "over a year ago";
-
-            if (daysAgo > 3650) value = "never";
-
-            if (daysAgo < 365) value = "about " + Convert.ToInt32(daysAgo / 30) + " months ago";
-
-            if (daysAgo < 31) value = Convert.ToInt32(daysAgo) + " days ago";
-
-            if (secondsAgo < 172800) value = "a day ago";
-
-            if (secondsAgo < 86400) value = Convert.ToInt32(secondsAgo / 3600) + " hours ago";
-
-            if (secondsAgo < 7200) value = "an hour ago";
-
-            if (secondsAgo < 7200) value = "an hour ago";
-
-            if (secondsAgo < 3600) value = Convert.ToInt32(secondsAgo / 60) + " minutes ago";
-
-            if (secondsAgo < 300) value = "a few minutes ago";
-
-            if (secondsAgo < 60) value = "a few seconds ago";
+            if(timeElapsed != "never")
+            {
+                value = dateTime < now 
+                    ? string.Format("{0} ago", timeElapsed) 
+                    : string.Format("in {0}", timeElapsed);
+            }
 
             return value;
         }
 
+        /// <summary>
+        /// Converts <see cref="DateTime"/> objects to a string representing the time between it and another <see cref="DateTime"/>.
+        /// </summary>
+        /// <param name="first">The first.</param>
+        /// <param name="second">The second.</param>
+        /// <returns></returns>
+        public static string ToAbsHumanReadableString(this DateTime first, DateTime second)
+        {
+            var value = string.Empty;
+
+            var secondsAgo = Math.Abs(first.Subtract(second).TotalSeconds);
+
+            var daysAgo = Math.Abs(first.Subtract(second).TotalDays);
+
+            if (daysAgo > 3650) value = "never";
+
+            if (daysAgo > 366 && daysAgo <= 3650) value = "over a year";
+            
+            if (daysAgo <= 366) value = "a year";
+
+            if (daysAgo < 365) value = "about " + Convert.ToInt32(daysAgo / 30) + " months";
+
+            if (daysAgo < 45) value = "about a month";
+
+            if (daysAgo < 28) value = Convert.ToInt32(daysAgo) + " days";
+
+            if (secondsAgo < 172800) value = "a day";
+
+            if (secondsAgo < 86400) value = Convert.ToInt32(secondsAgo / 3600) + " hours";
+
+            if (secondsAgo < 7200) value = "an hour";
+
+            if (secondsAgo < 3600) value = Convert.ToInt32(secondsAgo / 60) + " minutes";
+
+            if (secondsAgo < 300) value = "a few minutes";
+
+            if (secondsAgo < 60) value = "a few seconds";
+
+            return value;
+        }
+
+        /// <summary>
+        /// Gets the a list of dates representing months between two dates.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="until">The until.</param>
+        /// <returns></returns>
         public static IEnumerable<DateTime> MonthsUntil(this DateTime from, DateTime until)
         {
             var results = new List<DateTime>();
@@ -181,6 +213,12 @@ namespace Sugar
             return results;
         }
 
+        /// <summary>
+        /// Gets the a list of dates representing weeks between two dates.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="until">The until.</param>
+        /// <returns></returns>
         public static IEnumerable<DateTime> WeeksUntil(this DateTime from, DateTime until)
         {
             var results = new List<DateTime>();
@@ -203,6 +241,13 @@ namespace Sugar
             return results;
         }
 
+        /// <summary>
+        /// Gets the a list of dates representing weeks between two dates.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="until">The until.</param>
+        /// <param name="weekStart">The week start.</param>
+        /// <returns></returns>
         public static IEnumerable<DateTime> WeeksUntil(this DateTime from, DateTime until, DayOfWeek weekStart)
         {
             var results = new List<DateTime>();
@@ -225,6 +270,12 @@ namespace Sugar
             return results;
         }
 
+        /// <summary>
+        /// Gets the a list of dates representing days between two dates.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="until">The until.</param>
+        /// <returns></returns>
         public static IEnumerable<DateTime> DaysUntil(this DateTime from, DateTime until)
         {
             var results = new List<DateTime>();
@@ -247,6 +298,12 @@ namespace Sugar
             return results;
         }
 
+        /// <summary>
+        /// Gets the start of the week given by the date time.
+        /// </summary>
+        /// <param name="dt">The dt.</param>
+        /// <param name="startOfWeek">The start of week.</param>
+        /// <returns></returns>
         public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
         {
             var takeDays = dt.DayOfWeek - startOfWeek;
@@ -259,9 +316,14 @@ namespace Sugar
             return dt.AddDays(- takeDays);
         }
 
+        /// <summary>
+        /// Gets the last day of the month given by the date time.
+        /// </summary>
+        /// <param name="dt">The dt.</param>
+        /// <returns></returns>
         public static DateTime EndOfMonth(this DateTime dt)
         {
-            int numberOfDays = DateTime.DaysInMonth(dt.Year, dt.Month);
+            var numberOfDays = DateTime.DaysInMonth(dt.Year, dt.Month);
 
             return new DateTime(dt.Year, dt.Month, numberOfDays, 23, 59, 59);
         }
