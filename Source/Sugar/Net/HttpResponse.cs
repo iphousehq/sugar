@@ -65,6 +65,30 @@ namespace Sugar.Net
         }
 
         /// <summary>
+        /// Gets or sets the status code.
+        /// </summary>
+        /// <value>
+        /// The status code.
+        /// </value>
+        public HttpStatusCode StatusCode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the status description.
+        /// </summary>
+        /// <value>
+        /// The status description.
+        /// </value>
+        public string StatusDescription { get; set; }
+
+        /// <summary>
+        /// Gets or sets the length of the content.
+        /// </summary>
+        /// <value>
+        /// The length of the content.
+        /// </value>
+        public long ContentLength { get; set; }
+
+        /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
         /// </summary>
         /// <returns>

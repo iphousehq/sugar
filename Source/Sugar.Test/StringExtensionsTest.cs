@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using NUnit.Framework;
 using Sugar.Mime;
@@ -195,6 +196,14 @@ namespace Sugar
 
             Assert.AreEqual(BaseMimeType.Image, mimeType.BaseMimeType);
             Assert.AreEqual(ImageMimeType.Jpeg, mimeType.MimeType);
+        }
+
+        [Test]
+        public void TestToMD5()
+        {
+            var hash = "hello world".ToMD5();
+
+            Assert.AreEqual("5EB63BBBE01EEED093CB22BB8F5ACDC3", hash);
         }
     }
 }

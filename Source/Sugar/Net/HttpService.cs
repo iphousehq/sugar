@@ -61,6 +61,10 @@ namespace Sugar.Net
 
                 result.Cookies = new CookieContainer();
                 result.Cookies.Add(response.Cookies);
+
+                result.StatusCode = response.StatusCode;
+                result.StatusDescription = response.StatusDescription;
+                result.ContentLength = response.ContentLength;
             }
 
             return result;
