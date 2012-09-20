@@ -205,5 +205,36 @@ namespace Sugar
 
             Assert.AreEqual("5EB63BBBE01EEED093CB22BB8F5ACDC3", hash);
         }
+
+        [Test]
+        public void TestFromPascalCase()
+        {
+            var result = "helloWorldPascalCase".FromPascalCase();
+
+            Assert.AreEqual("hello world pascal case", result);
+        }
+
+        [Test]
+        public void TestFromPascalCaseWhenNull()
+        {
+            var result = ((string) null).FromPascalCase();
+
+            Assert.AreEqual("", result);
+        }
+        [Test]
+        public void TestToTitleCase()
+        {
+            var result = "hello world title case".ToTitleCase();
+
+            Assert.AreEqual("Hello World Title Case", result);
+        }
+
+        [Test]
+        public void TestToTitleCaseWhenNull()
+        {
+            var result = ((string)null).ToTitleCase();
+
+            Assert.AreEqual("", result);
+        }
     }
 }

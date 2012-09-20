@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using Sugar.Mime;
 
 namespace Sugar
@@ -381,6 +383,40 @@ namespace Sugar
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Converts the given pascal case string to sentance case.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string FromPascalCase(this string value)
+        {
+            var result = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                result = Regex.Replace(value, "[a-z][A-Z]", m => m.Value[0] + " " + char.ToLower(m.Value[1]));                
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Converts the given string to Title Case.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string ToTitleCase(this string value)
+        {
+            var result = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                result = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value);
+            }
+
+            return result;
         }
     }
 }
