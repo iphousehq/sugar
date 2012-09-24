@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 
 namespace Sugar
 {
@@ -95,6 +94,15 @@ namespace Sugar
             return Combine(typeof(TEnum), input, aggregateFunc);
         }
 
+        /// <summary>
+        /// Combines the specified enum type.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the result.</typeparam>
+        /// <param name="enumType">Type of the enum.</param>
+        /// <param name="input">The input.</param>
+        /// <param name="aggregateFunc">The aggregate func.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException"></exception>
         private static Enum Combine<TResult>(Type enumType, IEnumerable<TResult> input, Func<TResult, TResult, TResult> aggregateFunc)
         {
             // Can't add generic type description on enum :(
@@ -149,7 +157,24 @@ namespace Sugar
         /// <returns></returns>
         public static string GetDescription(this Enum enumerationValue)
         {
-            return GetAttributeFromEnumConstant<DescriptionAttribute>(enumerationValue, enumerationValue.ToString());
+            return enumerationValue.GetAttributePropertyFromEnumConstant<DescriptionAttribute, string>(p => p.Description, enumerationValue.ToString());
+        }
+
+        /// <summary>
+        /// Gets the property of an attribute attribute from an enum constant.
+        /// </summary>
+        /// <typeparam name="TAttribute">The type of the attribute.</typeparam>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
+        /// <param name="enumerationValue">The enumeration value.</param>
+        /// <param name="getPropertyFunc">The get property function.</param>
+        /// <param name="defaultValue">The default value.</param>
+        /// <returns></returns>
+        public static TProperty GetAttributePropertyFromEnumConstant<TAttribute, TProperty>(this Enum enumerationValue, Func<TAttribute, TProperty> getPropertyFunc, TProperty defaultValue) 
+            where TAttribute : Attribute
+        {
+            var attribute = enumerationValue.GetAttributeFromEnumConstant<TAttribute>();
+
+            return attribute == null ? defaultValue : getPropertyFunc(attribute);
         }
 
         /// <summary>
@@ -157,15 +182,13 @@ namespace Sugar
         /// </summary>
         /// <typeparam name="T">The type of attribute to obtain.</typeparam>
         /// <param name="enumerationValue">The enumeration value.</param>
-        /// <param name="defaultValue">The default value to return if the attribute is not found.</param>
         /// <returns></returns>
-        public static string GetAttributeFromEnumConstant<T>(Enum enumerationValue, string defaultValue) where T : Attribute
+        public static T GetAttributeFromEnumConstant<T>(this Enum enumerationValue) where T : Attribute
         {
-            var result = defaultValue;
+            T result = null;
 
             var type = enumerationValue.GetType();
 
-            // Tries to find a DescriptionAttribute for a potential friendly name for the enum
             var memberInfo = type.GetMember(enumerationValue.ToString());
 
             if (memberInfo.Length > 0)
@@ -174,14 +197,7 @@ namespace Sugar
 
                 if (attrs.Length > 0)
                 {
-                    var attr = ((T)attrs[0]);
-
-                    // Pull out the description value
-                    var property = attr.GetType().GetProperty("Description", BindingFlags.Public | BindingFlags.Instance);
-                    if (property != null)
-                    {
-                        result = property.GetValue(attr, null).ToString();
-                    }
+                    result = ((T)attrs[0]);
                 }
             }
 
