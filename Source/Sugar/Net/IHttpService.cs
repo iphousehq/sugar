@@ -23,6 +23,9 @@ namespace Sugar.Net
         /// <param name="agent">The agent.</param>
         /// <param name="cookies">The cookies.</param>
         /// <param name="referer">The referer.</param>
+        /// <param name="retries">The retries.</param>
+        /// <param name="timeout">The timeout.</param>
+        /// <param name="accept">The accept.</param>
         /// <returns></returns>
         HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null);
 
@@ -34,6 +37,9 @@ namespace Sugar.Net
         /// <param name="agent">The agent.</param>
         /// <param name="cookies">The cookies.</param>
         /// <param name="referer">The referer.</param>
+        /// <param name="retries">The retries.</param>
+        /// <param name="timeout">The timeout.</param>
+        /// <param name="accept">The accept.</param>
         /// <returns></returns>
         HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null);
 
@@ -46,6 +52,7 @@ namespace Sugar.Net
         /// <param name="referer">The referer.</param>
         /// <param name="retries">The retries.</param>
         /// <param name="timeout">The timeout.</param>
+        /// <param name="accept">The accept.</param>
         /// <returns></returns>
         HttpResponse Get(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null);
 
@@ -65,8 +72,9 @@ namespace Sugar.Net
         /// <param name="referer">The referer.</param>
         /// <param name="retries">The retries.</param>
         /// <param name="timeout">The timeout.</param>
+        /// <param name="accept">The accept.</param>
         /// <returns></returns>
-        HttpResponse Post(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500);
+        HttpResponse Post(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null);
 
         /// <summary>
         /// POSTs to the specified URL.
@@ -84,8 +92,9 @@ namespace Sugar.Net
         /// <param name="referer">The referer.</param>
         /// <param name="retries">The retries.</param>
         /// <param name="timeout">The timeout.</param>
+        /// <param name="accept">The accept.</param>
         /// <returns></returns>
-        HttpResponse Head(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500);
+        HttpResponse Head(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null);
 
         /// <summary>
         /// Gets the HEAD of the specified URL.
