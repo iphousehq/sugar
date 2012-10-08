@@ -72,6 +72,12 @@ namespace Sugar.Mime
         /// Adobe PDF document
         /// </summary>
         [Description("pdf")]
-        Pdf
+        Pdf,
+
+        /// <summary>
+        /// JSON
+        /// </summary>
+        [Description("json")]
+        Json
     }
 }
