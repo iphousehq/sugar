@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Net;
 using System.Text;
+using Sugar.Mime;
 
 namespace Sugar.Net
 {
@@ -146,6 +147,8 @@ namespace Sugar.Net
 
             request.Headers.Add(Headers);
             request.CookieContainer = Cookies;
+
+
 
             if (UseAuthentication)
             {

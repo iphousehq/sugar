@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Sugar.Mime;
 
 namespace Sugar.Net
 {
@@ -23,7 +24,7 @@ namespace Sugar.Net
         /// <param name="cookies">The cookies.</param>
         /// <param name="referer">The referer.</param>
         /// <returns></returns>
-        HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500);
+        HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null);
 
         /// <summary>
         /// Builds a HTTP request from the given arguments.
@@ -34,7 +35,7 @@ namespace Sugar.Net
         /// <param name="cookies">The cookies.</param>
         /// <param name="referer">The referer.</param>
         /// <returns></returns>
-        HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500);
+        HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null);
 
         /// <summary>
         /// Gets the specified URL.
@@ -46,7 +47,7 @@ namespace Sugar.Net
         /// <param name="retries">The retries.</param>
         /// <param name="timeout">The timeout.</param>
         /// <returns></returns>
-        HttpResponse Get(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500);
+        HttpResponse Get(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null);
 
         /// <summary>
         /// Gets the specified URL.

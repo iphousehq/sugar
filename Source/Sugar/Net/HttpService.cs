@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Text;
+using Sugar.Mime;
 
 namespace Sugar.Net
 {
@@ -70,7 +71,19 @@ namespace Sugar.Net
             return result;
         }
 
-        public HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000)
+        /// <summary>
+        /// Builds a HTTP request from the given arguments.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <param name="verb">The verb.</param>
+        /// <param name="agent">The agent.</param>
+        /// <param name="cookies">The cookies.</param>
+        /// <param name="referer">The referer.</param>
+        /// <param name="retries"></param>
+        /// <param name="timeout"></param>
+        /// <param name="accept"></param>
+        /// <returns></returns>
+        public HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000, BaseMime accept = null)
         {
             var request = new HttpRequest
             {
@@ -81,6 +94,11 @@ namespace Sugar.Net
                 Retries = retries,
                 Timeout = timeout
             };
+
+            if(accept != null)
+            {
+                request.Headers.Add(HttpRequestHeader.Accept.ToString(), accept.ToString());
+            }
 
             if (cookies != null)
             {
@@ -126,15 +144,16 @@ namespace Sugar.Net
         /// <param name="referer">The referer.</param>
         /// <param name="retries">The retries.</param>
         /// <param name="timeout">The timeout.</param>
+        /// <param name="accept"></param>
         /// <returns></returns>
         /// <remarks>
         /// Will retry to download 3 times by default.
         /// </remarks>
-        public HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000)
+        public HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000, BaseMime accept = null)
         {
             if (agent == null) agent = UserAgent.Firefox();
 
-            var request = Build(url, verb, agent, cookies, referer, retries, timeout);
+            var request = Build(url, verb, agent, cookies, referer, retries, timeout, accept);
 
             return Download(request);
         }
@@ -148,10 +167,11 @@ namespace Sugar.Net
         /// <param name="referer">The referer.</param>
         /// <param name="retries">The retries.</param>
         /// <param name="timeout">The timeout.</param>
+        /// <param name="accept"></param>
         /// <returns></returns>
-        public HttpResponse Get(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000)
+        public HttpResponse Get(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000, BaseMime accept = null)
         {
-            return Download(url, HttpVerb.Get, agent, cookies, referer, retries, timeout);
+            return Download(url, HttpVerb.Get, agent, cookies, referer, retries, timeout, accept);
         }
 
         /// <summary>
@@ -173,10 +193,11 @@ namespace Sugar.Net
         /// <param name="referer">The referer.</param>
         /// <param name="retries">The retries.</param>
         /// <param name="timeout">The timeout.</param>
+        /// <param name="accept">The accept.</param>
         /// <returns></returns>
-        public HttpResponse Post(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000)
+        public HttpResponse Post(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000, BaseMime accept = null)
         {
-            return Download(url, HttpVerb.Post, agent, cookies, referer, retries, timeout);
+            return Download(url, HttpVerb.Post, agent, cookies, referer, retries, timeout, accept);
         }
 
         /// <summary>
@@ -198,10 +219,11 @@ namespace Sugar.Net
         /// <param name="referer">The referer.</param>
         /// <param name="retries">The retries.</param>
         /// <param name="timeout">The timeout.</param>
+        /// <param name="accept">The accept.</param>
         /// <returns></returns>
-        public HttpResponse Head(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000)
+        public HttpResponse Head(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000, BaseMime accept = null)
         {
-            return Download(url, HttpVerb.Post, agent, cookies, referer, retries, timeout);
+            return Download(url, HttpVerb.Post, agent, cookies, referer, retries, timeout, accept);
         }
 
         /// <summary>
