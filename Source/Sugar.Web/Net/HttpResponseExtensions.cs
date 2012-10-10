@@ -1,4 +1,6 @@
-﻿namespace Sugar.Net
+﻿using Sugar.Json;
+
+namespace Sugar.Net
 {
     /// <summary>
     /// Extension methods for the <see cref="HttpResponse"/>.

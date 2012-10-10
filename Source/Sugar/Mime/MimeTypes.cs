@@ -176,6 +176,21 @@ namespace Sugar.Mime
             }
         }
 
+        /// <summary>
+        /// Gets the JSON mime type.
+        /// </summary>
+        public static ApplicationMime Json
+        {
+            get
+            {
+                return new ApplicationMime
+                {
+                    ApplicationMimeType = ApplicationMimeType.Json,
+                    Extensions = new List<string> {"json"}
+                };
+            }
+        }
+
         #endregion
 
         #region Audio

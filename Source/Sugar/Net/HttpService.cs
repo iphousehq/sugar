@@ -92,12 +92,12 @@ namespace Sugar.Net
                 Verb = verb,
                 Referer = referer,
                 Retries = retries,
-                Timeout = timeout
+                Timeout = timeout,
             };
 
             if(accept != null)
             {
-                request.Headers.Add(HttpRequestHeader.Accept.ToString(), accept.ToString());
+                request.Accept = accept.ToString();
             }
 
             if (cookies != null)

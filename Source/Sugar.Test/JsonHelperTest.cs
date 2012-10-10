@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
+using Sugar.Json;
 
 namespace Sugar
 {
@@ -8,11 +10,13 @@ namespace Sugar
         [Test]
         public void TestDecodeJson()
         {
-            var raw = @"{ 
-                            ""glossary"": { 
-                                ""title"": ""example glossary""
-                                }
-                          }";
+            const string raw = @"
+{ 
+    ""glossary"": 
+    { 
+        ""title"": ""example glossary""
+    }
+}";
 
             var json = raw.DecodeJson();
 
@@ -22,18 +26,22 @@ namespace Sugar
         [Test]
         public void TestDecodeJsonWithCollections()
         {
-            var raw = @"{  ""array"": [
-                            {
-                            ""glossary"": { 
-                                ""title"": ""example glossary""
-                                }
-                            },
-                            {
-                            ""glossary"": { 
-                                ""title"": ""second example glossary""
-                                }
-                            } ]
-                          }";
+            const string raw = @"
+{  
+    ""array"": [        
+    {
+        ""glossary"": 
+        { 
+            ""title"": ""example glossary""
+        }
+    },
+    {
+        ""glossary"": 
+        { 
+            ""title"": ""second example glossary""
+        }
+    }]
+}";
 
             var json = raw.DecodeJson();
 
@@ -52,16 +60,132 @@ namespace Sugar
         [Test]
         public void TestHasMember()
         {
-            var raw = @"{ 
-                            ""glossary"": { 
-                                ""title"": ""example glossary""
-                                }
-                          }";
+            const string raw = @"
+{ 
+    ""glossary"": 
+    { 
+        ""title"": ""example glossary""
+    }
+}";
 
             var json = (DynamicJsonObject) raw.DecodeJson();
 
             Assert.AreEqual(true, json.HasMember("glossary"));
             Assert.AreEqual(false, json.HasMember("bob"));
+        }
+
+        [Test]
+        public void TestConvertJsonToStringNull()
+        {
+            dynamic json = null;
+
+            var result = JsonHelper.ConvertJsonToString(json);
+
+            Assert.AreEqual(string.Empty, result);
+        }
+
+        [Test]
+        public void TestConvertJsonToString()
+        {
+            dynamic json = "test";
+
+            var result = JsonHelper.ConvertJsonToString(json);
+
+            Assert.AreEqual("test", result);
+        }
+
+        [Test]
+        public void TestConvertJsonToIntNull()
+        {
+            dynamic json = null;
+
+            var result = JsonHelper.ConvertJsonToInt(json);
+
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void TestConvertJsonToInt()
+        {
+            dynamic json = "5";
+
+            var result = JsonHelper.ConvertJsonToInt(json);
+
+            Assert.AreEqual(5, result);
+        }
+
+        [Test]
+        public void TestConvertJsonToDoubleNull()
+        {
+            dynamic json = null;
+
+            var result = JsonHelper.ConvertJsonToDouble(json);
+
+            Assert.AreEqual(0.0, result);
+        }
+
+        [Test]
+        public void TestConvertJsonToDouble()
+        {
+            dynamic json = "5.5";
+
+            var result = JsonHelper.ConvertJsonToDouble(json);
+
+            Assert.AreEqual(5.5, result);
+        }
+
+        [Test]
+        public void TestConvertJsonToBoolNull()
+        {
+            dynamic json = null;
+
+            var result = JsonHelper.ConvertJsonToBool(json);
+
+            Assert.False(result);
+        }
+
+        [Test]
+        public void TestConvertJsonToBool()
+        {
+            dynamic json = "True";
+
+            var result = JsonHelper.ConvertJsonToBool(json);
+
+            Assert.True(result);
+        }
+
+        enum Foo
+        {
+            Bar,
+            Foobar
+        }
+
+        [Test]
+        public void TestConvertJsonToEnumNull()
+        {
+            dynamic json = null;
+
+            var result = JsonHelper.ConvertJsonToEnum<Foo>(json);
+
+            Assert.AreEqual(Foo.Bar, result);
+        }
+
+        [Test]
+        public void TestConvertJsonToEnumException()
+        {
+            dynamic json = "Barfoo";
+
+            Assert.Throws<ApplicationException>(() => JsonHelper.ConvertJsonToEnum<Foo>(json), "Could not convert JSON value Barfoo  to enum of type Foo");
+        }
+
+        [Test]
+        public void TestConvertJsonToEnum()
+        {
+            dynamic json = "Foobar";
+
+            var result = JsonHelper.ConvertJsonToEnum<Foo>(json);
+
+            Assert.AreEqual(Foo.Foobar, result);
         }
     }
 }

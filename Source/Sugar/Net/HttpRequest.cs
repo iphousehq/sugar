@@ -127,6 +127,14 @@ namespace Sugar.Net
         public string Referer { get; set; }
 
         /// <summary>
+        /// Gets or sets the accept.
+        /// </summary>
+        /// <value>
+        /// The accept.
+        /// </value>
+        public string Accept { get; set; }
+
+        /// <summary>
         /// Converts this instance to a <see cref="WebRequest"/>
         /// </summary>
         /// <returns></returns>
@@ -144,6 +152,7 @@ namespace Sugar.Net
             request.Proxy = WebRequest.DefaultWebProxy; // force default proxy
             ServicePointManager.ServerCertificateValidationCallback += delegate { return true; }; // to allow HTTPS
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3; // force ssl over tls
+            if(!string.IsNullOrWhiteSpace(Accept)) request.Accept = Accept;
 
             request.Headers.Add(Headers);
             request.CookieContainer = Cookies;
