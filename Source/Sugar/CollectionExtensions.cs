@@ -78,5 +78,24 @@ namespace Sugar
 
             return collection;
         }
+
+        /// <summary>
+        /// Removes an item from the collection if a predicate evaluates to true.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="predicate">The predicate.</param>
+        public static void RemoveIf<T>(this IList<T> collection, Func<T, bool> predicate)
+        {
+            for (var counter = collection.Count - 1; counter >= 0; counter--)
+            {
+                var thisItem = collection[counter];
+
+                if (predicate(thisItem))
+                {
+                    collection.RemoveAt(counter);
+                }
+            }
+        }
     }
 }
