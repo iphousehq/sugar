@@ -76,6 +76,7 @@
     <Compile Include="Configuration\ConfigLineTest.cs" />
     <Compile Include="Configuration\ConfigTest.cs" />
     <Compile Include="DateTimeExtensionsTest.cs" />
+    <Compile Include="DictionaryExtensionsTest.cs" />
     <Compile Include="DoubleExtensionsTest.cs" />
     <Compile Include="EnumerableExtensionsTest.cs" />
     <Compile Include="EnumExtensionsTest.cs" />
