@@ -20,7 +20,7 @@ namespace Sugar.Mime
         CommaSeperatedValues,
 
         /// <summary>
-        /// HTML text
+        /// HyperText Markuk Language
         /// </summary>
         [Description("html")]
         Html,
@@ -32,9 +32,15 @@ namespace Sugar.Mime
         Plain,
 
         /// <summary>
-        /// Xml text
+        /// eXtensible Markup Language
         /// </summary>
         [Description("xml")]
-        Xml
+        Xml,
+
+        /// <summary>
+        /// Rich text format
+        /// </summary>
+        [Description("rtf")]
+        Rtf
     }
 }

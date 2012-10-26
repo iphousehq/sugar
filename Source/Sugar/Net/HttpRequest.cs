@@ -2,7 +2,6 @@
 using System.Collections.Specialized;
 using System.Net;
 using System.Text;
-using Sugar.Mime;
 
 namespace Sugar.Net
 {
@@ -150,14 +149,12 @@ namespace Sugar.Net
             request.ContentType = ContentType;
             request.Referer = Referer;
             request.Proxy = WebRequest.DefaultWebProxy; // force default proxy
-            ServicePointManager.ServerCertificateValidationCallback += delegate { return true; }; // to allow HTTPS
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3; // force ssl over tls
-            if(!string.IsNullOrWhiteSpace(Accept)) request.Accept = Accept;
-
+            if (!string.IsNullOrWhiteSpace(Accept)) request.Accept = Accept;
             request.Headers.Add(Headers);
             request.CookieContainer = Cookies;
 
-
+            ServicePointManager.ServerCertificateValidationCallback += delegate { return true; }; // to allow HTTPS
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3; // force ssl over tls
 
             if (UseAuthentication)
             {

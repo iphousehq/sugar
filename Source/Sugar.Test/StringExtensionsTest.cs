@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using NUnit.Framework;
 using Sugar.Mime;
@@ -187,6 +186,12 @@ namespace Sugar
 
             Assert.AreEqual(BaseMimeType.Image, mimeType.BaseMimeType);
             Assert.AreEqual(ImageMimeType.Jpeg, mimeType.MimeType);
+        }
+
+        [Test]
+        public void TestGetUnkownMimeType()
+        {
+            Assert.Throws<ApplicationException>(() => "unkownExtention.rsfx".GetMimeType());
         }
 
         [Test]

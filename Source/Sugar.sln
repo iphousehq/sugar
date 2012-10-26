@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar", "Sugar\Sugar.csproj", "{EDB78F77-9123-4821-817B-F3F91E973A7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Test", "Sugar.Test\Sugar.Test.csproj", "{10B86AFC-AD6C-477C-B53A-BC08E28C966F}"
@@ -8,6 +8,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Web", "Sugar.Web\Sugar.Web.csproj", "{28EB8FD3-3904-467F-B256-81EDD21EF6E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Html", "Sugar.Html\Sugar.Html.csproj", "{DB536D0A-ACCD-49D0-815F-3F8A848DA981}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Test.Integration", "Sugar.Test.Integration\Sugar.Test.Integration.csproj", "{14063FE3-6497-485F-8330-EA7CF5CDF997}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,12 @@ Global
 		{DB536D0A-ACCD-49D0-815F-3F8A848DA981}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB536D0A-ACCD-49D0-815F-3F8A848DA981}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB536D0A-ACCD-49D0-815F-3F8A848DA981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14063FE3-6497-485F-8330-EA7CF5CDF997}.ClientProfile|Any CPU.ActiveCfg = Release|Any CPU
+		{14063FE3-6497-485F-8330-EA7CF5CDF997}.ClientProfile|Any CPU.Build.0 = Release|Any CPU
+		{14063FE3-6497-485F-8330-EA7CF5CDF997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14063FE3-6497-485F-8330-EA7CF5CDF997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14063FE3-6497-485F-8330-EA7CF5CDF997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14063FE3-6497-485F-8330-EA7CF5CDF997}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -59,6 +59,8 @@
     <Compile Include="Mime\ApplicationMimeType.cs" />
     <Compile Include="Mime\AudioMime.cs" />
     <Compile Include="Mime\AudioMimeType.cs" />
+    <Compile Include="Mime\MessageMime.cs" />
+    <Compile Include="Mime\MessageMimeType.cs" />
     <Compile Include="Mime\MimeTypes.cs" />
     <Compile Include="Mime\ImageMime.cs" />
     <Compile Include="Mime\ImageMimeType.cs" />

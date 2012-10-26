@@ -12,6 +12,31 @@ namespace Sugar.Net
     public class HttpService : IHttpService
     {
         /// <summary>
+        /// Maps the specified <see cref="WebResponse"/> to the given <see cref="HttpResponse"/>.
+        /// </summary>
+        /// <param name="webResponse">The web response.</param>
+        /// <param name="response">The HTTP response.</param>
+        /// <returns>the given HTTP response.</returns>
+        public static HttpResponse Map(WebResponse webResponse, HttpResponse response)
+        {
+            response.ContentLength = webResponse.ContentLength;
+
+            foreach (string header in webResponse.Headers)
+            {
+                response.Headers.Add(header, webResponse.Headers[header]);
+            }
+
+            var httpWebResponse = webResponse as HttpWebResponse;
+            if (httpWebResponse != null)
+            {
+                response.StatusCode = httpWebResponse.StatusCode;
+                response.StatusDescription = httpWebResponse.StatusDescription;
+            }
+
+            return response;
+        }
+
+        /// <summary>
         /// Downloads the specified request.
         /// </summary>
         /// <param name="request">The request.</param>
@@ -42,30 +67,33 @@ namespace Sugar.Net
             }
 
             // Download response
-            using (var response = webRequest.GetResponse() as HttpWebResponse)
-            using (var stream = response.GetResponseStream())
-            using (var memoryStream = new MemoryStream())
+            using (var webResponse = webRequest.GetResponse() as HttpWebResponse)
             {
-                var buffer = new byte[2048];
-
-                int bytesRead;
-
-                do
+                if (request.Verb != HttpVerb.Head)
                 {
-                    bytesRead = stream.Read(buffer, 0, buffer.Length);
+                    using (var stream = webResponse.GetResponseStream())
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        var buffer = new byte[2048];
 
-                    memoryStream.Write(buffer, 0, bytesRead);
+                        int bytesRead;
+
+                        do
+                        {
+                            bytesRead = stream.Read(buffer, 0, buffer.Length);
+
+                            memoryStream.Write(buffer, 0, bytesRead);
+                        }
+                        while (bytesRead != 0);
+
+                        if (memoryStream.Length > 0) result.Bytes = memoryStream.ToArray();
+
+                        result.Cookies = new CookieContainer();
+                        result.Cookies.Add(webResponse.Cookies);
+                    }
                 }
-                while (bytesRead != 0);
 
-                if (memoryStream.Length > 0) result.Bytes = memoryStream.ToArray();
-
-                result.Cookies = new CookieContainer();
-                result.Cookies.Add(response.Cookies);
-
-                result.StatusCode = response.StatusCode;
-                result.StatusDescription = response.StatusDescription;
-                result.ContentLength = response.ContentLength;
+                result = Map(webResponse, result);
             }
 
             return result;
@@ -95,7 +123,7 @@ namespace Sugar.Net
                 Timeout = timeout,
             };
 
-            if(accept != null)
+            if (accept != null)
             {
                 request.Accept = accept.ToString();
             }
@@ -121,14 +149,25 @@ namespace Sugar.Net
             {
                 response = Retry.This(() => InternalDownload(request), request.Retries, request.Timeout);
             }
+            catch (WebException ex)
+            {
+                response = new HttpResponse
+                               {
+                                   Exception = ex,
+                                   Url = request.Url,
+                                   UserAgent = request.UserAgent
+                               };
+
+                response = Map(ex.Response, response);
+            }
             catch (Exception ex)
             {
                 response = new HttpResponse
-                {
-                    Exception = ex,
-                    Url = request.Url,
-                    UserAgent = request.UserAgent
-                };
+                               {
+                                   Exception = ex,
+                                   Url = request.Url,
+                                   UserAgent = request.UserAgent
+                               };
             }
 
             return response;
@@ -223,7 +262,7 @@ namespace Sugar.Net
         /// <returns></returns>
         public HttpResponse Head(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000, BaseMime accept = null)
         {
-            return Download(url, HttpVerb.Post, agent, cookies, referer, retries, timeout, accept);
+            return Download(url, HttpVerb.Head, agent, cookies, referer, retries, timeout, accept);
         }
 
         /// <summary>

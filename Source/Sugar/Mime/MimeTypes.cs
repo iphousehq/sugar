@@ -132,6 +132,21 @@ namespace Sugar.Mime
         }
 
         /// <summary>
+        /// Gets the Microsoft Visio mime type.
+        /// </summary>
+        public static ApplicationMime MicrosoftVisio
+        {
+            get
+            {
+                return new ApplicationMime
+                           {
+                               ApplicationMimeType = ApplicationMimeType.MicrosoftVisio,
+                               Extensions = new List<string> { "vsd" }
+                           };
+            }
+        }
+
+        /// <summary>
         /// Gets the gzip mime type.
         /// </summary>
         public static ApplicationMime GZip
@@ -500,6 +515,21 @@ namespace Sugar.Mime
             }
         }
 
+        /// <summary>
+        /// Gets the RTF mime type.
+        /// </summary>
+        public static TextMime Rtf
+        {
+            get
+            {
+                return new TextMime
+                           {
+                               TextMimeType = TextMimeType.Rtf,
+                               Extensions = new List<string> { "rtf" }
+                           };
+            }
+        }
+
         #endregion
 
         #region Video
@@ -590,6 +620,22 @@ namespace Sugar.Mime
                 {
                     VideoMimeType = VideoMimeType.WindowsMedia,
                     Extensions = new List<string> {"wmv"}
+                };
+            }
+        }
+
+        #endregion
+
+        #region Messagae
+        
+        public static MessageMime Mht
+        {
+            get
+            {
+                return new MessageMime
+                {
+                    MessageMimeType = MessageMimeType.Mht,
+                    Extensions = new List<string> { "mht" }
                 };
             }
         }

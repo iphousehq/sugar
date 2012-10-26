@@ -20,7 +20,8 @@ namespace Sugar
                 }
                 catch
                 {
-                    if (numRetries <= 0) throw;  // improved to avoid silent failure
+                    // Avoid silent failures
+                    if (numRetries <= 0) throw;
 
                     Thread.Sleep(retryTimeout);
                 }

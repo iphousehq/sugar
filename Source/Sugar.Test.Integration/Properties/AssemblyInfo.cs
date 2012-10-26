@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Sugar")]
-[assembly: AssemblyDescription("Syntactic Sugar for .NET")]
+[assembly: AssemblyTitle("Comsec.Sugar.Test.Integration")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Comsec Solutions Ltd")]
-[assembly: AssemblyProduct("Sugar")]
+[assembly: AssemblyProduct("Comsec.Sugar.Test.Integration")]
 [assembly: AssemblyCopyright("Copyright © Comsec Solutions Ltd 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f851f465-ed2d-41d3-a5ab-d0d39811e505")]
+[assembly: Guid("bf73836a-0c72-4fee-bbdc-471bdde86a0e")]
 
 // Version information for an assembly consists of the following four values:
 //

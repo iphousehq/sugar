@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
 using System.Text;
@@ -19,6 +20,7 @@ namespace Sugar.Net
         public HttpResponse()
         {
             Cookies = new CookieContainer();
+            Headers = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -54,6 +56,14 @@ namespace Sugar.Net
         /// The user agent.
         /// </value>
         public UserAgent UserAgent { get; set; }
+
+        /// <summary>
+        /// Gets or sets the HTTP response headers.
+        /// </summary>
+        /// <value>
+        /// The headers.
+        /// </value>
+        public IDictionary<string, string> Headers { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether the download operation completed successfully.

@@ -57,6 +57,12 @@ namespace Sugar.Mime
         MicrosoftExcelOpenXml,
 
         /// <summary>
+        /// Microsoft Visiondocument
+        /// </summary>
+        [Description("vnd.visio")]
+        MicrosoftVisio,
+        
+        /// <summary>
         /// GZip archive
         /// </summary>
         [Description("x-gzip")]

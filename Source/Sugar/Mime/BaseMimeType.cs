@@ -36,6 +36,12 @@ namespace Sugar.Mime
         /// Video files
         /// </summary>
         [Description("video")]
-        Video
+        Video,
+
+        /// <summary>
+        /// Messages (e.g. message/rfc822)
+        /// </summary>
+        [Description("message")]
+        Message
     }
 }
