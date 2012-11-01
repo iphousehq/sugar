@@ -1,8 +1,8 @@
-<project name="run-nunit-stage">
-	<target name="RunNUnit">
+<project name="run-nunit-integration-stage">
+	<target name="RunNUnitIntegration">
 
     <exec program="nunit-console.exe" basedir="${root.dir}\Build\Resources\NUnit" workingdir=".">
-      <arg value="${root.dir}\Source\Sugar.Test\bin\Release\Sugar.Test.dll" />
+      <arg value="${root.dir}\Source\Sugar.Test.Integration\bin\Release\Sugar.Integration.dll" />
       <arg value="/xml:${root.dir}\Artifacts\TestResult.xml"/>
       <arg value="/framework=net-4.0"/>      
     </exec>
