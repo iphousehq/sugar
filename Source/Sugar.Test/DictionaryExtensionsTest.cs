@@ -111,5 +111,14 @@ namespace Sugar
             Assert.AreEqual(2, results[0]);
             Assert.AreEqual(3, results[1]);
         }
+
+        [Test]
+        public void TestPairedWith()
+        {
+            var result = "key".PairedWith(5);
+
+            Assert.AreEqual("key", result.Key);
+            Assert.AreEqual(5, result.Value);
+        }
     }
 }

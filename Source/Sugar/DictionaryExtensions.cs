@@ -30,5 +30,18 @@ namespace Sugar
 
             return dictionary.Keys.Where(key => comparer.Equals(dictionary[key], value));
         }
+
+        /// <summary>
+        /// Creates a KeyValuePair by pairing this object with the given object.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static KeyValuePair<TKey, TValue> PairedWith<TKey, TValue>(this TKey key, TValue value)
+        {
+            return new KeyValuePair<TKey, TValue>(key, value);
+        }
     }
 }
