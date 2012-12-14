@@ -10,6 +10,16 @@ namespace Sugar.Command
     public abstract class BaseConsole
     {
         /// <summary>
+        /// The status returned when the commands executed successfully.
+        /// </summary>
+        public const int OkStatus = 0;
+
+        /// <summary>
+        /// The status returned when the commands fail.
+        /// </summary>
+        public const int GeneralErrorStatus = -1;
+
+        /// <summary>
         /// Pauses if a debugger is attached.
         /// </summary>
         private static void PauseIfInDebuggerAttached()
