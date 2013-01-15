@@ -8,11 +8,6 @@ namespace Sugar.Command
     public abstract class BaseCommandConsole : BaseConsole
     {
         /// <summary>
-        /// The status returned when no commands were executed.
-        /// </summary>
-        protected const int NoCommandsStatus = -100;
-
-        /// <summary>
         /// Gets or sets the commands.
         /// </summary>
         /// <value>
@@ -31,34 +26,36 @@ namespace Sugar.Command
         /// <summary>
         /// Entry point for the program logic
         /// </summary>
-        protected override void Main()
+        protected override int Main()
         {
-            var status = Execute();
+            var exitCode = Execute();
             
-            if(status == NoCommandsStatus)
+            if(exitCode == (int)ExitCode.NoCommand)
             {
                 Default();
             }
+
+            return exitCode;
         }
 
         /// <summary>
         /// Executes the commands based upon the <see cref="BaseConsole.Arguments"/> collection.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An exit code</returns>
         public int Execute()
         {
-            var status = NoCommandsStatus;
+            var exitCode = (int)ExitCode.NoCommand;
 
             foreach (var command in Commands)
             {
                 if (!command.CanExecute(Arguments)) continue;
                 
-                status = command.Execute(Arguments);
+                exitCode = command.Execute(Arguments);
 
                 break;
             }
 
-            return status;
+            return exitCode;
         }
 
         /// <summary>
