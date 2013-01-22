@@ -61,6 +61,81 @@ namespace Sugar
             Assert.AreEqual(23, result.Hour);
             Assert.AreEqual(59, result.Minute);
             Assert.AreEqual(55, result.Second);
+            Assert.AreEqual(0, result.Millisecond);
+
+            result = "20101231T2359".ToDateTimeFromIso8601();
+
+            Assert.AreEqual(2010, result.Year);
+            Assert.AreEqual(12, result.Month);
+            Assert.AreEqual(31, result.Day);
+            Assert.AreEqual(23, result.Hour);
+            Assert.AreEqual(59, result.Minute);
+            Assert.AreEqual(0, result.Second);
+            Assert.AreEqual(0, result.Millisecond);
+
+            result = "20101231T23".ToDateTimeFromIso8601();
+
+            Assert.AreEqual(2010, result.Year);
+            Assert.AreEqual(12, result.Month);
+            Assert.AreEqual(31, result.Day);
+            Assert.AreEqual(23, result.Hour);
+            Assert.AreEqual(0, result.Minute);
+            Assert.AreEqual(0, result.Second);
+            Assert.AreEqual(0, result.Millisecond);
+
+            result = "20101231".ToDateTimeFromIso8601();
+
+            Assert.AreEqual(2010, result.Year);
+            Assert.AreEqual(12, result.Month);
+            Assert.AreEqual(31, result.Day);
+            Assert.AreEqual(0, result.Hour);
+            Assert.AreEqual(0, result.Minute);
+            Assert.AreEqual(0, result.Second);
+            Assert.AreEqual(0, result.Millisecond);
+        }
+
+        [Test]
+        public void TestToDateFromIso8601WithHyphenAndSemiColon()
+        {
+            var result = "2010-12-31T23:59:55".ToDateTimeFromIso8601();
+
+            Assert.AreEqual(2010, result.Year);
+            Assert.AreEqual(12, result.Month);
+            Assert.AreEqual(31, result.Day);
+            Assert.AreEqual(23, result.Hour);
+            Assert.AreEqual(59, result.Minute);
+            Assert.AreEqual(55, result.Second);
+            Assert.AreEqual(0, result.Millisecond);
+
+            result = "2010-12-31T23:59".ToDateTimeFromIso8601();
+
+            Assert.AreEqual(2010, result.Year);
+            Assert.AreEqual(12, result.Month);
+            Assert.AreEqual(31, result.Day);
+            Assert.AreEqual(23, result.Hour);
+            Assert.AreEqual(59, result.Minute);
+            Assert.AreEqual(0, result.Second);
+            Assert.AreEqual(0, result.Millisecond);
+
+            result = "2010-12-31T23".ToDateTimeFromIso8601();
+
+            Assert.AreEqual(2010, result.Year);
+            Assert.AreEqual(12, result.Month);
+            Assert.AreEqual(31, result.Day);
+            Assert.AreEqual(23, result.Hour);
+            Assert.AreEqual(0, result.Minute);
+            Assert.AreEqual(0, result.Second);
+            Assert.AreEqual(0, result.Millisecond);
+
+            result = "2010-12-31".ToDateTimeFromIso8601();
+
+            Assert.AreEqual(2010, result.Year);
+            Assert.AreEqual(12, result.Month);
+            Assert.AreEqual(31, result.Day);
+            Assert.AreEqual(0, result.Hour);
+            Assert.AreEqual(0, result.Minute);
+            Assert.AreEqual(0, result.Second);
+            Assert.AreEqual(0, result.Millisecond);
         }
 
         [Test]
@@ -78,6 +153,7 @@ namespace Sugar
             Assert.AreEqual(23, time.Hour);
             Assert.AreEqual(59, time.Minute);
             Assert.AreEqual(55, time.Second);
+            Assert.AreEqual(00, time.Millisecond);
         }
 
         [Test]
