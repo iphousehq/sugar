@@ -185,8 +185,17 @@ namespace Sugar
         /// <returns></returns>
         public static T GetAttributeFromEnumConstant<T>(this Enum enumerationValue) where T : Attribute
         {
-            T result = null;
+            return GetAttributesFromEnumConstant<T>(enumerationValue).FirstOrDefault();
+        }
 
+        /// <summary>
+        /// Gets the attribute from enum constant.
+        /// </summary>
+        /// <typeparam name="T">The type of attribute to obtain.</typeparam>
+        /// <param name="enumerationValue">The enumeration value.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetAttributesFromEnumConstant<T>(this Enum enumerationValue) where T : Attribute
+        {
             var type = enumerationValue.GetType();
 
             var memberInfo = type.GetMember(enumerationValue.ToString());
@@ -195,13 +204,11 @@ namespace Sugar
             {
                 var attrs = memberInfo[0].GetCustomAttributes(typeof(T), true);
 
-                if (attrs.Length > 0)
+                foreach (var attr in attrs)
                 {
-                    result = ((T)attrs[0]);
+                    yield return (T) attr;
                 }
             }
-
-            return result;
         }
     }
 }

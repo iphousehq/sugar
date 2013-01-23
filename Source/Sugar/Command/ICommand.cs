@@ -18,6 +18,6 @@
         /// Executes this instance with the specified parameters.
         /// </summary>
         /// <param name="parameters">The parameters.</param>
-        void Execute(Parameters parameters);
+        int Execute(Parameters parameters);
     }
 }

@@ -76,17 +76,54 @@ namespace Sugar
         }
 
         /// <summary>
+        /// Guesses the iso8601 format.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        private static string GuessIso8601Format(string value)
+        {
+            if (value.Contains("T"))
+            {
+                if (value.Contains("-") || value.Contains(":"))
+                {
+                    switch (value.Length)
+                    {
+                        case 13: return "yyyy-MM-ddTHH";
+                        case 16: return "yyyy-MM-ddTHH:mm";
+                        default: return "yyyy-MM-ddTHH:mm:ss";
+                    }
+                }
+
+                switch (value.Length)
+                {
+                    case 11: return "yyyyMMddTHH";
+                    case 13: return "yyyyMMddTHHmm";
+                    default: return "yyyyMMddTHHmmss";
+                }
+            }
+
+            if (value.Contains("-"))
+            {
+                return "yyyy-MM-dd";
+            }
+
+            return "yyyyMMdd";
+        }
+
+        /// <summary>
         /// Parses a datetime string formatted using the ISO 8601 format.
-        /// Examples: 2009-10-08 08:22:02Z, 20091008T082202
+        /// Examples: 2009-10-08T08:22:02Z, 20091008T082202
         /// </summary>
         /// <param name="value">The date time in the ISO 8601 format.</param>
         /// <returns></returns>
         public static DateTime ToDateTimeFromIso8601(this string value)
         {
+            var format = GuessIso8601Format(value);
+
             var time =
                 DateTime.ParseExact(
                     value,
-                    new[] { "s", "u", "yyyyMMddTHHmmss" },
+                    new[] {"s", "u", format},
                     CultureInfo.InvariantCulture,
                     DateTimeStyles.None);
 
@@ -94,19 +131,20 @@ namespace Sugar
         }
 
         /// <summary>
-        /// Tries to date time from iso8601 (e.g. 20100130T235959).
+        /// Tries to convert an ISO 8601 (e.g. 20100130T235959) value to a <see cref="DateTime"/> value.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="time">The time in the ISO 8601 format.</param>
         /// <returns></returns>
         public static bool TryToDateTimeFromIso8601(this string value, out DateTime time)
         {
-            return
-                DateTime.TryParseExact(
-                    value,
-                    new[] { "s", "u", "yyyyMMddTHHmmss" },
-                    CultureInfo.InvariantCulture,
-                    DateTimeStyles.None, out time);
+            var format = GuessIso8601Format(value);
+
+            return DateTime.TryParseExact(
+                value,
+                new[] {"s", "u", format},
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out time);
         }
 
         /// <summary>
@@ -134,10 +172,10 @@ namespace Sugar
 
             var timeElapsed = ToAbsHumanReadableString(dateTime, now);
 
-            if(timeElapsed != "never")
+            if (timeElapsed != "never")
             {
-                value = dateTime < now 
-                    ? string.Format("{0} ago", timeElapsed) 
+                value = dateTime < now
+                    ? string.Format("{0} ago", timeElapsed)
                     : string.Format("in {0}", timeElapsed);
             }
 
@@ -161,7 +199,7 @@ namespace Sugar
             if (daysAgo > 3650) value = "never";
 
             if (daysAgo > 366 && daysAgo <= 3650) value = "over a year";
-            
+
             if (daysAgo <= 366) value = "a year";
 
             if (daysAgo < 365) value = "about " + Convert.ToInt32(daysAgo / 30) + " months";
@@ -198,12 +236,12 @@ namespace Sugar
             var current = new DateTime(from.Year, from.Month, 1);
             var end = new DateTime(until.Year, until.Month, 1);
 
-            if(current > end)
+            if (current > end)
             {
                 return results;
             }
 
-            while(current <= end)
+            while (current <= end)
             {
                 results.Add(current);
 
@@ -313,7 +351,7 @@ namespace Sugar
                 takeDays = 6;
             }
 
-            return dt.AddDays(- takeDays);
+            return dt.AddDays(-takeDays);
         }
 
         /// <summary>

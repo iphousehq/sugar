@@ -45,7 +45,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -54,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ArrayExtensions.cs" />
     <Compile Include="AssemblyExtensions.cs" />
+    <Compile Include="Command\ExitCode.cs" />
     <Compile Include="DictionaryExtensions.cs" />
     <Compile Include="GeoLocation.cs" />
     <Compile Include="Mime\ApplicationMime.cs" />
