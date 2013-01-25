@@ -19,18 +19,21 @@ namespace Sugar.Net
         /// <returns>the given HTTP response.</returns>
         public static HttpResponse Map(WebResponse webResponse, HttpResponse response)
         {
-            response.ContentLength = webResponse.ContentLength;
-
-            foreach (string header in webResponse.Headers)
+            if (webResponse != null)
             {
-                response.Headers.Add(header, webResponse.Headers[header]);
-            }
+                response.ContentLength = webResponse.ContentLength;
 
-            var httpWebResponse = webResponse as HttpWebResponse;
-            if (httpWebResponse != null)
-            {
-                response.StatusCode = httpWebResponse.StatusCode;
-                response.StatusDescription = httpWebResponse.StatusDescription;
+                foreach (string header in webResponse.Headers)
+                {
+                    response.Headers.Add(header, webResponse.Headers[header]);
+                }
+
+                var httpWebResponse = webResponse as HttpWebResponse;
+                if (httpWebResponse != null)
+                {
+                    response.StatusCode = httpWebResponse.StatusCode;
+                    response.StatusDescription = httpWebResponse.StatusDescription;
+                }
             }
 
             return response;
