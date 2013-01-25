@@ -18,7 +18,7 @@ namespace Sugar.Command
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseCommandConsole"/> class.
         /// </summary>
-        public BaseCommandConsole()
+        protected BaseCommandConsole()
         {
             Commands = new List<ICommand>();
         }
@@ -26,35 +26,41 @@ namespace Sugar.Command
         /// <summary>
         /// Entry point for the program logic
         /// </summary>
-        protected override void Main()
+        protected override int Main()
         {
-            if (!Execute()) Default();
+            var exitCode = Execute();
+            
+            if(exitCode == (int)ExitCode.NoCommand)
+            {
+                Default();
+            }
+
+            return exitCode;
         }
 
         /// <summary>
         /// Executes the commands based upon the <see cref="BaseConsole.Arguments"/> collection.
         /// </summary>
-        /// <returns></returns>
-        public bool Execute()
+        /// <returns>An exit code</returns>
+        public int Execute()
         {
-            var fired = false;
+            var exitCode = (int)ExitCode.NoCommand;
 
             foreach (var command in Commands)
             {
                 if (!command.CanExecute(Arguments)) continue;
                 
-                command.Execute(Arguments);
-
-                fired = true;
+                exitCode = command.Execute(Arguments);
 
                 break;
             }
-            return fired;
+
+            return exitCode;
         }
 
         /// <summary>
         /// Method to be called if no command has been fired.
         /// </summary>
-        public abstract void Default();
+        public abstract int Default();
     }
 }

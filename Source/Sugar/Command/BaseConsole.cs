@@ -28,18 +28,30 @@ namespace Sugar.Command
         public Parameters Arguments { get; private set; }
 
         /// <summary>
+        /// Gets or sets the exit code enumeration.
+        /// </summary>
+        /// <value>
+        /// The exit code.
+        /// </value>
+        public static ExitCode ExitCode { get; set; }
+
+        /// <summary>
         /// Runs this console application.
         /// </summary>
-        public void Run(string[] args)
+        /// <param name="args">The args.</param>
+        /// <returns>The exit code (0 for success)</returns>
+        public int Run(string[] args)
         {
             // Get the command line arguments
             Arguments = new ParameterParser().Parse(args);
 
             // Check user input
-            Main();      
+            var exitCode = Main();      
 
             // Pause if in debug mode
             PauseIfInDebuggerAttached();
+
+            return exitCode;
         }
 
         /// <summary>
@@ -64,7 +76,8 @@ namespace Sugar.Command
         /// <summary>
         /// Entry point for the program logic
         /// </summary>
-        protected abstract void Main();
+        /// <returns>The exit code (0 for success)</returns>
+        protected abstract int Main();
 
         /// <summary>
         /// Validates the user command line parameters.

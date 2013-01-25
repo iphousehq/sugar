@@ -364,5 +364,15 @@ namespace Sugar
             Assert.AreEqual("one", results[0]);
             Assert.AreEqual("three", results[1]);
         }
+
+        [Test]
+        public void TestWildcardStringSearch()
+        {
+            var numbers = new []{"one", "two", "three", "four"};
+
+            var results = numbers.WildcardSearch(n => n, "*r*");
+
+            Assert.AreEqual(2, results.Count());
+        }
     }
 }

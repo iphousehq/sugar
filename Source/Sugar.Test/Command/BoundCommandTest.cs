@@ -13,8 +13,9 @@ namespace Sugar.Command
                 public string Input { get; set; }
             }
 
-            public override void Execute(Options options)
+            public override int Execute(Options options)
             {
+                return 0;
             }           
         }
 

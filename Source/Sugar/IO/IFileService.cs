@@ -18,6 +18,14 @@ namespace Sugar.IO
         IList<string> GetFilenames(string pattern, int levelsToSearch = 0, string directory = "");
 
         /// <summary>
+        /// Gets the directory names in the given directory.
+        /// </summary>
+        /// <param name="pattern">The pattern to search.</param>
+        /// <param name="directory">The directory to search.</param>
+        /// <returns></returns>
+        IList<string> GetDirectories(string pattern, string directory = "");
+
+        /// <summary>
         /// Opens a text file, reads all lines of the file, and then closes the file.
         /// </summary>
         /// <param name="path">The path.</param>
@@ -36,5 +44,32 @@ namespace Sugar.IO
         /// </summary>
         /// <returns></returns>
         string GetUserDataDirectory();
+
+        /// <summary>
+        /// Copies the specified source directory to the destination.
+        /// </summary>
+        /// <param name="sourceDirectory">The source directory.</param>
+        /// <param name="destinationDirectoy">The destination directoy.</param>
+        void Copy(string sourceDirectory, string destinationDirectoy);
+
+        /// <summary>
+        /// Deletes the specified directory and any files contained within it.
+        /// </summary>
+        /// <param name="directory">The directory.</param>
+        void Delete(string directory);
+
+        /// <summary>
+        /// Deletes the specified directory and any files contained within it.
+        /// </summary>
+        /// <param name="directory">The directory.</param>
+        /// <param name="recursive">if set to <c>true</c> recursively delete files and directories.</param>
+        void Delete(string directory, bool recursive);
+
+        /// <summary>
+        /// Deletes the files in the specified directory.
+        /// </summary>
+        /// <param name="directory">The directory.</param>
+        /// <param name="files">The files.</param>
+        void Delete(string directory, params string[] files);
     }
 }

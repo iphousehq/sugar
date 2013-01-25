@@ -270,6 +270,14 @@ namespace Sugar
         }
 
         [Test]
+        public void TestGetAttributes()
+        {
+            var result = SomeEnum.Bob.GetAttributesFromEnumConstant<System.ComponentModel.DescriptionAttribute>();
+
+            Assert.AreEqual(1, result.Count());
+        }
+
+        [Test]
         public void TestGetAttributeProperty()
         {
             var result = SomeEnum.Bob.GetAttributePropertyFromEnumConstant<System.ComponentModel.DescriptionAttribute, string>(x => x.Description, "default");

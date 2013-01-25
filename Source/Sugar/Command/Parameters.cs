@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Sugar.Command
@@ -12,6 +14,7 @@ namespace Sugar.Command
     {
         private static Parameters current;
         private static string filename;
+        private static string directory;
 
         /// <summary>
         /// Initializes the static members.
@@ -30,6 +33,19 @@ namespace Sugar.Command
 
             // Remove filename from parameters
             current.RemoveAt(0);
+
+            var codebase = Assembly.GetExecutingAssembly().GetName().CodeBase;
+
+            // Get assembly directory
+            if (!string.IsNullOrEmpty(codebase))
+            {
+                directory = Path.GetDirectoryName(codebase) ?? string.Empty;
+            }
+            else
+            {
+                directory = System.IO.Directory.GetCurrentDirectory();
+            }
+            directory = directory.Replace("file:\\", "");
         }
 
         /// <summary>
@@ -68,6 +84,16 @@ namespace Sugar.Command
                 InitializeStaticMembers();
 
                 return filename;
+            }
+        }
+
+        public static string Directory
+        {
+            get
+            {
+                InitializeStaticMembers();
+
+                return directory;
             }
         }
 

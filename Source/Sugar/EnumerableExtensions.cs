@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Sugar
 {
@@ -10,6 +12,19 @@ namespace Sugar
     /// </summary>
     public static class EnumerableExtensions
     {
+        /// <summary>
+        /// Performs the given action on each of the elements in the collection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <param name="each">The each.</param>
+        [DebuggerStepThrough]
+        public static void Each<T>(this IEnumerable<T> enumerable, Action<T> each)
+        {
+            foreach (var item in enumerable)
+                each(item);
+        }
+
         /// <summary>
         /// Returns a comma seprated value representation of this list of T.
         /// </summary>
@@ -186,7 +201,7 @@ namespace Sugar
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector.</param>
         /// <returns></returns>
-        private static IEnumerable<T> Distinct<T, TPrim>(this IEnumerable<T> collection, Func<T, TPrim> selector) where TPrim: IComparable
+        private static IEnumerable<T> Distinct<T, TPrim>(this IEnumerable<T> collection, Func<T, TPrim> selector) where TPrim : IComparable
         {
             var results = new List<T>();
 
@@ -292,5 +307,38 @@ namespace Sugar
 
             return results;
         }
+
+        /// <summary>
+        /// Matcheses the wildcard.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sequence">The sequence.</param>
+        /// <param name="expression">The expression.</param>
+        /// <param name="pattern">The pattern.</param>
+        /// <remarks>
+        /// From: http://stackoverflow.com/questions/3102250/linq-search-using-wildcards-character-like
+        /// </remarks>
+        public static IEnumerable<T> WildcardSearch<T>(this IEnumerable<T> sequence, Func<T, string> expression, string pattern)
+        {
+            var regEx = WildcardToRegex(pattern);
+
+            return sequence.Where(item => Regex.IsMatch(expression(item), regEx));
+        }
+
+        /// <summary>
+        /// Wildcards to regex.
+        /// </summary>
+        /// <param name="pattern">The pattern.</param>
+        /// <remarks>
+        /// From: http://stackoverflow.com/questions/3102250/linq-search-using-wildcards-character-like
+        /// </remarks>
+        public static string WildcardToRegex(string pattern)
+        {
+            return "^" + Regex
+                .Escape(pattern)
+                .Replace("\\*", ".*")
+                .Replace("\\?", ".") + "$";
+        }
+
     }
 }
