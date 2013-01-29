@@ -97,6 +97,30 @@ namespace Sugar.Net
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [use proxy].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [use proxy]; otherwise, <c>false</c>.
+        /// </value>
+        public bool UseProxy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the proxy address.
+        /// </summary>
+        /// <value>
+        /// The proxy address.
+        /// </value>
+        public string ProxyAddress { get; set; }
+
+        /// <summary>
+        /// Gets or sets the proxy port.
+        /// </summary>
+        /// <value>
+        /// The proxy port.
+        /// </value>
+        public int ProxyPort { get; set; }
+
+        /// <summary>
         /// Gets or sets the number of retries if the download fails.
         /// </summary>
         /// <value>
@@ -148,7 +172,16 @@ namespace Sugar.Net
             if (UserAgent != null) request.UserAgent = UserAgent.ToString();
             request.ContentType = ContentType;
             request.Referer = Referer;
-            request.Proxy = WebRequest.DefaultWebProxy; // force default proxy
+            
+            if (UseProxy)
+            {
+                request.Proxy = new WebProxy(ProxyAddress, ProxyPort);
+            }
+            else
+            {
+                request.Proxy = WebRequest.DefaultWebProxy; // force default proxy
+            }
+
             if (!string.IsNullOrWhiteSpace(Accept)) request.Accept = Accept;
             request.Headers.Add(Headers);
             request.CookieContainer = Cookies;
