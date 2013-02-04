@@ -99,10 +99,10 @@ namespace Sugar.Net
         public long ContentLength { get; set; }
 
         /// <summary>
-        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// Converts the bytes in the response to a string assuming it is UTF-8 encoded.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String"/> that represents this instance.
+        /// A <see cref="System.String"/> that represents the <see cref="Bytes"/>.
         /// </returns>
         public override string ToString()
         {
@@ -111,6 +111,23 @@ namespace Sugar.Net
             if (Bytes != null && Bytes.Length > 0)
             {
                 result = Encoding.UTF8.GetString(Bytes);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Converts the bytes in the response given the specified encoding
+        /// </summary>
+        /// <param name="encoding">The encoding.</param>
+        /// <returns></returns>
+        public String ToString(Encoding encoding)
+        {
+            var result = string.Empty;
+
+            if (Bytes != null && Bytes.Length > 0)
+            {
+                result = encoding.GetString(Bytes);
             }
 
             return result;
