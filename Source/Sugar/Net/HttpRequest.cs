@@ -158,6 +158,14 @@ namespace Sugar.Net
         public string Accept { get; set; }
 
         /// <summary>
+        /// Gets or sets the encoding.
+        /// </summary>
+        /// <value>
+        /// The encoding.
+        /// </value>
+        public Encoding Encoding { get; set; }
+
+        /// <summary>
         /// Converts this instance to a <see cref="WebRequest"/>
         /// </summary>
         /// <returns></returns>
