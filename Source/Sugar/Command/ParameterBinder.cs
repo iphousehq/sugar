@@ -35,6 +35,11 @@ namespace Sugar.Command
 
             foreach (var property in properties)
             {
+                //if (property.ReflectedType.IsEnum)
+                //{
+                    
+                //}
+
                 if (property.PropertyType == typeof(bool))
                 {
                     var flag = (FlagAttribute) property.GetCustomAttributes(typeof(FlagAttribute), false).FirstOrDefault();
@@ -54,9 +59,21 @@ namespace Sugar.Command
                 // Property by name
                 if (attribute.HasName && parameters.HasValue(attribute.GetName()))
                 {
-                    property.SetValue(result, parameters.AsCustomType(attribute.GetName(), property.PropertyType), null);
+                    if (property.PropertyType.IsEnum && parameters.HasValue(attribute.GetName()))
+                    {
+                        var value = parameters.AsEnum(property.PropertyType, attribute.GetName());
 
-                    set = true;
+                        property.SetValue(result, value, null);
+
+                        set = true;
+                    }
+                    else
+                    {
+                        property.SetValue(result, parameters.AsCustomType(attribute.GetName(), property.PropertyType),
+                                          null);
+
+                        set = true;
+                    }
                 }
 
                 // Property by position
@@ -66,7 +83,7 @@ namespace Sugar.Command
 
                     set = true;
                 }
-
+                
                 // Set default value
                 if (!set && !attribute.Required && !string.IsNullOrWhiteSpace(attribute.Default))
                 {

@@ -261,6 +261,27 @@ namespace Sugar.Command
         }
 
         /// <summary>
+        /// Returns a parameter as the given enum value (case-insensitive parsing).
+        /// </summary>
+        /// <param name="enumType">Type of the enum.</param>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">enumType must be an enumeration type.</exception>
+        public object AsEnum(Type enumType, string name)
+        {
+            if (!enumType.IsEnum)
+            {
+                throw new ArgumentException("enumType must be an enumeration type.");
+            }
+
+            var resultAsString = AsString(name);
+
+            var result = Enum.Parse(enumType, resultAsString, true);
+
+            return result;
+        }
+
+        /// <summary>
         /// Determines whether the specified name contains argument.
         /// </summary>
         /// <param name="names">The names.</param>
