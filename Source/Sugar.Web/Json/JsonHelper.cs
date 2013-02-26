@@ -51,7 +51,7 @@ namespace Sugar.Json
         /// <returns></returns>
         public static string ConvertJsonToString(dynamic json)
         {
-            return (string)json ?? string.Empty;
+            return json == null ? string.Empty : json.ToString();
         }
 
         /// <summary>
