@@ -241,5 +241,13 @@ namespace Sugar
 
             Assert.AreEqual("", result);
         }
+
+        [Test]
+        public void TestReverse()
+        {
+            var result = "hello world".Reverse();
+
+            Assert.AreEqual("dlrow olleh", result);
+        }
     }
 }

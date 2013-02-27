@@ -426,5 +426,16 @@ namespace Sugar
 
             return result;
         }
+
+        /// <summary>
+        /// Reverses the specified string value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <remarks>This method will NOT work correctly on Unicode strings.</remarks>
+        /// <returns></returns>
+        public static string Reverse(this string value)
+        {
+            return new string(value.ToCharArray().Reverse().ToArray());
+        }
     }
 }
