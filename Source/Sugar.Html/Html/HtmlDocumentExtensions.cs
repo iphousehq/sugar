@@ -283,6 +283,17 @@ namespace Sugar.Html
         }
 
         /// <summary>
+        /// Check if a node found using the given XPath exists.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="xpath">The xpath.</param>
+        /// <returns></returns>
+        public static bool NodeExists(this HtmlDocument document, string xpath)
+        {
+            return document.GetNodes(xpath).Count > 0;
+        }
+
+        /// <summary>
         /// Gets a HtmlDocument object of the first node matchding the given XPath.
         /// </summary>
         /// <param name="document">The document.</param>

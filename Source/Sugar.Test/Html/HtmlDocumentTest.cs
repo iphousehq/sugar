@@ -371,5 +371,21 @@ namespace Sugar.Html
 
             Assert.AreEqual("", document.GetNode("//div").GetInnerHtml());
         }
+
+        [Test]
+        public void TestNodeExistsTrue()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p>hi</p></html>");
+
+            Assert.True(document.NodeExists("//p"));
+        }
+
+        [Test]
+        public void TestNodeExistsFalse()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p>hi</p></html>");
+
+            Assert.False(document.NodeExists("//div"));
+        }
     }
 }
