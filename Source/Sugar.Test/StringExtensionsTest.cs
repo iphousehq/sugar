@@ -128,6 +128,30 @@ namespace Sugar
         }
 
         [Test]
+        public void TestTrimToWhenShorterThanMax()
+        {
+            var result = "Bonjour".TrimTo(32);
+
+            Assert.AreEqual("Bonjour", result);
+        }
+
+        [Test]
+        public void TestTrimToWhenLongerThanMax()
+        {
+            var result = "Hello World!".TrimTo(6);
+
+            Assert.AreEqual("Hello ", result);
+        }
+
+        [Test]
+        public void TestTrimToWhenLongerThanMaxWithOverrunIndicator()
+        {
+            var result = "Hello World!".TrimTo(6, "...");
+
+            Assert.AreEqual("Hel...", result);
+        }
+
+        [Test]
         public void TestSplitString()
         {
             var result = "one two".Split(" ");
