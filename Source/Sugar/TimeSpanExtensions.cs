@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sugar
 {
@@ -7,6 +9,23 @@ namespace Sugar
     /// </summary>
     public static class TimeSpanExtensions
     {
+        private static string FormatSection(int span, string label)
+        {
+            var section = string.Empty;
+
+            if (span > 0)
+            {
+                if (span > 1)
+                {
+                    label += "s";
+                }
+
+                section = string.Format("{0} {1}", span, label);
+            }
+
+            return section;
+        }
+
         /// <summary>
         /// Converts <see cref="TimeSpan"/> objects to a string.
         /// </summary>
@@ -14,19 +33,16 @@ namespace Sugar
         /// <returns></returns>
         public static string ToReadableString(this TimeSpan timespan)
         {
-            Func<int, string, string> section =
-                (span, label) => span > 0
-                                     ? string.Format("{0} {1}, ", span, span == 1 ? label : label + "s")
-                                     : string.Empty;
+            var formattedSections = new List<string>
+                                        {
+                                            FormatSection(timespan.Days, "day"),
+                                            FormatSection(timespan.Hours, "hour"),
+                                            FormatSection(timespan.Minutes, "minute"),
+                                            FormatSection(timespan.Seconds, "second")
+                                        }
+                                        .Where(s => !string.IsNullOrEmpty(s));
 
-
-            var formatted = string.Format("{0}{1}{2}{3}",
-                                          section(timespan.Days, "day"),
-                                          section(timespan.Hours, "hour"),
-                                          section(timespan.Minutes, "minute"),
-                                          section(timespan.Seconds, "second"));
-
-            if (formatted.EndsWith(", ")) formatted = formatted.Substring(0, formatted.Length - 2);
+            var formatted = string.Join(", ", formattedSections);
 
             if (string.IsNullOrEmpty(formatted) && timespan.Milliseconds > 0) formatted = "Less than a second";
 
