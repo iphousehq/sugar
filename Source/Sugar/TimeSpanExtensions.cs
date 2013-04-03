@@ -44,7 +44,7 @@ namespace Sugar
 
             var formatted = string.Join(", ", formattedSections);
 
-            if (string.IsNullOrEmpty(formatted) && timespan.Milliseconds > 0) formatted = "Less than a second";
+            if (string.IsNullOrEmpty(formatted)) formatted = "Less than a second";
 
             return formatted;
         }

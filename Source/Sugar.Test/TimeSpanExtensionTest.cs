@@ -83,7 +83,7 @@ namespace Sugar
         {
             var result = TimeSpan.FromSeconds(0).ToReadableString();
 
-            Assert.AreEqual("", result);
+            Assert.AreEqual("Less than a second", result);
         }
 
         [Test]
