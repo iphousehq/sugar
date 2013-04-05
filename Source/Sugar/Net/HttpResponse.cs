@@ -106,14 +106,7 @@ namespace Sugar.Net
         /// </returns>
         public override string ToString()
         {
-            var result = string.Empty;
-
-            if (Bytes != null && Bytes.Length > 0)
-            {
-                result = Encoding.UTF8.GetString(Bytes);
-            }
-
-            return result;
+            return ToString(Encoding.UTF8);
         }
 
         /// <summary>

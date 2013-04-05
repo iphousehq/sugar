@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using System.Text;
+using HtmlAgilityPack;
 
 namespace Sugar.Net
 {
@@ -13,9 +14,18 @@ namespace Sugar.Net
         /// <returns></returns>
         public static HtmlDocument ToHtml(this HttpResponse response)
         {
+            return response.ToHtml(Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// Returns the HTML representation of the response.
+        /// </summary>
+        /// <returns></returns>
+        public static HtmlDocument ToHtml(this HttpResponse response, Encoding encoding)
+        {
             var document = new HtmlDocument();
 
-            var decoded = response.ToString();
+            var decoded = response.ToString(encoding);
 
             if (!string.IsNullOrWhiteSpace(decoded))
             {

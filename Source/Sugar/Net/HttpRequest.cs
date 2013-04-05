@@ -21,7 +21,7 @@ namespace Sugar.Net
             UserAgent = UserAgent.Firefox();
             Headers = new NameValueCollection();
             Cookies = new CookieContainer();
-            Encoding = Encoding.UTF8;
+            Encoding = null;
         }
 
         /// <summary>
