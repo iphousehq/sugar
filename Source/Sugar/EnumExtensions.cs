@@ -210,5 +210,62 @@ namespace Sugar
                 }
             }
         }
+
+        /// <summary>
+        /// Parses the CSV list to a list of Enum values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="csv">The CSV.</param>
+        /// <returns></returns>
+        public static IList<T> ParseCsvToEnums<T>(this string csv) where T : struct
+        {
+            var results = new List<T>();
+
+            var allValues = GetAllEnumValuesRemovalStatuses<T>();
+
+            // Check input
+            if (string.IsNullOrWhiteSpace(csv))
+            {
+                results = allValues;
+            }
+            else
+            {
+                var candidates = csv.Split(',');
+
+                foreach (var candidate in candidates)
+                {
+                    T status;
+
+                    if (Enum.TryParse(candidate, true, out status))
+                    {
+                        // Check status is valid
+                        if (!allValues.Contains(status)) continue;
+
+                        // Check for duplicates
+                        if (results.Contains(status)) continue;
+
+                        results.Add(status);
+                    }
+                }
+
+                // Return everything if nothing selected
+                if (results.Count == 0)
+                {
+                    results.AddRange(allValues);
+                }
+            }            
+            return results;
+        }
+     
+        /// <summary>
+        /// Gets all the removal statuses
+        /// </summary>
+        /// <returns></returns>
+        private static List<T> GetAllEnumValuesRemovalStatuses<T>()
+        {
+            var values = Enum.GetValues(typeof(T));
+
+            return values.Cast<T>().ToList();
+        }
     }
 }

@@ -308,5 +308,90 @@ namespace Sugar
 
             Assert.AreEqual("Thursday", result);
         }
+
+        [Test]
+        public void TestParseRemovalStatuses()
+        {
+            var results = "Bob".ParseCsvToEnums<SomeEnum>();
+
+            Assert.AreEqual(1, results.Count);
+            Assert.AreEqual(SomeEnum.Bob, results[0]);
+        }
+
+        [Test]
+        public void TestParseMultipleRemovalStatuses()
+        {
+            var results = "Bob,Thursday".ParseCsvToEnums<SomeEnum>();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual(SomeEnum.Bob, results[0]);
+            Assert.AreEqual(SomeEnum.Thursday, results[1]);
+        }
+
+        [Test]
+        public void TestParseDuplicateRemovalStatuses()
+        {
+            var results = "Bob,Thursday,Bob".ParseCsvToEnums<SomeEnum>();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual(SomeEnum.Bob, results[0]);
+            Assert.AreEqual(SomeEnum.Thursday, results[1]);
+        }
+
+        [Test]
+        public void TestParseInvalidRemovalStatuses()
+        {
+            var results = "Ducky,Thursday,Bob".ParseCsvToEnums<SomeEnum>();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual(SomeEnum.Thursday, results[0]);
+            Assert.AreEqual(SomeEnum.Bob, results[1]);
+        }
+
+        [Test]
+        public void TestParseNumericRemovalStatuses()
+        {
+            var results = "40,Thursday".ParseCsvToEnums<SomeEnum>();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual(SomeEnum.Bob, results[0]);
+            Assert.AreEqual(SomeEnum.Thursday, results[1]);
+        }
+
+        [Test]
+        public void TestParseNumericRemovalStatusesWhenOutOfRange()
+        {
+            var results = "400,Thursday".ParseCsvToEnums<SomeEnum>();
+
+            Assert.AreEqual(1, results.Count);
+            Assert.AreEqual(SomeEnum.Thursday, results[0]);
+        }
+
+        [Test]
+        public void TestParseRemovalStatusesWhenHasEmptyValues()
+        {
+            var results = "Thursday,,Thursday".ParseCsvToEnums<SomeEnum>();
+
+            Assert.AreEqual(1, results.Count);
+            Assert.AreEqual(SomeEnum.Thursday, results[0]);
+        }
+
+        [Test]
+        public void TestParseRemovalStatusesWhenHasAllEmptyValues()
+        {
+            var results = ",,".ParseCsvToEnums<SomeEnum>();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual(SomeEnum.Bob, results[0]);
+        }
+
+        [Test]
+        public void TestParseRemovalStatusesWhenHasAllEmptyString()
+        {
+            var results = "".ParseCsvToEnums<SomeEnum>();
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual(SomeEnum.Bob, results[0]);
+        }
     }
 }
