@@ -79,6 +79,14 @@ namespace Sugar
         }
 
         [Test]
+        public void TestToReadableStringWithDaysAndHourIgnoreHour()
+        {
+            var result = TimeSpan.FromDays(5).Add(TimeSpan.FromHours(5)).ToReadableString(TimeSpanPart.Day);
+
+            Assert.AreEqual("5 days", result);
+        }
+
+        [Test]
         public void TestToReadableStringNoTime()
         {
             var result = TimeSpan.FromSeconds(0).ToReadableString();
