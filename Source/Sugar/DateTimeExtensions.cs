@@ -365,5 +365,15 @@ namespace Sugar
 
             return new DateTime(dt.Year, dt.Month, numberOfDays, 23, 59, 59);
         }
+
+        /// <summary>
+        /// To the string with ordinal.
+        /// </summary>
+        /// <param name="dt">The dt.</param>
+        /// <returns></returns>
+        public static string ToStringWithOrdinal(this DateTime dt)
+        {
+            return string.Format("{0} {1}", dt.Day.AddOrdinal(), dt.ToString("MMMM yyyy"));
+        }
     }
 }

@@ -548,5 +548,15 @@ namespace Sugar
 
             Assert.AreEqual("in 5 days", result);
         }
+
+        [Test]
+        public void TestToStringWithOrdinalTest()
+        {
+            var date = new DateTime(2001, 1, 1);
+
+            var result = date.ToStringWithOrdinal();
+
+            Assert.AreEqual("1st January 2001", result);
+        }
     }
 }
