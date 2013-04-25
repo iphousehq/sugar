@@ -104,7 +104,7 @@ namespace Sugar.Html
         }
 
         /// <summary>
-        /// Gets the attribute.
+        /// Gets the attribute from the first element matching the given xpath.
         /// </summary>
         /// <param name="document">The document.</param>
         /// <param name="xpath">The xpath.</param>
@@ -125,7 +125,26 @@ namespace Sugar.Html
         }
 
         /// <summary>
-        /// Gets the attribute list.
+        /// Gets the attributes from the first element matching the given xpath.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="xpath">The xpath.</param>
+        /// <param name="attributeNames">The attribute names.</param>
+        /// <returns></returns>
+        public static IList<string> GetAttributes(this HtmlDocument document, string xpath, params string[] attributeNames)
+        {
+            var results = new List<string>();
+
+            foreach (var name in attributeNames)
+            {
+                results.Add(document.GetAttribute(xpath, name));
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Gets a list of the attributes from the elements matching the given xpath.
         /// </summary>
         /// <param name="document">The document.</param>
         /// <param name="xpath">The xpath.</param>
@@ -148,6 +167,25 @@ namespace Sugar.Html
                         results.Add(attribute);
                     }
                 }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Gets a list of the attributes from the elements matching the given xpath.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="xpath">The xpath.</param>
+        /// <param name="attributeNames">The attribute names.</param>
+        /// <returns></returns>
+        public static IList<string> GetAttributesList(this HtmlDocument document, string xpath, params string[] attributeNames)
+        {
+            var results = new List<string>();
+
+            foreach (var name in attributeNames)
+            {
+                results.AddRange(document.GetAttributeList(xpath, name));
             }
 
             return results;
@@ -336,6 +374,24 @@ namespace Sugar.Html
 
                     results.Add(result);
                 }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Gets HtmlDocument objects of the nodes matchding the given XPaths.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="xpaths">The xpaths.</param>
+        /// <returns></returns>
+        public static IList<HtmlDocument> GetNodes(this HtmlDocument document, params string[] xpaths)
+        {
+            var results = new List<HtmlDocument>();
+
+            foreach (var xpath in xpaths)
+            {
+                results.AddRange(document.GetNodes(xpath));
             }
 
             return results;

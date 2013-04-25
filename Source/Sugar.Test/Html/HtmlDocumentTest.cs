@@ -315,6 +315,18 @@ namespace Sugar.Html
         }
 
         [Test]
+        public void TestGetAttributes()
+        {
+            var document = Html.Load("<html><p><b href='value' title='this is the title'>hello</b></p><span>world</span><p>hi</p></html>");
+
+            var results = document.GetAttributes("//b", "href", "title");
+
+            Assert.AreEqual(2, results.Count);
+            Assert.AreEqual("value", results[0]);
+            Assert.AreEqual("this is the title", results[1]);
+        }
+
+        [Test]
         public void TestGetAttributeList()
         {
             var document = Html.Load("<html><p><b href='value'>hello</b></p><span>world</span><p><b href='2'>hi</b></p></html>");
@@ -324,12 +336,39 @@ namespace Sugar.Html
         }
 
         [Test]
+        public void TestGetAttributesList()
+        {
+            var document = Html.Load("<html><p><b href='value' title='three'>hello</b></p><span>world</span><p><b href='2' title='four'>hi</b></p></html>");
+
+            var results = document.GetAttributesList("//b", "href", "title");
+
+            Assert.AreEqual(4, results.Count);
+            Assert.AreEqual("value", results[0]);
+            Assert.AreEqual("2", results[1]);
+            Assert.AreEqual("three", results[2]);
+            Assert.AreEqual("four", results[3]);
+        }
+
+        [Test]
         public void TestGetNodes()
         {
             var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p>hi</p></html>");
 
             Assert.AreEqual("<p><b>hello</b></p>", document.GetNodes("//p")[0].GetInnerHtml());
             Assert.AreEqual("hi", document.GetNodes("//p")[1].GetInnerText());
+        }
+
+        [Test]
+        public void TestGetNodesWithMultipleXpath()
+        {
+            var document = Html.Load("<html><p><b>hello</b></p><span>world</span><p>hi</p></html>");
+
+            var nodes = document.GetNodes("//p", "//span");
+
+            Assert.AreEqual(3, nodes.Count);
+            Assert.AreEqual("hello", nodes[0].GetInnerText());
+            Assert.AreEqual("hi", nodes[1].GetInnerText());
+            Assert.AreEqual("world", nodes[2].GetInnerText());
         }
 
         [Test]
