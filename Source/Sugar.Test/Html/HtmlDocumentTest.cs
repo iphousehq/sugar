@@ -327,6 +327,17 @@ namespace Sugar.Html
         }
 
         [Test]
+        public void TestGetAttributesWithMissingAttribute()
+        {
+            var document = Html.Load("<html><p><b href='value' title='this is the title'>hello</b></p><span>world</span><p>hi</p></html>");
+
+            var results = document.GetAttributes("//b", "src", "title");
+
+            Assert.AreEqual(1, results.Count);
+            Assert.AreEqual("this is the title", results[0]);
+        }
+
+        [Test]
         public void TestGetAttributeList()
         {
             var document = Html.Load("<html><p><b href='value'>hello</b></p><span>world</span><p><b href='2'>hi</b></p></html>");

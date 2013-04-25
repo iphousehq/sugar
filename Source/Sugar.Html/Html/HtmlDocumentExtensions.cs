@@ -137,7 +137,9 @@ namespace Sugar.Html
 
             foreach (var name in attributeNames)
             {
-                results.Add(document.GetAttribute(xpath, name));
+                var result = document.GetAttribute(xpath, name);
+
+                if (!string.IsNullOrWhiteSpace(result)) results.Add(result);
             }
 
             return results;
