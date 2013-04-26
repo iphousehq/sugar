@@ -10,7 +10,7 @@ namespace Sugar
         private const string ImageLocation = "../../Samples/grass.jpg";
 
         [Test]
-        public void TestImageResize()
+        public void TestResizeImage()
         {
             using (var image = new Bitmap(ImageLocation))
             {
@@ -29,6 +29,33 @@ namespace Sugar
             using (var image = new Bitmap(ImageLocation))
             {
                 var resizedImage = image.ResizeImage(90);
+
+                Assert.AreEqual(90, resizedImage.Width);
+
+                resizedImage.Dispose();
+            }
+        }
+
+        [Test]
+        public void TestCropImage()
+        {
+            using (var image = new Bitmap(ImageLocation))
+            {
+                var resizedImage = image.CropImage(320, 200);
+
+                Assert.AreEqual(320, resizedImage.Width);
+                Assert.AreEqual(200, resizedImage.Height);
+
+                resizedImage.Dispose();
+            }
+        }
+
+        [Test]
+        public void TestCropImageToMaximumDimension()
+        {
+            using (var image = new Bitmap(ImageLocation))
+            {
+                var resizedImage = image.CropImage(90);
 
                 Assert.AreEqual(90, resizedImage.Width);
 
