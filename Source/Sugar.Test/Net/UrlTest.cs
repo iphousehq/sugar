@@ -174,30 +174,6 @@ namespace Sugar.Net
         }
 
         [Test]
-        public void TestSubDomain()
-        {
-            var url = new Url("http://www.watchdogapp.com/folder/second/page.html");
-
-            Assert.AreEqual("www", url.SubDomain);
-        }
-
-        [Test]
-        public void TestSubDomainWhenNoSubDomain()
-        {
-            var url = new Url("http://google.com/");
-
-            Assert.AreEqual("", url.SubDomain);
-        }
-
-        [Test]
-        public void TestSubDomainWhenTwoSubDomains()
-        {
-            var url = new Url("http://www.news.bbc.co.uk/");
-
-            Assert.AreEqual("www.news", url.SubDomain);
-        }
-
-        [Test]
         public void TestDomainSansSubDomains()
         {
             var url = new Url("http://www.news.bbc.co.uk/");
@@ -214,10 +190,11 @@ namespace Sugar.Net
         }
 
         [Test]
-        public void TestDomainHasSubDomain()
+        public void TestLongDomainSansSubDomains()
         {
-            Assert.IsFalse(new Url("http://stackoverflow.com/").HasSubDomain);
-            Assert.IsTrue(new Url("http://www.stackoverflow.com/").HasSubDomain);
+            var url = new Url("http://www.sales.stores.ebay.co.uk/");
+
+            Assert.AreEqual("ebay.co.uk", url.DomainSansSubDomain);
         }
     }
 }
