@@ -196,5 +196,13 @@ namespace Sugar.Net
 
             Assert.AreEqual("ebay.co.uk", url.DomainSansSubDomain);
         }
+
+        [Test]
+        public void TestNoDomainSansSubDomains()
+        {
+            var url = new Url("http:///search?id=50");
+
+            Assert.AreEqual(string.Empty, url.DomainSansSubDomain);
+        }
     }
 }
