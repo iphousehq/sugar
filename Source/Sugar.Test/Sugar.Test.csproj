@@ -91,6 +91,7 @@
     <Compile Include="Net\HttpRequestTest.cs" />
     <Compile Include="Net\HttpResponseTest.cs" />
     <Compile Include="Net\UrlTest.cs" />
+    <Compile Include="Net\UrlWithSubdomainTest.cs" />
     <Compile Include="Net\UserAgentTest.cs" />
     <Compile Include="ObjectExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

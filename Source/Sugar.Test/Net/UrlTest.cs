@@ -174,35 +174,43 @@ namespace Sugar.Net
         }
 
         [Test]
-        public void TestDomainSansSubDomains()
+        public void TestToStringWithQueryAndFragmentNoQueryNoFragment()
         {
-            var url = new Url("http://www.news.bbc.co.uk/");
+            var url = new Url("http://www.google.com");
 
-            Assert.AreEqual("bbc.co.uk", url.DomainSansSubDomain);
+            Assert.AreEqual("http://www.google.com/", url.ToStringWithQueryAndFragment());
         }
 
         [Test]
-        public void TestSingleDomainSansSubDomains()
+        public void TestToStringWithQueryAndFragmentNoQueryHasFragment()
         {
-            var url = new Url("http://stackoverflow.com/");
+            var url = new Url("http://www.google.com") { Fragment = "5" };
 
-            Assert.AreEqual("stackoverflow.com", url.DomainSansSubDomain);
+            Assert.AreEqual("http://www.google.com/#5", url.ToStringWithQueryAndFragment());
         }
 
         [Test]
-        public void TestLongDomainSansSubDomains()
+        public void TestToStringWithQueryAndFragmentHasQueryNoFragment()
         {
-            var url = new Url("http://www.sales.stores.ebay.co.uk/");
+            var url = new Url("http://www.google.com").AddToQuery("page", 5);
 
-            Assert.AreEqual("ebay.co.uk", url.DomainSansSubDomain);
+            Assert.AreEqual("http://www.google.com/?page=5", url.ToStringWithQueryAndFragment());
         }
 
         [Test]
-        public void TestNoDomainSansSubDomains()
+        public void TestToStringWithQueryAndFragmentHasQueryAndFragment()
         {
-            var url = new Url("http:///search?id=50");
+            var url = new Url("http://www.google.com") { Fragment = "5" }.AddToQuery("page", 5);
 
-            Assert.AreEqual(string.Empty, url.DomainSansSubDomain);
+            Assert.AreEqual("http://www.google.com/?page=5#5", url.ToStringWithQueryAndFragment());
+        }
+
+        [Test]
+        public void TestToStringWithQueryAndFragmentRemoveQuery()
+        {
+            var url = new Url("http://www.google.com/?page=5").RemoveFromQuery("page");
+
+            Assert.AreEqual("http://www.google.com/", url.ToStringWithQueryAndFragment());
         }
     }
 }
