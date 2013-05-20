@@ -30,6 +30,14 @@ namespace Sugar.Net
         }
 
         [Test]
+        public void TestMixedCaseDomainSansSubDomains()
+        {
+            var url = new UrlWithSubdomain("http://WWW.EBAY.CO.UK/");
+
+            Assert.AreEqual("ebay.co.uk", url.DomainSansSubDomain);
+        }
+
+        [Test]
         public void TestNoDomainSansSubDomains()
         {
             var url = new UrlWithSubdomain("http:///search?id=50");
