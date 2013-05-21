@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -10,8 +11,9 @@ namespace Sugar.Net
     /// </summary>
     public class Url
     {
-        protected readonly Uri Uri;
-        protected string domain;
+        private readonly Uri uri;
+        private string domain;
+        private string subdomain;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Url"/> class.
@@ -21,12 +23,12 @@ namespace Sugar.Net
         {
             Query = new NameValueCollection();
 
-            Uri.TryCreate(url, UriKind.Absolute, out Uri);
+            Uri.TryCreate(url, UriKind.Absolute, out uri);
 
-            if (Uri != null)
+            if (uri != null)
             {
-                Query = HttpUtility.ParseQueryString(Uri.Query);
-                Fragment = Uri.Fragment;
+                Query = HttpUtility.ParseQueryString(uri.Query);
+                Fragment = uri.Fragment;
             }
         }
 
@@ -38,7 +40,7 @@ namespace Sugar.Net
         {
             get
             {
-                return Uri != null;
+                return uri != null;
             }
         }
 
@@ -93,13 +95,13 @@ namespace Sugar.Net
                 {
                     domain = string.Empty;
 
-                    if (Uri != null)
+                    if (uri != null)
                     {
                         try
                         {
-                            var host = Uri.Host;
+                            var host = uri.Host;
 
-                            if (!Uri.IsDefaultPort) host += ":" + Uri.Port;
+                            if (!uri.IsDefaultPort) host += ":" + uri.Port;
 
                             domain = host.ToLower();
                         }
@@ -122,9 +124,9 @@ namespace Sugar.Net
         {
             get
             {
-                if (Uri == null) return string.Empty;
+                if (uri == null) return string.Empty;
 
-                return Uri.Scheme + "://" + Domain;
+                return uri.Scheme + "://" + Domain;
             }
         }
 
@@ -145,7 +147,7 @@ namespace Sugar.Net
         /// </returns>
         public override string ToString()
         {
-            return Uri == null ? string.Empty : Uri.OriginalString.Trim();
+            return uri == null ? string.Empty : uri.OriginalString.Trim();
         }
 
         /// <summary>
@@ -154,7 +156,7 @@ namespace Sugar.Net
         /// <returns></returns>
         public string ToStringWithQueryAndFragment()
         {
-            var builder = new UriBuilder(Uri)
+            var builder = new UriBuilder(uri)
                               {
                                   Query = Query.ToString(),
                                   Fragment = Fragment
@@ -171,9 +173,9 @@ namespace Sugar.Net
         {
             get
             {
-                if (Uri == null) return string.Empty;
+                if (uri == null) return string.Empty;
 
-                var page = Uri.AbsolutePath;
+                var page = uri.AbsolutePath;
 
                 if (page == "/") page = "Site Root";
 
@@ -189,9 +191,9 @@ namespace Sugar.Net
         {
             get
             {
-                if (Uri == null) return string.Empty;
+                if (uri == null) return string.Empty;
 
-                var page = Uri.Segments[Uri.Segments.Length - 1];
+                var page = uri.Segments[uri.Segments.Length - 1];
 
                 if (page == "/") page = "Site Root";
 
@@ -205,7 +207,7 @@ namespace Sugar.Net
         /// <value>The full page with query string.</value>
         public string FullPageWithQueryString
         {
-            get { return string.Format("{0}{1}", FullPage, Uri.Query); }
+            get { return string.Format("{0}{1}", FullPage, uri.Query); }
         }
 
         /// <summary>
@@ -216,11 +218,11 @@ namespace Sugar.Net
         {
             get
             {
-                if (Uri == null) return string.Empty;
+                if (uri == null) return string.Empty;
 
                 var path = "/";
 
-                foreach (var segment in Uri.Segments)
+                foreach (var segment in uri.Segments)
                 {
                     if (segment == "/")
                     {
@@ -250,6 +252,72 @@ namespace Sugar.Net
         }
 
         /// <summary>
+        /// Gets the sub domain.
+        /// </summary>
+        /// <value>The sub domain.</value>
+        public string SubDomain
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(subdomain))
+                {
+                    subdomain = string.Empty;
+
+                    if (!string.IsNullOrEmpty(DomainSansWww))
+                    {
+                        var matchedTlds = CommonTlds.Instance.Tlds.Where(x => DomainSansWww.EndsWith(x, StringComparison.OrdinalIgnoreCase)).ToList();
+
+                        var matchedTld = string.Empty;
+
+                        if (matchedTlds.Count > 0)
+                        {
+                            foreach (var tld in matchedTlds)
+                            {
+                                matchedTld = matchedTld.Length > tld.Length ? matchedTld : tld;
+                            }
+                        }
+
+                        var domainWithoutTld = DomainSansWww
+                            .Replace(matchedTld, string.Empty)
+                            .Trim('.');
+
+                        var parts = domainWithoutTld.Split('.');
+
+                        subdomain = parts.Take(parts.Length - 1).Join(".");
+                    }
+                }
+
+                return subdomain;
+            }
+        }
+
+        /// <summary>
+        /// Gets the domain sans sub domain.
+        /// </summary>
+        /// <value>The domain sans sub domain.</value>
+        public string DomainSansSubDomain
+        {
+            get
+            {
+                return HasSubDomain ? DomainSansWww.Replace(SubDomain + ".", string.Empty) : DomainSansWww;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance has sub domain.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance has sub domain; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasSubDomain
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(SubDomain);
+            }
+        }
+
+        /// <summary>
         /// Gets the TLD.
         /// </summary>
         /// <value>
@@ -261,14 +329,13 @@ namespace Sugar.Net
             {
                 var tld = "";
 
-                if (Uri.Host.Length > 0)
+                if (uri.Host.Length > 0)
                 {
-                    Match match = Regex.Match(Uri.AbsoluteUri, @"^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$",
-                       RegexOptions.IgnoreCase);
+                    var match = Regex.Match(uri.AbsoluteUri, @"^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$", RegexOptions.IgnoreCase);
 
                     if (match.Success)
                     {
-                        string host = match.Groups[3].Value;
+                        var host = match.Groups[3].Value;
 
                         var hosts = host.Split('.');
 

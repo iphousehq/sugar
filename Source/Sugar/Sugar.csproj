@@ -96,6 +96,7 @@
     <Compile Include="Mime\TextMimeType.cs" />
     <Compile Include="Mime\VideoMime.cs" />
     <Compile Include="Mime\VideoMimeType.cs" />
+    <Compile Include="Net\CommonTlds.cs" />
     <Compile Include="Net\DomainName.cs" />
     <Compile Include="Net\HttpQuery.cs" />
     <Compile Include="Net\HttpRequest.cs" />
@@ -104,7 +105,6 @@
     <Compile Include="Net\HttpVerb.cs" />
     <Compile Include="Net\IHttpService.cs" />
     <Compile Include="Net\Url.cs" />
-    <Compile Include="Net\UrlWithSubdomain.cs" />
     <Compile Include="Net\UserAgent.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

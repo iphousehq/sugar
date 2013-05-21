@@ -212,5 +212,45 @@ namespace Sugar.Net
 
             Assert.AreEqual("http://www.google.com/", url.ToStringWithQueryAndFragment());
         }
+
+        [Test]
+        public void TestDomainSansSubDomains()
+        {
+            var url = new Url("http://www.news.bbc.co.uk/");
+
+            Assert.AreEqual("bbc.co.uk", url.DomainSansSubDomain);
+        }
+
+        [Test]
+        public void TestSingleDomainSansSubDomains()
+        {
+            var url = new Url("http://stackoverflow.com/");
+
+            Assert.AreEqual("stackoverflow.com", url.DomainSansSubDomain);
+        }
+
+        [Test]
+        public void TestLongDomainSansSubDomains()
+        {
+            var url = new Url("http://www.sales.stores.ebay.co.uk/");
+
+            Assert.AreEqual("ebay.co.uk", url.DomainSansSubDomain);
+        }
+
+        [Test]
+        public void TestMixedCaseDomainSansSubDomains()
+        {
+            var url = new Url("http://WWW.EBAY.CO.UK/");
+
+            Assert.AreEqual("ebay.co.uk", url.DomainSansSubDomain);
+        }
+
+        [Test]
+        public void TestNoDomainSansSubDomains()
+        {
+            var url = new Url("http:///search?id=50");
+
+            Assert.AreEqual(string.Empty, url.DomainSansSubDomain);
+        }
     }
 }
