@@ -28,10 +28,11 @@ namespace Sugar.Net
             if (uri != null)
             {
                 Query = HttpUtility.ParseQueryString(uri.Query);
+
                 Fragment = uri.Fragment;
             }
         }
-
+      
         /// <summary>
         /// Gets a value indicating whether this instance is valid.
         /// </summary>
@@ -69,6 +70,7 @@ namespace Sugar.Net
         public Url AddToQuery(string key, object value)
         {
             Query.Add(key, value.ToString());
+
             return this;
         }
 
@@ -80,6 +82,7 @@ namespace Sugar.Net
         public Url RemoveFromQuery(string key)
         {
             Query.Remove(key);
+
             return this;
         }
 
@@ -91,7 +94,7 @@ namespace Sugar.Net
         {
             get
             {
-                if (string.IsNullOrEmpty(domain))
+                if (domain == null)
                 {
                     domain = string.Empty;
 
@@ -259,31 +262,22 @@ namespace Sugar.Net
         {
             get
             {
-                if (string.IsNullOrEmpty(subdomain))
+                if (subdomain == null)
                 {
                     subdomain = string.Empty;
 
-                    if (!string.IsNullOrEmpty(DomainSansWww))
+                    if (!string.IsNullOrEmpty(Domain))
                     {
-                        var matchedTlds = CommonTlds.Instance.Tlds.Where(x => DomainSansWww.EndsWith(x, StringComparison.OrdinalIgnoreCase)).ToList();
+                        var tld = CommonTlds.Instance.GetTld(Domain);
 
-                        var matchedTld = string.Empty;
-
-                        if (matchedTlds.Count > 0)
-                        {
-                            foreach (var tld in matchedTlds)
-                            {
-                                matchedTld = matchedTld.Length > tld.Length ? matchedTld : tld;
-                            }
-                        }
-
-                        var domainWithoutTld = DomainSansWww
-                            .Replace(matchedTld, string.Empty)
-                            .Trim('.');
+                        var domainWithoutTld = Domain.Replace(tld, string.Empty).Trim('.');
 
                         var parts = domainWithoutTld.Split('.');
 
-                        subdomain = parts.Take(parts.Length - 1).Join(".");
+                        if (parts.Length > 1)
+                        {
+                            subdomain = parts.Take(parts.Length - 1).Join(".");
+                        }
                     }
                 }
 
@@ -299,7 +293,7 @@ namespace Sugar.Net
         {
             get
             {
-                return HasSubDomain ? DomainSansWww.Replace(SubDomain + ".", string.Empty) : DomainSansWww;
+                return HasSubDomain ? Domain.Replace(SubDomain + ".", string.Empty) : Domain;
             }
         }
 
@@ -327,20 +321,11 @@ namespace Sugar.Net
         {
             get
             {
-                var tld = "";
+                var tld = string.Empty;
 
-                if (uri.Host.Length > 0)
+                if (Domain != null)
                 {
-                    var match = Regex.Match(uri.AbsoluteUri, @"^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$", RegexOptions.IgnoreCase);
-
-                    if (match.Success)
-                    {
-                        var host = match.Groups[3].Value;
-
-                        var hosts = host.Split('.');
-
-                        tld = "." + hosts[hosts.Length - 1];
-                    }
+                    return CommonTlds.Instance.GetTld(Domain);
                 }
 
                 return tld;

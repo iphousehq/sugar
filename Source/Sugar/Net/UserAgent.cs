@@ -30,7 +30,7 @@ namespace Sugar.Net
                     return new UserAgent("Mozilla/4.0 (compatible; MSIE 7.0;Windows NT 6.0)");
 
                 case 8:
-                    return new UserAgent("Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
+                    return new UserAgent("Mozilla/4.0 (compatible; MSIEg 8.0; Windows NT 6.1)");
 
                 case 9:
                     return new UserAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1)");

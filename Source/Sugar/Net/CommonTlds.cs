@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sugar.Net
 {
@@ -8,25 +10,6 @@ namespace Sugar.Net
     public class CommonTlds
     {
         private static CommonTlds instance;
-
-        /// <summary>
-        /// Gets the instance.
-        /// </summary>
-        /// <value>
-        /// The instance.
-        /// </value>
-        public static CommonTlds Instance
-        {
-            get { return instance ?? (instance = new CommonTlds()); }
-        }
-
-        /// <summary>
-        /// Gets or sets the TLDS.
-        /// </summary>
-        /// <value>
-        /// The TLDS.
-        /// </value>
-        public HashSet<string> Tlds { get; set; }
 
         #region Constructor
 
@@ -322,7 +305,7 @@ namespace Sugar.Net
                            "6.bg",
                            "7.bg",
                            "8.bg",
-                           "9.bg	 	 	",
+                           "9.bg",
                            "bh",
                            "com.bh",
                            "edu.bh",
@@ -659,7 +642,7 @@ namespace Sugar.Net
                            "aip.ee",
                            "org.ee",
                            "fie.ee",
-                           "eg  ",
+                           "eg",
                            "com.eg",
                            "edu.eg",
                            "eun.eg",
@@ -5091,5 +5074,50 @@ namespace Sugar.Net
         }
 
         #endregion
+
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
+        public static CommonTlds Instance
+        {
+            get { return instance ?? (instance = new CommonTlds()); }
+        }
+
+        /// <summary>
+        /// Gets or sets the TLDS.
+        /// </summary>
+        /// <value>
+        /// The TLDS.
+        /// </value>
+        public HashSet<string> Tlds { get; set; }
+
+        /// <summary>
+        /// Gets the TLD from the given domain.
+        /// </summary>
+        /// <param name="domain">The domain.</param>
+        /// <returns></returns>
+        public string GetTld(string domain)
+        {
+            string result;
+
+            // Get potential matches
+            var matches = Tlds.Where(x => domain.EndsWith(x, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            if (matches.Count > 0)
+            {
+                // Get Longest match
+                result = matches.OrderByDescending(m => m.Length).First();
+            }
+            else
+            {
+                // Have a guess
+                result = domain.SubstringAfterLastChar(".");
+            }
+
+            return result;
+        }
     }
 }
