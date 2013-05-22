@@ -121,7 +121,6 @@
     <Compile Include="TextTable.cs" />
     <Compile Include="TimeSpanExtensions.cs" />
     <Compile Include="TypeExtensions.cs" />
-    <Compile Include="ToWordsExtension.cs" />
     <Compile Include="Xml\XPathDocumentExtensions.cs" />
   </ItemGroup>
   <ItemGroup />
