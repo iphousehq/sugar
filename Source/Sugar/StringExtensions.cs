@@ -437,5 +437,89 @@ namespace Sugar
         {
             return new string(value.ToCharArray().Reverse().ToArray());
         }
+
+        /// <summary>
+        /// Split a string into words.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="ignoreQuotes">if set to <c>true</c> [ignore quotes].</param>
+        /// <returns></returns>
+        public static IList<string> ToWords(this string value, bool ignoreQuotes = false)
+        {
+            var results = new List<string>();
+
+            var insideQuote = false;
+
+            var currentWord = string.Empty;
+
+            if (!string.IsNullOrEmpty(value))
+            {
+                foreach (var ch in value)
+                {
+                    // Check for a quote character
+                    if (ch == '"')
+                    {
+                        // Only set this if we are not ignoring quotes
+                        insideQuote = !ignoreQuotes && !insideQuote;
+                        continue;
+                    }
+
+                    // Check for a delimiter character
+                    if (ch == ' ' || ch == ',' || ch == ';')
+                    {
+                        // If we are not inside a quote then complete the word and move on...
+                        if(!insideQuote)
+                        {
+                            if (!string.IsNullOrEmpty(currentWord))
+                            {
+                                results.Add(currentWord);
+                                currentWord = string.Empty;
+                                
+                            }
+
+                            continue;
+                        }
+                    }
+
+                    currentWord += ch;
+                }
+
+                // Make sure the last word is added
+                if (!string.IsNullOrEmpty(currentWord))
+                {
+                    results.Add(currentWord);
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Split a string into characters.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static IList<string> ToCharacters(this string value)
+        {
+            return value
+                .Where(c => c != '"')
+                .Where(c => c != ' ')
+                .Where(c => c != ',')
+                .Where(c => c != ';')
+                .Select(c => string.Format("{0}", c))
+                .ToList();
+        }
+
+        /// <summary>
+        /// Determines whether [contains non standard characters] [the specified value].
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if [contains non standard characters] [the specified value]; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool ContainsNonStandardCharacters(this string value)
+        {
+            return value.Any(ch => Char.GetUnicodeCategory(ch) == UnicodeCategory.OtherLetter);
+        }
     }
 }

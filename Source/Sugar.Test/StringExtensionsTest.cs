@@ -44,7 +44,7 @@ namespace Sugar
         [Test]
         public void TestStartsWithAndIgnoreCase()
         {
-            var value = "Bonjour";
+            const string value = "Bonjour";
 
             var result = value.StartsWith("BON", true);
             Assert.IsFalse(result);
@@ -272,6 +272,401 @@ namespace Sugar
             var result = "hello world".Reverse();
 
             Assert.AreEqual("dlrow olleh", result);
+        }
+
+        [Test]
+        public void TestToWordsNullOrEmptyString()
+        {
+            var words = ((string)null).ToWords();
+
+            Assert.AreEqual(0, words.Count);
+
+            words = string.Empty.ToWords();
+
+            Assert.AreEqual(0, words.Count);
+        }
+
+        [Test]
+        public void TestToWordsOneWord()
+        {
+            var words = "one".ToWords();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestToWordsOneWordOneSpace()
+        {
+            var words = "one ".ToWords();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestToWordsOneWordTwoSpaces()
+        {
+            var words = "one  ".ToWords();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestToWordsOneWordPrefixedWithComma()
+        {
+            var words = ",one".ToWords();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestToWordsOneWordPostfixedWithComma()
+        {
+            var words = "one,".ToWords();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestToWordsOneWordPrefixedAndPostfixedWithCommas()
+        {
+            var words = ",one,".ToWords();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+
+        [Test]
+        public void TestToWordsOneWordPrefixedWithSemicolon()
+        {
+            var words = ";one".ToWords();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestToWordsOneWordPostfixedWithSemicolon()
+        {
+            var words = "one;".ToWords();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestToWordsOneWordPrefixedAndPostfixedWithSemicolons()
+        {
+            var words = ";one;".ToWords();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+
+        [Test]
+        public void TestToWordsOneWordPrefixedAndPostfixedWithIgnoredCharacters()
+        {
+            var words = " ,;one;, ".ToWords();
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestToWordsTwoWords()
+        {
+            var words = "one two".ToWords();
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+        }
+
+        [Test]
+        public void TestToWordsTwoWordsSeparatedWithComma()
+        {
+            var words = "one,two".ToWords();
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+        }
+
+        [Test]
+        public void TestToWordsTwoWordsSeparatedWithSemicolon()
+        {
+            var words = "one;two".ToWords();
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+        }
+
+        [Test]
+        public void TestToWordsTwoWordsSeparatedWithIgnoredCharacters()
+        {
+            var words = "one;;,,  two".ToWords();
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+        }
+
+        [Test]
+        public void TestToWordsTwoWordsSeparatedAndPrefixedAndSuffixedWithIgnoredCharacters()
+        {
+            var words = "  ,,;;one;;,,  two ; , ;,".ToWords();
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+        }
+
+        [Test]
+        public void TestToWordsTwoWordsWithQuotes()
+        {
+            var words = @"one ""two three""".ToWords();
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two three", words[1]);
+        }
+
+        [Test]
+        public void TestToWordsThreeWordsWithQuotes()
+        {
+            var words = @"one ""two three"" four".ToWords();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two three", words[1]);
+            Assert.AreEqual("four", words[2]);
+        }
+
+        [Test]
+        public void TestToWordsThreeWordsWithQuotesSurroundedByIgnroedCharacters()
+        {
+            var words = @",; one ""two three"",; four".ToWords();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two three", words[1]);
+            Assert.AreEqual("four", words[2]);
+        }
+
+        [Test]
+        public void TestToWordsTwoWordsWithQuotesAndSpecialCharactersInQuotes()
+        {
+            var words = @"one ""two,; three""".ToWords();
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two,; three", words[1]);
+        }
+
+        [Test]
+        public void TestToWordsTwoWordsWithQuotesAndSpecialCharactersInQuotesSurroundedByIgnroedCharacters()
+        {
+            var words = @",; one ""two,; three"",; ".ToWords();
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two,; three", words[1]);
+        }
+
+        [Test]
+        public void TestToWordsOneWordIgnoreQuotes()
+        {
+            var words = @"one".ToWords(true);
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestToWordsOneWordInQuotesIgnoreQuotes()
+        {
+            var words = @"""one""".ToWords(true);
+
+            Assert.AreEqual(1, words.Count);
+            Assert.AreEqual("one", words[0]);
+        }
+
+        [Test]
+        public void TestToWordsTwoWordsIgnoreQuotes()
+        {
+            var words = @"one two".ToWords(true);
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+        }
+
+        [Test]
+        public void TestToWordsTwoWordsInQuotesIgnoreQuotes()
+        {
+            var words = @"""one two""".ToWords(true);
+
+            Assert.AreEqual(2, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+        }
+
+        [Test]
+        public void TestToWordsThreeWordsInQuotesWithExtraIgnoreQuotes()
+        {
+            var words = @"""one two"" three".ToWords(true);
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("one", words[0]);
+            Assert.AreEqual("two", words[1]);
+            Assert.AreEqual("three", words[2]);
+        }
+
+        [Test]
+        public void TestToCharactersNullOrEmptyString()
+        {
+            var words = ((string)null).ToWords();
+
+            Assert.AreEqual(0, words.Count);
+
+            words = string.Empty.ToCharacters();
+
+            Assert.AreEqual(0, words.Count);
+        }
+
+        [Test]
+        public void TestToCharactersOneWord()
+        {
+            var words = "one".ToCharacters();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("o", words[0]);
+            Assert.AreEqual("n", words[1]);
+            Assert.AreEqual("e", words[2]);
+        }
+
+        [Test]
+        public void TestToCharactersOneWordOneSpace()
+        {
+            var words = "one ".ToCharacters();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("o", words[0]);
+            Assert.AreEqual("n", words[1]);
+            Assert.AreEqual("e", words[2]);
+        }
+
+        [Test]
+        public void TestToCharactersOneWordTwoSpaces()
+        {
+            var words = "one  ".ToCharacters();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("o", words[0]);
+            Assert.AreEqual("n", words[1]);
+            Assert.AreEqual("e", words[2]);
+        }
+
+        [Test]
+        public void TestToCharactersOneWordPrefixedWithComma()
+        {
+            var words = ",one".ToCharacters();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("o", words[0]);
+            Assert.AreEqual("n", words[1]);
+            Assert.AreEqual("e", words[2]);
+        }
+
+        [Test]
+        public void TestToCharactersOneWordPostfixedWithComma()
+        {
+            var words = "one,".ToCharacters();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("o", words[0]);
+            Assert.AreEqual("n", words[1]);
+            Assert.AreEqual("e", words[2]);
+        }
+
+        [Test]
+        public void TestToCharactersOneWordPrefixedAndPostfixedWithCommas()
+        {
+            var words = ",one,".ToCharacters();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("o", words[0]);
+            Assert.AreEqual("n", words[1]);
+            Assert.AreEqual("e", words[2]);
+        }
+
+
+        [Test]
+        public void TestToCharactersOneWordPrefixedWithSemicolon()
+        {
+            var words = ";one".ToCharacters();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("o", words[0]);
+            Assert.AreEqual("n", words[1]);
+            Assert.AreEqual("e", words[2]);
+        }
+
+        [Test]
+        public void TestToCharactersOneWordPostfixedWithSemicolon()
+        {
+            var words = "one;".ToCharacters();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("o", words[0]);
+            Assert.AreEqual("n", words[1]);
+            Assert.AreEqual("e", words[2]);
+        }
+
+        [Test]
+        public void TestToCharactersOneWordPrefixedAndPostfixedWithSemicolons()
+        {
+            var words = ";one;".ToCharacters();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("o", words[0]);
+            Assert.AreEqual("n", words[1]);
+            Assert.AreEqual("e", words[2]);
+        }
+
+
+        [Test]
+        public void TestToCharactersOneWordPrefixedAndPostfixedWithIgnoredCharacters()
+        {
+            var words = " ,;one;, ".ToCharacters();
+
+            Assert.AreEqual(3, words.Count);
+            Assert.AreEqual("o", words[0]);
+            Assert.AreEqual("n", words[1]);
+            Assert.AreEqual("e", words[2]);
+        }
+
+        [Test]
+        public void TestContainsNonStandardCharacterTrue()
+        {
+            var result = "馬".ContainsNonStandardCharacters();
+
+            Assert.True(result);
+        }
+
+        [Test]
+        public void TestContainsNonStandardCharacterFalse()
+        {
+            var result = "G".ContainsNonStandardCharacters();
+
+            Assert.False(result);
         }
     }
 }

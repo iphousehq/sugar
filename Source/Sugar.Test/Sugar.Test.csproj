@@ -98,7 +98,6 @@
     <Compile Include="TextTableTest.cs" />
     <Compile Include="TimeSpanExtensionTest.cs" />
     <Compile Include="TypeExtensionsTest.cs" />
-    <Compile Include="ToWordsExtensionTest.cs" />
     <Compile Include="Xml\XPathDocumentExtensionsTest.cs" />
   </ItemGroup>
   <ItemGroup>
