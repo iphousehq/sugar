@@ -519,7 +519,14 @@ namespace Sugar
         /// </returns>
         public static bool ContainsNonStandardCharacters(this string value)
         {
-            return value.Any(ch => Char.GetUnicodeCategory(ch) == UnicodeCategory.OtherLetter);
+            var result = false;
+
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                result = value.Any(ch => Char.GetUnicodeCategory(ch) == UnicodeCategory.OtherLetter);
+            }
+
+            return result;
         }
     }
 }
