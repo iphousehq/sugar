@@ -76,41 +76,6 @@ namespace Sugar
         }
 
         /// <summary>
-        /// Guesses the iso8601 format.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        private static string GuessIso8601Format(string value)
-        {
-            if (value.Contains("T"))
-            {
-                if (value.Contains("-") || value.Contains(":"))
-                {
-                    switch (value.Length)
-                    {
-                        case 13: return "yyyy-MM-ddTHH";
-                        case 16: return "yyyy-MM-ddTHH:mm";
-                        default: return "yyyy-MM-ddTHH:mm:ss";
-                    }
-                }
-
-                switch (value.Length)
-                {
-                    case 11: return "yyyyMMddTHH";
-                    case 13: return "yyyyMMddTHHmm";
-                    default: return "yyyyMMddTHHmmss";
-                }
-            }
-
-            if (value.Contains("-"))
-            {
-                return "yyyy-MM-dd";
-            }
-
-            return "yyyyMMdd";
-        }
-
-        /// <summary>
         /// Parses a datetime string formatted using the ISO 8601 format.
         /// Examples: 2009-10-08T08:22:02Z, 20091008T082202
         /// </summary>
@@ -118,33 +83,42 @@ namespace Sugar
         /// <returns></returns>
         public static DateTime ToDateTimeFromIso8601(this string value)
         {
-            var format = GuessIso8601Format(value);
+            var formats = new[]
+                              {
+                                  "yyyy-MM-ddTHH:mm:ssK",
+                                  "yyyyMMddTHHmmssK",
 
-            var time =
-                DateTime.ParseExact(
-                    value,
-                    new[] {"s", "u", format},
-                    CultureInfo.InvariantCulture,
-                    DateTimeStyles.None);
+                                  "yyyy-MM-ddTHH:mm:ss",
+                                  "yyyyMMddTHHmmss",
 
-            return time;
-        }
+                                  "yyyy-MM-ddTHH:mmK",
+                                  "yyyyMMddTHHmmK",
 
-        /// <summary>
-        /// Tries to convert an ISO 8601 (e.g. 20100130T235959) value to a <see cref="DateTime"/> value.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <param name="time">The time in the ISO 8601 format.</param>
-        /// <returns></returns>
-        public static bool TryToDateTimeFromIso8601(this string value, out DateTime time)
-        {
-            var format = GuessIso8601Format(value);
+                                  "yyyy-MM-ddTHH:mm",
+                                  "yyyyMMddTHHmm",
 
-            return DateTime.TryParseExact(
-                value,
-                new[] {"s", "u", format},
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.None, out time);
+                                  "yyyy-MM-ddTHHK",
+                                  "yyyyMMddTHHK",
+
+                                  "yyyy-MM-ddTHH",
+                                  "yyyyMMddTHH",
+
+                                  "yyyy-MM-dd",
+                                  "yyyyMMdd"
+                              };
+
+
+            foreach (var format in formats)
+            {
+                DateTime result;
+
+                if (DateTime.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+                {
+                    return result;
+                }
+            }
+
+            throw new ApplicationException("The given date-time string was not in an ISO8061 format.");
         }
 
         /// <summary>
