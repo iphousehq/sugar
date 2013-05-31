@@ -60,7 +60,7 @@ namespace Sugar
             table.AddSeperator();
             table.AddRow("one two", 123);
 
-            var result = table.ToString().Split(Environment.NewLine);
+            var result = table.ToStringList();
 
             Assert.AreEqual("1    2", result[0]);
             Assert.AreEqual("one        1", result[1]);
