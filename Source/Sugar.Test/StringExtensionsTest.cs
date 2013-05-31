@@ -668,5 +668,23 @@ namespace Sugar
 
             Assert.False(result);
         }
+
+        [Test]
+        public void TestContainsNonStandardCharacterWhenEmpty()
+        {
+            var result = "".ContainsNonStandardCharacters();
+
+            Assert.False(result);
+        }
+
+        [Test]
+        public void TestContainsNonStandardCharacterWhenNull()
+        {
+            string nullString = null;
+
+            var result = nullString.ContainsNonStandardCharacters();
+
+            Assert.False(result);
+        }
     }
 }

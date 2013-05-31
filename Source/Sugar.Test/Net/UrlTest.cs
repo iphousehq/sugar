@@ -252,5 +252,13 @@ namespace Sugar.Net
 
             Assert.AreEqual(string.Empty, url.DomainSansSubDomain);
         }
+
+        [Test]
+        public void TestDomainWithoutSubdomainWhenNoSubdomain()
+        {
+            var url = new Url("http://www.eed.eg/index.html");
+
+            Assert.AreEqual("eed.eg", url.DomainSansSubDomain);
+        }
     }
 }
