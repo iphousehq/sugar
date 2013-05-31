@@ -53,7 +53,17 @@ namespace Sugar
         [Test]
         public void TestToDateFromIso8601()
         {
-            var result = "20101231T235955".ToDateTimeFromIso8601();
+            var result = "20101231T235955+0100".ToDateTimeFromIso8601();
+
+            Assert.AreEqual(2010, result.Year);
+            Assert.AreEqual(12, result.Month);
+            Assert.AreEqual(31, result.Day);
+            Assert.AreEqual(22, result.Hour);
+            Assert.AreEqual(59, result.Minute);
+            Assert.AreEqual(55, result.Second);
+            Assert.AreEqual(0, result.Millisecond);
+
+            result = "20101231T235955".ToDateTimeFromIso8601();
 
             Assert.AreEqual(2010, result.Year);
             Assert.AreEqual(12, result.Month);
@@ -97,7 +107,17 @@ namespace Sugar
         [Test]
         public void TestToDateFromIso8601WithHyphenAndSemiColon()
         {
-            var result = "2010-12-31T23:59:55".ToDateTimeFromIso8601();
+            var result = "2010-12-31T23:59:55+01:00".ToDateTimeFromIso8601();
+
+            Assert.AreEqual(2010, result.Year);
+            Assert.AreEqual(12, result.Month);
+            Assert.AreEqual(31, result.Day);
+            Assert.AreEqual(22, result.Hour);
+            Assert.AreEqual(59, result.Minute);
+            Assert.AreEqual(55, result.Second);
+            Assert.AreEqual(0, result.Millisecond);
+
+            result = "2010-12-31T23:59:55".ToDateTimeFromIso8601();
 
             Assert.AreEqual(2010, result.Year);
             Assert.AreEqual(12, result.Month);
@@ -136,24 +156,6 @@ namespace Sugar
             Assert.AreEqual(0, result.Minute);
             Assert.AreEqual(0, result.Second);
             Assert.AreEqual(0, result.Millisecond);
-        }
-
-        [Test]
-        public void TestTryParseDateTimeFromIso8601()
-        {
-            DateTime time;
-
-            var result = "20101231T235955".TryToDateTimeFromIso8601(out time);
-
-            Assert.IsTrue(result);
-
-            Assert.AreEqual(2010, time.Year);
-            Assert.AreEqual(12, time.Month);
-            Assert.AreEqual(31, time.Day);
-            Assert.AreEqual(23, time.Hour);
-            Assert.AreEqual(59, time.Minute);
-            Assert.AreEqual(55, time.Second);
-            Assert.AreEqual(00, time.Millisecond);
         }
 
         [Test]
