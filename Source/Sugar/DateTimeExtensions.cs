@@ -76,13 +76,14 @@ namespace Sugar
         }
 
         /// <summary>
-        /// Parses a datetime string formatted using the ISO 8601 format.
-        /// Examples: 2009-10-08T08:22:02Z, 20091008T082202
+        /// Converts the ISO 8601 string to a DateTime.
         /// </summary>
-        /// <param name="value">The date time in the ISO 8601 format.</param>
+        /// <param name="value">The value.</param>
         /// <returns></returns>
-        public static DateTime ToDateTimeFromIso8601(this string value)
+        private static DateTime? ConvertFromIso8601(this string value)
         {
+            DateTime? result = null;
+
             var formats = new[]
                               {
                                   "yyyy-MM-ddTHH:mm:ssK",
@@ -110,15 +111,55 @@ namespace Sugar
 
             foreach (var format in formats)
             {
-                DateTime result;
+                DateTime resultForFormat;
 
-                if (DateTime.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+                if (DateTime.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out resultForFormat))
                 {
-                    return result;
+                    result = resultForFormat;
+                    break;
                 }
             }
 
+            return result;
+        }
+
+        /// <summary>
+        /// Parses a datetime string formatted using the ISO 8601 format.
+        /// Examples: 2009-10-08T08:22:02Z, 20091008T082202
+        /// </summary>
+        /// <param name="value">The date time in the ISO 8601 format.</param>
+        /// <returns></returns>
+        public static DateTime ToDateTimeFromIso8601(this string value)
+        {
+            var result = value.ConvertFromIso8601();
+
+            if (result.HasValue)
+            {
+                return result.Value;
+            }
+
             throw new ApplicationException("The given date-time string was not in an ISO8061 format.");
+        }
+
+        /// <summary>
+        /// Tries to convert an ISO 8601 (e.g. 20100130T235959) value to a <see cref="DateTime"/> value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="time">The time in the ISO 8601 format.</param>
+        /// <returns></returns>
+        public static bool TryToDateTimeFromIso8601(this string value, out DateTime time)
+        {
+            var result = value.ConvertFromIso8601();
+
+            time = new DateTime();
+
+            if (result.HasValue)
+            {
+                time = result.Value;
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
