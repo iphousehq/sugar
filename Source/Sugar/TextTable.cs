@@ -132,5 +132,14 @@ namespace Sugar
 
             return sb.ToString();
         }
+
+        /// <summary>
+        /// Returns the table as a string array.
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> ToStringList()
+        {
+            return ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+        }
     }
 }
