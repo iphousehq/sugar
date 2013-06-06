@@ -98,6 +98,7 @@
     <Compile Include="Mime\VideoMimeType.cs" />
     <Compile Include="Net\CommonTlds.cs" />
     <Compile Include="Net\DomainName.cs" />
+    <Compile Include="Net\HttpProxy.cs" />
     <Compile Include="Net\HttpQuery.cs" />
     <Compile Include="Net\HttpRequest.cs" />
     <Compile Include="Net\HttpResponse.cs" />

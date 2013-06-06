@@ -98,28 +98,12 @@ namespace Sugar.Net
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether [use proxy].
+        /// Gets or sets the proxy to use for this request.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [use proxy]; otherwise, <c>false</c>.
+        /// The proxy object.
         /// </value>
-        public bool UseProxy { get; set; }
-
-        /// <summary>
-        /// Gets or sets the proxy address.
-        /// </summary>
-        /// <value>
-        /// The proxy address.
-        /// </value>
-        public string ProxyAddress { get; set; }
-
-        /// <summary>
-        /// Gets or sets the proxy port.
-        /// </summary>
-        /// <value>
-        /// The proxy port.
-        /// </value>
-        public int ProxyPort { get; set; }
+        public HttpProxy Proxy { get; set; }
 
         /// <summary>
         /// Gets or sets the number of retries if the download fails.
@@ -182,9 +166,9 @@ namespace Sugar.Net
             request.ContentType = ContentType;
             request.Referer = Referer;
             
-            if (UseProxy)
+            if (Proxy != null)
             {
-                request.Proxy = new WebProxy(ProxyAddress, ProxyPort);
+                request.Proxy = Proxy.ToWebProxy();
             }
             else
             {

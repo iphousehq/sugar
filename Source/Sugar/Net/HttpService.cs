@@ -44,7 +44,7 @@ namespace Sugar.Net
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        private static HttpResponse InternalDownload(HttpRequest request)
+        protected virtual HttpResponse InternalDownload(HttpRequest request)
         {
             var result = new HttpResponse
                              {
@@ -52,7 +52,7 @@ namespace Sugar.Net
                                  UserAgent = request.UserAgent
                              };
 
-            var webRequest = request.ToWebRequest();
+            var webRequest = InternalBuild(request);
 
             // Post request data
             if (request.Verb == HttpVerb.Post)
@@ -102,6 +102,16 @@ namespace Sugar.Net
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Builds as <see cref="WebRequest"/> object from a <see cref="HttpRequest"/>.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        protected virtual WebRequest InternalBuild(HttpRequest request)
+        {
+            return request.ToWebRequest();
         }
 
         /// <summary>
