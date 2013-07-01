@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Sugar.Net
 {
@@ -8,7 +9,7 @@ namespace Sugar.Net
         [Test]
         public void TestNullUrl()
         {
-            var url = new Url(null);
+            var url = new Url((string) null);
 
             Assert.IsFalse(url.IsValid);
             Assert.AreEqual(string.Empty, url.ToString());
@@ -42,6 +43,17 @@ namespace Sugar.Net
 
             url = new Url("http://gizmodo.com/5678421/11+inch-macbook-air-review-a-tiny-miracle");
             Assert.IsTrue(url.IsValid);
+        }
+
+        [Test]
+        public void TestConstructUrlFromUri()
+        {
+            var uri = new Uri("http://watchdogapp.com/folder1/page1.html");
+            
+            var url = new Url(uri);
+
+            Assert.IsTrue(url.IsValid);
+            Assert.AreEqual("http://watchdogapp.com/folder1/page1.html", url.ToString());
         }
 
         [Test]
