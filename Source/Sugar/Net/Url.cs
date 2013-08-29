@@ -31,6 +31,19 @@ namespace Sugar.Net
                 Fragment = uri.Fragment;
             }
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Url" /> class.
+        /// </summary>
+        /// <param name="uri">The URI.</param>
+        public Url(Uri uri)
+        {
+            this.uri = uri;
+
+            Query = HttpUtility.ParseQueryString(uri.Query);
+
+            Fragment = uri.Fragment;
+        }
       
         /// <summary>
         /// Gets a value indicating whether this instance is valid.
