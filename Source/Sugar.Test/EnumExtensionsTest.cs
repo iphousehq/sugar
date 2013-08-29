@@ -386,12 +386,28 @@ namespace Sugar
         }
 
         [Test]
+        public void TestParseRemovalStatusesWhenHasAllEmptyValuesAndNoResultsAllowed()
+        {
+            var results = ",,".ParseCsvToEnums<SomeEnum>(true);
+
+            Assert.AreEqual(0, results.Count);
+        }
+
+        [Test]
         public void TestParseRemovalStatusesWhenHasAllEmptyString()
         {
             var results = "".ParseCsvToEnums<SomeEnum>();
 
             Assert.AreEqual(2, results.Count);
             Assert.AreEqual(SomeEnum.Bob, results[0]);
+        }
+
+        [Test]
+        public void TestParseRemovalStatusesWhenHasAllEmptyStringAndNoResultsAllowed()
+        {
+            var results = "".ParseCsvToEnums<SomeEnum>(true);
+
+            Assert.AreEqual(0, results.Count);
         }
     }
 }

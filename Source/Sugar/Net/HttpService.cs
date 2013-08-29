@@ -115,6 +115,16 @@ namespace Sugar.Net
         }
 
         /// <summary>
+        /// Builds a HTTP request for the given URL.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
+        public HttpRequest Build(string url)
+        {
+            return Build(url, HttpVerb.Get);
+        }
+
+        /// <summary>
         /// Builds a HTTP request from the given arguments.
         /// </summary>
         /// <param name="url">The URL.</param>

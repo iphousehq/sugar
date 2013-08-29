@@ -32,6 +32,13 @@ namespace Sugar.Net
         HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
+        /// Builds an HTTP request for the given URL.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns></returns>
+        HttpRequest Build(string url);
+
+        /// <summary>
         /// Builds a HTTP request from the given arguments.
         /// </summary>
         /// <param name="url">The URL.</param>

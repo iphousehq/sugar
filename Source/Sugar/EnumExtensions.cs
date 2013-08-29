@@ -216,17 +216,22 @@ namespace Sugar
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="csv">The CSV.</param>
+        /// <param name="allowEmptyResult">
+        /// If set to <c>true</c> allow the function to return an empty result.
+        /// If set to <c>false</c> the function will return the complete range of Enum values as a result - 
+        /// this is the default behaviour.
+        /// </param>
         /// <returns></returns>
-        public static IList<T> ParseCsvToEnums<T>(this string csv) where T : struct
+        public static IList<T> ParseCsvToEnums<T>(this string csv, bool allowEmptyResult = false) where T : struct
         {
             var results = new List<T>();
 
-            var allValues = GetAllEnumValuesRemovalStatuses<T>();
+            var allValues = GetAllEnumValues<T>();
 
             // Check input
             if (string.IsNullOrWhiteSpace(csv))
             {
-                results = allValues;
+                if (!allowEmptyResult) results = allValues;
             }
             else
             {
@@ -249,7 +254,7 @@ namespace Sugar
                 }
 
                 // Return everything if nothing selected
-                if (results.Count == 0)
+                if (results.Count == 0 && !allowEmptyResult)
                 {
                     results.AddRange(allValues);
                 }
@@ -258,10 +263,10 @@ namespace Sugar
         }
      
         /// <summary>
-        /// Gets all the removal statuses
+        /// Gets all the Enum values.
         /// </summary>
         /// <returns></returns>
-        private static List<T> GetAllEnumValuesRemovalStatuses<T>()
+        private static List<T> GetAllEnumValues<T>()
         {
             var values = Enum.GetValues(typeof(T));
 

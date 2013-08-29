@@ -10,6 +10,14 @@ namespace Sugar.Command
     public abstract class BaseConsole
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="BaseConsole"/> class.
+        /// </summary>
+        protected BaseConsole()
+        {
+            Switches = new List<string> { "-", "--", "/" };
+        }
+
+        /// <summary>
         /// Pauses if a debugger is attached.
         /// </summary>
         private static void PauseIfInDebuggerAttached()
@@ -28,6 +36,14 @@ namespace Sugar.Command
         public Parameters Arguments { get; private set; }
 
         /// <summary>
+        /// Gets the switches.
+        /// </summary>
+        /// <value>
+        /// The switches.
+        /// </value>
+        public IList<string> Switches { get; private set; }
+
+        /// <summary>
         /// Gets or sets the exit code enumeration.
         /// </summary>
         /// <value>
@@ -43,10 +59,10 @@ namespace Sugar.Command
         public int Run(string[] args)
         {
             // Get the command line arguments
-            Arguments = new ParameterParser().Parse(args);
+            Arguments = new ParameterParser().Parse(args, Switches);
 
             // Check user input
-            var exitCode = Main();      
+            var exitCode = Main();
 
             // Pause if in debug mode
             PauseIfInDebuggerAttached();
@@ -60,7 +76,7 @@ namespace Sugar.Command
         /// <param name="args">The arguments.</param>
         protected void SetArguments(string args)
         {
-            Arguments = new ParameterParser().Parse(args, new List<string>());
+            Arguments = new ParameterParser().Parse(args, Switches);
         }
 
         /// <summary>

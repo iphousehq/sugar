@@ -22,6 +22,7 @@ namespace Sugar.Net
             Headers = new NameValueCollection();
             Cookies = new CookieContainer();
             Encoding = null;
+            AllowAutoRedirect = true;
         }
 
         /// <summary>
@@ -151,6 +152,14 @@ namespace Sugar.Net
         public Encoding Encoding { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this request allows auto redirects.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if to allow auto redirect; otherwise, <c>false</c>.
+        /// </value>
+        public bool AllowAutoRedirect { get; set; }
+
+        /// <summary>
         /// Converts this instance to a <see cref="WebRequest"/>
         /// </summary>
         /// <returns></returns>
@@ -165,6 +174,7 @@ namespace Sugar.Net
             if (UserAgent != null) request.UserAgent = UserAgent.ToString();
             request.ContentType = ContentType;
             request.Referer = Referer;
+            request.AllowAutoRedirect = AllowAutoRedirect;
             
             if (Proxy != null)
             {

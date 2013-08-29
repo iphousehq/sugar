@@ -47,7 +47,7 @@ namespace Sugar.Net
         [Test]
         public void TestGet404Answer()
         {
-            var response = service.Get("http://www.watchdogapp.com/i03850139644.htm");
+            var response = service.Get("http://comsechq.com/404");
 
             var notFound = response.StatusCode == HttpStatusCode.NotFound;
 
