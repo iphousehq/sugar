@@ -12,6 +12,16 @@ namespace Sugar.IO
     public class FileService : IFileService
     {
         /// <summary>
+        /// Tests to see if the given file exists on disk.
+        /// </summary>
+        /// <param name="path">Name of the file path.</param>
+        /// <returns></returns>
+        public bool Exists(string path)
+        {
+            return File.Exists(path);
+        }
+
+        /// <summary>
         /// Gets the filenames that match the given search pattern in the
         /// current working directory.
         /// </summary>
@@ -186,6 +196,14 @@ namespace Sugar.IO
             }            
         }
 
+        /// <summary>
+        /// Determines whether the specified filename is ignored.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <param name="pattern">The pattern.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified filename is ignored; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsIgnored(string filename, string pattern)
         {
             pattern = "^" + Regex.Escape(pattern).Replace("\\*", ".*").Replace("\\?", ".") + "$";

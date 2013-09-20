@@ -8,6 +8,13 @@ namespace Sugar.IO
     public interface IFileService
     {
         /// <summary>
+        /// Tests to see if the given file exists on disk.
+        /// </summary>
+        /// <param name="path">Name of the file path.</param>
+        /// <returns></returns>
+        bool Exists(string path);
+
+        /// <summary>
         /// Gets the filenames that match the given search pattern in the
         /// current working directory.
         /// </summary>
