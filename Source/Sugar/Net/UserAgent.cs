@@ -71,6 +71,15 @@ namespace Sugar.Net
         }
 
         /// <summary>
+        /// Returns a Blackberry 9900 user agent.
+        /// </summary>
+        /// <returns></returns>
+        public static UserAgent Blackberry()
+        {
+            return new UserAgent("Mozilla/5.0 (BlackBerry; U; BlackBerry 9900; en-US) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.0.0 Mobile Safari/534.11+");
+        }
+
+        /// <summary>
         /// Returns a custom user agent
         /// </summary>
         /// <returns></returns>
