@@ -275,6 +275,14 @@ namespace Sugar
         }
 
         [Test]
+        public void TestReverseWithUnicode()
+        {
+            var result = "Les Mise\u0301rables".Reverse();
+
+            Assert.AreEqual("selbarésiM seL", result);
+        }
+
+        [Test]
         public void TestToWordsNullOrEmptyString()
         {
             var words = ((string)null).ToWords();
