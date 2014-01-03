@@ -56,8 +56,10 @@
   <ItemGroup>
     <Compile Include="ArrayExtensions.cs" />
     <Compile Include="AssemblyExtensions.cs" />
+    <Compile Include="Attributes\TypeaheadTokenAttribute.cs" />
     <Compile Include="Command\ExitCode.cs" />
     <Compile Include="DictionaryExtensions.cs" />
+    <Compile Include="Country\CountryCode.cs" />
     <Compile Include="GeoLocation.cs" />
     <Compile Include="Mime\ApplicationMime.cs" />
     <Compile Include="Mime\ApplicationMimeType.cs" />
