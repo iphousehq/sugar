@@ -39,7 +39,7 @@ namespace Sugar.Net
                     return new UserAgent("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)");
 
                 default:
-                    throw new ApplicationException("Unsupported IE user agent version: " + version + " - IE 6-9 supported");
+                    throw new ApplicationException("Unsupported IE user agent version: " + version + " - IE 6-10 supported");
             }
         }
 
@@ -49,7 +49,7 @@ namespace Sugar.Net
         /// <returns></returns>
         public static UserAgent Firefox()
         {
-            return new UserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:8.0.1) Gecko/20100101 Firefox/8.0.1");
+            return new UserAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0");
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Sugar.Net
         /// <returns></returns>
         public static UserAgent Chrome()
         {
-            return new UserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2");
+            return new UserAgent("Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36");
         }
 
         /// <summary>
