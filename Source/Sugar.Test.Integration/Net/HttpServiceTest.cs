@@ -59,5 +59,13 @@ namespace Sugar.Net
 
             Assert.Less(0, response.ContentLength);
         }
+
+        [Test]
+        public void TestPostWithoutBody()
+        {
+            var response = service.Post("http://httpbin.org/post ");
+
+            Assert.True(response.Success);
+        }
     }
 }

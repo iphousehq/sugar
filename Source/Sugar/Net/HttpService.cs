@@ -55,7 +55,7 @@ namespace Sugar.Net
             var webRequest = InternalBuild(request);
 
             // Post request data
-            if (request.Verb == HttpVerb.Post)
+            if (request.Verb == HttpVerb.Post && request.Data != null)
             {
                 using (var stream = webRequest.GetRequestStream())
                 {
