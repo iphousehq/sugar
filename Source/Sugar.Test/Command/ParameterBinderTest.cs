@@ -54,6 +54,20 @@ namespace Sugar.Command
             public bool First { get; set; }
         }
 
+        private enum Position
+        {
+            First = 0,
+            Second = 1,
+            Third = 3
+        }
+
+        [Flag("enum")]
+        private class PositionOptions
+        {
+            [Parameter("vital", Required = true)]
+            public Position Position { get; set; }
+        }
+
         [SetUp]
         public void SetUp()
         {
@@ -113,6 +127,32 @@ namespace Sugar.Command
             Assert.AreEqual(2, result.Second);
             Assert.AreEqual(3.4d, result.Third);
             Assert.AreEqual(new DateTime(2008, 3, 8), result.Fourth);
+        }
+
+        [Test]
+        public void TestBindEnumerationWithIntRepresentation()
+        {
+            var parameters = parser.Parse("-enum -vital 1");
+
+            var result = binder.Bind<PositionOptions>(parameters);
+
+            Assert.AreEqual(Position.Second, result.Position);
+        }
+
+        [Test]
+        public void TestBindEnumerationWithStringRepresentation()
+        {
+            var parameters = parser.Parse("-enum -vital Second");
+
+            var result = binder.Bind<PositionOptions>(parameters);
+
+            Assert.AreEqual(Position.Second, result.Position);
+
+            parameters = parser.Parse("-enum -vital second");
+
+            result = binder.Bind<PositionOptions>(parameters);
+
+            Assert.AreEqual(Position.Second, result.Position);
         }
 
         [Test]
