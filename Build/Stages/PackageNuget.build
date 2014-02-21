@@ -1,0 +1,12 @@
+<project name="package-nuget-stage">
+
+	<target name="PackageNuget">
+
+		<exec program="nuget.exe" basedir="${root.dir}\Build\Resources\nuget" workingdir=".">
+			<arg value="pack" />
+			<arg value="${root.dir}\Sugar.nuspec" />
+		</exec>
+
+	</target>
+
+</project>

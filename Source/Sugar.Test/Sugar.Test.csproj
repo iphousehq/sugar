@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sugar</RootNamespace>
     <AssemblyName>Sugar.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ClientProfile|AnyCPU'">
     <OutputPath>bin\ClientProfile\</OutputPath>
@@ -41,28 +43,8 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="AutoMoq">
-      <HintPath>..\..\References\Moq\AutoMoq.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\..\References\HtmlAgilityPack\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\..\References\Moq\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\References\NUnit\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensionsTest.cs" />
     <Compile Include="AssemblyExtensionsTest.cs" />
@@ -104,25 +86,46 @@
     <Compile Include="Xml\XPathDocumentExtensionsTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sugar.Html\Sugar.Html.csproj">
-      <Project>{DB536D0A-ACCD-49D0-815F-3F8A848DA981}</Project>
-      <Name>Sugar.Html</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj">
-      <Project>{28EB8FD3-3904-467F-B256-81EDD21EF6E4}</Project>
-      <Name>Sugar.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sugar\Sugar.csproj">
-      <Project>{EDB78F77-9123-4821-817B-F3F91E973A7D}</Project>
-      <Name>Comsec.Sugar</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
     <Content Include="Samples\Child\Test.txt" />
     <Content Include="Samples\node-extension.html" />
     <Content Include="Samples\Two.txt" />
     <Content Include="Samples\One.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq, Version=4.2.1312.1622, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Moq.4.2.1312.1622\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sugar.Html\Sugar.Html.csproj">
+      <Project>{db536d0a-accd-49d0-815f-3f8a848da981}</Project>
+      <Name>Sugar.Html</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj">
+      <Project>{28eb8fd3-3904-467f-b256-81edd21ef6e4}</Project>
+      <Name>Sugar.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sugar\Sugar.csproj">
+      <Project>{edb78f77-9123-4821-817b-f3f91e973a7d}</Project>
+      <Name>Sugar</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

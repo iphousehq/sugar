@@ -1,0 +1,31 @@
+<project name="publish-nuget-stage">
+
+	<target name="PublishNuget">
+
+		<!-- Set API Key -->
+		<exec program="nuget.exe" basedir="${root.dir}\Build\Resources\nuget" workingdir=".">
+			<arg value="setapikey" />
+			<arg value="DkM2G1nJKttQJUHyFCQa" />
+			<arg value="-Source http://gold.comsechq.com:5050" />
+		</exec>
+		
+		<!-- Add Source with Credentials -->
+		<exec program="nuget.exe" basedir="${root.dir}\Build\Resources\nuget" workingdir=".">
+			<arg value="sources" />
+			<arg value="add" />
+			<arg value="-Name Comsec" />
+			<arg value="-Source http://gold.comsechq.com:5050" />
+			<arg value="-UserName Nuget" />
+			<arg value="-Password T7v6oh4TksS2CumytwtR" />
+		</exec>
+		
+		<!-- Push to repository -->
+		<exec program="nuget.exe" basedir="${root.dir}\Build\Resources\nuget" workingdir=".">
+			<arg value="push" />
+			<arg value="Sugar.1.0.0.0.nupkg" />
+			<arg value="-s Comsec" />
+		</exec>
+
+	</target>
+
+</project>
