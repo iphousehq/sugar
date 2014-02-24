@@ -5,9 +5,9 @@
 		<!-- Set API Key -->
 		<exec program="nuget.exe" basedir="${nuget.location}" workingdir=".">
 			<arg value="setapikey" />
-			<arg value="DkM2G1nJKttQJUHyFCQa" />
+			<arg value="${nuget.apikey}" />
 			<arg value="-Source" />
-			<arg value="http://gold.comsechq.com:5050" />
+			<arg value="${nuget.server}" />
 		</exec>
 		
 		<!-- Get Sources -->
@@ -25,18 +25,18 @@
 			<arg value="-Name" />
 			<arg value="Comsec" />
 			<arg value="-Source" />
-			<arg value="http://gold.comsechq.com:5050" />
+			<arg value="${nuget.server}" />
 			<arg value="-UserName" />
-			<arg value="Nuget" />
+			<arg value="${nuget.username}" />
 			<arg value="-Password" />
-			<arg value="T7v6oh4TksS2CumytwtR" />
+			<arg value="${nuget.password}" />
 		</exec>
 		
 		<!-- Push to repository -->
 		<exec program="nuget.exe" basedir="${nuget.location}" workingdir=".">
 			<arg value="push" />
 			<arg value="${package.name}" />
-			<arg value="-s" />
+			<arg value="-Source" />
 			<arg value="Comsec" />
 		</exec>
 		

@@ -1,4 +1,4 @@
-<project name="Core" basedir="." default="SetProperties">
+<project name="Sugar" basedir="." default="SetProperties">
 
 	<target name="SetProperties">
 
