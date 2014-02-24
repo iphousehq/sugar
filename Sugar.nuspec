@@ -9,6 +9,15 @@
 		</description>
 	</metadata>
 	<files>
-		<file src="Source\**\bin\Release\*" target="lib\net45" />
+		<file src="Source\Sugar\bin\Release\Sugar.dll" target="lib\net45" />
+		<file src="Source\Sugar\bin\Release\Sugar.pdb" target="lib\net45" />
+		<file src="Source\Sugar.Web\bin\Release\Sugar.Web.dll" target="lib\net45" />
+		<file src="Source\Sugar.Web\bin\Release\Sugar.Web.pdb" target="lib\net45" />
+		<file src="Source\Sugar.Html\bin\Release\Sugar.Html.dll" target="lib\net45" />
+		<file src="Source\Sugar.Html\bin\Release\Sugar.Html.pdb" target="lib\net45" />
+		<file src="Source\Sugar.Html\bin\Release\HtmlAgilityPack.dll" target="lib\net45" />
+		<file src="Source\Sugar.Html\bin\Release\HtmlAgilityPack.pdb" target="lib\net45" />
+		<file src="Source\Sugar.Html\bin\Release\HtmlAgilityPack.xml" target="lib\net45" />
+		
 	</files>
 </package>
