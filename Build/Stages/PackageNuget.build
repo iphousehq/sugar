@@ -1,10 +1,16 @@
 <project name="package-nuget-stage">
 
 	<target name="PackageNuget">
+	
+		<copy file="${root.dir}\Sugar.nuspec" tofile="${root.dir}\${nuspec.name}" />
 
-		<exec program="nuget.exe" basedir="${root.dir}\Build\Resources\nuget" workingdir=".">
+		<xmlpoke file="${root.dir}\${nuspec.name}" 
+                 xpath="/package/metadata/version" 
+                 value="${package.version}" />
+				 
+		<exec program="nuget.exe" basedir="${nuget.location}" workingdir=".">
 			<arg value="pack" />
-			<arg value="${root.dir}\Sugar.nuspec" />
+			<arg value="${root.dir}\${nuspec.name}" />
 		</exec>
 
 	</target>

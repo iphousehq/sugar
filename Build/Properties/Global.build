@@ -24,6 +24,12 @@
 		</if>
                
       	<echo message="Using revision number: ${git.revision}"/>
+		
+		<!-- Nuget package -->
+		<tstamp property="package.version" pattern="yyyy.MM.dd.HHmm" />	
+		<property name="nuget.location" value="${root.dir}\Build\Resources\nuget" />
+		<property name="package.name" value="Sugar.${package.version}.nupkg" />
+		<property name="nuspec.name" value="Sugar.${package.version}.nuspec" />
 
 	</target>
 

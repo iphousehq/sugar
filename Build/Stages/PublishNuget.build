@@ -3,23 +3,23 @@
 	<target name="PublishNuget">
 
 		<!-- Set API Key -->
-		<exec program="nuget.exe" basedir="${root.dir}\Build\Resources\nuget" workingdir=".">
+		<exec program="nuget.exe" basedir="${nuget.location}" workingdir=".">
 			<arg value="setapikey" />
 			<arg value="DkM2G1nJKttQJUHyFCQa" />
 			<arg value="-Source" />
 			<arg value="http://gold.comsechq.com:5050" />
 		</exec>
 		
-		<!-- Remove Source -->
-		<exec program="nuget.exe" basedir="${root.dir}\Build\Resources\nuget" workingdir=".">
+		<!-- Get Sources -->
+		<exec program="nuget.exe" basedir="${nuget.location}" workingdir="." output="sources.txt">
 			<arg value="sources" />
-			<arg value="remove" />
-			<arg value="-Name" />
-			<arg value="Comsec" />
+			<arg value="list" />
 		</exec>
 		
+		<loadfile file="sources.txt" property="sources" />
+		
 		<!-- Add Source with Credentials -->
-		<exec program="nuget.exe" basedir="${root.dir}\Build\Resources\nuget" workingdir=".">
+		<exec program="nuget.exe" basedir="${nuget.location}" workingdir="." unless="${string::contains(sources, 'Comsec')}">
 			<arg value="sources" />
 			<arg value="add" />
 			<arg value="-Name" />
@@ -33,15 +33,17 @@
 		</exec>
 		
 		<!-- Push to repository -->
-		<exec program="nuget.exe" basedir="${root.dir}\Build\Resources\nuget" workingdir=".">
+		<exec program="nuget.exe" basedir="${nuget.location}" workingdir=".">
 			<arg value="push" />
-			<arg value="Sugar.1.0.0.0.nupkg" />
+			<arg value="${package.name}" />
 			<arg value="-s" />
 			<arg value="Comsec" />
 		</exec>
 		
-		<!-- Delete package -->
-		<delete file="${root.dir}\Build\Stages\Sugar.1.0.0.0.nupkg" />
+		<!-- Delete files -->
+		<delete file="${root.dir}\Build\Stages\${package.name}" />
+		<delete file="${root.dir}\Build\Stages\sources.txt" />
+		<delete file="${root.dir}\${nuspec.name}" />
 
 	</target>
 
