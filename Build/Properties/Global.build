@@ -18,8 +18,6 @@
 		
 		<!-- Nuget -->
 		<tstamp property="package.version" pattern="yyyy.MM.dd.HHmm" />	
-		<property name="package.name" value="Sugar.${package.version}.nupkg" />
-		
 		<property name="nuget.server" value="http://gold.comsechq.com:5050" />
 		<property name="nuget.apikey" value="DkM2G1nJKttQJUHyFCQa" />
 		<property name="nuget.username" value="Nuget" />
