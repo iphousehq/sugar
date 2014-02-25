@@ -1,0 +1,19 @@
+<package>
+	<metadata>
+		<id>Sugar.Html</id>
+		<version>1.0.0.0</version>
+		<authors>Comsec</authors>
+		<description>
+			Syntactic Sugar for .NET
+			A collection of .NET helper classes, extension methods and shortcuts for common .NET operations.
+		</description>
+		<dependencies>
+			<dependency id="Sugar" version="1.0.0.0" />
+			<dependency id="HtmlAgilityPack" version="1.4.6.0" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="Source\Sugar.Html\bin\Release\Sugar.Html.dll" target="lib\net45" />
+		<file src="Source\Sugar.Html\bin\Release\Sugar.Html.pdb" target="lib\net45" />
+	</files>
+</package>

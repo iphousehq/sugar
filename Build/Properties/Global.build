@@ -25,7 +25,6 @@
 		<property name="nuget.username" value="Nuget" />
 		<property name="nuget.password" value="T7v6oh4TksS2CumytwtR" />
 		<property name="nuget.location" value="${root.dir}\Build\Resources\nuget" />
-		<property name="nuspec.name" value="Sugar.${package.version}.nuspec" />
 
 	</target>
 
