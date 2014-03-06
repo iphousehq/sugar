@@ -5,14 +5,16 @@ using Sugar.IO;
 namespace Sugar.Configuration
 {
     [TestFixture]
-    public class ConfigTest : AutoMockingTest
+    public class ConfigTest
     {
-        private Configuration.Config config;
+        private Config config;
+        private Mock<IFileService> fileService;
 
         [SetUp]
         public void SetUp()
         {
-            config = Create<Configuration.Config>();
+            fileService = new Mock<IFileService>();
+            config = new Config {FileService = fileService.Object};
         }
 
         [Test]
@@ -39,7 +41,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestReadConfig()
         {
-            Mock<IFileService>()
+            fileService
                 .Setup(call => call.ReadAllText("c:\\test.config"))
                 .Returns("test=value");
 
@@ -53,7 +55,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestMergeConfig()
         {
-            var toMerge = new Configuration.Config();
+            var toMerge = new Config();
             toMerge.Lines.Add(new ConfigLine { Key = "key", Value = "New Value", Section = "section" });
 
             config.Lines.Add(new ConfigLine { Key = "key", Value = "Old Value", Section = "section" });
@@ -67,7 +69,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestMergeConfigIgnoresCase()
         {
-            var toMerge = new Configuration.Config();
+            var toMerge = new Config();
             toMerge.Lines.Add(new ConfigLine { Key = "key", Value = "New Value", Section = "section" });
 
             config.Lines.Add(new ConfigLine { Key = "Key", Value = "Old Value", Section = "Section" });
@@ -81,7 +83,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestGetLinesWithNoValues()
         {
-            var results = Configuration.Config.FromText("[heading]\r\ntest\r\nvalue\r\nlines").GetSection("heading");
+            var results = Config.FromText("[heading]\r\ntest\r\nvalue\r\nlines").GetSection("heading");
 
             Assert.AreEqual("test", results[0].Key);
             Assert.AreEqual("value", results[1].Key);
@@ -91,7 +93,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestSetConfigLine()
         {
-            config = Configuration.Config.FromText("");
+            config = Config.FromText("");
 
             config.SetValue("section", "key", "value");
 
@@ -103,7 +105,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestSetConfigLineDoesntDuplicate()
         {
-            config = Configuration.Config.FromText("");
+            config = Config.FromText("");
 
             config.SetValue("section", "key", "value1");
             config.SetValue("section", "key", "value2");
@@ -116,7 +118,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestGetConfigLine()
         {
-            config = Configuration.Config.FromText("[section]\r\nkey=bob");
+            config = Config.FromText("[section]\r\nkey=bob");
 
             var result = config.GetValue("section", "key", "default");
 
@@ -126,7 +128,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestGetConfigLineMixedCase()
         {
-            config = Configuration.Config.FromText("[Section]\r\nKey=bob");
+            config = Config.FromText("[Section]\r\nKey=bob");
 
             var result = config.GetValue("section", "key", "default");
 
@@ -136,7 +138,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestGetConfigLineMissing()
         {
-            config = Configuration.Config.FromText("[Section]\r\nNo Key=bob");
+            config = Config.FromText("[Section]\r\nNo Key=bob");
 
             var result = config.GetValue("section", "key", "default");
 
@@ -146,7 +148,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestToString()
         {
-            config = Configuration.Config.FromText("");
+            config = Config.FromText("");
 
             config.SetValue("section", "key", "default");
 
@@ -158,7 +160,7 @@ namespace Sugar.Configuration
         [Test]
         public void TestToStringMultipleLines()
         {
-            config = Configuration.Config.FromText("");
+            config = Config.FromText("");
 
             config.SetValue("section", "key1", "default");
             config.SetValue("section", "key2", "default");

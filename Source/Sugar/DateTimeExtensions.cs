@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Globalization;
-using System.Linq;
 
 namespace Sugar
 {

@@ -1,4 +1,4 @@
-<project name="Watchdog" basedir="." default="RunStages">
+<project name="Sugar" basedir="." default="RunStages">
 
 	<property name="root.dir" value="${project::get-base-directory()}" readonly="true"/>
 	<property name="environment" value="Local" readonly="false"/>

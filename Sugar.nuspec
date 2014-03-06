@@ -1,0 +1,15 @@
+<package>
+	<metadata>
+		<id>Sugar</id>
+		<version>1.0.0.0</version>
+		<authors>Comsec</authors>
+		<description>
+			Syntactic Sugar for .NET
+			A collection of .NET helper classes, extension methods and shortcuts for common .NET operations.
+		</description>
+	</metadata>
+	<files>
+		<file src="Source\Sugar\bin\Release\Sugar.dll" target="lib\net45" />
+		<file src="Source\Sugar\bin\Release\Sugar.pdb" target="lib\net45" />
+	</files>
+</package>
