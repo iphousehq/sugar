@@ -38,6 +38,9 @@ namespace Sugar.Command
 
             [Parameter("four")]
             public DateTime Fourth { get; set; }
+
+            [Parameter("five")]
+            public DateTime? Fifth { get; set; }
         }
 
         [Flag("flag")]
@@ -113,6 +116,26 @@ namespace Sugar.Command
             Assert.AreEqual(2, result.Second);
             Assert.AreEqual(3.4d, result.Third);
             Assert.AreEqual(new DateTime(2008, 3, 8), result.Fourth);
+        }
+
+        [Test]
+        public void TestBindObjectWithNullableDateSet()
+        {
+            var parameters = parser.Parse("-flag -five 2014-03-05");
+
+            var result = binder.Bind<Baz>(parameters);
+
+            Assert.AreEqual(new DateTime(2014, 3, 5), result.Fifth.Value);
+        }
+
+        [Test]
+        public void TestBindObjectWithNullableDateNotSet()
+        {
+            var parameters = parser.Parse("-flag");
+
+            var result = binder.Bind<Baz>(parameters);
+
+            Assert.AreEqual(false, result.Fifth.HasValue);
         }
 
         [Test]
