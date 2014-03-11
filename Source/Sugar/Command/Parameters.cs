@@ -442,7 +442,18 @@ namespace Sugar.Command
             {
                 var value = AsString(name);
 
-                result = Convert.ChangeType(value, type);
+                if (Nullable.GetUnderlyingType(type) != null)
+                {
+                    DateTime date;
+                    if (DateTime.TryParse(value, out date))
+                    {
+                        result = new DateTime?(date);
+                    }
+                }
+                else
+                {
+                    result = Convert.ChangeType(value, type);
+                }
             }
 
             return result;
