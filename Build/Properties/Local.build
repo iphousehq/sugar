@@ -2,7 +2,7 @@
 
 	<target name="SetProperties">
 
-		<property name="stages" value="Clean,Compile,RunNUnit,RunNUnitIntegration,PackageNuget,PublishNuget" readonly="false"/>
+		<property name="stages" value="Clean,Compile,RunNUnit,RunNUnitIntegration" readonly="false"/>
 
 	</target>
 
