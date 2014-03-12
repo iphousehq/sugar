@@ -95,15 +95,18 @@
     <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Moq, Version=4.2.1312.1622, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Moq.4.2.1312.1622\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -117,14 +120,17 @@
     <ProjectReference Include="..\Sugar.Html\Sugar.Html.csproj">
       <Project>{db536d0a-accd-49d0-815f-3f8a848da981}</Project>
       <Name>Sugar.Html</Name>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj">
       <Project>{28eb8fd3-3904-467f-b256-81edd21ef6e4}</Project>
       <Name>Sugar.Web</Name>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Sugar\Sugar.csproj">
       <Project>{edb78f77-9123-4821-817b-f3f91e973a7d}</Project>
       <Name>Sugar</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
