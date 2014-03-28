@@ -238,17 +238,15 @@ namespace Sugar
         }
 
         /// <summary>
-        /// Gets the a list of dates representing months between two dates.
+        /// Gets the a list of dates representing time between two dates.
         /// </summary>
-        /// <param name="from">From.</param>
-        /// <param name="until">The until.</param>
+        /// <param name="current">The current.</param>
+        /// <param name="end">The end.</param>
+        /// <param name="alterFunc">The alter func.</param>
         /// <returns></returns>
-        public static IEnumerable<DateTime> MonthsUntil(this DateTime from, DateTime until)
+        private static IEnumerable<DateTime> TimeUntil(this DateTime current, DateTime end, Func<DateTime, DateTime> alterFunc)
         {
             var results = new List<DateTime>();
-
-            var current = new DateTime(from.Year, from.Month, 1);
-            var end = new DateTime(until.Year, until.Month, 1);
 
             if (current > end)
             {
@@ -259,10 +257,24 @@ namespace Sugar
             {
                 results.Add(current);
 
-                current = current.AddMonths(1);
+                current = alterFunc(current);
             }
 
             return results;
+        }
+
+        /// <summary>
+        /// Gets the a list of dates representing months between two dates.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="until">The until.</param>
+        /// <returns></returns>
+        public static IEnumerable<DateTime> MonthsUntil(this DateTime from, DateTime until)
+        {
+            var current = new DateTime(from.Year, from.Month, 1);
+            var end = new DateTime(until.Year, until.Month, 1);
+
+            return TimeUntil(current, end, d => d.AddMonths(1));
         }
 
         /// <summary>
@@ -273,24 +285,10 @@ namespace Sugar
         /// <returns></returns>
         public static IEnumerable<DateTime> WeeksUntil(this DateTime from, DateTime until)
         {
-            var results = new List<DateTime>();
+            var current = from.Date.StartOfWeek(DayOfWeek.Monday);
+            var end = until.Date.StartOfWeek(DayOfWeek.Monday);
 
-            var current = new DateTime(from.Year, from.Month, from.Day).StartOfWeek(DayOfWeek.Monday);
-            var end = new DateTime(until.Year, until.Month, until.Day).StartOfWeek(DayOfWeek.Monday);
-
-            if (current > end)
-            {
-                return results;
-            }
-
-            while (current <= end)
-            {
-                results.Add(current);
-
-                current = current.AddDays(7);
-            }
-
-            return results;
+            return TimeUntil(current, end, d => d.AddDays(7));
         }
 
         /// <summary>
@@ -302,24 +300,10 @@ namespace Sugar
         /// <returns></returns>
         public static IEnumerable<DateTime> WeeksUntil(this DateTime from, DateTime until, DayOfWeek weekStart)
         {
-            var results = new List<DateTime>();
+            var current = from.Date.StartOfWeek(weekStart);
+            var end = until.Date.StartOfWeek(weekStart);
 
-            var current = new DateTime(from.Year, from.Month, from.Day).StartOfWeek(weekStart);
-            var end = new DateTime(until.Year, until.Month, until.Day).StartOfWeek(weekStart);
-
-            if (current > end)
-            {
-                return results;
-            }
-
-            while (current <= end)
-            {
-                results.Add(current);
-
-                current = current.AddDays(7);
-            }
-
-            return results;
+            return TimeUntil(current, end, d => d.AddDays(7));
         }
 
         /// <summary>
@@ -330,24 +314,21 @@ namespace Sugar
         /// <returns></returns>
         public static IEnumerable<DateTime> DaysUntil(this DateTime from, DateTime until)
         {
-            var results = new List<DateTime>();
+            var current = from.Date;
+            var end = until.Date;
 
-            var current = new DateTime(from.Year, from.Month, from.Day);
-            var end = new DateTime(until.Year, until.Month, until.Day);
+            return TimeUntil(current, end, d => d.AddDays(1));
+        }
 
-            if (current > end)
-            {
-                return results;
-            }
-
-            while (current <= end)
-            {
-                results.Add(current);
-
-                current = current.AddDays(1);
-            }
-
-            return results;
+        /// <summary>
+        /// Gets the a list of dates representing hours between two dates.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="until">The until.</param>
+        /// <returns></returns>
+        public static IEnumerable<DateTime> HoursUntil(this DateTime from, DateTime until)
+        {
+            return TimeUntil(from, until, d => d.AddHours(1));
         }
 
         /// <summary>

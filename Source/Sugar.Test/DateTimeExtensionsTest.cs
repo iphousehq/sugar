@@ -162,12 +162,12 @@ namespace Sugar
         public void TestMonthsUntil()
         {
             var expected = new List<DateTime>
-            {
-                new DateTime(2011, 1, 1),
-                new DateTime(2011, 2, 1),
-                new DateTime(2011, 3, 1),
-                new DateTime(2011, 4, 1)
-            };
+                               {
+                                   new DateTime(2011, 1, 1),
+                                   new DateTime(2011, 2, 1),
+                                   new DateTime(2011, 3, 1),
+                                   new DateTime(2011, 4, 1)
+                               };
 
             var results = new DateTime(2011, 1, 1).MonthsUntil(new DateTime(2011, 4, 1));
 
@@ -178,12 +178,12 @@ namespace Sugar
         public void TestMonthsUntilDaysIncorrectlyFormatted()
         {
             var expected = new List<DateTime>
-            {
-                new DateTime(2011, 1, 1),
-                new DateTime(2011, 2, 1),
-                new DateTime(2011, 3, 1),
-                new DateTime(2011, 4, 1)
-            };
+                               {
+                                   new DateTime(2011, 1, 1),
+                                   new DateTime(2011, 2, 1),
+                                   new DateTime(2011, 3, 1),
+                                   new DateTime(2011, 4, 1)
+                               };
 
             var results = new DateTime(2011, 1, 15).MonthsUntil(new DateTime(2011, 4, 23));
 
@@ -211,28 +211,28 @@ namespace Sugar
         public void TestDaysUntil()
         {
             var expected = new List<DateTime>
-            {
-                new DateTime(2011, 1, 1),
-                new DateTime(2011, 1, 2),
-                new DateTime(2011, 1, 3),
-                new DateTime(2011, 1, 4),
-                new DateTime(2011, 1, 5),
-                new DateTime(2011, 1, 6),
-                new DateTime(2011, 1, 7),
-                new DateTime(2011, 1, 8),
-                new DateTime(2011, 1, 9),
-                new DateTime(2011, 1, 10),
-                new DateTime(2011, 1, 11),
-                new DateTime(2011, 1, 12),
-                new DateTime(2011, 1, 13),
-                new DateTime(2011, 1, 14),
-                new DateTime(2011, 1, 15),
-                new DateTime(2011, 1, 16),
-                new DateTime(2011, 1, 17),
-                new DateTime(2011, 1, 18),
-                new DateTime(2011, 1, 19),
-                new DateTime(2011, 1, 20),
-            };
+                               {
+                                   new DateTime(2011, 1, 1),
+                                   new DateTime(2011, 1, 2),
+                                   new DateTime(2011, 1, 3),
+                                   new DateTime(2011, 1, 4),
+                                   new DateTime(2011, 1, 5),
+                                   new DateTime(2011, 1, 6),
+                                   new DateTime(2011, 1, 7),
+                                   new DateTime(2011, 1, 8),
+                                   new DateTime(2011, 1, 9),
+                                   new DateTime(2011, 1, 10),
+                                   new DateTime(2011, 1, 11),
+                                   new DateTime(2011, 1, 12),
+                                   new DateTime(2011, 1, 13),
+                                   new DateTime(2011, 1, 14),
+                                   new DateTime(2011, 1, 15),
+                                   new DateTime(2011, 1, 16),
+                                   new DateTime(2011, 1, 17),
+                                   new DateTime(2011, 1, 18),
+                                   new DateTime(2011, 1, 19),
+                                   new DateTime(2011, 1, 20),
+                               };
 
             var results = new DateTime(2011, 1, 1).DaysUntil(new DateTime(2011, 1, 20));
 
@@ -243,15 +243,15 @@ namespace Sugar
         public void TestWeeksUntil()
         {
             var expected = new List<DateTime>
-            {
-                new DateTime(2011, 12, 26),
-                new DateTime(2012, 1, 2),
-                new DateTime(2012, 1, 9),
-                new DateTime(2012, 1, 16),
-                new DateTime(2012, 1, 23),
-                new DateTime(2012, 1, 30),
-                new DateTime(2012, 2, 6),
-            };
+                               {
+                                   new DateTime(2011, 12, 26),
+                                   new DateTime(2012, 1, 2),
+                                   new DateTime(2012, 1, 9),
+                                   new DateTime(2012, 1, 16),
+                                   new DateTime(2012, 1, 23),
+                                   new DateTime(2012, 1, 30),
+                                   new DateTime(2012, 2, 6),
+                               };
 
             var results = new DateTime(2011, 12, 29).WeeksUntil(new DateTime(2012, 2, 7)).ToList();
 
@@ -264,15 +264,15 @@ namespace Sugar
         public void TestWeeksUntilWeekStartWednesday()
         {
             var expected = new List<DateTime>
-            {
-                new DateTime(2011, 12, 28),
-                new DateTime(2012, 1, 4),
-                new DateTime(2012, 1, 11),
-                new DateTime(2012, 1, 18),
-                new DateTime(2012, 1, 25),
-                new DateTime(2012, 2, 1),
-                new DateTime(2012, 2, 8),
-            };
+                               {
+                                   new DateTime(2011, 12, 28),
+                                   new DateTime(2012, 1, 4),
+                                   new DateTime(2012, 1, 11),
+                                   new DateTime(2012, 1, 18),
+                                   new DateTime(2012, 1, 25),
+                                   new DateTime(2012, 2, 1),
+                                   new DateTime(2012, 2, 8),
+                               };
 
             var results = new DateTime(2011, 12, 29).WeeksUntil(new DateTime(2012, 2, 7), DayOfWeek.Wednesday).ToList();
 
@@ -285,15 +285,15 @@ namespace Sugar
         public void TestWeeksUntilWeekStartFriday()
         {
             var expected = new List<DateTime>
-            {
-                new DateTime(2011, 12, 30),
-                new DateTime(2012, 1, 6),
-                new DateTime(2012, 1, 13),
-                new DateTime(2012, 1, 20),
-                new DateTime(2012, 1, 27),
-                new DateTime(2012, 2, 3),
-                new DateTime(2012, 2, 10),
-            };
+                               {
+                                   new DateTime(2011, 12, 30),
+                                   new DateTime(2012, 1, 6),
+                                   new DateTime(2012, 1, 13),
+                                   new DateTime(2012, 1, 20),
+                                   new DateTime(2012, 1, 27),
+                                   new DateTime(2012, 2, 3),
+                                   new DateTime(2012, 2, 10),
+                               };
 
             var results = new DateTime(2011, 12, 29).WeeksUntil(new DateTime(2012, 2, 7), DayOfWeek.Friday).ToList();
 
@@ -306,22 +306,48 @@ namespace Sugar
         public void TestWeeksUntilLeapYearTest()
         {
             var expected = new List<DateTime>
-            {
-                new DateTime(2011, 12, 26),
-                new DateTime(2012, 1, 2),
-                new DateTime(2012, 1, 9),
-                new DateTime(2012, 1, 16),
-                new DateTime(2012, 1, 23),
-                new DateTime(2012, 1, 30),
-                new DateTime(2012, 2, 6),
-                new DateTime(2012, 2, 13),
-                new DateTime(2012, 2, 20),
-                new DateTime(2012, 2, 27),
-                new DateTime(2012, 3, 5),
-                new DateTime(2012, 3, 12),
-            };
+                               {
+                                   new DateTime(2011, 12, 26),
+                                   new DateTime(2012, 1, 2),
+                                   new DateTime(2012, 1, 9),
+                                   new DateTime(2012, 1, 16),
+                                   new DateTime(2012, 1, 23),
+                                   new DateTime(2012, 1, 30),
+                                   new DateTime(2012, 2, 6),
+                                   new DateTime(2012, 2, 13),
+                                   new DateTime(2012, 2, 20),
+                                   new DateTime(2012, 2, 27),
+                                   new DateTime(2012, 3, 5),
+                                   new DateTime(2012, 3, 12),
+                               };
 
             var results = new DateTime(2011, 12, 26).WeeksUntil(new DateTime(2012, 3, 12)).ToList();
+
+            Assert.AreEqual(expected.Count, results.Count());
+            Assert.AreEqual(expected[0], results.ElementAt(0));
+            Assert.AreEqual(expected[9], results.ElementAt(9));
+            Assert.AreEqual(expected[10], results.ElementAt(10));
+        }
+
+        [Test]
+        public void TestHoursUntil()
+        {
+            var expected = new List<DateTime>
+                               {
+                                   new DateTime(2011, 1, 1, 10, 15, 0, 0),
+                                   new DateTime(2011, 1, 1, 11, 15, 0, 0),
+                                   new DateTime(2011, 1, 1, 12, 15, 0, 0),
+                                   new DateTime(2011, 1, 1, 13, 15, 0, 0),
+                                   new DateTime(2011, 1, 1, 14, 15, 0, 0),
+                                   new DateTime(2011, 1, 1, 15, 15, 0, 0),
+                                   new DateTime(2011, 1, 1, 16, 15, 0, 0),
+                                   new DateTime(2011, 1, 1, 17, 15, 0, 0),
+                                   new DateTime(2011, 1, 1, 18, 15, 0, 0),
+                                   new DateTime(2011, 1, 1, 19, 15, 0, 0),
+                                   new DateTime(2011, 1, 1, 20, 15, 0, 0)
+                               };
+
+            var results = new DateTime(2011, 1, 1, 10, 15, 0, 0).HoursUntil(new DateTime(2011, 1, 1, 20, 15, 0, 0)).ToList();
 
             Assert.AreEqual(expected.Count, results.Count());
             Assert.AreEqual(expected[0], results.ElementAt(0));
@@ -516,7 +542,7 @@ namespace Sugar
         [Test]
         public void TestToHumanReadableStringNull()
         {
-            var result = ((DateTime?) null).ToHumanReadableString();
+            var result = ((DateTime?)null).ToHumanReadableString();
 
             Assert.AreEqual("never", result);
         }
