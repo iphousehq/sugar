@@ -122,7 +122,7 @@ Represents a point on the surface of a sphere approximating the Earth
 - `ToGenericFullName`: Gets the Namespace and Name of this type, including any generic parameters
 - `HasAttribute`: Determines whether the type has a given attribute
 
-###WebStringExtensions
+###WebString Extensions
 
 - HTML encoding and decoding shortcuts.
 
