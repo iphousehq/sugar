@@ -48,6 +48,7 @@ The project is divided in several class libraries:
 ###DateTime Extensions
 
 - Parsing of date time strings
+- Offseting a date by an time span offset
 - Converting to and from ISO 8601 formatted values
 - Output date time to human readable values (e.g. An hour ago...)
 - Get the last day of week or month for given a given value

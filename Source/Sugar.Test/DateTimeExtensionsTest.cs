@@ -9,6 +9,26 @@ namespace Sugar
     public class ToDateTimeExtensionTest
     {
         [Test]
+        public void TestToOffsetFromUtc()
+        {
+            var now = new DateTime(2014, 4, 11, 8, 2, 23, DateTimeKind.Utc);
+
+            var offset = now.ToOffset(new TimeSpan(1, 30, 0));
+
+            Assert.AreEqual(new DateTime(2014, 4, 11, 9, 32, 23), offset);
+        }
+
+        [Test]
+        public void TestToOffsetFromLocal()
+        {
+            var now = new DateTime(2014, 4, 11, 8, 2, 23, DateTimeKind.Local);
+
+            var offset = now.ToOffset(new TimeSpan(1, 30, 0));
+
+            Assert.AreEqual(new DateTime(2014, 4, 11, 9, 32, 23), offset);
+        }
+
+        [Test]
         public void TestToDateValidString()
         {
             var result = "20/05/2010 15:10:50".ToDateTime();

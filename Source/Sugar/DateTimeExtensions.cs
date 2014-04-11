@@ -11,6 +11,19 @@ namespace Sugar
     public static class ToDateTimeExtension
     {
         /// <summary>
+        /// Converts the UTC value of the current DateTime object to the date and time specified by a time zone offset value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="offset">The time zone offset.</param>
+        /// <returns>
+        /// The local DateTime (UTC + time zone offset).
+        /// </returns>
+        public static DateTime ToOffset(this DateTime value, TimeSpan offset)
+        {
+            return value.ToUniversalTime().Add(offset);
+        }
+
+        /// <summary>
         /// Converts this string into a <see cref="DateTime"/> object.
         /// </summary>
         /// <param name="value">The value.</param>
