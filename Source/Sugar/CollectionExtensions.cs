@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Sugar
 {
@@ -95,6 +96,21 @@ namespace Sugar
                 {
                     collection.RemoveAt(counter);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Split the given collection into chunks.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <param name="size">The size.</param>
+        /// <returns></returns>
+        public static IEnumerable<IEnumerable<T>> Chunkify<T>(this IList<T> collection, int size)
+        {
+            for (var i = 0; i < collection.Count(); i += size)
+            {
+                yield return collection.Skip(i).Take(size).ToList();
             }
         }
     }

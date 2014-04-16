@@ -339,6 +339,5 @@ namespace Sugar
                 .Replace("\\*", ".*")
                 .Replace("\\?", ".") + "$";
         }
-
     }
 }

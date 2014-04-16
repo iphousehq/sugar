@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Sugar
@@ -208,6 +209,30 @@ namespace Sugar
             collection.RemoveIf(s => s == "test3");
 
             Assert.AreEqual(2, collection.Count);
+        }
+
+        [Test]
+        public void TestChunkify()
+        {
+            var collection = new List<string>
+                                {
+                                    "one",
+                                    "two",
+                                    "three",
+                                    "four",
+                                    "five",
+                                    "six"
+                                };
+
+            var results = collection.Chunkify(2).ToList();
+
+            Assert.AreEqual(3, results.Count);
+            Assert.AreEqual(2, results[0].Count());
+            Assert.AreEqual(2, results[1].Count());
+            Assert.AreEqual(2, results[2].Count());
+            Assert.AreEqual("one", results[0].ElementAt(0));
+            Assert.AreEqual("three", results[1].ElementAt(0));
+            Assert.AreEqual("five", results[2].ElementAt(0));
         }
     }
 }
