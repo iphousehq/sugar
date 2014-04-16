@@ -69,7 +69,6 @@
     <Compile Include="Html\HtmlNodeExtensionsTest.cs" />
     <Compile Include="Int32ExtensionsTest.cs" />
     <Compile Include="IO\FileServiceTest.cs" />
-    <Compile Include="JsonHelperTest.cs" />
     <Compile Include="Mime\MimeTypeTest.cs" />
     <Compile Include="Net\CommonTldsTest.cs" />
     <Compile Include="Net\HttpRequestTest.cs" />
@@ -119,11 +118,6 @@
     <ProjectReference Include="..\Sugar.Html\Sugar.Html.csproj">
       <Project>{db536d0a-accd-49d0-815f-3f8a848da981}</Project>
       <Name>Sugar.Html</Name>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj">
-      <Project>{28eb8fd3-3904-467f-b256-81edd21ef6e4}</Project>
-      <Name>Sugar.Web</Name>
       <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Sugar\Sugar.csproj">
