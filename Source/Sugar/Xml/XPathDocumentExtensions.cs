@@ -281,6 +281,13 @@ namespace Sugar.Xml
             return results;
         }
 
+        /// <summary>
+        /// Gets the iterator.
+        /// </summary>
+        /// <param name="document">The document.</param>
+        /// <param name="xpath">The xpath.</param>
+        /// <param name="namespaceSearchDepth">The namespace search depth.</param>
+        /// <returns></returns>
         private static XPathNodeIterator GetIterator(IXPathNavigable document, string xpath, int namespaceSearchDepth = 1)
         {
             var navigator = document.CreateNavigator();
@@ -304,6 +311,12 @@ namespace Sugar.Xml
             return iterator;
         }
 
+        /// <summary>
+        /// Adds the prefix to x path.
+        /// </summary>
+        /// <param name="xpath">The xpath.</param>
+        /// <param name="prefix">The prefix.</param>
+        /// <returns></returns>
         private static string AddPrefixToXPath(string xpath, string prefix)
         {
             return System.Text.RegularExpressions.Regex.Replace(xpath, @"(^(?![A-Za-z0-9\-\.]+::)|[A-Za-z0-9\-\.]+::|[@|/])(?'Expression'[A-Za-z0-9\-\.]+)", x =>

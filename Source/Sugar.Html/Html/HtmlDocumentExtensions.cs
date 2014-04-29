@@ -6,7 +6,7 @@ using Sugar.Net;
 namespace Sugar.Html
 {
     /// <summary>
-    /// Factory class to create HtmlDocument objectd
+    /// Extensions methods for <see cref="HtmlDocument"/>
     /// </summary>
     public static class Html
     {

@@ -15,7 +15,7 @@
         /// <returns></returns>
         public static T[] Slice<T>(this T[] source, int start, int length)
         {
-            // new array
+            // New array
             var result = new T[length];
             for (var i = 0; i < length; i++)
             {

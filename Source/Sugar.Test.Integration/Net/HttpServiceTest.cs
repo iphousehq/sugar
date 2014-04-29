@@ -17,7 +17,7 @@ namespace Sugar.Net
         [Test]
         public void TestHead()
         {
-            var response = service.Head("http://www.watchdogapp.com/");
+            var response = service.Head("http://www.bbc.co.uk/");
 
             Assert.IsTrue(response.Success);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -32,7 +32,7 @@ namespace Sugar.Net
         [Test]
         public void TestGet()
         {
-            var response = service.Get("http://www.watchdogapp.com/");
+            var response = service.Get("http://arstechnica.com/");
 
             Assert.IsTrue(response.Success);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -47,17 +47,15 @@ namespace Sugar.Net
         [Test]
         public void TestGet404Answer()
         {
-            var response = service.Get("http://comsechq.com/404");
+            var response = service.Get("http://github.com/does-no-exist");
 
-            var notFound = response.StatusCode == HttpStatusCode.NotFound;
-
-            Assert.IsTrue(notFound);
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
 
             Assert.Less(0, response.Headers.Count);
 
             Assert.IsNull(response.Bytes);
 
-            Assert.Less(0, response.ContentLength);
+            Assert.LessOrEqual(-1, response.ContentLength);
         }
 
         [Test]

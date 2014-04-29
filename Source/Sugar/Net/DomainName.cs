@@ -1,9 +1,16 @@
 ﻿namespace Sugar.Net
 {
+    /// <summary>
+    /// Helper class to extract the domain name and subdomain from a domain name.
+    /// </summary>
     public class DomainName
     {
         private readonly string domainName;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DomainName"/> class.
+        /// </summary>
+        /// <param name="domainName">The domain name (e.g. wwww.domainname.com).</param>
         public DomainName(string domainName)
         {
             this.domainName = domainName;
@@ -21,6 +28,12 @@
             }
         }
 
+        /// <summary>
+        /// Gets the sub domain.
+        /// </summary>
+        /// <value>
+        /// The sub domain.
+        /// </value>
         public string SubDomain
         {
             get

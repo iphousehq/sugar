@@ -3,7 +3,7 @@
 namespace Sugar
 {
     /// <summary>
-    /// Extension methods for strings.
+    /// Extension methods for strings to wrap call to <see cref="HttpUtility"/>.
     /// </summary>
     public static class WebStringExtensions
     {        

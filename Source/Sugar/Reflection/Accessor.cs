@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Sugar.Reflection
 {
-    public interface Accessor
+    public interface IAccessor
     {
         string FieldName { get; }
 
@@ -12,7 +12,7 @@ namespace Sugar.Reflection
         void SetValue(object target, object propertyValue);
         object GetValue(object target);
 
-        Accessor GetChildAccessor<T>(Expression<Func<T, object>> expression);
+        IAccessor GetChildAccessor<T>(Expression<Func<T, object>> expression);
 
         string Name { get; }
     }

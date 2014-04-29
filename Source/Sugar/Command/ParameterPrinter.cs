@@ -117,6 +117,12 @@ namespace Sugar.Command
             return results;
         }
 
+        /// <summary>
+        /// Appends the parameter hint.
+        /// </summary>
+        /// <param name="property">The property.</param>
+        /// <param name="attribute">The attribute.</param>
+        /// <returns></returns>
         private string AppendParameterHint(PropertyInfo property, ParameterAttribute attribute)
         {
             var result = " ";

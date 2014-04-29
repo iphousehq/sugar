@@ -53,6 +53,7 @@
     <Compile Include="DictionaryExtensions.cs" />
     <Compile Include="Country\CountryCode.cs" />
     <Compile Include="GeoLocation.cs" />
+    <Compile Include="ListExtensions.cs" />
     <Compile Include="Mime\ApplicationMime.cs" />
     <Compile Include="Mime\ApplicationMimeType.cs" />
     <Compile Include="Mime\AudioMime.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Reflection\Accessor.cs" />
     <Compile Include="Reflection\DummyPropertyInfo.cs" />
     <Compile Include="Reflection\Member.cs" />
+    <Compile Include="Reflection\MemberExtensions.cs" />
     <Compile Include="Reflection\PropertyChain.cs" />
     <Compile Include="Reflection\ReflectionExtensions.cs" />
     <Compile Include="Reflection\ReflectionHelper.cs" />
