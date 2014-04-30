@@ -17,7 +17,7 @@ namespace Sugar.Net
         [Test]
         public void TestHead()
         {
-            var response = service.Head("http://www.bbc.co.uk/");
+            var response = service.Head("http://www.bbc.co.uk");
 
             Assert.IsTrue(response.Success);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -25,8 +25,6 @@ namespace Sugar.Net
             Assert.Less(0, response.Headers.Count);
 
             Assert.IsNull(response.Bytes);
-
-            Assert.AreEqual(-1, response.ContentLength);
         }
 
         [Test]
@@ -40,8 +38,19 @@ namespace Sugar.Net
             Assert.Less(0, response.Headers.Count);
 
             Assert.Less(0, response.Bytes.Length);
+        }
 
-            Assert.AreEqual(-1, response.ContentLength);
+        [Test]
+        public void TestGetHttps()
+        {
+            var response = service.Get("https://arstechnica.com/");
+
+            Assert.IsTrue(response.Success);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+
+            Assert.Less(0, response.Headers.Count);
+
+            Assert.Less(0, response.Bytes.Length);
         }
 
         [Test]
@@ -54,8 +63,6 @@ namespace Sugar.Net
             Assert.Less(0, response.Headers.Count);
 
             Assert.IsNull(response.Bytes);
-
-            Assert.LessOrEqual(-1, response.ContentLength);
         }
 
         [Test]
