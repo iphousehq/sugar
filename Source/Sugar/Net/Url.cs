@@ -6,7 +6,7 @@ using System.Web;
 namespace Sugar.Net
 {
     /// <summary>
-    /// Represents an internet URL
+    /// Helper class to extract information from an URL.
     /// </summary>
     public class Url
     {

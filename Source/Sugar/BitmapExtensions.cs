@@ -7,6 +7,9 @@ using System.Runtime.InteropServices;
 
 namespace Sugar
 {
+    /// <summary>
+    /// <see cref="Bitmap"/> extensions methods.
+    /// </summary>
     public static class BitmapExtension
     {
         /// <summary>

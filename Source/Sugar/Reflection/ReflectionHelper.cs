@@ -17,18 +17,18 @@ namespace Sugar.Reflection
             return GetMember(expression.Body);
         }
 
-        public static Accessor GetAccessor<MODEL>(Expression<Func<MODEL, object>> expression)
+        public static IAccessor GetAccessor<TModel>(Expression<Func<TModel, object>> expression)
         {
             MemberExpression memberExpression = GetMemberExpression(expression.Body);
 
-            return getAccessor(memberExpression);
+            return GetAccessor(memberExpression);
         }
 
-        public static Accessor GetAccessor<MODEL, T>(Expression<Func<MODEL, T>> expression)
+        public static IAccessor GetAccessor<TModel, T>(Expression<Func<TModel, T>> expression)
         {
             MemberExpression memberExpression = GetMemberExpression(expression.Body);
 
-            return getAccessor(memberExpression);
+            return GetAccessor(memberExpression);
         }
 
         private static bool IsIndexedPropertyAccess(Expression expression)
@@ -107,7 +107,7 @@ namespace Sugar.Reflection
             return memberExpression;
         }
 
-        private static Accessor getAccessor(MemberExpression memberExpression)
+        private static IAccessor GetAccessor(MemberExpression memberExpression)
         {
             var list = new List<Member>();
 

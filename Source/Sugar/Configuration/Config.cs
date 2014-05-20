@@ -7,7 +7,7 @@ using Sugar.IO;
 namespace Sugar.Configuration
 {
     /// <summary>
-    /// Class to wrap basic accessing of configuration files
+    /// Class to wrap basic accessing of configuration files (stored in [executable].config)
     /// </summary>
     public class Config
     {

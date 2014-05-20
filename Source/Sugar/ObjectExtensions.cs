@@ -4,8 +4,18 @@ using System.Text;
 
 namespace Sugar
 {
+    /// <summary>
+    /// <see cref="object"/> extension methods
+    /// </summary>
     public static class ObjectExtensions
     {
+        /// <summary>
+        /// Serializes in human friendly way the values of an instance.
+        /// </summary>
+        /// <param name="object">The object.</param>
+        /// <param name="depth">The depth.</param>
+        /// <param name="enumerate">if set to <c>true</c> [enumerate].</param>
+        /// <returns></returns>
         public static string ToDump(this object @object, int depth = 1, bool enumerate = true)
         {
             var sb = new StringBuilder();

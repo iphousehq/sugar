@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Sugar.Reflection
 {
-    public class PropertyChain : Accessor
+    public class PropertyChain : IAccessor
     {
         private readonly Member[] chain;
         private readonly SingleMember innerMember;
@@ -60,7 +60,7 @@ namespace Sugar.Reflection
             get { return innerMember.InnerMember; }
         }
 
-        public Accessor GetChildAccessor<T>(Expression<Func<T, object>> expression)
+        public IAccessor GetChildAccessor<T>(Expression<Func<T, object>> expression)
         {
             var member = expression.ToMember();
             var list = new List<Member>(chain);

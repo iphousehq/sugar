@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Sugar.Reflection
 {
-    public class SingleMember : Accessor
+    public class SingleMember : IAccessor
     {
         private readonly Member member;
 
@@ -29,7 +29,7 @@ namespace Sugar.Reflection
             get { return member; }
         }
 
-        public Accessor GetChildAccessor<T>(Expression<Func<T, object>> expression)
+        public IAccessor GetChildAccessor<T>(Expression<Func<T, object>> expression)
         {
             var property = expression.ToMember();
             return new PropertyChain(new[] { member, property });

@@ -140,15 +140,15 @@ namespace Sugar.Net
         public HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000, BaseMime accept = null, Encoding encoding = null)
         {
             var request = new HttpRequest
-            {
-                Url = url,
-                UserAgent = agent ?? UserAgent.Firefox(),
-                Verb = verb,
-                Referer = referer,
-                Retries = retries,
-                Timeout = timeout,
-                Encoding = encoding ?? Encoding.UTF8
-            };
+                          {
+                              Url = url,
+                              UserAgent = agent ?? UserAgent.Firefox(),
+                              Verb = verb,
+                              Referer = referer,
+                              Retries = retries,
+                              Timeout = timeout,
+                              Encoding = encoding ?? Encoding.UTF8
+                          };
 
             if (accept != null)
             {

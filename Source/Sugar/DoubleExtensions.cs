@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Sugar
 {
+    /// <summary>
+    /// <see cref="double"/> extensions methods.
+    /// </summary>
     public static class ToDoubleExtension
     {
         /// <summary>

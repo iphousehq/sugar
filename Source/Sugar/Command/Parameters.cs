@@ -59,8 +59,6 @@ namespace Sugar.Command
             current = new ParameterParser().Parse(commandLine);
         }
 
-
-
         /// <summary>
         /// Gets the current command line arguments.
         /// </summary>
@@ -87,6 +85,9 @@ namespace Sugar.Command
             }
         }
 
+        /// <summary>
+        /// Gets the current directory of the executable.
+        /// </summary>
         public static string Directory
         {
             get

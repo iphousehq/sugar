@@ -51,6 +51,7 @@
     <Compile Include="Attributes\TypeaheadTokenAttributeTest.cs" />
     <Compile Include="BitmapExtensionsTest.cs" />
     <Compile Include="CollectionExtensionsTest.cs" />
+    <Compile Include="ListExtensionsTest.cs" />
     <Compile Include="Command\BoundCommandTest.cs" />
     <Compile Include="Command\ParameterPrinterTest.cs" />
     <Compile Include="Command\ParametersTest.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="IO\FileServiceTest.cs" />
     <Compile Include="Mime\MimeTypeTest.cs" />
     <Compile Include="Net\CommonTldsTest.cs" />
+    <Compile Include="Net\DomainNameTest.cs" />
     <Compile Include="Net\HttpRequestTest.cs" />
     <Compile Include="Net\HttpResponseTest.cs" />
     <Compile Include="Net\UrlTest.cs" />
