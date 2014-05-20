@@ -145,6 +145,16 @@ namespace Sugar
         }
 
         /// <summary>
+        /// Keeps the alpha-numeric characters in the given value, removed the rest.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string KeepAlphaNumeric(this string value)
+        {
+            return value.Keep("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+        }
+
+        /// <summary>
         /// Determines whether the specified value is numeric.
         /// </summary>
         /// <param name="value">The value.</param>

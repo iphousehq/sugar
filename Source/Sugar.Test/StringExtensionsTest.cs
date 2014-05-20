@@ -107,6 +107,12 @@ namespace Sugar
         }
 
         [Test]
+        public void TestKeepAlphaNumeric()
+        {
+            Assert.AreEqual("100FOObar", "100£$£&*(FOO::>?>?\"bar".KeepAlphaNumeric());
+        }
+
+        [Test]
         public void TestContainsAny()
         {
             Assert.IsTrue("1234".ContainsAny("123"));
