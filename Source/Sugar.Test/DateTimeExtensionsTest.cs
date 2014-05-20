@@ -18,6 +18,9 @@ namespace Sugar
             Assert.AreEqual(new DateTime(2014, 4, 11, 9, 32, 23), offset);
         }
 
+        /// <summary>
+        /// This test will fail on any machine that is not UTC
+        /// </summary>
         [Test]
         public void TestToOffsetFromLocal()
         {
