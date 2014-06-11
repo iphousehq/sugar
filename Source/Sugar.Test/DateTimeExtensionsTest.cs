@@ -293,15 +293,14 @@ namespace Sugar
                                    new DateTime(2012, 1, 11),
                                    new DateTime(2012, 1, 18),
                                    new DateTime(2012, 1, 25),
-                                   new DateTime(2012, 2, 1),
-                                   new DateTime(2012, 2, 8),
+                                   new DateTime(2012, 2, 1)
                                };
 
             var results = new DateTime(2011, 12, 29).WeeksUntil(new DateTime(2012, 2, 7), DayOfWeek.Wednesday).ToList();
 
             Assert.AreEqual(expected.Count, results.Count());
             Assert.AreEqual(expected[0], results.ElementAt(0));
-            Assert.AreEqual(expected[6], results.ElementAt(6));
+            Assert.AreEqual(expected[5], results.ElementAt(5));
         }
 
         [Test]
@@ -309,13 +308,13 @@ namespace Sugar
         {
             var expected = new List<DateTime>
                                {
+                                   new DateTime(2011, 12, 23),
                                    new DateTime(2011, 12, 30),
                                    new DateTime(2012, 1, 6),
                                    new DateTime(2012, 1, 13),
                                    new DateTime(2012, 1, 20),
                                    new DateTime(2012, 1, 27),
-                                   new DateTime(2012, 2, 3),
-                                   new DateTime(2012, 2, 10),
+                                   new DateTime(2012, 2, 3)
                                };
 
             var results = new DateTime(2011, 12, 29).WeeksUntil(new DateTime(2012, 2, 7), DayOfWeek.Friday).ToList();
@@ -412,6 +411,42 @@ namespace Sugar
             // Sunday
             var result8 = new DateTime(2011, 12, 11).StartOfWeek(DayOfWeek.Monday);
             Assert.AreEqual(new DateTime(2011, 12, 5), result8);
+        }
+
+        [Test]
+        public void TestEndOfWeek()
+        {
+            // Monday
+            var result = new DateTime(2012, 1, 2).EndOfWeek(DayOfWeek.Monday);
+            Assert.AreEqual(new DateTime(2012, 1, 8), result);
+
+            // Tuesday
+            var result2 = new DateTime(2012, 1, 3).EndOfWeek(DayOfWeek.Monday);
+            Assert.AreEqual(new DateTime(2012, 1, 8), result2);
+
+            // Wednesday
+            var result3 = new DateTime(2012, 1, 4).EndOfWeek(DayOfWeek.Monday);
+            Assert.AreEqual(new DateTime(2012, 1, 8), result3);
+
+            // Thursday
+            var result4 = new DateTime(2012, 1, 5).EndOfWeek(DayOfWeek.Monday);
+            Assert.AreEqual(new DateTime(2012, 1, 8), result4);
+
+            // Friday
+            var result5 = new DateTime(2012, 1, 6).EndOfWeek(DayOfWeek.Monday);
+            Assert.AreEqual(new DateTime(2012, 1, 8), result5);
+
+            // Saturday
+            var result6 = new DateTime(2012, 1, 7).EndOfWeek(DayOfWeek.Monday);
+            Assert.AreEqual(new DateTime(2012, 1, 8), result6);
+
+            // Sunday
+            var result7 = new DateTime(2012, 1, 8).EndOfWeek(DayOfWeek.Monday);
+            Assert.AreEqual(new DateTime(2012, 1, 8), result7);
+
+            // Sunday
+            var result8 = new DateTime(2011, 12, 11).EndOfWeek(DayOfWeek.Monday);
+            Assert.AreEqual(new DateTime(2011, 12, 11), result8);
         }
 
         [Test]

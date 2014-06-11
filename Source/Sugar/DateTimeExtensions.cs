@@ -354,12 +354,30 @@ namespace Sugar
         {
             var takeDays = dt.DayOfWeek - startOfWeek;
 
-            if (startOfWeek == DayOfWeek.Monday && dt.DayOfWeek == DayOfWeek.Sunday)
+            if (takeDays < 0)
             {
-                takeDays = 6;
+                takeDays = 7 - Math.Abs(takeDays);
             }
 
             return dt.AddDays(-takeDays);
+        }
+
+        /// <summary>
+        /// Gets the end of the week given by the date time.
+        /// </summary>
+        /// <param name="dt">The dt.</param>
+        /// <param name="startOfWeek">The start of week.</param>
+        /// <returns></returns>
+        public static DateTime EndOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        {
+            var takeDays = dt.DayOfWeek - startOfWeek;
+
+            if (takeDays >= 0)
+            {
+                takeDays = 7 - takeDays;
+            }
+
+            return dt.AddDays(Math.Abs(takeDays) - 1);
         }
 
         /// <summary>

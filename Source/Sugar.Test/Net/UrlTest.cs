@@ -272,5 +272,14 @@ namespace Sugar.Net
 
             Assert.AreEqual("eed.eg", url.DomainSansSubDomain);
         }
+
+        [Test]
+        public void Testblah()
+        {
+            var url = new Url("test.ebay.co.uk");
+
+
+            Assert.NotNull(url);
+        }
     }
 }
