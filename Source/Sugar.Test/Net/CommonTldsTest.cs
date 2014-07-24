@@ -10,25 +10,36 @@ namespace Sugar.Net
         {
             var tld = CommonTlds.Instance.GetTld("bbc.co.uk");
 
-            Assert.AreEqual(tld, "co.uk");
+            Assert.AreEqual("co.uk", tld);
         }
 
         [Test]
         public void TestGetBestTldMatchWhenMultipleMatches()
         {
             // Both '.bs' and '.com.bs' are valid.
-            var tld = CommonTlds.Instance.GetTld("com.bs");
+            var tld = CommonTlds.Instance.GetTld("something.com.bs");
 
-            Assert.AreEqual(tld, "com.bs");
+            Assert.AreEqual("com.bs", tld);
+        }
+
+        [Test]
+        public void TestGetBestTldMatchWhenAmazonCanada()
+        {
+            var tld = CommonTlds.Instance.GetTld("amazon.ca");
+
+            Assert.AreEqual("ca", tld);
+
+            tld = CommonTlds.Instance.GetTld("amaz.on.ca");
+
+            Assert.AreEqual("on.ca", tld);
         }
 
         [Test]
         public void TestGetBestTldMatchWhenNoPredefinedMatches()
         {
-            // Both '.bs' and '.com.bs' are valid.
             var tld = CommonTlds.Instance.GetTld("zdssihsgifsd.sdiusfhisdfhs.sfisdfisdfsdif");
 
-            Assert.AreEqual(tld, "sfisdfisdfsdif");
+            Assert.AreEqual("sfisdfisdfsdif", tld);
         }
     }
 }

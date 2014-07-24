@@ -5104,7 +5104,7 @@ namespace Sugar.Net
             string result;
 
             // Get potential matches
-            var matches = Tlds.Where(x => domain.EndsWith(x, StringComparison.OrdinalIgnoreCase)).ToList();
+            var matches = Tlds.Where(x => domain.EndsWith(string.Format(".{0}", x), StringComparison.OrdinalIgnoreCase)).ToList();
 
             if (matches.Count > 0)
             {
