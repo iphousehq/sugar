@@ -41,6 +41,17 @@ namespace Sugar.Net
         }
 
         [Test]
+        public void TestGetWithRedirection()
+        {
+            var response = service.Get("http://github.com");
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual("http://github.com", response.Url);
+            Assert.AreEqual("https://github.com/", response.RedirectedUrl);
+            Assert.IsTrue(response.WasRedirected);
+        }
+
+        [Test]
         public void TestGetHttps()
         {
             var response = service.Get("https://arstechnica.com/");

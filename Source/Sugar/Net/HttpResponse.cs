@@ -24,10 +24,29 @@ namespace Sugar.Net
         }
 
         /// <summary>
-        /// Gets or sets the URL.
+        /// Gets or sets the URL of the request.
         /// </summary>
         /// <value>The URL.</value>
         public string Url { get; set; }
+
+        /// <summary>
+        /// Gets or sets the URL the original request might have been redirected to.
+        /// </summary>
+        /// <value>
+        /// The redirected URL.
+        /// </value>
+        public string RedirectedUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the request followed a HTTP redirect (302) response.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [was redirected]; otherwise, <c>false</c>.
+        /// </value>
+        public bool WasRedirected
+        {
+            get { return Url != RedirectedUrl; }
+        }
 
         /// <summary>
         /// Gets or sets the stream.

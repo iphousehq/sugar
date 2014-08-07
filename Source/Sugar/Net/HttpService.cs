@@ -12,15 +12,18 @@ namespace Sugar.Net
     public class HttpService : IHttpService
     {
         /// <summary>
-        /// Maps the specified <see cref="WebResponse"/> to the given <see cref="HttpResponse"/>.
+        /// Maps the specified <see cref="WebResponse" /> to the given <see cref="HttpResponse" />.
         /// </summary>
+        /// <param name="request">The request.</param>
         /// <param name="webResponse">The web response.</param>
-        /// <param name="response">The HTTP response.</param>
-        /// <returns>the given HTTP response.</returns>
-        public static HttpResponse Map(WebResponse webResponse, HttpResponse response)
+        /// <param name="response">The HTTP response to map the <see cref="webResponse" />to.</param>
+        public static void Map(HttpRequest request, WebResponse webResponse, ref HttpResponse response)
         {
             if (webResponse != null)
             {
+                // If the web response followed an http redirect, the URL will have changed. Reflect that change.
+                response.RedirectedUrl = webResponse.ResponseUri.ToString();
+
                 response.ContentLength = webResponse.ContentLength;
 
                 foreach (string header in webResponse.Headers)
@@ -35,8 +38,6 @@ namespace Sugar.Net
                     response.StatusDescription = httpWebResponse.StatusDescription;
                 }
             }
-
-            return response;
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Sugar.Net
                     }
                 }
 
-                result = Map(webResponse, result);
+                Map(request, webResponse, ref result);
             }
 
             return result;
@@ -185,7 +186,7 @@ namespace Sugar.Net
                                    UserAgent = request.UserAgent
                                };
 
-                response = Map(ex.Response, response);
+                Map(request, ex.Response, ref response);
             }
             catch (Exception ex)
             {
