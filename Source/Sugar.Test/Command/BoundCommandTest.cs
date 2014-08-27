@@ -20,6 +20,22 @@ namespace Sugar.Command
         }
 
         [Test]
+        public void TestSuccess()
+        {
+            var result = FakeCommand.Success();
+
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void TestFail()
+        {
+            var result = FakeCommand.Fail();
+
+            Assert.AreEqual(-1, result);
+        }
+
+        [Test]
         public void TestCommandExecutes()
         {
             var parameters = new ParameterParser().Parse("-one two");
