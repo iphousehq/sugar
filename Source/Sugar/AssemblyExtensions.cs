@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace Sugar
@@ -17,20 +16,44 @@ namespace Sugar
         /// <param name="assembly">The assembly.</param>
         /// <param name="namespace">The @namespace.</param>
         /// <returns></returns>
-        public static IEnumerable<Type> GetTypes(this Assembly assembly, string @namespace = "")
+        public static IEnumerable<Type> GetTypes(this Assembly assembly, string @namespace)
+        {
+            return assembly.GetTypes(new[] {@namespace});
+        }
+
+        /// <summary>
+        /// Gets the types in the <see cref="assembly"/> that have a namespace starting with witht the given <see cref="namespaces"/>.
+        /// </summary>
+        /// <param name="assembly">The assembly.</param>
+        /// <param name="namespaces">The namespaces.</param>
+        /// <returns></returns>
+        public static IEnumerable<Type> GetTypes(this Assembly assembly, string[] @namespaces = null)
         {
             IEnumerable<Type> types;
 
-            if (string.IsNullOrEmpty(@namespace))
+            if (namespaces != null && namespaces.Length > 0)
             {
-                types = assembly.GetTypes();
+                var list = new List<Type>();
+
+                foreach (var type in assembly.GetTypes())
+                {
+                    if (!string.IsNullOrEmpty(type.Namespace))
+                    {
+                        foreach (var namespaceStart in namespaces)
+                        {
+                            if (type.Namespace.StartsWith(namespaceStart))
+                            {
+                                list.Add(type);
+                            }
+                        }
+                    }
+                }
+
+                types = list;
             }
             else
             {
-                types = assembly
-                    .GetTypes()
-                    .Where(t => !string.IsNullOrEmpty(t.Namespace) &&
-                                t.Namespace.StartsWith(@namespace));
+                types = assembly.GetTypes();
             }
 
             return types;
