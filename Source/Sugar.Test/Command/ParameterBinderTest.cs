@@ -129,6 +129,26 @@ namespace Sugar.Command
         }
 
         [Test]
+        public void TestBindObjectWithNullableDateAndTimeSetAsIso8601()
+        {
+            var parameters = parser.Parse("-flag -five 2014-03-05T23:40:59");
+
+            var result = binder.Bind<Baz>(parameters);
+
+            Assert.AreEqual(new DateTime(2014, 3, 5, 23, 40, 59), result.Fifth.Value);
+        }
+
+        [Test]
+        public void TestBindObjectWithNullableDateAndTimeSetAsIso8601CompactSyntaxIgnoresValue()
+        {
+            var parameters = parser.Parse("-flag -five 20140305T234059");
+
+            var result = binder.Bind<Baz>(parameters);
+
+            Assert.IsFalse(result.Fifth.HasValue);
+        }
+
+        [Test]
         public void TestBindObjectWithNullableDateNotSet()
         {
             var parameters = parser.Parse("-flag");
