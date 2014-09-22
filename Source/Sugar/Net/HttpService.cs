@@ -24,6 +24,12 @@ namespace Sugar.Net
                 // If the web response followed an http redirect, the URL will have changed. Reflect that change.
                 response.RedirectedUrl = webResponse.ResponseUri.ToString();
 
+                // Hack to handle 302 temporary redirect responses
+                if (!response.WasRedirected && response.Headers.ContainsKey("Location"))
+                {
+                    response.RedirectedUrl = response.Headers["Location"];
+                }
+
                 response.ContentLength = webResponse.ContentLength;
 
                 foreach (string header in webResponse.Headers)
