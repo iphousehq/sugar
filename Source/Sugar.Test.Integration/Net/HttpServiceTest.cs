@@ -67,7 +67,7 @@ namespace Sugar.Net
         [Test]
         public void TestGet404Answer()
         {
-            var response = service.Get("http://github.com/does-no-exist");
+            var response = service.Get("https://github.com/does-no-exist");
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
 
