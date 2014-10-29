@@ -19,7 +19,7 @@ namespace Sugar
         {
             IEnumerable<Type> types;
 
-            if (namespaces != null && namespaces.Length > 0)
+            if (namespaces != null && namespaces.Length > 0 && !string.IsNullOrEmpty(namespaces[0]))
             {
                 var list = new List<Type>();
 
