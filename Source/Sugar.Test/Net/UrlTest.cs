@@ -73,6 +73,14 @@ namespace Sugar.Net
         }
 
         [Test]
+        public void TestDomainWhenSubdomainIsSpecified()
+        {
+            var url = new Url("http://sub.watchdogapp.com/folder1/page1.html");
+
+            Assert.AreEqual("sub.watchdogapp.com", url.Domain);
+        }
+
+        [Test]
         public void TestDomainWithHttpProtocol()
         {
             var url = new Url("http://watchdogapp.com/folder1/page1.html");
@@ -95,6 +103,14 @@ namespace Sugar.Net
             var url = new Url("http://www.watchdogapp.com/folder1/page1.html");
 
             Assert.AreEqual("watchdogapp.com", url.DomainSansWww);
+        }
+
+        [Test]
+        public void TestDomainWithoutWwwPrefixWhenSubdomainPresent()
+        {
+            var url = new Url("http://sub.watchdogapp.com/folder1/page1.html");
+
+            Assert.AreEqual("sub.watchdogapp.com", url.DomainSansWww);
         }
 
         [Test]
