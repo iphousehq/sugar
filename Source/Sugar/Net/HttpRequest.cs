@@ -23,6 +23,7 @@ namespace Sugar.Net
             Cookies = new CookieContainer();
             Encoding = null;
             AllowAutoRedirect = true;
+            SecurityProtocolType = SecurityProtocolType.Tls;
         }
 
         /// <summary>
@@ -158,6 +159,17 @@ namespace Sugar.Net
         ///   <c>true</c> if to allow auto redirect; otherwise, <c>false</c>.
         /// </value>
         public bool AllowAutoRedirect { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of the security protocol.
+        /// </summary>
+        /// <value>
+        /// The type of the security protocol.
+        /// </value>
+        /// <remarks>
+        /// Lets you override the SecurityProtocolType (would default to SSLv3 unless overriden). It is defaulted to TLS in <see cref="HttpService"/>.
+        /// </remarks>
+        public SecurityProtocolType SecurityProtocolType { get; set; }
 
         /// <summary>
         /// Converts this instance to a <see cref="WebRequest"/>

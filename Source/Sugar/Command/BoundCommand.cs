@@ -9,14 +9,21 @@
         protected T OptionsBound;
 
         /// <summary>
-        /// Returns the success exit code cast as an int.
+        /// Returns the success exit code cast as an int (0).
         /// </summary>
-        /// <value>
-        /// The success exit code.
-        /// </value>
-        public int Success()
+        /// <returns>0</returns>
+        public static int Success()
         {
             return (int)ExitCode.Success;
+        }
+
+        /// <summary>
+        /// Returns the default failure return code (-1).
+        /// </summary>
+        /// <returns>-1</returns>
+        public static int Fail()
+        {
+            return (int)ExitCode.GeneralError;
         }
 
         /// <summary>
