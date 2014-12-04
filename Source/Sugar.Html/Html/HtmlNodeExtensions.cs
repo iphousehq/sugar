@@ -58,7 +58,7 @@ namespace Sugar.Html
         /// </summary>
         /// <param name="document">The document.</param>
         /// <param name="name">The name of the tag to remove.</param>
-        public static void RemoveAllTags(this HtmlAgilityPack.HtmlDocument document, string name)
+        public static void RemoveAllTags(this HtmlDocument document, string name)
         {
             var nodes = document.DocumentNode.DescendantsAndSelf(name).ToList();
             for (var i = nodes.Count - 1; i >= 0; i--)

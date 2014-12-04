@@ -262,6 +262,7 @@ namespace Sugar.Net
         /// <param name="retries">The retries.</param>
         /// <param name="timeout">The timeout.</param>
         /// <param name="accept">The accept.</param>
+        /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
         public HttpResponse Post(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 10000, BaseMime accept = null, Encoding encoding = null)
         {
