@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CsQuery;
 using Sugar.Net;
 
@@ -41,7 +42,9 @@ namespace Sugar.CsQuery
             var domainWithProtocol = documentUrl.DomainWithProtocol;
             var path = documentUrl.Path;
 
-            var baseUrls = csQuery["base"].GetAttributes("href");
+            var baseUrls = csQuery["base"].GetAttributes("href")
+                .Where(attr => attr != null)
+                .ToList();
 
             if (baseUrls.Count == 0)
             {

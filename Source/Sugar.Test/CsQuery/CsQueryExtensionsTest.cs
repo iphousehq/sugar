@@ -109,5 +109,15 @@ namespace Sugar.CsQuery
 
             Assert.AreEqual("http://example.com/images", url.DomainWithProtocol + url.Path);
         }
+
+        [Test]
+        public void TestGetDocumentBaseFromRootedUrlHtmlWithHttpBaseTagNull()
+        {
+            var cq = CQ.Create("<base href='' />");
+
+            var url = cq.GetDocumentBaseUrl("http://www.example.com");
+
+            Assert.AreEqual("http://www.example.com/", url.DomainWithProtocol + url.Path);
+        }
     }
 }
