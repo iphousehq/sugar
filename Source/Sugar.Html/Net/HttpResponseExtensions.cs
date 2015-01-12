@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using HtmlAgilityPack;
+using CsQuery;
 
 namespace Sugar.Net
 {
@@ -9,30 +9,23 @@ namespace Sugar.Net
     public static class HttpResponseExtensions
     {
         /// <summary>
-        /// Returns the HTML representation of the response.
+        /// Returns the Cs Queru representation of the response.
         /// </summary>
         /// <returns></returns>
-        public static HtmlDocument ToHtml(this HttpResponse response)
+        public static CQ ToCsQuery(this HttpResponse response)
         {
-            return response.ToHtml(Encoding.UTF8);
+            return response.ToCsQuery(Encoding.UTF8);
         }
 
         /// <summary>
         /// Returns the HTML representation of the response.
         /// </summary>
         /// <returns></returns>
-        public static HtmlDocument ToHtml(this HttpResponse response, Encoding encoding)
+        public static CQ ToCsQuery(this HttpResponse response, Encoding encoding)
         {
-            var document = new HtmlDocument();
+            var html = response.ToString(encoding);
 
-            var decoded = response.ToString(encoding);
-
-            if (!string.IsNullOrWhiteSpace(decoded))
-            {
-                document.LoadHtml(decoded);
-            }
-
-            return document;
+            return CQ.Create(html, HtmlParsingMode.Document);
         }
     }
 }

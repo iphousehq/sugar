@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Reflection;
 using NUnit.Framework;
 
 namespace Sugar
@@ -9,7 +10,10 @@ namespace Sugar
         [Test]
         public void TestGetAllTypes()
         {
-            var types = GetType().Assembly.GetTypes();
+            var assembly = GetType().Assembly;
+
+            var types = AssemblyExtensions.GetTypes(assembly)
+                                          .ToArray();
 
             Assert.Less(10, types.Length);
         }
