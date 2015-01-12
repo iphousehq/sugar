@@ -12,6 +12,18 @@ namespace Sugar
         }
 
         [Test]
+        public void TestAsInt32WithEmptyValue()
+        {
+            Assert.AreEqual(0, "".AsInt32());
+        }
+
+        [Test]
+        public void TestAsInt32WithWhiteSpaceValue()
+        {
+            Assert.AreEqual(0, " ".AsInt32());
+        }
+
+        [Test]
         public void TestOrdinalMinusOne()
         {
             var result = (-1).AddOrdinal();

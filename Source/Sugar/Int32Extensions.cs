@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sugar
+﻿namespace Sugar
 {
     /// <summary>
     /// Extension methods for integers.
@@ -25,19 +23,12 @@ namespace Sugar
         /// <returns></returns>
         public static int AsInt32(this string value, int @default)
         {
-            var result = @default;
-
-            if (!string.IsNullOrEmpty(value))
+            if (!string.IsNullOrWhiteSpace(value))
             {
-                int temp;
-
-                if (int.TryParse(value, out temp))
-                {
-                    result = Convert.ToInt32(temp);
-                }
+                int.TryParse(value, out @default);
             }
 
-            return result;
+            return @default;
         }
 
         /// <summary>
