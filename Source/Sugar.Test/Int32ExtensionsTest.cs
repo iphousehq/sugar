@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace Sugar
 {
@@ -133,6 +134,37 @@ namespace Sugar
             var result = 24.AddOrdinal();
 
             Assert.AreEqual("24th", result);
+        }
+
+        [Test]
+        public void TestPercentOf()
+        {
+            var result = 25.PercentOf(1000);
+
+            Assert.AreEqual(2.5, result);
+        }
+
+        [Test]
+        public void TestRemoveValues()
+        {
+            var numbers = new[] { 1, 2, 4 };
+
+            var result = numbers.RemoveValues(new[] { 2, 4 });
+
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result[0]);
+        }
+
+        [Test]
+        public void TestTill()
+        {
+            var result = 100.Till(123)
+                            .ToArray();
+
+            Assert.AreEqual(23, result.Length);
+            Assert.AreEqual(100, result[0]);
+            Assert.AreEqual(101, result[1]);
+            Assert.AreEqual(122, result[22]);
         }
     }
 }
