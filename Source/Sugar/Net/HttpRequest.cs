@@ -24,6 +24,7 @@ namespace Sugar.Net
             Encoding = null;
             AllowAutoRedirect = true;
             SecurityProtocolType = SecurityProtocolType.Tls;
+            Host = null;
         }
 
         /// <summary>
@@ -137,6 +138,14 @@ namespace Sugar.Net
         public string Referer { get; set; }
 
         /// <summary>
+        /// Gets or sets the host.
+        /// </summary>
+        /// <value>
+        /// The host.
+        /// </value>
+        public string Host { get; set; }
+
+        /// <summary>
         /// Gets or sets the accept.
         /// </summary>
         /// <value>
@@ -178,7 +187,7 @@ namespace Sugar.Net
         public WebRequest ToWebRequest()
         {
             var request = (HttpWebRequest)WebRequest.Create(Url);
-
+            
             request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
             request.Method = Verb.ToString().ToUpper();
@@ -186,6 +195,7 @@ namespace Sugar.Net
             if (UserAgent != null) request.UserAgent = UserAgent.ToString();
             request.ContentType = ContentType;
             request.Referer = Referer;
+            if (!string.IsNullOrEmpty(Host)) request.Host = Host;
             request.AllowAutoRedirect = AllowAutoRedirect;
             
             if (Proxy != null)

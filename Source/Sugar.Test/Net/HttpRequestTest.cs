@@ -28,7 +28,8 @@ namespace Sugar.Net
                                   Url = "http://www.watchdogapp.com",
                                   ContentType = "text/json",
                                   Accept = "text/xml",
-                                  Referer = "referer"
+                                  Referer = "referer",
+                                  Host = "somehost.com"
                               };
 
             var webRequest = (HttpWebRequest) request.ToWebRequest();
@@ -42,6 +43,7 @@ namespace Sugar.Net
             Assert.AreEqual(UserAgent.Firefox().ToString(), webRequest.UserAgent);
             Assert.AreEqual("text/json", webRequest.ContentType);
             Assert.AreEqual("referer", webRequest.Referer);
+            Assert.AreEqual("somehost.com", webRequest.Host);
             Assert.AreEqual(WebRequest.DefaultWebProxy, webRequest.Proxy);
 
             Assert.AreEqual("text/xml", webRequest.Accept);
@@ -57,7 +59,8 @@ namespace Sugar.Net
                                   Url = "http://www.watchdogapp.com",
                                   UseBasicAuthentication = true,
                                   Username = "john",
-                                  Password = "doe123!"
+                                  Password = "doe123!",
+                                  Host = "somehost.com"
                               };
 
             var webRequest = (HttpWebRequest)request.ToWebRequest();
