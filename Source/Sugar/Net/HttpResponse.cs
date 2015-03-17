@@ -118,6 +118,33 @@ namespace Sugar.Net
         public long ContentLength { get; set; }
 
         /// <summary>
+        /// Gets the encoding.
+        /// </summary>
+        /// <returns></returns>
+        public Encoding GetEncoding()
+        {
+            var encoding = Encoding.UTF8;
+
+            if (Headers.ContainsKey("Content-Type"))
+            {
+                var contentTypeHeader = Headers["Content-Type"];
+
+                var charset = contentTypeHeader.SubstringAfterChar("charset=");
+
+                try
+                {
+                    encoding = Encoding.GetEncoding(charset);
+                }
+                catch (ArgumentException)
+                {
+                    // If the charset found is not a valid encoding then default to UTF8
+                }
+            }
+
+            return encoding;
+        }
+
+        /// <summary>
         /// Converts the bytes in the response to a string assuming it is UTF-8 encoded.
         /// </summary>
         /// <returns>
@@ -125,7 +152,9 @@ namespace Sugar.Net
         /// </returns>
         public override string ToString()
         {
-            return ToString(Encoding.UTF8);
+            var encoding = GetEncoding();
+
+            return ToString(encoding);
         }
 
         /// <summary>
