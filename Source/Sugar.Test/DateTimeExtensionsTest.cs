@@ -618,7 +618,7 @@ namespace Sugar
         [Test]
         public void TestToHumanReadableStringPast()
         {
-            var date = DateTime.Now.AddDays(-5);
+            var date = DateTime.UtcNow.AddDays(-5);
 
             var result = date.ToHumanReadableString();
 
@@ -628,7 +628,7 @@ namespace Sugar
         [Test]
         public void TestToHumanReadableStringFuture()
         {
-            var date = DateTime.Now.AddDays(5);
+            var date = DateTime.UtcNow.AddDays(5);
 
             var result = date.ToHumanReadableString();
 

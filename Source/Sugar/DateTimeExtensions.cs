@@ -195,7 +195,7 @@ namespace Sugar
         {
             var value = "never";
 
-            var now = DateTime.Now;
+            var now = DateTime.UtcNow;
 
             var timeElapsed = ToAbsHumanReadableString(dateTime, now);
 
