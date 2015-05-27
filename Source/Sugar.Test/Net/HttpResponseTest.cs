@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using NUnit.Framework;
 
 namespace Sugar.Net
@@ -42,6 +43,33 @@ namespace Sugar.Net
                                };
 
             Assert.AreEqual("0\0︹策︴", response.ToString(Encoding.GetEncoding(936)));
+        }
+
+        [Test]
+        public void TestToStringWithEncodingReadFromHeader()
+        {
+            var encoding = Encoding.GetEncoding(936);
+
+            var response = new HttpResponse
+            {
+                Bytes = new byte[]
+                                               {
+                                                   0x30,
+                                                   0x00,
+                                                   0xA6,
+                                                   0xE2,
+                                                   0xB2,
+                                                   0xDF,
+                                                   0xA6,
+                                                   0xF5
+                                               },
+                Headers = new Dictionary<string, string>
+                          {
+                              {"Content-Type", "charset=" + encoding.HeaderName}
+                          }
+            };
+
+            Assert.AreEqual("0\0︹策︴", response.ToString());
         }
     }
 }
