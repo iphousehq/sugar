@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Net;
 using System.Text;
-using System.Xml;
-using System.Xml.XPath;
-using Sugar.Xml;
 
 namespace Sugar.Net
 {
     /// <summary>
     /// Represents a file downloaded from the internet.
     /// </summary>
+    [Serializable]
     public class HttpResponse
     {
         /// <summary>
@@ -67,14 +64,6 @@ namespace Sugar.Net
         /// The cookies.
         /// </value>
         public CookieContainer Cookies { get; set; }
-
-        /// <summary>
-        /// Gets or sets the user agent used to make this response.
-        /// </summary>
-        /// <value>
-        /// The user agent.
-        /// </value>
-        public UserAgent UserAgent { get; set; }
 
         /// <summary>
         /// Gets or sets the HTTP response headers.
@@ -172,37 +161,6 @@ namespace Sugar.Net
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// Returns an XML representation of the response.
-        /// </summary>
-        /// <returns></returns>
-        public XmlDocument ToXml()
-        {
-            var document = new XmlDocument();
-
-            document.LoadXml(ToString());
-
-            return document;
-        }
-
-        /// <summary>
-        /// Returns an XML representation of the response.
-        /// </summary>
-        /// <returns></returns>
-        public XPathDocument ToXPath()
-        {
-            return ToString().ToXPath();
-        }
-
-        /// <summary>
-        /// Returns the Bitmap represenation of the response.
-        /// </summary>
-        /// <returns></returns>
-        public virtual Bitmap ToBitmap()
-        {
-            return Bytes.ToBitmap();
         }
     }
 }

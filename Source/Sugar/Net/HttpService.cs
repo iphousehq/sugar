@@ -48,10 +48,9 @@ namespace Sugar.Net
         protected virtual HttpResponse InternalDownload(HttpRequest request)
         {
             var result = new HttpResponse
-                             {
-                                 Url = request.Url,
-                                 UserAgent = request.UserAgent
-                             };
+                         {
+                             Url = request.Url
+                         };
 
             var webRequest = InternalBuild(request);
 
@@ -185,8 +184,7 @@ namespace Sugar.Net
                 response = new HttpResponse
                                {
                                    Exception = ex,
-                                   Url = request.Url,
-                                   UserAgent = request.UserAgent
+                                   Url = request.Url
                                };
 
                 Map(request, ex.Response, ref response);
@@ -196,8 +194,7 @@ namespace Sugar.Net
                 response = new HttpResponse
                                {
                                    Exception = ex,
-                                   Url = request.Url,
-                                   UserAgent = request.UserAgent
+                                   Url = request.Url
                                };
             }
 
