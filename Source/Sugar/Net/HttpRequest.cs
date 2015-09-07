@@ -23,7 +23,7 @@ namespace Sugar.Net
             Cookies = new CookieContainer();
             Encoding = null;
             AllowAutoRedirect = true;
-            SecurityProtocolType = SecurityProtocolType.Tls;
+            SecurityProtocolType = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
             Host = null;
         }
 
