@@ -60,7 +60,6 @@ namespace Sugar.Net
             if (Response != null && persistState)
             {
                 Request.Referer = Response.Url;
-                Request.UserAgent = Response.UserAgent;
                 Request.Cookies = Response.Cookies;
             }
 

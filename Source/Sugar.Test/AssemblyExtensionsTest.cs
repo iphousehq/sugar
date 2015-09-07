@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Reflection;
 using NUnit.Framework;
 
 namespace Sugar
@@ -16,6 +15,14 @@ namespace Sugar
                                           .ToArray();
 
             Assert.Less(10, types.Length);
+        }
+
+        [Test]
+        public void TestGetAllTypesInANamespaceWhenNamespaceDoesntExist()
+        {
+            var types = GetType().Assembly.GetTypes("Comsec.Foo.Bar.Baz");
+
+            Assert.AreEqual(0, types.Count());
         }
 
         [Test]

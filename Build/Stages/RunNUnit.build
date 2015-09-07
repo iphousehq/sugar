@@ -1,11 +1,13 @@
 <project name="run-nunit-stage">
 	<target name="RunNUnit">
 
-    <exec program="nunit-console.exe" basedir="${root.dir}\Build\Resources\NUnit" workingdir=".">
-      <arg value="${root.dir}\Source\Sugar.Test\bin\Release\Sugar.Test.dll" />
-      <arg value="/xml:${root.dir}\Artifacts\TestResult.xml"/>
-      <arg value="/framework=net-4.0"/>      
-    </exec>
+        <property name="nunit.dir" value="C:\Program Files (x86)\NUnit 2.6.4\bin" readonly="true" />
+    
+        <exec program="nunit-console.exe" basedir="${nunit.dir}" workingdir=".">
+            <arg value="${root.dir}\Source\Sugar.Test\bin\Release\Sugar.Test.dll" />
+            <arg value="/xml:&quot;${root.dir}\Artifacts\TestResult.xml&quot;"/>
+            <arg value="/framework=net-4.0"/>
+        </exec>
 
 	</target>
 </project>
