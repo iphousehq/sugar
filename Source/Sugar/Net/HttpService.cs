@@ -55,7 +55,7 @@ namespace Sugar.Net
             var webRequest = InternalBuild(request);
 
             // After the poodle security exploit in SSLv3 most servers are no longer supporting the SSLv3 cypher
-            ServicePointManager.SecurityProtocol = request.SecurityProtocolType;
+            ServicePointManager.SecurityProtocol = request.SecurityProtocol;
 
             // Post request data
             if (request.Verb == HttpVerb.Post && request.Data != null)
