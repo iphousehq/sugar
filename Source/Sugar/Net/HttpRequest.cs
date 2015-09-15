@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Net;
+using System.Net.Security;
 using System.Text;
 
 namespace Sugar.Net
@@ -23,8 +24,11 @@ namespace Sugar.Net
             Cookies = new CookieContainer();
             Encoding = null;
             AllowAutoRedirect = true;
-            SecurityProtocolType = SecurityProtocolType.Tls;
             Host = null;
+            SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+
+            // No certificate validation by default
+            ServerCertificateValidationCallback = delegate { return true; };
         }
 
         /// <summary>
@@ -176,9 +180,17 @@ namespace Sugar.Net
         /// The type of the security protocol.
         /// </value>
         /// <remarks>
-        /// Lets you override the SecurityProtocolType (would default to SSLv3 unless overriden). It is defaulted to TLS in <see cref="HttpService"/>.
+        /// Lets you override the SecurityProtocolType. Defaults to TLS.
         /// </remarks>
-        public SecurityProtocolType SecurityProtocolType { get; set; }
+        public SecurityProtocolType SecurityProtocol { get; set; }
+
+        /// <summary>
+        /// Gets or sets the server certificate validation callback.
+        /// </summary>
+        /// <value>
+        /// The server certificate validation callback.
+        /// </value>
+        public RemoteCertificateValidationCallback ServerCertificateValidationCallback { get; set; }
 
         /// <summary>
         /// Converts this instance to a <see cref="WebRequest"/>
@@ -211,9 +223,10 @@ namespace Sugar.Net
             request.Headers.Add(Headers);
             request.CookieContainer = Cookies;
 
-            ServicePointManager.ServerCertificateValidationCallback += delegate { return true; }; // to allow HTTPS
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3; // force ssl over tls
+            ServicePointManager.SecurityProtocol =  SecurityProtocol;
 
+            request.ServerCertificateValidationCallback += ServerCertificateValidationCallback;
+            
             if (UseAuthentication)
             {
                 if (UseBasicAuthentication)
