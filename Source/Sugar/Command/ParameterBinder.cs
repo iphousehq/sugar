@@ -7,7 +7,7 @@ namespace Sugar.Command
     /// <summary>
     /// Class to bind command line parameters to objects
     /// </summary>
-    public class ParameterBinder
+    public static class ParameterBinder
     {
         /// <summary>
         /// Binds the specified parameters.
@@ -15,20 +15,9 @@ namespace Sugar.Command
         /// <typeparam name="T"></typeparam>
         /// <param name="parameters">The parameters.</param>
         /// <returns></returns>
-        public T Bind<T>(Parameters parameters) where T : new()
+        public static T Bind<T>(Parameters parameters) where T : new()
         {
             var result = new T();
-
-            var attributes = typeof (T).GetCustomAttributes(typeof (FlagAttribute), false);
-
-            // Check class flags
-            foreach (FlagAttribute attribute in attributes)
-            {
-                if (!parameters.ContainsAny(attribute.Names))
-                {
-                    return default(T);
-                }
-            }
 
             // Bind properties
             var properties = typeof (T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
