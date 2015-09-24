@@ -13,6 +13,11 @@ namespace Sugar.Command
                 public string Input { get; set; }
             }
 
+            public Options GetOptions()
+            {
+                return OptionsBound;
+            }
+
             public override int Execute(Options options)
             {
                 return 0;
@@ -42,7 +47,9 @@ namespace Sugar.Command
 
             var command = new FakeCommand();
 
-            Assert.IsTrue(command.CanExecute(parameters));
+            command.BindParameters(parameters);
+
+            Assert.NotNull(command.GetOptions());
         }
 
         [Test]
@@ -52,7 +59,9 @@ namespace Sugar.Command
 
             var command = new FakeCommand();
 
-            Assert.IsFalse(command.CanExecute(parameters));
+            command.BindParameters(parameters);
+
+            Assert.Null(command.GetOptions());
         }
     }
 }

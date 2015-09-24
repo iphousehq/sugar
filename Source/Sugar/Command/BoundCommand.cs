@@ -27,34 +27,28 @@
         }
 
         /// <summary>
-        /// Determines whether this instance can execute with the specified parameters.
-        /// </summary>
-        /// <param name="parameters">The parameters.</param>
-        /// <returns>
-        ///   <c>true</c> if this instance can execute the specified parameters; otherwise, <c>false</c>.
-        /// </returns>
-        public virtual bool CanExecute(Parameters parameters)
-        {
-            OptionsBound = new ParameterBinder().Bind<T>(parameters);
-
-            return OptionsBound != null;
-        }
-
-        /// <summary>
-        /// Executes this instance with the specified parameters.
-        /// </summary>
-        /// <param name="parameters">The parameters.</param>
-        /// <returns></returns>
-        public int Execute(Parameters parameters)
-        {
-            return Execute(OptionsBound);
-        }
-
-        /// <summary>
         /// Executes the specified options.
         /// </summary>
         /// <param name="options">The options.</param>
         /// <returns></returns>
         public abstract int Execute(T options);
+
+        /// <summary>
+        /// Binds the parameters.
+        /// </summary>
+        /// <param name="parameters">The parameters.</param>
+        public void BindParameters(Parameters parameters)
+        {
+            OptionsBound = ParameterBinder.Bind<T>(parameters);
+        }
+
+        /// <summary>
+        /// Executes this command.
+        /// </summary>
+        /// <returns></returns>
+        public int Execute()
+        {
+            return Execute(OptionsBound);
+        }
     }
 }

@@ -4,10 +4,9 @@ using NUnit.Framework;
 namespace Sugar.Command
 {
     [TestFixture]
-    public class ParameterBinderTest
+    public class ParameterParameterBinderTest
     {
         private ParameterParser parser;
-        private ParameterBinder binder;
 
         private class Foo
         {
@@ -61,7 +60,6 @@ namespace Sugar.Command
         public void SetUp()
         {
             parser = new ParameterParser();
-            binder = new ParameterBinder();
         }
 
         [Test]
@@ -69,7 +67,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("one two -foo first");
 
-            var result = binder.Bind<Foo>(parameters);
+            var result = ParameterBinder.Bind<Foo>(parameters);
 
             Assert.AreEqual("first", result.First);
             Assert.AreEqual("two", result.Second);
@@ -80,7 +78,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("one two");
 
-            var result = binder.Bind<Foo>(parameters);
+            var result = ParameterBinder.Bind<Foo>(parameters);
 
             Assert.AreEqual("bar", result.First);
         }
@@ -90,7 +88,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("-one -two");
 
-            var result = binder.Bind<Bar>(parameters);
+            var result = ParameterBinder.Bind<Bar>(parameters);
 
             Assert.IsNull(result);
         }
@@ -100,7 +98,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("-first");
 
-            var result = binder.Bind<Bar>(parameters);
+            var result = ParameterBinder.Bind<Bar>(parameters);
 
             Assert.IsNull(result);
         }
@@ -110,7 +108,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("-flag -one 1 -two 2 -three 3.4 -four 2008-03-08");
 
-            var result = binder.Bind<Baz>(parameters);
+            var result = ParameterBinder.Bind<Baz>(parameters);
 
             Assert.AreEqual("1", result.First);
             Assert.AreEqual(2, result.Second);
@@ -123,7 +121,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("-flag -five 2014-03-05");
 
-            var result = binder.Bind<Baz>(parameters);
+            var result = ParameterBinder.Bind<Baz>(parameters);
 
             Assert.AreEqual(new DateTime(2014, 3, 5), result.Fifth.Value);
         }
@@ -133,7 +131,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("-flag -five 2014-03-05T23:40:59");
 
-            var result = binder.Bind<Baz>(parameters);
+            var result = ParameterBinder.Bind<Baz>(parameters);
 
             Assert.AreEqual(new DateTime(2014, 3, 5, 23, 40, 59), result.Fifth.Value);
         }
@@ -143,7 +141,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("-flag -five 20140305T234059");
 
-            var result = binder.Bind<Baz>(parameters);
+            var result = ParameterBinder.Bind<Baz>(parameters);
 
             Assert.IsFalse(result.Fifth.HasValue);
         }
@@ -153,7 +151,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("-flag");
 
-            var result = binder.Bind<Baz>(parameters);
+            var result = ParameterBinder.Bind<Baz>(parameters);
 
             Assert.AreEqual(false, result.Fifth.HasValue);
         }
@@ -163,19 +161,9 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("-flag -first 1");
 
-            var result = binder.Bind<Fizz>(parameters);
+            var result = ParameterBinder.Bind<Fizz>(parameters);
 
             Assert.AreEqual("1", result.First);
-        }
-
-        [Test]
-        public void TestBindObjectWithFlagsWhenNotSet()
-        {
-            var parameters = parser.Parse("-first 1");
-
-            var result = binder.Bind<Fizz>(parameters);
-
-            Assert.IsNull(result);
         }
 
         [Test]
@@ -183,7 +171,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("-flag -command -set");
 
-            var result = binder.Bind<Bizz>(parameters);
+            var result = ParameterBinder.Bind<Bizz>(parameters);
 
             Assert.IsTrue(result.First);
         }

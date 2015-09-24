@@ -1,4 +1,6 @@
-﻿namespace Sugar.Command
+﻿using System.Data;
+
+namespace Sugar.Command
 {
     /// <summary>
     /// Interface for a single command within a console application
@@ -6,18 +8,15 @@
     public interface ICommand
     {
         /// <summary>
-        /// Determines whether this instance can execute with the specified parameters.
+        /// Executes this command.
         /// </summary>
-        /// <param name="parameters">The parameters.</param>
-        /// <returns>
-        ///   <c>true</c> if this instance can execute the specified parameters; otherwise, <c>false</c>.
-        /// </returns>
-        bool CanExecute(Parameters parameters);
+        /// <returns></returns>
+        int Execute();
 
         /// <summary>
-        /// Executes this instance with the specified parameters.
+        /// Binds the parameters.
         /// </summary>
         /// <param name="parameters">The parameters.</param>
-        int Execute(Parameters parameters);
+        void BindParameters(Parameters parameters);
     }
 }
