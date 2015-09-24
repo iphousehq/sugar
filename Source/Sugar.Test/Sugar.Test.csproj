@@ -52,6 +52,7 @@
     <Compile Include="BitmapExtensionsTest.cs" />
     <Compile Include="CollectionExtensionsTest.cs" />
     <Compile Include="CsQuery\CsQueryExtensionsTest.cs" />
+    <Compile Include="Http\HttpClientProviderTest.cs" />
     <Compile Include="Int64ExtensionsTest.cs" />
     <Compile Include="ListExtensionsTest.cs" />
     <Compile Include="Command\BoundCommandTest.cs" />
@@ -106,6 +107,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +118,10 @@
       <Project>{db536d0a-accd-49d0-815f-3f8a848da981}</Project>
       <Name>Sugar.Html</Name>
       <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Sugar.Http\Sugar.Http.csproj">
+      <Project>{e525b562-c080-41c1-a92a-9e82c5ffc42e}</Project>
+      <Name>Sugar.Http</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sugar\Sugar.csproj">
       <Project>{edb78f77-9123-4821-817b-f3f91e973a7d}</Project>

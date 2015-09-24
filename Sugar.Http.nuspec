@@ -1,0 +1,18 @@
+<package>
+	<metadata>
+		<id>Sugar.Http</id>
+		<version>1.0.0.0</version>
+		<authors>Comsec</authors>
+		<description>
+			Syntactic Sugar for .NET's HTTP client
+			A handy helper to make it easier to deal with .NET's HttpClient.
+		</description>
+		<dependencies>
+			<dependency id="System.Net.Http" version="4.0.0.0" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="Source\Sugar.Http\bin\Release\Sugar.Http.dll" target="lib\net45" />
+		<file src="Source\Sugar.Http\bin\Release\Sugar.Http.pdb" target="lib\net45" />
+	</files>
+</package>
