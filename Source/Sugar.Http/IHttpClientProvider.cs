@@ -8,19 +8,18 @@ namespace Sugar.Http
     public interface IHttpClientProvider
     {
         /// <summary>
-        /// Gets or sets the message handler.
+        /// Gets a new instance of <see cref="HttpClient" />.
         /// </summary>
-        /// <value>
-        /// The message handler.
-        /// </value>
-        HttpMessageHandler MessageHandler { get; set; }
+        /// <param name="configureRetryIntercept">if set to <c>true</c> [configure the retry intercept].</param>
+        /// <returns></returns>
+        HttpClient Create(bool configureRetryIntercept = true);
 
         /// <summary>
-        /// Gets the HTTP client.
+        /// Gets a new instance of <see cref="HttpClient" />.
         /// </summary>
-        /// <value>
-        /// The HTTP client.
-        /// </value>
-        HttpClient HttpClient { get; }
+        /// <param name="innerMessageHandler">The inner message handler (optional).</param>
+        /// <param name="configureRetryIntercept">if set to <c>true</c> [configure the retry intercept].</param>
+        /// <returns></returns>
+        HttpClient Create(HttpMessageHandler innerMessageHandler, bool configureRetryIntercept = true);
     }
 }
