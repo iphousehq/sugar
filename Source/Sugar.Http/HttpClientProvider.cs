@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Sugar.Http
@@ -50,7 +51,7 @@ namespace Sugar.Http
         public HttpClient Create(HttpMessageHandler innerMessageHandler, bool configureRetryIntercept = true)
         {
             HttpClient client;
-
+            
             if (innerMessageHandler == null)
             {
                 client = RetryIntercept == null || configureRetryIntercept == false
@@ -60,8 +61,7 @@ namespace Sugar.Http
                                          InnerHandler =
                                              new HttpClientHandler
                                              {
-                                                 AutomaticDecompression =
-                                                     DecompressionMethods.GZip | DecompressionMethods.Deflate
+                                                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
                                              },
                                          RetryIntercept = RetryIntercept
                                      });
@@ -79,6 +79,9 @@ namespace Sugar.Http
 
             if (InitialiseWith != null)
             {
+                client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+                client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
+
                 InitialiseWith(client);
             }
 
