@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -55,20 +56,25 @@ namespace Sugar.Http
                 client = RetryIntercept == null || configureRetryIntercept == false
                     ? new HttpClient()
                     : new HttpClient(new RetryDelegatingHandler
-                    {
-                        InnerHandler = new HttpClientHandler(),
-                        RetryIntercept = RetryIntercept
-                    });
+                                     {
+                                         InnerHandler =
+                                             new HttpClientHandler
+                                             {
+                                                 AutomaticDecompression =
+                                                     DecompressionMethods.GZip | DecompressionMethods.Deflate
+                                             },
+                                         RetryIntercept = RetryIntercept
+                                     });
             }
             else
             {
                 client = RetryIntercept == null || configureRetryIntercept == false
                     ? new HttpClient(innerMessageHandler)
                     : new HttpClient(new RetryDelegatingHandler
-                    {
-                        RetryIntercept = RetryIntercept,
-                        InnerHandler = innerMessageHandler
-                    });
+                                     {
+                                         RetryIntercept = RetryIntercept,
+                                         InnerHandler = innerMessageHandler
+                                     });
             }
 
             if (InitialiseWith != null)
