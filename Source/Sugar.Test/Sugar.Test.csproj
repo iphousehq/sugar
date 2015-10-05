@@ -54,6 +54,7 @@
     <Compile Include="Command\BoundCommandFactoryTest.cs" />
     <Compile Include="CsQuery\CsQueryExtensionsTest.cs" />
     <Compile Include="Http\HttpClientProviderTest.cs" />
+    <Compile Include="Http\HttpRequestMessageExtensionsTest.cs" />
     <Compile Include="Int64ExtensionsTest.cs" />
     <Compile Include="ListExtensionsTest.cs" />
     <Compile Include="Command\BoundCommandTest.cs" />
