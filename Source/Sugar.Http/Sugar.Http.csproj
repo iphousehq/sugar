@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="RetryDelegatingHandler.cs" />
     <Compile Include="HttpClientProvider.cs" />
+    <Compile Include="HttpRequestMesssageExtensions.cs" />
     <Compile Include="IHttpClientProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
