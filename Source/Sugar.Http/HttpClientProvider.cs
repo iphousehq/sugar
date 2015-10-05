@@ -79,9 +79,6 @@ namespace Sugar.Http
 
             if (InitialiseWith != null)
             {
-                client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
-                client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
-
                 InitialiseWith(client);
             }
 
