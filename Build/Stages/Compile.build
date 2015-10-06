@@ -1,7 +1,8 @@
 <project name="compile-stage">
 	<target name="Compile">
 
-		<exec basedir="${root.dir}\Source" program="${dotnet40}\msbuild.exe">
+		<exec basedir="${root.dir}\Source" 
+			program="${msbuild.dir}\msbuild.exe">
 			<arg value="${root.dir}\Source\Sugar.sln" />
 			<arg value="/t:Build" />
 			<arg value="/p:Configuration=Release" />

@@ -38,12 +38,12 @@ namespace Sugar
         [Test]
         public void TestGetTypesWithMultipleNamespaces()
         {
-            var types = GetType().Assembly.GetTypes(new[] {"Sugar.Xml", "Sugar.Net"})
+            var types = GetType().Assembly.GetTypes("Sugar.Xml", "Sugar.Net")
                                  .ToArray();
 
             Assert.AreEqual(7, types.Length);
-            Assert.AreEqual("Sugar.Net", types[0].Namespace);
-            Assert.AreEqual("Sugar.Xml", types[6].Namespace);
+            Assert.AreEqual("Sugar.Xml", types[0].Namespace);
+            Assert.AreEqual("Sugar.Net", types[6].Namespace);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Sugar
 {
@@ -25,13 +26,16 @@ namespace Sugar
 
                 foreach (var type in assembly.GetTypes())
                 {
-                    if (!string.IsNullOrEmpty(type.Namespace))
+                    if (type.HasAttribute<CompilerGeneratedAttribute>() == false)
                     {
-                        foreach (var namespaceStart in namespaces)
+                        if (!string.IsNullOrEmpty(type.Namespace))
                         {
-                            if (type.Namespace.StartsWith(namespaceStart))
+                            foreach (var namespaceStart in namespaces)
                             {
-                                list.Add(type);
+                                if (type.Namespace.StartsWith(namespaceStart))
+                                {
+                                    list.Add(type);
+                                }
                             }
                         }
                     }

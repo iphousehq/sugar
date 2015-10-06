@@ -3,9 +3,8 @@
 	<target name="SetGlobalProperties">
 
 		<property name="artifacts.dir" value="${root.dir}\Artifacts" readonly="true" />
-
+		<property name="msbuild.dir" value="C:\Program Files (x86)\MSBuild\14.0\bin" overwrite="false" />
 		<property name="dotnet40" value="C:\Windows\Microsoft.NET\Framework\v4.0.30319" overwrite="false" />
-
 		<property name="revision" value="Local" />
 
 		<!-- Build number from Hudson (hopefully) -->
