@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Sugar.Http
@@ -50,37 +49,23 @@ namespace Sugar.Http
         /// <returns></returns>
         public HttpClient Create(HttpMessageHandler innerMessageHandler, bool configureRetryIntercept = true)
         {
-            HttpClient client;
-            
             if (innerMessageHandler == null)
             {
-                client = RetryIntercept == null || configureRetryIntercept == false
-                    ? new HttpClient()
-                    : new HttpClient(new RetryDelegatingHandler
-                                     {
-                                         InnerHandler =
-                                             new HttpClientHandler
-                                             {
-                                                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-                                             },
-                                         RetryIntercept = RetryIntercept
-                                     });
-            }
-            else
-            {
-                client = RetryIntercept == null || configureRetryIntercept == false
-                    ? new HttpClient(innerMessageHandler)
-                    : new HttpClient(new RetryDelegatingHandler
-                                     {
-                                         RetryIntercept = RetryIntercept,
-                                         InnerHandler = innerMessageHandler
-                                     });
+                innerMessageHandler = new HttpClientHandler
+                {
+                    AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+                };
             }
 
-            if (InitialiseWith != null)
-            {
-                InitialiseWith(client);
-            }
+            var client = RetryIntercept == null || configureRetryIntercept == false
+                ? new HttpClient(innerMessageHandler)
+                : new HttpClient(new RetryDelegatingHandler
+                {
+                    RetryIntercept = RetryIntercept,
+                    InnerHandler = innerMessageHandler
+                });
+
+            InitialiseWith?.Invoke(client);
 
             return client;
         }
