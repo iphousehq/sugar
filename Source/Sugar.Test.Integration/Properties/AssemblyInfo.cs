@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Comsec.Sugar.Test.Integration")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Comsec Solutions Ltd")]
+[assembly: AssemblyCompany("Comsec Investigation Ltd")]
 [assembly: AssemblyProduct("Comsec.Sugar.Test.Integration")]
-[assembly: AssemblyCopyright("Copyright © Comsec Solutions Ltd 2012")]
+[assembly: AssemblyCopyright("Copyright © Comsec Investigation Ltd 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

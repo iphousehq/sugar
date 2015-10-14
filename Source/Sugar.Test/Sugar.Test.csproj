@@ -126,6 +126,10 @@
       <Project>{e525b562-c080-41c1-a92a-9e82c5ffc42e}</Project>
       <Name>Sugar.Http</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj">
+      <Project>{e06c3249-8c48-43d6-9267-d709fbd30868}</Project>
+      <Name>Sugar.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sugar\Sugar.csproj">
       <Project>{edb78f77-9123-4821-817b-f3f91e973a7d}</Project>
       <Name>Sugar</Name>
