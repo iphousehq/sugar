@@ -1,4 +1,5 @@
 ﻿using System;
+using Sugar.Extensions;
 
 namespace Sugar
 {
@@ -23,10 +24,7 @@ namespace Sugar
         /// <summary>
         /// Gets the latitude in radians.
         /// </summary>
-        public double LatitudeRadians
-        {
-            get { return Latitude.ToRadians(); }
-        }
+        public double LatitudeRadians => Latitude.ToRadians();
 
         /// <summary>
         /// Gets or sets the longitude in degrees.
@@ -39,10 +37,7 @@ namespace Sugar
         /// <summary>
         /// Gets the longitude in radians.
         /// </summary>
-        public double LongitudeRadians
-        {
-            get { return Longitude.ToRadians(); }
-        }
+        public double LongitudeRadians => Longitude.ToRadians();
 
         /// <summary>
         /// Prevents a default instance of the <see cref="GeoLocation"/> class from being created.
@@ -86,13 +81,17 @@ namespace Sugar
         private void CheckBounds()
         {
             if (LatitudeRadians < minimumLatitude)
-                throw new ArgumentException(string.Format("Latitude must not be less than the minimum value. ({0})", minimumLatitude.ToDegrees()));
+                throw new ArgumentException(
+                    $"Latitude must not be less than the minimum value. ({minimumLatitude.ToDegrees()})");
             if (LatitudeRadians > maximumLatitude)
-                throw new ArgumentException(string.Format("Latitude must not be greater than the maximum value. ({0})", maximumLatitude.ToDegrees()));
+                throw new ArgumentException(
+                    $"Latitude must not be greater than the maximum value. ({maximumLatitude.ToDegrees()})");
             if (LongitudeRadians < miniumumLongitude)
-                throw new ArgumentException(string.Format("Longitude must not be less than the minimum value. ({0})", miniumumLongitude.ToDegrees()));
+                throw new ArgumentException(
+                    $"Longitude must not be less than the minimum value. ({miniumumLongitude.ToDegrees()})");
             if (LongitudeRadians > maxiumumLongitude)
-                throw new ArgumentException(string.Format("Longitude must not be greater than the maximum value. ({0})", maxiumumLongitude.ToDegrees()));
+                throw new ArgumentException(
+                    $"Longitude must not be greater than the maximum value. ({maxiumumLongitude.ToDegrees()})");
         }
 
         /// <summary>

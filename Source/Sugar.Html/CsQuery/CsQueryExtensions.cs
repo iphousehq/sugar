@@ -2,6 +2,7 @@
 using System.Linq;
 using CsQuery;
 using Sugar.Net;
+using Sugar.Extensions;
 
 namespace Sugar.CsQuery
 {

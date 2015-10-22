@@ -288,7 +288,7 @@ namespace Sugar.Net
 
                         if (parts.Length > 1)
                         {
-                            subdomain = parts.Take(parts.Length - 1).Join(".");
+                            subdomain = string.Join(".", parts.Take(parts.Length - 1));
                         }
                     }
                 }

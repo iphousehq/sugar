@@ -1,4 +1,5 @@
 ﻿using System;
+using Sugar.Extensions;
 
 namespace Sugar.Configuration
 {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Sugar.Extensions;
 
 namespace Sugar.Mime
 {
@@ -45,7 +46,7 @@ namespace Sugar.Mime
         /// </returns>
         public override string ToString()
         {
-            return string.Format("{0}/{1}", BaseMimeType.GetDescription(), MimeType.GetDescription());
+            return $"{BaseMimeType.GetDescription()}/{MimeType.GetDescription()}";
         }
     }
 }
