@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Sugar.Extensions
 {
     [TestFixture]
-    public class ToDateTimeExtensionTest
+    public class DateTimeExtensionTest
     {
         [Test]
         public void TestToOffsetFromUtc()

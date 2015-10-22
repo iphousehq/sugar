@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CsQuery;
-using Sugar.Net;
 using Sugar.Extensions;
+using Sugar.Net;
 
 namespace Sugar.CsQuery
 {
