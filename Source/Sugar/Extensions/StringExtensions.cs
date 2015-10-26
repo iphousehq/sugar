@@ -724,7 +724,7 @@ namespace Sugar.Extensions
 
                 foreach (var b in bytes)
                 {
-                    builder.Append(b.ToString("").ToLower());
+                    builder.Append(b.ToString("x2").ToLower());
                 }
 
                 result = builder.ToString();

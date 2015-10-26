@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing.Imaging;
+using System.Security.Cryptography;
+using System.Text;
 using NUnit.Framework;
 using Sugar.Mime;
 
@@ -331,7 +333,7 @@ namespace Sugar.Extensions
         {
             var hash = "hello world".ToMd5();
 
-            Assert.AreEqual("9418259187224302382081472033418714390205195", hash);
+            Assert.AreEqual("5eb63bbbe01eeed093cb22bb8f5acdc3", hash);
         }
 
         [Test]
@@ -681,7 +683,7 @@ namespace Sugar.Extensions
         [Test]
         public void TestHashValue()
         {
-            Assert.AreEqual("1218810217245841120812815456141201909791", "Test".ToMd5());
+            Assert.AreEqual("0cbc6611f5540bd0809a388dc95a615b", "Test".ToMd5());
         }
 
         [Test]
@@ -691,7 +693,7 @@ namespace Sugar.Extensions
 
             const string pass = "Hellospank" + guid;
 
-            Assert.AreEqual("20616421414520545192222135142116811110213185", pass.ToMd5());
+            Assert.AreEqual("cea4d691cd2dc0de878e01a86f668355", pass.ToMd5());
         }
 
         [Test]
