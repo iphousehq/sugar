@@ -27,29 +27,23 @@ namespace Sugar.Net
                     return new UserAgent("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 
                 case 7:
-                    return new UserAgent("Mozilla/4.0 (compatible; MSIE 7.0;Windows NT 6.0)");
+                    return new UserAgent("Mozilla/5.0 (compatible; MSIE 7.0;Windows NT 6.0)");
 
                 case 8:
-                    return new UserAgent("Mozilla/4.0 (compatible; MSIEg 8.0; Windows NT 6.1)");
+                    return new UserAgent("Mozilla/5.0 (compatible; MSIEg 8.0; Windows NT 6.1)");
 
                 case 9:
-                    return new UserAgent("Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1)");
+                    return new UserAgent("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1)");
 
                 case 10:
                     return new UserAgent("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)");
 
-                default:
-                    throw new ApplicationException("Unsupported IE user agent version: " + version + " - IE 6-10 supported");
-            }
-        }
+                case 11:
+                    return new UserAgent("Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0;  rv:11.0)");
 
-        /// <summary>
-        /// Returns a Firefox user agent
-        /// </summary>
-        /// <returns></returns>
-        public static UserAgent Firefox()
-        {
-            return new UserAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0");
+                default:
+                    throw new ApplicationException("Unsupported IE user agent version: " + version + " - IE 6-11 supported");
+            }
         }
 
         /// <summary>
@@ -58,9 +52,23 @@ namespace Sugar.Net
         /// <returns></returns>
         public static UserAgent Chrome()
         {
-            return new UserAgent("Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1667.0 Safari/537.36");
+            return new UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
         }
 
+        public static UserAgent Edge()
+        {
+            return new UserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246");
+        }
+
+        /// <summary>
+        /// Returns a Firefox user agent
+        /// </summary>
+        /// <returns></returns>
+        public static UserAgent Firefox()
+        {
+            return new UserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1");
+        }
+    
         /// <summary>
         /// Return an iOS 4.3.3 Safari user agent.
         /// </summary>
