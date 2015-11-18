@@ -193,33 +193,36 @@ namespace Sugar.Net
         public RemoteCertificateValidationCallback ServerCertificateValidationCallback { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [keep alive].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [keep alive]; otherwise, <c>false</c>.
+        /// </value>
+        public bool KeepAlive { get; set; }
+
+        /// <summary>
         /// Converts this instance to a <see cref="WebRequest"/>
         /// </summary>
         /// <returns></returns>
         public WebRequest ToWebRequest()
         {
             var request = (HttpWebRequest)WebRequest.Create(Url);
-            
-            request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
             request.Method = Verb.ToString().ToUpper();
             request.Timeout = Timeout;
-            if (UserAgent != null) request.UserAgent = UserAgent.ToString();
             request.ContentType = ContentType;
             request.Referer = Referer;
-            if (!string.IsNullOrEmpty(Host)) request.Host = Host;
             request.AllowAutoRedirect = AllowAutoRedirect;
-            
-            if (Proxy != null)
-            {
-                request.Proxy = Proxy.ToWebProxy();
-            }
-            else
-            {
-                request.Proxy = WebRequest.DefaultWebProxy; // force default proxy
-            }
+            request.KeepAlive = KeepAlive;
 
+            request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+          
+            if (UserAgent != null) request.UserAgent = UserAgent.ToString();
+            if (!string.IsNullOrEmpty(Host)) request.Host = Host;
             if (!string.IsNullOrWhiteSpace(Accept)) request.Accept = Accept;
+
+            request.Proxy = Proxy != null ? Proxy.ToWebProxy() : WebRequest.DefaultWebProxy;
+
             request.Headers.Add(Headers);
             request.CookieContainer = Cookies;
 
