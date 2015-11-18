@@ -55,6 +55,10 @@ namespace Sugar.Net
             return new UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
         }
 
+        /// <summary>
+        /// Returns an Edge user agent
+        /// </summary>
+        /// <returns></returns>
         public static UserAgent Edge()
         {
             return new UserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246");
