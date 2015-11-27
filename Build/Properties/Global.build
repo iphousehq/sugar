@@ -17,9 +17,9 @@
 		<!-- Nuget -->
 		<tstamp property="package.version" pattern="yyyy.MM.dd.HHmm" />	
 		<property name="nuget.server" value="http://gold.comsechq.com:5050" />
-		<property name="nuget.apikey" value="DkM2G1nJKttQJUHyFCQa" />
+		<property name="nuget.apikey" value="${environment::get-variable('NUGET_APIKEY')}" />
 		<property name="nuget.username" value="Nuget" />
-		<property name="nuget.password" value="T7v6oh4TksS2CumytwtR" />
+		<property name="nuget.password" value="${environment::get-variable('NUGET_PASSWORD')}" />
 		<property name="nuget.location" value="${root.dir}\Build\Resources\nuget" />
 
 	</target>
