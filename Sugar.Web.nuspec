@@ -9,7 +9,6 @@
 		</description>
 		<dependencies>
 			<dependency id="System.Web" version="4.0.0.0" />
-			<dependency id="System.Net" version="4.0.0.0" />
 			<dependency id="Sugar" version="1.0.0.0" />
 		</dependencies>
 	</metadata>
