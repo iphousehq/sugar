@@ -65,32 +65,47 @@ namespace Sugar.Extensions
                 var formattedSections = new List<string>();
 
                 if (parts.HasFlag(TimeSpanPart.Day))
+                {
                     formattedSections.Add(FormatSection(timespan.Days, TimeSpanPart.Day));
+                }
+
 
                 if (parts.HasFlag(TimeSpanPart.Hour))
+                {
                     formattedSections.Add(FormatSection(timespan.Hours, TimeSpanPart.Hour));
+                }
+
 
                 if (parts.HasFlag(TimeSpanPart.Minute))
+                {
                     formattedSections.Add(FormatSection(timespan.Minutes, TimeSpanPart.Minute));
+                }
+
 
                 if (parts.HasFlag(TimeSpanPart.Second))
+                {
                     formattedSections.Add(FormatSection(timespan.Seconds, TimeSpanPart.Second));
-
+                }
+                
                 result = string.Join(", ", formattedSections.Where(s => !string.IsNullOrEmpty(s)));
 
                 if (string.IsNullOrEmpty(result))
                 {
-                    if (parts == TimeSpanPart.Day)
+                    if (parts.HasFlag(TimeSpanPart.Second))
                     {
-                        result = "Less than a day";
+                        result = "Less than a second";
                     }
-                    else if (parts == TimeSpanPart.Minute)
+                    else if (parts.HasFlag(TimeSpanPart.Minute))
                     {
                         result = "Less than a minute";
                     }
-                    else if (parts.HasFlag(TimeSpanPart.Second))
+                    else if (parts.HasFlag(TimeSpanPart.Hour))
                     {
-                        result = "Less than a second";
+                        result = "Less than an hour";
+                    }
+                    else if (parts.HasFlag(TimeSpanPart.Day))
+                    {
+                        result = "Less than a day";
                     }
                 }
             }

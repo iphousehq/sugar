@@ -7,6 +7,27 @@ namespace Sugar.Extensions
     public class TimeSpanExtensionTest
     {
         [Test]
+        public void TestYears()
+        {
+            var timeSpan = new TimeSpan(400, 0, 0, 0);
+
+            var result = timeSpan.Years();
+
+            Assert.AreEqual(1, result);
+        }
+
+        [Test]
+        public void TestMonths()
+        {
+            var timeSpan = new TimeSpan(40, 0, 0, 0);
+
+            var result = timeSpan.Months();
+
+            Assert.AreEqual(1, result);
+        }
+
+
+        [Test]
         public void TestHumaniseWithNoTicks()
         {
             var timespan = new TimeSpan();
@@ -126,25 +147,25 @@ namespace Sugar.Extensions
 
             Assert.AreEqual("Less than a day", result);
         }
-
+        
         [Test]
-        public void TestYears()
+        public void TestLargeTimeSpanWithLowPrecision()
         {
-            var timeSpan = new TimeSpan(400, 0, 0, 0);
+            var timeSpan = new TimeSpan(23746876111100000);
 
-            var result = timeSpan.Years();
+            var result = timeSpan.Humanise(TimeSpanPart.Day | TimeSpanPart.Hour | TimeSpanPart.Minute);
 
-            Assert.AreEqual(1, result);
+            Assert.AreEqual("27484 days, 19 hours, 26 minutes", result);
         }
 
         [Test]
-        public void TestMonths()
+        public void TestTimeSpanSmallerThanPrecission()
         {
-            var timeSpan = new TimeSpan(40, 0, 0, 0);
+            var timeSpan = new TimeSpan(11100000);
 
-            var result = timeSpan.Months();
+            var result = timeSpan.Humanise(TimeSpanPart.Day | TimeSpanPart.Hour | TimeSpanPart.Minute);
 
-            Assert.AreEqual(1, result);
+            Assert.AreEqual("Less than a minute", result);
         }
     }
 }
