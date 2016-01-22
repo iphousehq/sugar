@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Drawing.Imaging;
-using System.Security.Cryptography;
-using System.Text;
 using NUnit.Framework;
 using Sugar.Mime;
 
@@ -13,7 +11,7 @@ namespace Sugar.Extensions
         [Test]
         public void TestToDateValidString()
         {
-            var result = "20/05/2010 15:10:50".ToDateTime();
+            var result = "2010-05-20 15:10:50".ToDateTime();
 
             Assert.AreEqual(2010, result.Year);
             Assert.AreEqual(05, result.Month);
