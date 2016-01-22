@@ -1,0 +1,6 @@
+version: 1.0.{build}
+clone_depth: 1
+nuget:
+  disable_publish_on_pr: true
+build:
+  verbosity: minimal
