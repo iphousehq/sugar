@@ -11,7 +11,7 @@ The project is divided in several class libraries:
 - Sugar.Test.Integration: Integration test
 - Sugar.Web: Handy helpers when dealing with domain names and URLs.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/dvxn5wavwe6x3day/branch/master?svg=true)](https://ci.appveyor.com/project/bounav/sugar/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/py4kl09udd0t7egy/branch/master?svg=true)](https://ci.appveyor.com/project/bounav/sugar/branch/master)
 
 ##Overview
 
