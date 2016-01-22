@@ -11,6 +11,8 @@ The project is divided in several class libraries:
 - Sugar.Test.Integration: Integration test
 - Sugar.Web: Handy helpers when dealing with domain names and URLs.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/dvxn5wavwe6x3day/branch/master?svg=true)](https://ci.appveyor.com/project/bounav/sugar/branch/master)
+
 ##Overview
 
 We started this project internally to centralise the code we kept re-using from project to project. If the bits we add have a dependency we try to put it in its own project / DLL (e.g. Sugar.Http depending on System.Net.Http).
