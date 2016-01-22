@@ -93,7 +93,7 @@ public static class EntryPoint
 
 ###Extensions
 
-Most of the sugar syntax consists in (mostly) chainable extension methods. They live in the namespace `Sugar.Extensions`.
+A major part of this project consists in (mostly) chainable extension methods. They live in the namespace `Sugar.Extensions`.
 
 The most usefull extensions methods are probably the string ones such as `.StartsWith()` or `.SubstringAfterChar()`. We've also created .Humanise() extensions methods for datetimes and timespans.
 
