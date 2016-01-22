@@ -13,11 +13,11 @@ The project is divided in several class libraries:
 
 ##Overview
 
-We started this project internally to centralise all the code we would re-use from project to project. If the bits we add have a dependency we try to put it in its own project / DLL (e.g. Sugar.Http depending on System.Net.Http).
+We started this project internally to centralise the code we kept re-using from project to project. If the bits we add have a dependency we try to put it in its own project / DLL (e.g. Sugar.Http depending on System.Net.Http).
 
 ###Command
 
-Check this out of if you're thinking of create a command line tool. It will help you define different commands and help you decice wich command should execute.
+Check the `Sugar.Command` namespace out if you're thinking need to create a command line tool. It will help you define different commands and then execute a given command.
 
 ```csharp
 
@@ -95,13 +95,15 @@ public static class EntryPoint
 
 Most of the sugar syntax consists in (mostly) chainable extension methods. They live in the namespace `Sugar.Extensions`.
 
+The most usefull extensions methods are probably the string ones such as `.StartsWith()` or `.SubstringAfterChar()`. We've also created .Humanise() extensions methods for datetimes and timespans.
+
 ###CountryCode
 
-- Enumeration listing all countries on Earth (ISO 3166-1-alpha-2 code elements).
+Enumeration listing all countries on Earth (ISO 3166-1-alpha-2 code elements).
 
 ###File Service
 
-- Wraps System.IO.File behind an interface to ease unit testing.
+Wraps System.IO.File behind an interface to ease unit testing.
 
 ###GeoLocation
 
@@ -111,32 +113,21 @@ If you need precision and or performance, use a specialed library!
 
 ###HtmlBuilder
 
-- IBuilder implementation to help generating HTML fragments.
+`IBuilder` implementation to help generating HTML fragments.
 
 ###Http Service
 
-- Wraps calls to .NET's HttpWebResponse with an interface that is easily mockable in a unit test
+This service and its interface live in the `Sugar.Web` project. It wraps calls to .NET's HttpWebResponse with an interface that is easily mockable in a unit test.
+
+We wrote this class before HttpClient was introduced in .NET 4.0 and are considering this project near it's end of life.
 
 ###Retry
 
-- Helper class to retry a given action x times. If you need more flexibility we recommend you use Polly [https://github.com/App-vNext/Polly].
-
-###String Extensions
-
-- String extensions methods to help with string manipulations and parsing.
+Helper class to retry a given action `x` times. If you need more flexibility checkout [Polly](https://github.com/App-vNext/Polly).
 
 ###TextTable
 
-- Helper class to ouput text as a table in a console application
-
-###TimeSpan Extensions
-
-- `ToReadableString`: Outputs a TimeSpan as human readable string (e.g. Two hours, Less than a second...)
-
-###Type Extensions
-
-- `ToGenericFullName`: Gets the Namespace and Name of this type, including any generic parameters
-- `HasAttribute`: Determines whether the type has a given attribute
+Helper class to ouput text as a table in a console application
 
 ##License
 
