@@ -5,13 +5,93 @@ A collection of .NET helper classes, extension methods and shortcuts for common 
 The project is divided in several class libraries:
 
 - Sugar: Core of the nice to have helpers and extensions methods.
-- Sugar.Html: Extension methods geared towards parsing HTML (dependency on HtmlAgilityPack).
+- Sugar.Html: [CsQuery](https://github.com/jamietre/CsQuery) extension methods to help you parse HTML.
+- Sugar.Http: Helper classes and interface to leverage .NET's HttpClient.
 - Sugar.Test: Unit tests (nunit + moq)
 - Sugar.Test.Integration: Integration test
+- Sugar.Web: Handy helpers when dealing with domain names and URLs.
 
 ##Overview
 
-###Array Extensions
+We started this project internally to centralise all the code we would re-use from project to project. If the bits we add have a dependency we try to put it in its own project / DLL (e.g. Sugar.Http depending on System.Net.Http).
+
+###Command
+
+Check this out of if you're thinking of create a command line tool. It will help you define different commands and help you decice wich command should execute.
+
+```csharp
+
+public class ResetEvalDateCommand : BoundCommand<ResetEvalDateCommand.Options> 
+{
+    [Flag("reset", "eval-date")]
+    public class Options
+    {
+        [Parameter("eval-date", Default = "2001-01-01")]
+        public DateTime Since { get; set; }
+    }
+    
+    public override int Execute(Options options)
+    {
+        var exitCode = (int) ExitCode.Success;
+    
+        // TODO: Implement your command here
+        
+        return exitCode;
+    }
+}
+
+public class MyConsole : BaseConsole
+{
+    protected override int Main()
+    {
+        var exitCode = Arguments.Count > 0 ? Run(Arguments) : Default();
+
+        return exitCode;
+    }
+    
+    public int Run(Arguments arguments)
+    {
+        var exitCode = (int)ExitCode.GeneralError;
+
+            var commandType = new BoundCommandFactory().GetCommandType(parameters, () => GetType().Assembly.GetTypes()
+                                                                                                  .Where(type => type.Namespace != null && type.Namespace.StartsWith("My.Namespace.Commands"))
+                                                                                                  .Where(type => type.Name == "Options"));
+
+            if (commandType != null)
+            {
+                exitCode = Run(commandType, parameters);
+            }
+            else
+            {
+                System.Console.WriteLine("Unknown command arguments: {0}", Arguments);
+            }
+
+            return exitCode;
+    }
+    
+    public int Default()
+    {
+        Console.WriteLine("Default output / help message");
+        
+        return (int) ExitCode.Nocommand;
+    }
+}
+
+public static class EntryPoint
+{
+    public static void Main(string[] args)
+    {
+        var console = new MyConsole();
+        
+        var exitCode = console.Run(args);
+        
+        Environment.Exit(exitCode);
+    }
+}
+
+```
+
+###Extensions
 
 - `Slice`: Returns a subset of an array
 
