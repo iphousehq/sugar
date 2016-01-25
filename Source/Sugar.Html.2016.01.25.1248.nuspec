@@ -1,0 +1,19 @@
+<package>
+  <metadata>
+    <id>Sugar.Html</id>
+    <version>2016.01.25.1248</version>
+    <authors>Comsec</authors>
+    <description>
+			Syntactic Sugar for .NET
+			A handy helper to make it easier to use CsQuery to parse HTML.
+		</description>
+    <dependencies>
+      <dependency id="Sugar" version="1.0.0.0" />
+      <dependency id="CsQuery" version="1.3.3.249" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Sugar.Html\bin\Release\Sugar.Html.dll" target="lib\net45" />
+    <file src="Sugar.Html\bin\Release\Sugar.Html.pdb" target="lib\net45" />
+  </files>
+</package>

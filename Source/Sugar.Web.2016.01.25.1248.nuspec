@@ -1,0 +1,19 @@
+<package>
+  <metadata>
+    <id>Sugar.Web</id>
+    <version>2016.01.25.1248</version>
+    <authors>Comsec</authors>
+    <description>
+			Syntactic Sugar for .NET's HTTP client
+			A handy helper to make it easier to deal with .NET's System.Web resources.
+		</description>
+    <dependencies>
+      <dependency id="System.Web" version="4.0.0.0" />
+      <dependency id="Sugar" version="1.0.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Sugar.Web\bin\Release\Sugar.Web.dll" target="lib\net45" />
+    <file src="Sugar.Web\bin\Release\Sugar.Web.pdb" target="lib\net45" />
+  </files>
+</package>
