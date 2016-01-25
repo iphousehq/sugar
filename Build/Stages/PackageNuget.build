@@ -4,16 +4,17 @@
 	
 		<foreach item="File" property="specfile">
 			<in>
-				<items basedir="${root.dir}">
-					<include name="*.nuspec" />
+                <!-- The nuspec files are at the root of each projects-->
+				<items basedir="${root.dir}\Source">
+					<include name="**/*.nuspec" />
 				</items>
 			</in>
 			<do>
-				<property name="nuspec.name" value="${root.dir}\${path::get-file-name-without-extension(specfile)}.${package.version}.nuspec" />
-				<copy file="${root.dir}\${path::get-file-name(specfile)}" tofile="${nuspec.name}" />
+				<property name="nuspec.name" value="${path::get-directory-name(specfile)}\${path::get-file-name-without-extension(specfile)}.${package.version}.nuspec" />
+				<copy file="${specfile}" tofile="${nuspec.name}" />
 				<xmlpoke file="${nuspec.name}" xpath="/package/metadata/version" value="${package.version}" />
 				
-				<exec program="nuget.exe" basedir="${nuget.location}" workingdir=".">
+				<exec program="nuget.exe" basedir="${nuget.location}" workingdir="${path::get-directory-name(specfile)}">
 					<arg value="pack" />
 					<arg value="${nuspec.name}" />
 				</exec>

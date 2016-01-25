@@ -35,12 +35,12 @@
 		<!-- Push to repository -->
 		<foreach item="File" property="packagefile">
 			<in>
-				<items>
-					<include name="*.nupkg" />
+				<items basedir="${root.dir}\Source">
+					<include name="**/*.nupkg" />
 				</items>
 			</in>
 			<do>
-				<exec program="nuget.exe" basedir="${nuget.location}" workingdir=".">
+				<exec program="nuget.exe" basedir="${nuget.location}" workingdir="${path::get-directory-name(packagefile)}">
 					<arg value="push" />
 					<arg value="${packagefile}" />
 					<arg value="-Source" />
@@ -48,20 +48,14 @@
 				</exec>
 			</do>
 		</foreach>
-		
-		<!-- Delete files -->
-		<delete>
-			<fileset>
-				<include name="*.nupkg" />
-			</fileset>
-		</delete>
-		
-		<delete>
-			<fileset basedir="${root.dir}">
-				<include name="*.${package.version}.nuspec" />
-			</fileset>
-		</delete>
-		
+        
+        <delete>
+            <fileset basedir="${root.dir}\Source">
+                <include name="Sugar*/*.nupkg" />
+                <include name="Sugar*/*.${package.version}.nuspec" />
+            </fileset>
+        </delete>
+        
 		<delete file="${root.dir}\Build\Stages\sources.txt" />
 		
 	</target>

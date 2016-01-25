@@ -12,7 +12,7 @@
 		</dependencies>
 	</metadata>
 	<files>
-		<file src="Source\Sugar.Http\bin\Release\Sugar.Http.dll" target="lib\net45" />
-		<file src="Source\Sugar.Http\bin\Release\Sugar.Http.pdb" target="lib\net45" />
+		<file src="bin\Release\Sugar.Http.dll" target="lib\net45" />
+		<file src="bin\Release\Sugar.Http.pdb" target="lib\net45" />
 	</files>
 </package>

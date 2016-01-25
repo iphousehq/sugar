@@ -9,7 +9,7 @@
 		</description>
 	</metadata>
 	<files>
-		<file src="Source\Sugar\bin\Release\Sugar.dll" target="lib\net45" />
-		<file src="Source\Sugar\bin\Release\Sugar.pdb" target="lib\net45" />
+		<file src="bin\Release\Sugar.dll" target="lib\net45" />
+		<file src="bin\Release\Sugar.pdb" target="lib\net45" />
 	</files>
 </package>
