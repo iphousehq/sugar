@@ -1,9 +1,0 @@
-<project name="Sugar" basedir="." default="SetProperties">
-
-	<target name="SetProperties">
-
-		<property name="stages" value="Clean,Compile,RunNUnit,RunNUnitIntegration" readonly="false"/>
-
-	</target>
-
-</project>
