@@ -1,8 +1,0 @@
-Registered Sources:
-
-  1.  nuget.org [Enabled]
-      https://api.nuget.org/v3/index.json
-  2.  ComsecHQ [Enabled]
-      http://gold.comsechq.com:5050/nuget/
-  3.  https://www.nuget.org/api/v2/ [Disabled]
-      https://www.nuget.org/api/v2/

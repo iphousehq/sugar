@@ -13,7 +13,7 @@
 		</dependencies>
 	</metadata>
 	<files>
-		<file src="Sugar.Web\bin\Release\Sugar.Web.dll" target="lib\net45" />
-		<file src="Sugar.Web\bin\Release\Sugar.Web.pdb" target="lib\net45" />
+		<file src="Source\Sugar.Web\bin\Release\Sugar.Web.dll" target="lib\net45" />
+		<file src="Source\Sugar.Web\bin\Release\Sugar.Web.pdb" target="lib\net45" />
 	</files>
 </package>
