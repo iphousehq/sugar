@@ -1,6 +1,6 @@
 <package>
 	<metadata>
-		<id>Sugar.Web</id>
+		<id>comsec.sugar.web</id>
 		<version>1.0.0.0</version>
 		<authors>Comsec</authors>
 		<description>
