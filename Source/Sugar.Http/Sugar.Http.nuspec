@@ -7,9 +7,9 @@
 			Syntactic Sugar for .NET's HTTP client
 			A handy helper to make it easier to deal with .NET's HttpClient.
 		</description>
-		<dependencies>
-			<dependency id="System.Net.Http" version="4.0.0.0" />
-		</dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System.Net.Http" targetFramework="net40" />
+        </frameworkAssemblies>
 	</metadata>
 	<files>
 		<file src="bin\Release\Sugar.Http.dll" target="lib\net45" />

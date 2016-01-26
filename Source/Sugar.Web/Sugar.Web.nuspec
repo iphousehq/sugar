@@ -8,9 +8,11 @@
 			A handy helper to make it easier to deal with .NET's System.Web resources.
 		</description>
 		<dependencies>
-			<dependency id="System.Web" version="4.0.0.0" />
 			<dependency id="Sugar" version="1.0.0.0" />
 		</dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
+        </frameworkAssemblies>
 	</metadata>
 	<files>
 		<file src="bin\Release\Sugar.Web.dll" target="lib\net45" />
