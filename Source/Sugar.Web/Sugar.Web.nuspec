@@ -16,8 +16,4 @@
             <frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
         </frameworkAssemblies>
 	</metadata>
-	<files>
-		<file src="bin\Release\Sugar.Web.dll" target="lib\net45" />
-		<file src="bin\Release\Sugar.Web.pdb" target="lib\net45" />
-	</files>
 </package>

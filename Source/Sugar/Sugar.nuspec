@@ -10,8 +10,4 @@
 		<description>A collection of .NET helper classes, extension methods and shortcuts for common .NET operations.</description>
         <summary>A collection of .NET helper classes, extension methods and shortcuts for common .NET operations.</summary>
 	</metadata>
-	<files>
-		<file src="bin\Release\Sugar.dll" target="lib\net45" />
-		<file src="bin\Release\Sugar.pdb" target="lib\net45" />
-	</files>
 </package>
