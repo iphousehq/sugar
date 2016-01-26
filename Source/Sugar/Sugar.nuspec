@@ -3,10 +3,12 @@
 		<id>comsec.sugar</id>
 		<version>$version$</version>
 		<authors>Comsec</authors>
-		<description>
-			Syntactic Sugar for .NET
-			A collection of .NET helper classes, extension methods and shortcuts for common .NET operations.
-		</description>
+        <projectUrl>http://comsechq.github.io/sugar/</projectUrl>
+        <licenceUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</licenceUrl>
+        <copyright>Comsec</copyright>
+        <title>Syntactic Sugar for .NET</title>
+		<description>A collection of .NET helper classes, extension methods and shortcuts for common .NET operations.</description>
+        <summary>A collection of .NET helper classes, extension methods and shortcuts for common .NET operations.</summary>
 	</metadata>
 	<files>
 		<file src="bin\Release\Sugar.dll" target="lib\net45" />

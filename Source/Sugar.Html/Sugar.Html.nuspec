@@ -3,12 +3,14 @@
 		<id>comsec.sugar.html</id>
 		<version>$version$</version>
 		<authors>Comsec</authors>
-		<description>
-			Syntactic Sugar for .NET
-			A handy helper to make it easier to use CsQuery to parse HTML.
-		</description>
+        <projectUrl>http://comsechq.github.io/sugar/</projectUrl>
+        <licenceUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</licenceUrl>
+        <copyright>Comsec</copyright>
+        <title>Syntactic HTML Sugar for .NET</title>
+		<description>A handy helper to make it easier to use CsQuery to parse HTML.</description>
+        <summary>A handy helper to make it easier to use CsQuery to parse HTML.</summary>
 		<dependencies>
-			<dependency id="Sugar" version="1.0.0.0" />
+			<dependency id="comsec.sugar" version="1.0.0.0" />
 			<dependency id="CsQuery" version="1.3.3.249" />
 		</dependencies>
 	</metadata>

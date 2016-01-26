@@ -3,10 +3,12 @@
 		<id>comsec.sugar.http</id>
 		<version>$version$</version>
 		<authors>Comsec</authors>
-		<description>
-			Syntactic Sugar for .NET's HTTP client
-			A handy helper to make it easier to deal with .NET's HttpClient.
-		</description>
+        <projectUrl>http://comsechq.github.io/sugar/</projectUrl>
+        <licenceUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</licenceUrl>
+        <copyright>Comsec</copyright>
+        <title>Syntactic Sugar for .NET's HTTP client</title>
+		<description>A handy helper to make it easier to deal with .NET's HttpClient.</description>
+        <summary>A handy helper to make it easier to deal with .NET's HttpClient.</summary>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Net.Http" targetFramework="net40" />
         </frameworkAssemblies>
