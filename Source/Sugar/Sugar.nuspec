@@ -4,7 +4,7 @@
 		<version>$version$</version>
 		<authors>Comsec</authors>
         <projectUrl>http://comsechq.github.io/sugar/</projectUrl>
-        <licenceUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</licenceUrl>
+        <licenseUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</licenseUrl>
         <copyright>Comsec</copyright>
         <title>Syntactic Sugar for .NET</title>
 		<description>A collection of .NET helper classes, extension methods and shortcuts for common .NET operations.</description>
