@@ -46,6 +46,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Command\CommandLineTest.cs" />
+    <Compile Include="Command\FakeCommandLine.cs" />
     <Compile Include="Extensions\ArrayExtensionsTest.cs" />
     <Compile Include="Extensions\AssemblyExtensionsTest.cs" />
     <Compile Include="Attributes\TypeaheadTokenAttributeTest.cs" />

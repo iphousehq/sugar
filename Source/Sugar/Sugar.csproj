@@ -57,6 +57,7 @@
     <Compile Include="Command\ParameterBinder.cs" />
     <Compile Include="Command\ParameterParser.cs" />
     <Compile Include="Command\ParameterPrinter.cs" />
+    <Compile Include="Command\CommandLine.cs" />
     <Compile Include="Command\Parameters.cs" />
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\ConfigLine.cs" />
@@ -113,6 +114,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup />
