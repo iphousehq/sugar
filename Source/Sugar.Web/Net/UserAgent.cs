@@ -30,7 +30,7 @@ namespace Sugar.Net
                     return new UserAgent("Mozilla/5.0 (compatible; MSIE 7.0;Windows NT 6.0)");
 
                 case 8:
-                    return new UserAgent("Mozilla/5.0 (compatible; MSIEg 8.0; Windows NT 6.1)");
+                    return new UserAgent("Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.1)");
 
                 case 9:
                     return new UserAgent("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1)");
@@ -50,27 +50,27 @@ namespace Sugar.Net
         /// Returns a Google Chrome user agent
         /// </summary>
         /// <returns></returns>
-        public static UserAgent Chrome()
+        public static UserAgent Chrome(int version = 46)
         {
-            return new UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
+            return new UserAgent($"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version}.0.0000.000 Safari/537.36");
         }
 
         /// <summary>
         /// Returns an Edge user agent
         /// </summary>
         /// <returns></returns>
-        public static UserAgent Edge()
+        public static UserAgent Edge(int version = 12)
         {
-            return new UserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246");
+            return new UserAgent($"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36 Edge/{version}.000");
         }
 
         /// <summary>
         /// Returns a Firefox user agent
         /// </summary>
         /// <returns></returns>
-        public static UserAgent Firefox()
+        public static UserAgent Firefox(int version = 41)
         {
-            return new UserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1");
+            return new UserAgent($"Mozilla/5.0 (Windows NT 6.3; WOW64; rv:{version}.0) Gecko/20100101 Firefox/{version}.0");
         }
     
         /// <summary>
