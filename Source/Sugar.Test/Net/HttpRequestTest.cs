@@ -14,7 +14,6 @@ namespace Sugar.Net
             Assert.AreEqual(3, request.Retries);
             Assert.AreEqual(30000, request.Timeout);
             Assert.AreEqual(HttpVerb.Get, request.Verb);
-            Assert.AreEqual(UserAgent.Firefox().ToString(), request.UserAgent.ToString());
 
             Assert.AreEqual(0, request.Headers.Count);
             Assert.IsNotNull(request.Cookies);
@@ -29,8 +28,9 @@ namespace Sugar.Net
                                   ContentType = "text/json",
                                   Accept = "text/xml",
                                   Referer = "referer",
-                                  Host = "somehost.com"
-                              };
+                                  Host = "somehost.com",
+                                  UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0"
+            };
 
             var webRequest = (HttpWebRequest) request.ToWebRequest();
 
@@ -40,7 +40,7 @@ namespace Sugar.Net
             Assert.AreEqual(DecompressionMethods.GZip | DecompressionMethods.Deflate, webRequest.AutomaticDecompression);
             Assert.AreEqual("GET", webRequest.Method);
             Assert.AreEqual(30000, webRequest.Timeout);
-            Assert.AreEqual(UserAgent.Firefox().ToString(), webRequest.UserAgent);
+            Assert.AreEqual("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0", webRequest.UserAgent);
             Assert.AreEqual("text/json", webRequest.ContentType);
             Assert.AreEqual("referer", webRequest.Referer);
             Assert.AreEqual("somehost.com", webRequest.Host);

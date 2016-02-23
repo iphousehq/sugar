@@ -53,13 +53,13 @@ namespace Sugar.Http
             var innerHandler = new FakeHandler();
 
             var provider = new HttpClientProvider
-            {
-                RetryIntercept = async delegate
-                {
-                    interceptCount++;
-                    return false;
-                }
-            };
+                           {
+                               RetryIntercept = async delegate
+                                                      {
+                                                          interceptCount++;
+                                                          return false;
+                                                      }
+                           };
 
             var client = provider.Create(innerHandler);
 
@@ -77,13 +77,13 @@ namespace Sugar.Http
             var innerHandler = new FakeHandler();
 
             var provider = new HttpClientProvider
-            {
-                RetryIntercept = async delegate
-                {
-                    interceptCount++;
-                    return true;
-                }
-            };
+                           {
+                               RetryIntercept = async delegate
+                                                      {
+                                                          interceptCount++;
+                                                          return true;
+                                                      }
+                           };
 
             var client = provider.Create(innerHandler);
 
@@ -101,13 +101,13 @@ namespace Sugar.Http
             var innerHandler = new FakeHandler();
 
             var provider = new HttpClientProvider
-            {
-                RetryIntercept = async delegate
-                {
-                    interceptCount++;
-                    return true;
-                }
-            };
+                           {
+                               RetryIntercept = async delegate
+                                                      {
+                                                          interceptCount++;
+                                                          return true;
+                                                      }
+                           };
 
             var client = provider.Create(innerHandler, false);
 

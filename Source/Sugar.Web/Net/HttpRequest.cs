@@ -19,7 +19,6 @@ namespace Sugar.Net
             Retries = 3;
             Timeout = 30000;
             Verb = HttpVerb.Get;
-            UserAgent = UserAgent.Firefox();
             Headers = new NameValueCollection();
             Cookies = new CookieContainer();
             Encoding = null;
@@ -69,7 +68,7 @@ namespace Sugar.Net
         /// Gets or sets the user agent.
         /// </summary>
         /// <value>The user agent.</value>
-        public UserAgent UserAgent { get; set; }
+        public string UserAgent { get; set; }
 
         /// <summary>
         /// Gets or sets the content type.
@@ -216,8 +215,8 @@ namespace Sugar.Net
 
             request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-          
-            if (UserAgent != null) request.UserAgent = UserAgent.ToString();
+
+            if (!string.IsNullOrEmpty(UserAgent)) request.UserAgent = UserAgent;
             if (!string.IsNullOrEmpty(Host)) request.Host = Host;
             if (!string.IsNullOrWhiteSpace(Accept)) request.Accept = Accept;
 

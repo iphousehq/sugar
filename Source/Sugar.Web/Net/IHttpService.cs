@@ -29,14 +29,7 @@ namespace Sugar.Net
         /// <param name="accept">The accept.</param>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
-
-        /// <summary>
-        /// Builds an HTTP request for the given URL.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns></returns>
-        HttpRequest Build(string url);
+        HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, string agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
         /// Builds a HTTP request from the given arguments.
@@ -51,7 +44,7 @@ namespace Sugar.Net
         /// <param name="accept">The accept.</param>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
+        HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, string agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
         /// Gets the specified URL.
@@ -65,14 +58,7 @@ namespace Sugar.Net
         /// <param name="accept">The accept.</param>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        HttpResponse Get(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
-
-        /// <summary>
-        /// Gets the specified URL.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns></returns>
-        HttpResponse Get(string url);
+        HttpResponse Get(string url, string agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
         /// POSTs to the specified URL.
@@ -86,14 +72,7 @@ namespace Sugar.Net
         /// <param name="accept">The accept.</param>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        HttpResponse Post(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
-
-        /// <summary>
-        /// POSTs to the specified URL.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns></returns>
-        HttpResponse Post(string url);
+        HttpResponse Post(string url, string agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
         /// Gets the HEAD of the specified URL.
@@ -107,14 +86,7 @@ namespace Sugar.Net
         /// <param name="accept">The accept.</param>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        HttpResponse Head(string url, UserAgent agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
-
-        /// <summary>
-        /// Gets the HEAD of the specified URL.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns></returns>
-        HttpResponse Head(string url);
+        HttpResponse Head(string url, string agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
         /// Creates an <see cref="HttpQuery"/> object.
