@@ -47,7 +47,6 @@
     <Compile Include="Net\HttpVerb.cs" />
     <Compile Include="Net\IHttpService.cs" />
     <Compile Include="Net\Url.cs" />
-    <Compile Include="Net\UserAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
