@@ -29,7 +29,7 @@ namespace Sugar.Net
         /// <param name="accept">The accept.</param>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        HttpResponse Download(string url, HttpVerb verb = HttpVerb.Get, string agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
+        HttpResponse Download(string url, HttpVerb verb, string agent, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
         /// Builds a HTTP request from the given arguments.
@@ -44,7 +44,7 @@ namespace Sugar.Net
         /// <param name="accept">The accept.</param>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        HttpRequest Build(string url, HttpVerb verb = HttpVerb.Get, string agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
+        HttpRequest Build(string url, HttpVerb verb, string agent, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
         /// Gets the specified URL.
@@ -58,7 +58,7 @@ namespace Sugar.Net
         /// <param name="accept">The accept.</param>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        HttpResponse Get(string url, string agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
+        HttpResponse Get(string url, string agent, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
         /// POSTs to the specified URL.
@@ -72,7 +72,7 @@ namespace Sugar.Net
         /// <param name="accept">The accept.</param>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        HttpResponse Post(string url, string agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
+        HttpResponse Post(string url, string agent, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
         /// Gets the HEAD of the specified URL.
@@ -86,7 +86,7 @@ namespace Sugar.Net
         /// <param name="accept">The accept.</param>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        HttpResponse Head(string url, string agent = null, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
+        HttpResponse Head(string url, string agent, CookieContainer cookies = null, string referer = "", int retries = 0, int timeout = 2500, BaseMime accept = null, Encoding encoding = null);
 
         /// <summary>
         /// Creates an <see cref="HttpQuery"/> object.

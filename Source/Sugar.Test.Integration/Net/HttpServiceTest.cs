@@ -17,7 +17,7 @@ namespace Sugar.Net
         [Test]
         public void TestHead()
         {
-            var response = service.Head("http://www.bbc.co.uk");
+            var response = service.Head("http://www.bbc.co.uk", string.Empty);
 
             Assert.IsTrue(response.Success);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -30,7 +30,7 @@ namespace Sugar.Net
         [Test]
         public void TestGet()
         {
-            var response = service.Get("http://arstechnica.com/");
+            var response = service.Get("http://arstechnica.com/", string.Empty);
 
             Assert.IsTrue(response.Success);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -43,7 +43,7 @@ namespace Sugar.Net
         [Test]
         public void TestGetWithRedirection()
         {
-            var response = service.Get("http://github.com");
+            var response = service.Get("http://github.com", string.Empty);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.AreEqual("http://github.com", response.Url);
@@ -54,7 +54,7 @@ namespace Sugar.Net
         [Test]
         public void TestGetHttps()
         {
-            var response = service.Get("https://arstechnica.com/");
+            var response = service.Get("https://arstechnica.com/", string.Empty);
 
             Assert.IsTrue(response.Success);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -67,7 +67,7 @@ namespace Sugar.Net
         [Test]
         public void TestGet404Answer()
         {
-            var response = service.Get("https://github.com/does-no-exist");
+            var response = service.Get("https://github.com/does-no-exist", string.Empty);
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
 
@@ -79,7 +79,7 @@ namespace Sugar.Net
         [Test]
         public void TestPostWithoutBody()
         {
-            var response = service.Post("http://httpbin.org/post ");
+            var response = service.Post("http://httpbin.org/post", string.Empty);
 
             Assert.True(response.Success);
         }

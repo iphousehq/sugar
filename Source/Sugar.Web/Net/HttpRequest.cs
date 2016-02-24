@@ -98,10 +98,7 @@ namespace Sugar.Net
         /// Gets a value indicating whether to use authentication for this request
         /// </summary>
         /// <value><c>true</c> if [use authentication]; otherwise, <c>false</c>.</value>
-        public bool UseAuthentication
-        {
-            get { return !(string.IsNullOrEmpty(Username) && string.IsNullOrEmpty(Password)); }
-        }
+        public bool UseAuthentication => !(string.IsNullOrEmpty(Username) && string.IsNullOrEmpty(Password));
 
         /// <summary>
         /// Gets or sets the proxy to use for this request.

@@ -52,7 +52,7 @@ namespace Sugar.Net
         /// <param name="retries">The number of retry attemps.</param>
         /// <param name="timeout">The timeout in milliseconds.</param>
         /// <returns></returns>
-        public virtual HttpQuery Get(string url, string agent = null, CookieContainer cookies = null, bool persistState = true, string referer = null, int retries = 0, int timeout = 2500)
+        public virtual HttpQuery Get(string url, string agent, CookieContainer cookies = null, bool persistState = true, string referer = null, int retries = 0, int timeout = 2500)
         {
             Request = HttpService.Build(url, HttpVerb.Get, agent, cookies, referer, retries, timeout);
 

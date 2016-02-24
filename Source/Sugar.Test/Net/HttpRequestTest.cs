@@ -23,14 +23,14 @@ namespace Sugar.Net
         public void TestToWebRequest()
         {
             var request = new HttpRequest
-                              {
-                                  Url = "http://www.watchdogapp.com",
-                                  ContentType = "text/json",
-                                  Accept = "text/xml",
-                                  Referer = "referer",
-                                  Host = "somehost.com",
-                                  UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0"
-            };
+                          {
+                              Url = "http://www.watchdogapp.com",
+                              ContentType = "text/json",
+                              Accept = "text/xml",
+                              Referer = "referer",
+                              Host = "somehost.com",
+                              UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0"
+                          };
 
             var webRequest = (HttpWebRequest) request.ToWebRequest();
 
@@ -55,13 +55,13 @@ namespace Sugar.Net
         public void TestToWebRequestWithAutentication()
         {
             var request = new HttpRequest
-                              {
-                                  Url = "http://www.watchdogapp.com",
-                                  UseBasicAuthentication = true,
-                                  Username = "john",
-                                  Password = "doe123!",
-                                  Host = "somehost.com"
-                              };
+                          {
+                              Url = "http://www.watchdogapp.com",
+                              UseBasicAuthentication = true,
+                              Username = "john",
+                              Password = "doe123!",
+                              Host = "somehost.com"
+                          };
 
             var webRequest = (HttpWebRequest)request.ToWebRequest();
 
