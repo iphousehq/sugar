@@ -699,5 +699,15 @@ namespace Sugar.Extensions
         {
             Assert.AreEqual(string.Empty, string.Empty.ToMd5());
         }
+
+        [Test]
+        public void TestReplaceUnicodeEscapeSequences()
+        {
+            var value = "Blah blah\u0027blah \u003c\u003eblah\u003d";
+
+            var result = value.ReplaceUnicodeEscapeSequences();
+
+            Assert.AreEqual("Blah blah'blah <>blah=", result);
+        }
     }
 }

@@ -307,6 +307,27 @@ namespace Sugar.Extensions
         }
 
         /// <summary>
+        /// Replaces all unicode escape sequences in a string with their char replacements.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string ReplaceUnicodeEscapeSequences(this string value)
+        {
+            var regex = new Regex(@"\\[uU]([0-9A-F]{4})", RegexOptions.IgnoreCase);
+
+            var result = regex.Replace(value, match =>
+                                              {
+                                                  var unicodeValue = match.Groups[1].Value;
+                                                  var unicodeIntValue = Int32.Parse(unicodeValue, NumberStyles.HexNumber);
+                                                  var unicodeCharValue = (char) unicodeIntValue;
+
+                                                  return unicodeCharValue.ToString();
+                                              });
+
+            return result;
+        }
+
+        /// <summary>
         /// Reverses this string.
         /// </summary>
         /// <param name="value">The value.</param>
