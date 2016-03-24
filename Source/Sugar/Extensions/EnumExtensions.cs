@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 
 namespace Sugar.Extensions
 {
@@ -35,11 +36,19 @@ namespace Sugar.Extensions
 
             if (memberInfo.Length > 0)
             {
-                var attrs = memberInfo[0].GetCustomAttributes(typeof(T), true);
-
-                foreach (var attr in attrs)
+                foreach (var info in memberInfo)
                 {
-                    yield return (T)attr;
+                    if (info.MemberType == MemberTypes.Field)
+                    {
+                        var attrs = info.GetCustomAttributes(typeof(T), true);
+
+                        foreach (var attr in attrs)
+                        {
+                            yield return (T)attr;
+                        }
+
+                        break;
+                    }
                 }
             }
         }

@@ -11,7 +11,9 @@ namespace Sugar.Extensions
         {
             [System.ComponentModel.Description("Bob Value")]
             Bob = 40,
-            Thursday = 50
+            Thursday = 50,
+            [System.ComponentModel.Description("Equals Value")]
+            Equals = 60
         }
 
         [Flags]
@@ -108,6 +110,14 @@ namespace Sugar.Extensions
             var result = SomeEnum.Thursday.GetDescription();
 
             Assert.AreEqual("Thursday", result);
+        }
+
+        [Test]
+        public void TestGetDescriptionForEqualsMember()
+        {
+            var result = SomeEnum.Equals.GetDescription();
+
+            Assert.AreEqual("Equals Value", result);
         }
     }
 }
