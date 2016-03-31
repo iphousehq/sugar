@@ -5,7 +5,6 @@ A collection of .NET helper classes, extension methods and shortcuts for common 
 The project is divided in several class libraries:
 
 - Sugar: Core of the nice to have helpers and extensions methods.
-- Sugar.Html: [CsQuery](https://github.com/jamietre/CsQuery) extension methods to help you parse HTML.
 - Sugar.Http: Helper classes and interface to leverage .NET's HttpClient.
 - Sugar.Test: Unit tests (nunit + moq)
 - Sugar.Test.Integration: Integration test
