@@ -49,13 +49,7 @@ namespace Sugar.Net
         /// Gets a value indicating whether this instance is valid.
         /// </summary>
         /// <value><c>true</c> if this instance is valid; otherwise, <c>false</c>.</value>
-        public bool IsValid
-        {
-            get
-            {
-                return uri != null;
-            }
-        }
+        public bool IsValid => uri != null;
 
         /// <summary>
         /// Gets the query.
