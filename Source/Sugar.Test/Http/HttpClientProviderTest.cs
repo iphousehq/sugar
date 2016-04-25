@@ -26,7 +26,7 @@ namespace Sugar.Http
         {
             var provider = new HttpClientProvider
             {
-                InitialiseWith = (c) => c.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Test", "1.0"))
+                InitialiseWith = c => c.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Test", "1.0"))
             };
 
             var client = provider.Create();
@@ -54,12 +54,12 @@ namespace Sugar.Http
 
             var provider = new HttpClientProvider
                            {
-                               RetryIntercept = async delegate
+                               RetryIntercept = delegate
                                                       {
                                                           interceptCount++;
-                                                          return false;
+                                                          return Task.FromResult(false);
                                                       }
-                           };
+            };
 
             var client = provider.Create(innerHandler);
 
@@ -78,10 +78,10 @@ namespace Sugar.Http
 
             var provider = new HttpClientProvider
                            {
-                               RetryIntercept = async delegate
+                               RetryIntercept = delegate
                                                       {
                                                           interceptCount++;
-                                                          return true;
+                                                          return Task.FromResult(true);
                                                       }
                            };
 
@@ -102,10 +102,10 @@ namespace Sugar.Http
 
             var provider = new HttpClientProvider
                            {
-                               RetryIntercept = async delegate
+                               RetryIntercept = delegate
                                                       {
                                                           interceptCount++;
-                                                          return true;
+                                                          return Task.FromResult(true);
                                                       }
                            };
 
