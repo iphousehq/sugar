@@ -9,6 +9,9 @@
         <title>Syntactic Sugar for .NET's HTTP client</title>
         <description>A handy helper to make it easier to deal with .NET's HttpClient.</description>
         <summary>A handy helper to make it easier to deal with .NET's HttpClient.</summary>
+        <dependencies>
+            <dependency id="comsec.sugar" version="1.0.0.0" />
+        </dependencies>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Net.Http" targetFramework="net40" />
         </frameworkAssemblies>
