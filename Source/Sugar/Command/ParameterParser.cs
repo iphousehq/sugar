@@ -49,7 +49,7 @@ namespace Sugar.Command
 
             foreach (var match in matches)
             {
-                if (match.StartsWith(@""""))
+                if (match.StartsWith(@"""") && !match.Substring(1).StartsWith("-"))
                 {
                     var noQuote = match.Substring(1);
 

@@ -78,6 +78,47 @@ namespace Sugar.Command
         }
 
         [Test]
+        public void TestGetParametersWithMinusWithoutQuotes()
+        {
+            var parameters = parser.Parse(@"-one -three");
+
+            Assert.AreEqual(0, parameters.AsStrings("one").Count);
+        }
+
+        [Test]
+        public void TestGetParametersWithMinus()
+        {
+            var parameters = parser.Parse(@"-one ""-three""");
+
+            Assert.AreEqual(1, parameters.AsStrings("one").Count);
+            Assert.AreEqual(@"""-three""", parameters.AsStrings("one")[0]);
+        }
+
+        [Test]
+        public void TestGetParametersWithMinusWhenQuoted()
+        {
+            var parameters =
+                parser.Parse(
+                    "\"C:\\path\\to\\prog.exe\" /one val1 /two \"-05:00:00\"");
+
+            var value = parameters.AsString("two");
+
+            Assert.AreEqual("\"-05:00:00\"", value);
+        }
+
+        [Test]
+        public void TestGetParametersWithMinusWhenDoubleQuoted()
+        {
+            var parameters =
+                parser.Parse(
+                    "\"C:\\path\\to\\prog.exe\" /one val1 /two \"\"-05:00:00\"\"");
+
+            var value = parameters.AsString("two");
+            
+            Assert.AreEqual("\"-05:00:00\"", value);
+        }
+
+        [Test]
         public void TestGetParametersUsesDefaults()
         {
             var parameters = parser.Parse("-one two three");

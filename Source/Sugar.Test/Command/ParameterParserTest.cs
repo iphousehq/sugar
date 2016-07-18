@@ -86,5 +86,13 @@ namespace Sugar.Command
             Assert.AreEqual(1, parameters.Switches.Count);
             Assert.AreEqual(":", parameters.Switches[0]);
         }
+
+        [Test]
+        public void TestParseParameterPassesWithMinus()
+        {
+            var parameters = parser.Parse(@"""-05:00:00""");
+
+            Assert.AreEqual(@"""-05:00:00""",  parameters[0]);
+        }
     }
 }

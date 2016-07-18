@@ -63,5 +63,17 @@ namespace Sugar.Command
 
             Assert.Null(command.GetOptions());
         }
+
+        [Test]
+        public void TestCommandDoesntExecutesWithMinus()
+        {
+            var parameters = new ParameterParser().Parse(@"-three ""-two""");
+
+            var command = new FakeCommand();
+
+            command.BindParameters(parameters);
+
+            Assert.Null(command.GetOptions());
+        }
     }
 }
