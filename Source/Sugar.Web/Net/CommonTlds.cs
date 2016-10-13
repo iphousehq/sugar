@@ -5082,10 +5082,7 @@ namespace Sugar.Net
         /// <value>
         /// The instance.
         /// </value>
-        public static CommonTlds Instance
-        {
-            get { return instance ?? (instance = new CommonTlds()); }
-        }
+        public static CommonTlds Instance => instance ?? (instance = new CommonTlds());
 
         /// <summary>
         /// Gets or sets the TLDS.

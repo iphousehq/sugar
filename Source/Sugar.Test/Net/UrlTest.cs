@@ -290,12 +290,19 @@ namespace Sugar.Net
         }
 
         [Test]
-        public void Testblah()
+        public void TestGetTldWhenTldPartOfSubdomain()
         {
-            var url = new Url("test.ebay.co.uk");
+            var url = new Url("http://company.watchdogapp.org");
 
+            Assert.AreEqual("org", url.Tld);
+        }
 
-            Assert.NotNull(url);
+        [Test]
+        public void TestSubdomianWhenTldPartofSubdomain()
+        {
+            var url = new Url("http://company.watchdogapp.com");
+
+            Assert.AreEqual("company", url.SubDomain);
         }
     }
 }

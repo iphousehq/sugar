@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
+using Sugar.Extensions;
 
 namespace Sugar.Net
 {
@@ -143,10 +144,7 @@ namespace Sugar.Net
         /// Gets the domain sans the WWW prefix.
         /// </summary>
         /// <value>The domain sans WWW.</value>
-        public string DomainSansWww
-        {
-            get { return Domain.Replace("www.", string.Empty); }
-        }
+        public string DomainSansWww => Domain.Replace("www.", string.Empty);
 
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
@@ -156,7 +154,7 @@ namespace Sugar.Net
         /// </returns>
         public override string ToString()
         {
-            return uri == null ? string.Empty : uri.OriginalString.Trim();
+            return uri?.OriginalString.Trim() ?? string.Empty;
         }
 
         /// <summary>
@@ -214,10 +212,7 @@ namespace Sugar.Net
         /// Gets the full page with query string.
         /// </summary>
         /// <value>The full page with query string.</value>
-        public string FullPageWithQueryString
-        {
-            get { return string.Format("{0}{1}", FullPage, uri.Query); }
-        }
+        public string FullPageWithQueryString => $"{FullPage}{uri.Query}";
 
         /// <summary>
         /// Gets the path.
@@ -276,7 +271,7 @@ namespace Sugar.Net
                     {
                         var tld = CommonTlds.Instance.GetTld(Domain);
 
-                        var domainWithoutTld = Domain.Replace(tld, string.Empty).Trim('.');
+                        var domainWithoutTld = domain.SubstringBeforeLastChar($".{tld}");
 
                         var parts = domainWithoutTld.Split('.');
 
@@ -295,13 +290,7 @@ namespace Sugar.Net
         /// Gets the domain sans sub domain.
         /// </summary>
         /// <value>The domain sans sub domain.</value>
-        public string DomainSansSubDomain
-        {
-            get
-            {
-                return HasSubDomain ? Domain.Replace(SubDomain + ".", string.Empty) : Domain;
-            }
-        }
+        public string DomainSansSubDomain => HasSubDomain ? Domain.Replace(SubDomain + ".", string.Empty) : Domain;
 
         /// <summary>
         /// Gets a value indicating whether this instance has sub domain.
@@ -309,13 +298,7 @@ namespace Sugar.Net
         /// <value>
         /// 	<c>true</c> if this instance has sub domain; otherwise, <c>false</c>.
         /// </value>
-        public bool HasSubDomain
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(SubDomain);
-            }
-        }
+        public bool HasSubDomain => !string.IsNullOrEmpty(SubDomain);
 
         /// <summary>
         /// Gets the TLD.
