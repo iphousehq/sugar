@@ -107,6 +107,7 @@
     <Compile Include="Reflection\ReflectionHelper.cs" />
     <Compile Include="Reflection\SingleMember.cs" />
     <Compile Include="Retry.cs" />
+    <Compile Include="SelectListItem.cs" />
     <Compile Include="TextTable.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +116,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup />
