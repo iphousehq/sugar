@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using NUnit.Framework;
 
 namespace Sugar.Extensions
@@ -7,12 +8,12 @@ namespace Sugar.Extensions
     [TestFixture]
     public class BitmapExtensionTest
     {
-        private const string ImageLocation = "../../Samples/grass.jpg";
+        private readonly string imageLocation = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../Samples/grass.jpg");
 
         [Test]
         public void TestCropImage()
         {
-            using (var image = new Bitmap(ImageLocation))
+            using (var image = new Bitmap(imageLocation))
             {
                 var resizedImage = image.CropImage(320, 200);
 
@@ -26,7 +27,7 @@ namespace Sugar.Extensions
         [Test]
         public void TestCropImageToMaximumDimension()
         {
-            using (var image = new Bitmap(ImageLocation))
+            using (var image = new Bitmap(imageLocation))
             {
                 var resizedImage = image.CropImage(90);
 
@@ -39,7 +40,7 @@ namespace Sugar.Extensions
         [Test]
         public void TestGetMimeType()
         {
-            using (var image = new Bitmap(ImageLocation))
+            using (var image = new Bitmap(imageLocation))
             {
                 var mime = image.GetMimeType();
 
@@ -50,7 +51,7 @@ namespace Sugar.Extensions
         [Test]
         public void TestResizeImage()
         {
-            using (var image = new Bitmap(ImageLocation))
+            using (var image = new Bitmap(imageLocation))
             {
                 var resizedImage = image.ResizeImage(320, 200);
 
@@ -64,7 +65,7 @@ namespace Sugar.Extensions
         [Test]
         public void TestResizeImageToMaximumDimension()
         {
-            using (var image = new Bitmap(ImageLocation))
+            using (var image = new Bitmap(imageLocation))
             {
                 var resizedImage = image.ResizeImage(90);
 
@@ -77,7 +78,7 @@ namespace Sugar.Extensions
         [Test]
         public void TestToBytes()
         {
-            using (var image = new Bitmap(ImageLocation))
+            using (var image = new Bitmap(imageLocation))
             {
                 var bytes = image.ToBytes(ImageFormat.Png);
 

@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using NUnit.Framework;
 
 namespace Sugar.Extensions
@@ -7,12 +8,12 @@ namespace Sugar.Extensions
     [TestFixture]
     public class ByteArrayExtensionsTest
     {
-        private const string ImageLocation = "../../Samples/grass.jpg";
+        private readonly string imageLocation = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../Samples/grass.jpg");
 
         [Test]
         public void TestToBitmapFromExtractedBytes()
         {
-            using (var image = new Bitmap(ImageLocation))
+            using (var image = new Bitmap(imageLocation))
             {
                 var bytes = image.ToBytes(ImageFormat.Png);
 
