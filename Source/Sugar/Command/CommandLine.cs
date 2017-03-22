@@ -188,31 +188,5 @@ namespace Sugar.Command
 
             return result;
         }
-
-        /// <summary>
-        /// Outputs the specified value to the system console with the current date-time.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        public void Write(string value)
-        {
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write("{0:yyyy-MM-dd HH:mm:ss} : ", DateTime.UtcNow);
-            Console.ResetColor();
-
-            if (!string.IsNullOrEmpty(value))
-            {
-                Console.Write(value);
-            }
-        }
-
-        /// <summary>
-        /// Outputs the line to the system console.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        public void WriteLine(string value)
-        {
-            Write(value);
-            Console.WriteLine();
-        }
     }
 }
