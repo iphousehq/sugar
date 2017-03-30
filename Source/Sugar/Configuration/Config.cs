@@ -127,7 +127,9 @@ namespace Sugar.Configuration
                     continue;
                 }
 
-                if (ConfigLine.TryParse(line, out ConfigLine result, section: section))
+                ConfigLine result;
+
+                if (ConfigLine.TryParse(line, out result, section: section))
                 {
                     results.Add(result);
                 }

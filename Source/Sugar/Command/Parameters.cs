@@ -167,7 +167,7 @@ namespace Sugar.Command
         /// <returns></returns>
         public string AsString(string name, string @default)
         {
-            return AsStrings(name, @default).First();
+            return AsStrings(name, new[] { @default }).First();
         }
 
         /// <summary>
@@ -203,13 +203,25 @@ namespace Sugar.Command
         /// Returns a parameter as an integer value
         /// </summary>
         /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public int AsInteger(string name)
+        {
+            return AsInteger(name, 0);
+        }
+
+        /// <summary>
+        /// Returns a parameter as an integer value
+        /// </summary>
+        /// <param name="name">The name.</param>
         /// <param name="default">The @default value.</param>
         /// <returns></returns>
-        public int AsInteger(string name, int @default = 0)
+        public int AsInteger(string name, int @default)
         {
+            int result;
+
             var resultAsString = AsString(name);
 
-            if (!int.TryParse(resultAsString, out int result))
+            if (!int.TryParse(resultAsString, out result))
             {
                 result = @default;
             }
@@ -237,9 +249,11 @@ namespace Sugar.Command
         /// <returns></returns>
         public DateTime AsDateTime(string name, DateTime @default)
         {
+            DateTime result;
+
             var resultAsString = AsString(name);
 
-            if (!DateTime.TryParse(resultAsString, out DateTime result))
+            if (!DateTime.TryParse(resultAsString, out result))
             {
                 result = @default;
             }
@@ -303,13 +317,25 @@ namespace Sugar.Command
         /// Gets the boolean value
         /// </summary>
         /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public bool AsBool(string name)
+        {
+            return AsBool(name, false);
+        }
+
+        /// <summary>
+        /// Gets the boolean value
+        /// </summary>
+        /// <param name="name">The name.</param>
         /// <param name="default">if set to <c>true</c> [@default].</param>
         /// <returns></returns>
-        public bool AsBool(string name, bool @default = false)
+        public bool AsBool(string name, bool @default)
         {
+            bool result;
+
             var resultAsString = AsString(name, @default.ToString());
 
-            if (!bool.TryParse(resultAsString, out bool result))
+            if (!bool.TryParse(resultAsString, out result))
             {
                 result = @default;
             }
@@ -419,9 +445,10 @@ namespace Sugar.Command
 
                 if (Nullable.GetUnderlyingType(type) != null)
                 {
-                    if (DateTime.TryParse(value, out DateTime date))
+                    DateTime date;
+                    if (DateTime.TryParse(value, out date))
                     {
-                        result = date;
+                        result = new DateTime?(date);
                     }
                 }
                 else
