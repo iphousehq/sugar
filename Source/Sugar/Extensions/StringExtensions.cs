@@ -130,9 +130,7 @@ namespace Sugar.Extensions
 
                 foreach (var candidate in candidates)
                 {
-                    T status;
-
-                    if (Enum.TryParse(candidate, true, out status))
+                    if (Enum.TryParse(candidate, true, out T status))
                     {
                         if (!results.Contains(status) && allValues.Contains(status))
                         {
@@ -265,9 +263,7 @@ namespace Sugar.Extensions
         /// </returns>
         public static bool IsNumeric(this string value)
         {
-            double temp;
-
-            return double.TryParse(value, out temp);
+            return double.TryParse(value, out double temp);
         }
 
         /// <summary>
@@ -633,9 +629,7 @@ namespace Sugar.Extensions
 
             foreach (var format in formats)
             {
-                DateTime resultForFormat;
-
-                if (DateTime.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out resultForFormat))
+                if (DateTime.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out DateTime resultForFormat))
                 {
                     result = resultForFormat;
                     break;
