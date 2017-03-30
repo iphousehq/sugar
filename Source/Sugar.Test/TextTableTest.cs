@@ -18,7 +18,6 @@ namespace Sugar
 
             Assert.AreEqual("one  two", result[0]);
             Assert.AreEqual("one    1", result[1]);
-
         }
 
         [Test]
@@ -35,7 +34,6 @@ namespace Sugar
             Assert.AreEqual("one           1", result[1]);
             Assert.AreEqual("one two     123", result[2]);
         }
-
 
         [Test]
         public void TestBuildTableWithTwoRowsWithNull()
