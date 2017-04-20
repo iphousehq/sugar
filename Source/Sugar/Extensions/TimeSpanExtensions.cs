@@ -33,11 +33,11 @@ namespace Sugar.Extensions
         {
             var section = string.Empty;
 
-            if (span > 0)
+            if (span != 0)
             {
                 var partString = part.ToString().ToLower();
 
-                if (span > 1)
+                if (Math.Abs(span) > 1)
                 {
                     partString += "s";
                 }
@@ -60,7 +60,7 @@ namespace Sugar.Extensions
         {
             var result = string.Empty;
 
-            if (timespan.Ticks > 0)
+            if (timespan.Ticks != 0)
             {
                 var formattedSections = new List<string>();
 
