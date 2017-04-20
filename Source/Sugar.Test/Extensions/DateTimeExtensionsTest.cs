@@ -28,7 +28,7 @@ namespace Sugar.Extensions
 
             var offset = now.ToOffset(new TimeSpan(1, 30, 0));
 
-            Assert.AreEqual(new DateTime(2014, 4, 11, 9, 32, 23), offset);
+            Assert.AreEqual(new DateTime(2014, 4, 11, 9, 32, 23), offset.ToLocalTime());
         }
 
         [Test]
