@@ -159,13 +159,23 @@ namespace Sugar.Extensions
         }
 
         [Test]
-        public void TestTimeSpanSmallerThanPrecission()
+        public void TestTimeSpanSmallerThanPrecision()
         {
             var timeSpan = new TimeSpan(11100000);
 
             var result = timeSpan.Humanise(TimeSpanPart.Day | TimeSpanPart.Hour | TimeSpanPart.Minute);
 
             Assert.AreEqual("Less than a minute", result);
+        }
+
+        [Test]
+        public void TestTimeSpanWithNegativeHours()
+            
+        {
+            var timeSpan = new TimeSpan(-4, 0, 0);
+            var result = timeSpan.Humanise();
+
+            Assert.AreEqual("-4 hours", result);
         }
     }
 }
