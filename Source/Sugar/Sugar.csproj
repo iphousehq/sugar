@@ -107,7 +107,7 @@
     <Compile Include="Reflection\ReflectionHelper.cs" />
     <Compile Include="Reflection\SingleMember.cs" />
     <Compile Include="Retry.cs" />
-    <Compile Include="SelectListItem.cs" />
+    <Compile Include="Web\Mvc\SelectListItem.cs" />
     <Compile Include="TextTable.cs" />
   </ItemGroup>
   <ItemGroup>

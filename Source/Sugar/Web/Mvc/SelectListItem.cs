@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Sugar
+namespace Sugar.Web.Mvc
 {
     /// <summary>
     /// Implementation of a select list item that can be serialized easily.
