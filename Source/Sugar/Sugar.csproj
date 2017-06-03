@@ -62,6 +62,7 @@
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\ConfigLine.cs" />
     <Compile Include="CountryCode.cs" />
+    <Compile Include="CountryCode3.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Extensions\BitmapExtensions.cs" />
