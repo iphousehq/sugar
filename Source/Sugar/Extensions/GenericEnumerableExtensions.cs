@@ -168,13 +168,35 @@ namespace Sugar.Extensions
 
             if (enumerable != null)
             {
+                var builder = new StringBuilder();
+
+                return enumerable.ToCsv(builder, separator, lastSeparator).ToString();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Appends CSV values represetning the <see cref="enumerable"/> to the provided <see cref="builder"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <param name="builder">The string builder.</param>
+        /// <param name="separator">The separator.</param>
+        /// <param name="lastSeparator">The last separator.</param>
+        /// <returns></returns>
+        public static StringBuilder ToCsv<T>(this IEnumerable<T> enumerable, StringBuilder builder, string separator = ",", string lastSeparator = null)
+        {
+            if (enumerable != null)
+            {
                 var valuesList = enumerable.Select(v => Convert.ToString(v))
-                                       .Where(v => !string.IsNullOrEmpty(v))
-                                       .ToList();
+                    .Where(v => !string.IsNullOrEmpty(v))
+                    .ToList();
 
                 lastSeparator = !string.IsNullOrEmpty(lastSeparator) ? lastSeparator : separator;
 
-                var builder = new StringBuilder();
+                // Append to provided string builder (when set)
+                builder = builder ?? new StringBuilder();
 
                 for (var i = 0; i < valuesList.Count; i++)
                 {
@@ -185,11 +207,9 @@ namespace Sugar.Extensions
 
                     builder.Append(valuesList[i]);
                 }
-
-                result = builder.ToString();
             }
 
-            return result;
+            return builder;
         }
     }
 }

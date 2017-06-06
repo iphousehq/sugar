@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using NUnit.Framework;
 
 namespace Sugar.Extensions
@@ -55,6 +56,20 @@ namespace Sugar.Extensions
             var csv = list.ToCsv(", ", " and ");
 
             Assert.AreEqual("One, Two and Three", csv);
+        }
+
+        [Test]
+        public void TestToCsvAppendsToProvidedStringBuilder()
+        {
+            var builder = new StringBuilder();
+
+            var list = new List<string> { "One", "Two", "Three" };
+
+            var result = list.ToCsv(builder, ", ", " and ");
+
+            Assert.AreSame(builder, result);
+
+            Assert.AreEqual("One, Two and Three", builder.ToString());
         }
 
         #region Distinct Test Class
