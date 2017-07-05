@@ -193,6 +193,12 @@ namespace Sugar.Extensions
         }
 
         [Test]
+        public void TestSubStringAfterLastChar()
+        {
+            Assert.AreEqual("ba", "ab-ban-ba".SubstringAfterLastChar("-"));
+        }
+
+        [Test]
         public void TestSubStringBeforeWithMatchingString()
         {
             Assert.AreEqual("ba", "banana".SubstringBeforeChar("n"));
@@ -205,11 +211,34 @@ namespace Sugar.Extensions
         }
 
         [Test]
-        public void TestSubStringAfterLastChar()
+        public void TestSanitiseHandlesDoubleQuotes()
         {
-            Assert.AreEqual("ba", "ab-ban-ba".SubstringAfterLastChar("-"));
+            Assert.AreEqual("‟boo”".Sanitise(), @"""boo""");
+        }
+        [Test]
+        public void TestSanitiseHandlesSingleQuotes()
+        {
+            Assert.AreEqual("‘foo’".Sanitise(),"'foo'");
         }
 
+        [Test]
+        public void TestSanitiseHandlesHyphens()
+        {
+            Assert.AreEqual("–melon —passionfruit ―mangosteen".Sanitise(),"-melon -passionfruit -mangosteen");
+        }
+
+        [Test]
+        public void TestSanitiseHandlesMultipleSpaces()
+        {
+            Assert.AreEqual("kiwi   papaya       watermelon".Sanitise(), "kiwi papaya watermelon");
+        }
+
+        [Test]
+        public void TestSanitiseTrims()
+        {
+            Assert.AreEqual("    food  ".Sanitise(),"food");
+        }
+   
         [Test]
         public void TestKeep()
         {

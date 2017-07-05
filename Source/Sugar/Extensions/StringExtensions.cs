@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -476,6 +477,21 @@ namespace Sugar.Extensions
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Sanitises the specified text by replacing weird unicode chars and multiple spaces with normal versions
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <returns></returns>
+        public static string Sanitise(this string text)
+        {
+            text = new Regex("[\u201c\u2018\u2019\u0060\u2032]").Replace(text, "'");
+            text = new Regex("[\u201c\u201d\u201e\u201f\u2033]").Replace(text, "\"");
+            text = new Regex("[ ]{2,}").Replace(text, " ");
+            text = new Regex("[\u2013\u2014\u2015]").Replace(text, "-");
+            
+            return text.Trim();
         }
 
         /// <summary>
