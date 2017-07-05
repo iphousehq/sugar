@@ -1,4 +1,4 @@
-#Syntactic Sugar for .NET
+# Syntactic Sugar for .NET
 
 A collection of .NET helper classes, extension methods and shortcuts for common .NET operations.
 
@@ -12,11 +12,11 @@ The project is divided in several class libraries:
 
 [![Build status](https://ci.appveyor.com/api/projects/status/py4kl09udd0t7egy/branch/master?svg=true)](https://ci.appveyor.com/project/bounav/sugar/branch/master)
 
-##Overview
+## Overview
 
 We started this project internally to centralise the code we kept re-using from project to project. If the bits we add have a dependency we try to put it in its own project / DLL (e.g. Sugar.Http depending on System.Net.Http).
 
-###Command
+### Command
 
 Check the `Sugar.Command` namespace out if you're thinking need to create a command line tool. It will help you define different commands and then execute a given command.
 
@@ -92,45 +92,45 @@ public static class EntryPoint
 
 ```
 
-###Extensions
+### Extensions
 
 A major part of this project consists in (mostly) chainable extension methods. They live in the namespace `Sugar.Extensions`.
 
 The most usefull extensions methods are probably the string ones such as `.StartsWith()` or `.SubstringAfterChar()`. We've also created .Humanise() extensions methods for datetimes and timespans.
 
-###CountryCode
+### CountryCode
 
 Enumeration listing all countries on Earth (ISO 3166-1-alpha-2 code elements).
 
-###File Service
+### File Service
 
 Wraps System.IO.File behind an interface to ease unit testing.
 
-###GeoLocation
+### GeoLocation
 
 Represents a point on the surface of a sphere approximating the Earth. It contains a few methods that will compute (approximatively) the distance between two points on earth as well a give you a bouding box containing for a given radius around a point.
 
 If you need precision and or performance, use a specialed library!
 
-###HtmlBuilder
+### HtmlBuilder
 
 `IBuilder` implementation to help generating HTML fragments.
 
-###Http Service
+### Http Service
 
 This service and its interface live in the `Sugar.Web` project. It wraps calls to .NET's HttpWebResponse with an interface that is easily mockable in a unit test.
 
 We wrote this class before HttpClient was introduced in .NET 4.0 and are considering this project near it's end of life.
 
-###Retry
+### Retry
 
 Helper class to retry a given action `x` times. If you need more flexibility checkout [Polly](https://github.com/App-vNext/Polly).
 
-###TextTable
+### TextTable
 
 Helper class to ouput text as a table in a console application
 
-##License
+## License
 
 This project is licensed under the terms of the [MIT license](https://github.com/comsechq/sugar/blob/master/LICENSE.txt). 
 
