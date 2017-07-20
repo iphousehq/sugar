@@ -646,7 +646,9 @@ namespace Sugar.Extensions
                               "yyyyMMdd"
                           };
 
-            if (DateTime.TryParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out DateTime resultForFormat))
+            DateTime resultForFormat;
+
+            if (DateTime.TryParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out resultForFormat))
             {
                 result = resultForFormat;
             }
