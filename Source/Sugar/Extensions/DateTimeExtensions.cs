@@ -337,12 +337,19 @@ namespace Sugar.Extensions
         /// <summary>
         /// Converts this date to an ISO 8601 date string.
         /// </summary>
+        /// <remarks>
+        /// If <see cref="DateTimeKind"/> is unspecified, the time will be assumed to be local time.
+        /// </remarks>
         /// <param name="datetime">The datetime.</param>
-        /// <param name="isUtc">if set to <c>true</c> [is UTC].</param>
         /// <returns></returns>
-        public static string ToIso8601String(this DateTime datetime, bool isUtc = false)
+        public static string ToIso8601String(this DateTime datetime)
         {
-            return datetime.ToString(isUtc ? "yyyyMMddTHHmmssZ" : "yyyyMMddTHHmmss");
+            if (datetime.Kind == DateTimeKind.Utc)
+            {
+                return datetime.ToString("yyyyMMddTHHmmssZ");
+            }
+
+            return datetime.ToString("yyyyMMddTHHmmss");
         }
 
         /// <summary>

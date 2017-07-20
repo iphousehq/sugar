@@ -5,7 +5,6 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -647,15 +646,9 @@ namespace Sugar.Extensions
                               "yyyyMMdd"
                           };
 
-            foreach (var format in formats)
+            if (DateTime.TryParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out DateTime resultForFormat))
             {
-                DateTime resultForFormat;
-
-                if (DateTime.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out resultForFormat))
-                {
-                    result = resultForFormat;
-                    break;
-                }
+                result = resultForFormat;
             }
 
             return result;

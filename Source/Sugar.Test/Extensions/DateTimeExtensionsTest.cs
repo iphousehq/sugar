@@ -561,9 +561,15 @@ namespace Sugar.Extensions
         [Test]
         public void TestToIso8601String()
         {
-            var dateTime = new DateTime(2010, 10, 15, 12, 30, 25);
+            var dateTime = new DateTime(2010, 10, 15, 12, 30, 25, DateTimeKind.Local);
 
             var value = dateTime.ToIso8601String();
+
+            Assert.AreEqual("20101015T123025", value);
+
+            dateTime = new DateTime(2010, 10, 15, 12, 30, 25, DateTimeKind.Unspecified);
+
+            value = dateTime.ToIso8601String();
 
             Assert.AreEqual("20101015T123025", value);
         }
@@ -571,9 +577,9 @@ namespace Sugar.Extensions
         [Test]
         public void TestToUtcIso8601String()
         {
-            var dateTime = new DateTime(2010, 10, 15, 12, 30, 25);
+            var dateTime = new DateTime(2010, 10, 15, 12, 30, 25, DateTimeKind.Utc);
 
-            var value = dateTime.ToIso8601String(true);
+            var value = dateTime.ToIso8601String();
 
             Assert.AreEqual("20101015T123025Z", value);
         }
