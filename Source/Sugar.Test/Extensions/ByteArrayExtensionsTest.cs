@@ -32,15 +32,5 @@ namespace Sugar.Extensions
 
             Assert.IsNull(reconstructedImage);
         }
-
-        [Test]
-        public void TestToStringValue()
-        {
-            var bytes = "hello".ToBytes();
-
-            var value = bytes.ToStringValue();
-
-            Assert.AreEqual("hello", value);
-        }
     }
 }
