@@ -25,7 +25,7 @@ namespace Sugar.Command
             if (!Debugger.IsAttached) return;
 
             Console.WriteLine("");
-            Console.Write("Press any key to exit...");
+            Console.Write("Press the return key to exit...");
             Console.ReadLine();
         }
 
