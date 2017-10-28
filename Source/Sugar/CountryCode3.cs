@@ -1503,5 +1503,18 @@ namespace Sugar
         [Description("Zambia")]
         [TypeaheadToken("Zambia")]
         ZMB,
+        /// <summary>
+        /// Zimbabwe
+        /// </summary>
+        [Description("Zimbabwe")]
+        [TypeaheadToken("Zimbabwe")]
+        ZWE,
+        /// <summary>
+        /// Netherlands Antilles
+        /// </summary>
+        [Description("Netherlands Antilles")]
+        [TypeaheadToken("Netherlands")]
+        [TypeaheadToken("Antilles")]
+        ANT
     }
 }

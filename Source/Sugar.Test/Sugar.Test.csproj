@@ -54,6 +54,7 @@
     <Compile Include="Extensions\BitmapExtensionsTest.cs" />
     <Compile Include="Extensions\ByteArrayExtensionsTest.cs" />
     <Compile Include="Command\BoundCommandFactoryTest.cs" />
+    <Compile Include="Extensions\CountryCodeExtensionTests.cs" />
     <Compile Include="Extensions\WebStringExtensionsTest.cs" />
     <Compile Include="Http\RetryDelegatingHandlerTest.cs" />
     <Compile Include="Http\HttpClientProviderTest.cs" />
