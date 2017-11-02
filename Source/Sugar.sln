@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar", "Sugar\Sugar.csproj", "{EDB78F77-9123-4821-817B-F3F91E973A7D}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Http", "Sugar.Http\Sugar.Http.csproj", "{E525B562-C080-41C1-A92A-9E82C5FFC42E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Web", "Sugar.Web\Sugar.Web.csproj", "{E06C3249-8C48-43D6-9267-D709FBD30868}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{D7937123-1984-41C3-AACD-1C19E4C032D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,8 +52,17 @@ Global
 		{E06C3249-8C48-43D6-9267-D709FBD30868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E06C3249-8C48-43D6-9267-D709FBD30868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E06C3249-8C48-43D6-9267-D709FBD30868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7937123-1984-41C3-AACD-1C19E4C032D1}.ClientProfile|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7937123-1984-41C3-AACD-1C19E4C032D1}.ClientProfile|Any CPU.Build.0 = Debug|Any CPU
+		{D7937123-1984-41C3-AACD-1C19E4C032D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7937123-1984-41C3-AACD-1C19E4C032D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7937123-1984-41C3-AACD-1C19E4C032D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7937123-1984-41C3-AACD-1C19E4C032D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6528C1C6-3813-4109-A191-3FFAB21185E3}
 	EndGlobalSection
 EndGlobal

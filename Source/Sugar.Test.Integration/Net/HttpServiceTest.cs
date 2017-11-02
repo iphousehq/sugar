@@ -75,7 +75,7 @@ namespace Sugar.Net
 
             Assert.IsNull(response.Bytes);
         }
-
+        
         [Test]
         public void TestPostWithoutBody()
         {
