@@ -403,7 +403,7 @@ namespace Sugar
         /// Denmark
         /// </summary>
         [Description("Denmark")]
-        [TypeaheadToken("Danmark")]
+        [TypeaheadToken("Denmark")]
         DK,
         /// <summary>
         /// Djibouti
