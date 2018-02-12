@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sugar\Sugar.csproj">
-      <Project>{edb78f77-9123-4821-817b-f3f91e973a7d}</Project>
+      <Project>{73b64458-aa4e-452a-9302-f58c4163e6ec}</Project>
       <Name>Sugar</Name>
     </ProjectReference>
   </ItemGroup>
