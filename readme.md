@@ -4,11 +4,16 @@ A collection of .NET helper classes, extension methods and shortcuts for common 
 
 The project is divided in several class libraries:
 
-- Sugar: Core of the nice to have helpers and extensions methods.
-- Sugar.Http: Helper classes and interface to leverage .NET's HttpClient.
-- Sugar.Test: Unit tests (nunit + moq)
-- Sugar.Test.Integration: Integration test
-- Sugar.Web: Handy helpers when dealing with domain names and URLs.
+- Sugar: Core of the nice to have helpers and extensions methods (.NET Standard 2.0)
+- Sugar.Command: Helper classes and interface to help you build CLI applications (.NET Framework 4.6.x)
+- Sugar.Drawing: Helper classes to help you resize and qualify bitmap images (.NET Framework 4.6.x)
+- Sugar.Http: Helper classes and interface to leverage .NET's HttpClient (.NET Standard 2.0)
+- Sugar.Web: Handy helpers when dealing with domain names, URLs and downloading (.NET Standard 2.0)
+
+- Sugar.Test: Unit tests (nunit + moq) (.NET Framework 4.6.x)
+- Sugar.Test.Http: xUnit tests (.NET Core 2.0)
+- Sugar.Test.Integration: Integration test (.NET Framework 4.6.x)
+
 
 [![Build status](https://ci.appveyor.com/api/projects/status/py4kl09udd0t7egy/branch/master?svg=true)](https://ci.appveyor.com/project/bounav/sugar/branch/master)
 
@@ -16,9 +21,9 @@ The project is divided in several class libraries:
 
 We started this project internally to centralise the code we kept re-using from project to project. If the bits we add have a dependency we try to put it in its own project / DLL (e.g. Sugar.Http depending on System.Net.Http).
 
-### Command
+### Sugar.Command
 
-Check the `Sugar.Command` namespace out if you're thinking need to create a command line tool. It will help you define different commands and then execute a given command.
+Check the `Sugar.Command` project out if you're thinking need to create a command line tool. It will help you define different commands and then execute a given command.
 
 ```csharp
 
@@ -116,11 +121,15 @@ If you need precision and or performance, use a specialed library!
 
 `IBuilder` implementation to help generating HTML fragments.
 
-### Http Service
+### Sugar.Web
 
-This service and its interface live in the `Sugar.Web` project. It wraps calls to .NET's HttpWebResponse with an interface that is easily mockable in a unit test.
+`HttpService` and its interface live in the `Sugar.Web` project. It wraps calls to .NET's HttpWebResponse with an interface that is easily mockable in a unit test.
 
-We wrote this class before HttpClient was introduced in .NET 4.0 and are considering this project near it's end of life.
+We wrote this class before `HttpClient` was introduced in .NET 4.0 and are considering this project near it's end of life.
+
+### Sugar.Http
+
+Checkout `Sugar.Html` if you're used to deal with `HttpClient` and you need to implement retry behaviours.
 
 ### Retry
 
