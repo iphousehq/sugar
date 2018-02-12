@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Sugar.Extensions;
 
 namespace Sugar.Mime
@@ -46,7 +47,7 @@ namespace Sugar.Mime
         /// </returns>
         public override string ToString()
         {
-            return $"{BaseMimeType.GetDescription()}/{MimeType.GetDescription()}";
+            return $"{BaseMimeType.GetAttribute<DescriptionAttribute>().Description}/{MimeType.GetAttribute<DescriptionAttribute>().Description}";
         }
     }
 }

@@ -2,11 +2,10 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Xunit;
 
 namespace Sugar.Http
 {
-    [TestFixture]
     public class RetryDelegatingHandlerTest
     {
         private class FakeHandler : HttpMessageHandler
@@ -36,7 +35,7 @@ namespace Sugar.Http
             }
         }
 
-        [Test]
+        [Fact]
         public async Task TestHttpClientWithoutIntercept()
         {
             var innerHandler = new FakeHandler();
@@ -50,14 +49,14 @@ namespace Sugar.Http
 
             var response = await client.GetAsync("http://hello.world/test");
 
-            Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
 
-            Assert.AreEqual(1, innerHandler.FailedCount);
-            Assert.AreEqual(0, innerHandler.AuthorizationAttempts);
-            Assert.AreEqual(0, innerHandler.OkCount);
+            Assert.Equal(1, innerHandler.FailedCount);
+            Assert.Equal(0, innerHandler.AuthorizationAttempts);
+            Assert.Equal(0, innerHandler.OkCount);
         }
 
-        [Test]
+        [Fact]
         public async Task TestHttpClientWithRetryIntercept()
         {
             // The fake handler lets us track the number of 'actual' requests
@@ -86,11 +85,11 @@ namespace Sugar.Http
 
             var response = await client.GetAsync("http://hello.world/test");
 
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-            Assert.AreEqual(1, innerHandler.FailedCount);
-            Assert.AreEqual(1, innerHandler.AuthorizationAttempts);
-            Assert.AreEqual(1, innerHandler.OkCount);
+            Assert.Equal(1, innerHandler.FailedCount);
+            Assert.Equal(1, innerHandler.AuthorizationAttempts);
+            Assert.Equal(1, innerHandler.OkCount);
         }
     }
 }

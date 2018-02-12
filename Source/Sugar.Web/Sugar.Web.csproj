@@ -1,66 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E06C3249-8C48-43D6-9267-D709FBD30868}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Sugar</RootNamespace>
-    <AssemblyName>Sugar.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <Authors>Comsec</Authors>
+    <Company>Comsec Investigations Ltd</Company>
+    <Product>Syntactic Sugar for handle .NET's web requests</Product>
+    <Description>A handy helper to make it easier to deal with .NET's System.Web resources.</Description>
+    <Copyright>Comsec</Copyright>
+    <PackageLicenseUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://comsechq.github.io/sugar/</PackageProjectUrl>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0</Version>
+    <RepositoryUrl>https://github.com/comsechq/sugar</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
+    <ProjectReference Include="..\Sugar\Sugar.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Extensions\WebStringExtensions.cs" />
-    <Compile Include="Net\CommonTlds.cs" />
-    <Compile Include="Net\DomainName.cs" />
-    <Compile Include="Net\HttpProxy.cs" />
-    <Compile Include="Net\HttpQuery.cs" />
-    <Compile Include="Net\HttpRequest.cs" />
-    <Compile Include="Net\HttpResponse.cs" />
-    <Compile Include="Net\HttpService.cs" />
-    <Compile Include="Net\HttpVerb.cs" />
-    <Compile Include="Net\IHttpService.cs" />
-    <Compile Include="Net\Url.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sugar\Sugar.csproj">
-      <Project>{73b64458-aa4e-452a-9302-f58c4163e6ec}</Project>
-      <Name>Sugar</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

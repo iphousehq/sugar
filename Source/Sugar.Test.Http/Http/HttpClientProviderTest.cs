@@ -3,14 +3,13 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Xunit;
 
 namespace Sugar.Http
 {
-    [TestFixture]
     public class HttpClientProviderTest
     {
-        [Test]
+        [Fact]
         public void TestHttpClientAlwaysReturnsNewInstance()
         {
             var provider = new HttpClientProvider();
@@ -18,10 +17,10 @@ namespace Sugar.Http
             var client1 = provider.Create();
             var client2 = provider.Create();
 
-            Assert.AreNotSame(client1, client2);
+            Assert.NotSame(client1, client2);
         }
 
-        [Test]
+        [Fact]
         public void TestHttpClientWithCustomInitialisation()
         {
             var provider = new HttpClientProvider
@@ -31,7 +30,7 @@ namespace Sugar.Http
 
             var client = provider.Create();
 
-            Assert.AreEqual("Test/1.0", client.DefaultRequestHeaders.UserAgent.ToString());
+            Assert.Equal("Test/1.0", client.DefaultRequestHeaders.UserAgent.ToString());
         }
 
         private class FakeHandler : HttpMessageHandler
@@ -45,7 +44,7 @@ namespace Sugar.Http
             }
         }
 
-        [Test]
+        [Fact]
         public void TestHttpClientWithRetryIntercept()
         {
             var interceptCount = 0;
@@ -55,21 +54,21 @@ namespace Sugar.Http
             var provider = new HttpClientProvider
             {
                 RetryIntercept = delegate
-                                       {
-                                           interceptCount++;
-                                           return Task.FromResult(false);
-                                       }
+                {
+                    interceptCount++;
+                    return Task.FromResult(false);
+                }
             };
 
             var client = provider.Create(innerHandler);
 
             client.GetAsync("http://hello.world/boo");
 
-            Assert.AreEqual(1, interceptCount);
-            Assert.AreEqual(1, innerHandler.RequestCount);
+            Assert.Equal(1, interceptCount);
+            Assert.Equal(1, innerHandler.RequestCount);
         }
 
-        [Test]
+        [Fact]
         public void TestHttpClientWithRetryInterceptWhenShouldRetry()
         {
             var interceptCount = 0;
@@ -79,21 +78,21 @@ namespace Sugar.Http
             var provider = new HttpClientProvider
             {
                 RetryIntercept = delegate
-                                       {
-                                           interceptCount++;
-                                           return Task.FromResult(true);
-                                       }
+                {
+                    interceptCount++;
+                    return Task.FromResult(true);
+                }
             };
 
             var client = provider.Create(innerHandler);
 
             client.GetAsync("http://hello.world/boo");
 
-            Assert.AreEqual(1, interceptCount);
-            Assert.AreEqual(2, innerHandler.RequestCount);
+            Assert.Equal(1, interceptCount);
+            Assert.Equal(2, innerHandler.RequestCount);
         }
 
-        [Test]
+        [Fact]
         public void TestHttpClientWithRetryInterceptWithRetryInterceptSetButShouldNotRetry()
         {
             var interceptCount = 0;
@@ -103,18 +102,18 @@ namespace Sugar.Http
             var provider = new HttpClientProvider
             {
                 RetryIntercept = delegate
-                                       {
-                                           interceptCount++;
-                                           return Task.FromResult(true);
-                                       }
+                {
+                    interceptCount++;
+                    return Task.FromResult(true);
+                }
             };
 
             var client = provider.Create(innerHandler, false);
 
             client.GetAsync("http://hello.world/boo");
 
-            Assert.AreEqual(0, interceptCount);
-            Assert.AreEqual(1, innerHandler.RequestCount);
+            Assert.Equal(0, interceptCount);
+            Assert.Equal(1, innerHandler.RequestCount);
         }
     }
 }

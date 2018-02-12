@@ -150,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj">
-      <Project>{e06c3249-8c48-43d6-9267-d709fbd30868}</Project>
+      <Project>{cdd0e8a5-af3d-4fe6-9580-310730087630}</Project>
       <Name>Sugar.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sugar\Sugar.csproj">
