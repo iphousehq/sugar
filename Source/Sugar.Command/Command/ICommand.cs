@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace Sugar.Command
+﻿namespace Sugar.Command
 {
     /// <summary>
     /// Interface for a single command within a console application

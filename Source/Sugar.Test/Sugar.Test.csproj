@@ -115,6 +115,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sugar.Command\Sugar.Command.csproj">
+      <Project>{c75f7339-f8f2-476a-a4df-e259b3aeae02}</Project>
+      <Name>Sugar.Command</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sugar.Drawing\Sugar.Drawing.csproj">
+      <Project>{a4d2f6d8-c893-4f95-b2d6-e066cfd9e27d}</Project>
+      <Name>Sugar.Drawing</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sugar.Http\Sugar.Http.csproj">
       <Project>{e525b562-c080-41c1-a92a-9e82c5ffc42e}</Project>
       <Name>Sugar.Http</Name>

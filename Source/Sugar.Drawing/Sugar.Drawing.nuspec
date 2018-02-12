@@ -1,0 +1,19 @@
+<package>
+    <metadata>
+        <id>comsec.sugar.drawing</id>
+        <version>$version$</version>
+        <authors>Comsec</authors>
+        <projectUrl>http://comsechq.github.io/sugar/</projectUrl>
+        <licenseUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</licenseUrl>
+        <copyright>Comsec</copyright>
+        <title>Syntactic Sugar to help handling of images in .NET</title>
+        <description>A handy helper to make it easier to deal with bitmap images in .NET.</description>
+        <summary>A handy helper to make it easier to convert byte arrays to images and resize images in .NET.</summary>
+        <dependencies>
+            <dependency id="comsec.sugar" version="1.0.0.0" />
+        </dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System.Drawing" targetFramework="net40" />
+        </frameworkAssemblies>
+    </metadata>
+</package>

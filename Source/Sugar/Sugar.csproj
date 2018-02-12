@@ -47,26 +47,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Attributes\TypeaheadTokenAttribute.cs" />
-    <Compile Include="Command\BaseConsole.cs" />
-    <Compile Include="Command\BoundCommand.cs" />
-    <Compile Include="Command\BoundCommandFactory.cs" />
-    <Compile Include="Command\ExitCode.cs" />
-    <Compile Include="Command\FlagAttribute.cs" />
-    <Compile Include="Command\ICommand.cs" />
-    <Compile Include="Command\ParameterAttribute.cs" />
-    <Compile Include="Command\ParameterBinder.cs" />
-    <Compile Include="Command\ParameterParser.cs" />
-    <Compile Include="Command\ParameterPrinter.cs" />
-    <Compile Include="Command\CommandLine.cs" />
-    <Compile Include="Command\Parameters.cs" />
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\ConfigLine.cs" />
     <Compile Include="CountryCode.cs" />
     <Compile Include="CountryCode3.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="Extensions\AssemblyExtensions.cs" />
-    <Compile Include="Extensions\BitmapExtensions.cs" />
-    <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Extensions\CountryCodeExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DoubleExtensions.cs" />
@@ -116,7 +102,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.XML" />
