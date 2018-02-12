@@ -19,6 +19,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Web", "Sugar.Web\Suga
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Test.Http", "Sugar.Test.Http\Sugar.Test.Http.csproj", "{FC5C0E8E-DCCB-4400-B0E4-A5F0DB2BDD49}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{85497C84-5600-4F96-AFB4-DE8D52F3190F}"
+	ProjectSection(SolutionItems) = preProject
+		..\code_of_conduct.md = ..\code_of_conduct.md
+		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
+		..\LICENSE.txt = ..\LICENSE.txt
+		..\readme.md = ..\readme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		ClientProfile|Any CPU = ClientProfile|Any CPU
