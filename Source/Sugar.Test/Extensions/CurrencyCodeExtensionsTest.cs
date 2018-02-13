@@ -1,0 +1,65 @@
+﻿using System;
+using NUnit.Framework;
+
+namespace Sugar.Extensions
+{
+    [TestFixture]
+    public class CurrencyCodeExtensionsTest
+    {
+        [Test]
+        public void TestCurrenciesToSymbol()
+        {
+            var values = Enum.GetValues(typeof (CurrencyCode));
+            foreach (CurrencyCode value in values)
+            {
+                var symbol = value.ToSymbol();
+                Assert.IsNotNull(symbol);
+
+                var htmlSymbol = value.ToHtmlSymbol();
+                Assert.IsNotNull(htmlSymbol);
+            }
+        }
+
+        [Test]
+        public void TestToCurrencyCodeFromSymbol()
+        {
+            var result = "¥".ToCurrencyCode();
+
+            Assert.AreEqual(CurrencyCode.JPY, result);
+        }
+
+        [Test]
+        public void TestToCurrencyCodeFromIso()
+        {
+            var result = "GBP".ToCurrencyCode();
+
+            Assert.AreEqual(CurrencyCode.GBP, result);
+        }
+
+        [Test]
+        public void TestToCurrencyCodeFromLowerCaseValue()
+        {
+            var result = "eur".ToCurrencyCode();
+
+            Assert.AreEqual(CurrencyCode.EUR, result);
+        }
+
+        [Test]
+        public void TestToCurrencyCodeFromUnknown()
+        {
+            Assert.Throws<ApplicationException>(() => "ghgtgtrgtrg".ToCurrencyCode());
+        }
+
+        [Test]
+        public void TestToCountryCodetoCurrency()
+        {
+            Assert.AreEqual(CurrencyCode.GBP, CountryCode.GB.ToCurrencyCode());
+        }
+
+        [Test]
+        public void TestToCountryCodetoCurrencyWhenUnknownCurrency()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => CountryCode.AF.ToCurrencyCode());
+        }
+    }
+}
