@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sugar.Extensions
 {
@@ -7,6 +9,37 @@ namespace Sugar.Extensions
     /// </summary>
     public static class CurrencyCodeExtensions
     {
+        /// <summary>
+        /// Finds the first currency code symbol in a string.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <returns></returns>
+        public static CurrencyCode? FindCurrencyCode(this string text)
+        {
+            var occurences = new List<(int Index, CurrencyCode Code)>();
+
+            foreach (CurrencyCode code in Enum.GetValues(typeof(CurrencyCode)))
+            {
+                var symbol = code.ToSymbol();
+
+                if (!string.IsNullOrEmpty(symbol))
+                {
+                    var index = text.IndexOf(symbol);
+
+                    if (index > -1)
+                    {
+                        occurences.Add((index, code));
+                    }
+                }
+            }
+
+            return occurences.Any()
+                       ? occurences.OrderBy(o => o.Index)
+                                   .Select(o => o.Code)
+                                   .FirstOrDefault()
+                       : (CurrencyCode?) null;
+        }
+
         /// <summary>
         /// Convert this <see cref="CurrencyCode" /> to a symbol.
         /// </summary>

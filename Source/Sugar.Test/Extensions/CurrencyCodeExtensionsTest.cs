@@ -61,5 +61,31 @@ namespace Sugar.Extensions
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => CountryCode.AF.ToCurrencyCode());
         }
+
+        [Test]
+        public void TestFindCurrencyCodeWhenNoCodeExists()
+        {
+            var result = "3,500".FindCurrencyCode();
+
+            Assert.False(result.HasValue);
+        }
+
+        [Test]
+        public void TestFindCurrencyCodeWhenSingleCodeExists()
+        {
+            var result = "$3,500".FindCurrencyCode();
+
+            Assert.True(result.HasValue);
+            Assert.AreEqual(CurrencyCode.USD, result.Value);
+        }
+
+        [Test]
+        public void TestFindCurrencyCodeWhenMultipleCodesExists()
+        {
+            var result = "There is a £ symbol here before $3,500".FindCurrencyCode();
+
+            Assert.True(result.HasValue);
+            Assert.AreEqual(CurrencyCode.GBP, result.Value);
+        }
     }
 }
