@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Management" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Command\BaseConsole.cs" />
     <Compile Include="Command\BoundCommand.cs" />
     <Compile Include="Command\BoundCommandFactory.cs" />
@@ -55,6 +49,10 @@
       <Project>{73b64458-aa4e-452a-9302-f58c4163e6ec}</Project>
       <Name>Sugar</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Management" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
