@@ -47,10 +47,6 @@
       <Project>{cdd0e8a5-af3d-4fe6-9580-310730087630}</Project>
       <Name>Sugar.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sugar\Sugar.csproj">
-      <Project>{73b64458-aa4e-452a-9302-f58c4163e6ec}</Project>
-      <Name>Sugar</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
