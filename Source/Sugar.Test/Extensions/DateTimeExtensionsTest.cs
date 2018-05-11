@@ -9,6 +9,46 @@ namespace Sugar.Extensions
     public class DateTimeExtensionTest
     {
         [Test]
+        public void TestSpecifyKindOnDateTime()
+        {
+            var time = new DateTime(2018, 5, 11);
+
+            Assert.AreEqual(DateTimeKind.Unspecified, time.Kind);
+
+            var utcTime = time.SpecifyKind(DateTimeKind.Utc);
+
+            Assert.AreNotSame(utcTime, time);
+
+            Assert.AreEqual(utcTime, time);
+            Assert.AreEqual(DateTimeKind.Utc, utcTime.Kind);
+        }
+
+        [Test]
+        public void TestSpecifyKindOnNullableDateTimeWhenNull()
+        {
+            DateTime? time = null;
+            
+            var utcTime = time.SpecifyKind(DateTimeKind.Utc);
+
+            Assert.IsNull(utcTime);
+        }
+
+        [Test]
+        public void TestSpecifyKindOnNullableDateTimeWithValue()
+        {
+            DateTime? time = new DateTime(2018, 5, 11);
+
+            Assert.AreEqual(DateTimeKind.Unspecified, time.Value.Kind);
+
+            var utcTime = time.SpecifyKind(DateTimeKind.Utc);
+
+            Assert.AreNotSame(utcTime, time);
+
+            Assert.AreEqual(utcTime, time);
+            Assert.AreEqual(DateTimeKind.Utc, utcTime.Value.Kind);
+        }
+
+        [Test]
         public void TestToOffsetFromUtc()
         {
             var now = new DateTime(2014, 4, 11, 8, 2, 23, DateTimeKind.Utc);

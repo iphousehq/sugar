@@ -9,6 +9,33 @@ namespace Sugar.Extensions
     public static class DateTimeExtension
     {
         /// <summary>
+        /// Changes the <see cref="DateTimeKind"/> of the specified <see cref="dateTime"/> without changing the time offset.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <param name="kind">The kind.</param>
+        /// <returns>Retruns a new instance of date time.</returns>
+        public static DateTime SpecifyKind(this DateTime dateTime, DateTimeKind kind)
+        {
+            return DateTime.SpecifyKind(dateTime, kind);
+        }
+
+        /// <summary>
+        /// Changes the <see cref="DateTimeKind"/> of the specified <see cref="dateTime"/> without changing the time offset.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <param name="kind">The kind.</param>
+        /// <returns>Retruns a new instance of date time.</returns>
+        public static DateTime? SpecifyKind(this DateTime? dateTime, DateTimeKind kind)
+        {
+            if (dateTime.HasValue)
+            {
+                return DateTime.SpecifyKind(dateTime.Value, kind);
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Describes this nullable <see cref="DateTime"/> value by building a human readable string.
         /// </summary>
         /// <param name="dateTime">The date time.</param>
