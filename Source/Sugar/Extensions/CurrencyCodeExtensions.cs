@@ -173,6 +173,7 @@ namespace Sugar.Extensions
             {
                 case "лв": return CurrencyCode.BGN;
                 case "R$": return CurrencyCode.BRL;
+                case "Fr.": return CurrencyCode.CHF;
                 case "₡": return CurrencyCode.CRC;
                 case "¤": return CurrencyCode.CZK;
                 case "RD$": return CurrencyCode.DOP;
