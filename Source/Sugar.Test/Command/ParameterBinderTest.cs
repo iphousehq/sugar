@@ -56,6 +56,22 @@ namespace Sugar.Command
             public bool First { get; set; }
         }
 
+        private abstract class Parent
+        {
+            [Parameter("1a")]
+            public string LevelOneA { get; set; }
+
+            [Parameter("1b")]
+            public string LevelOneB { get; set; }
+        }
+
+        [Flag("flag")]
+        private class Child : Parent
+        {
+            [Parameter("2a")]
+            public string LevelTwoA { get; set; }
+        }
+
         [SetUp]
         public void SetUp()
         {
@@ -174,6 +190,18 @@ namespace Sugar.Command
             var result = ParameterBinder.Bind<Bizz>(parameters);
 
             Assert.IsTrue(result.First);
+        }
+
+        [Test]
+        public void TestBindObjectWithParentProperies()
+        {
+            var parameters = parser.Parse("-flag -1a oneA -1b oneB -2a twoA");
+
+            var result = ParameterBinder.Bind<Child>(parameters);
+
+            Assert.AreEqual("oneA", result.LevelOneA);
+            Assert.AreEqual("oneB", result.LevelOneB);
+            Assert.AreEqual("twoA", result.LevelTwoA);
         }
     }
 }
