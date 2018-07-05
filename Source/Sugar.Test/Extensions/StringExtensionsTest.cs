@@ -610,14 +610,6 @@ namespace Sugar.Extensions
         }
 
         [Test]
-        public void TestToBytes()
-        {
-            var bytes = "Hello World!".ToBytes();
-
-            Assert.AreEqual(24, bytes.Length);
-        }
-
-        [Test]
         public void TestParseDateTime()
         {
             const string dateTimeValue = "2010-11-11 20:30:00";

@@ -466,23 +466,6 @@ namespace Sugar.Extensions
         }
 
         /// <summary>
-        /// Converts this string to a byte array.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        /// <remarks>
-        /// http://stackoverflow.com/questions/472906/net-string-to-byte-array-c-sharp
-        /// </remarks>
-        public static byte[] ToBytes(this string value)
-        {
-            var bytes = new byte[value.Length * sizeof(char)];
-
-            Buffer.BlockCopy(value.ToCharArray(), 0, bytes, 0, bytes.Length);
-
-            return bytes;
-        }
-
-        /// <summary>
         /// Converts this string into a <see cref="DateTime"/> object.
         /// </summary>
         /// <param name="value">The value.</param>
