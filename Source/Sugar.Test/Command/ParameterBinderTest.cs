@@ -71,7 +71,7 @@ namespace Sugar.Command
             [Parameter("2a")]
             public string LevelTwoA { get; set; }
         }
-
+        
         [SetUp]
         public void SetUp()
         {
