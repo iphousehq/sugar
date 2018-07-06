@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>comsec.sugar.core</PackageId>
+    <Authors>Comsec</Authors>
+    <Company>Comsec Investigations Ltd</Company>
+    <Product>Syntactic Sugar .NET Standard</Product>
+    <Description>A collection of .NET helper classes for common .NETStandard operations.</Description>
+    <Copyright>Comsec Investigations Ltd</Copyright>
+    <PackageLicenseUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://comsechq.github.io/sugar/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/comsechq/sugar</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 </Project>

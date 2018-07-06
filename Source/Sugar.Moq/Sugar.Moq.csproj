@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>comsec.sugar.moq</PackageId>
+    <Authors>Comsec</Authors>
+    <Company>Comsec Investigations Ltd</Company>
+    <Product>Context to keep track of moq mocked objects.</Product>
+    <Description>A lean collection of classes to make it easier to mock multiple dependencies for a unit test.</Description>
+    <Copyright>Comsec Investigations Ltd</Copyright>
+    <PackageLicenseUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://comsechq.github.io/sugar/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/comsechq/sugar</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
