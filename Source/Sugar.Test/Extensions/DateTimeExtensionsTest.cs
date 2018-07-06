@@ -631,5 +631,45 @@ namespace Sugar.Extensions
 
             Assert.AreEqual(1293840000.0d, time);
         }
+
+        [Test]
+        public void TestTimeRemaningWhenExceptionIsThrown()
+        {
+            var start = DateTime.Now.AddMinutes(-5);
+
+            var result = start.TimeRemaining(0, 100);
+
+            Assert.AreEqual("unknown", result);
+        }
+
+        [Test]
+        public void TestTimeRemaningWhenTimeRemaningIsInSeconds()
+        {
+            var start = DateTime.UtcNow.AddMinutes(-5);
+
+            var result = start.TimeRemaining(90, 100);
+
+            Assert.AreEqual("33s", result);
+        }
+
+        [Test]
+        public void TestTimeRemaningWhenTimeRemaningIsInMinutes()
+        {
+            var start = DateTime.UtcNow.AddMinutes(-5);
+
+            var result = start.TimeRemaining(50, 100);
+
+            Assert.AreEqual("5m 0s", result);
+        }
+
+        [Test]
+        public void TestTimeRemaningWhenTimeRemaningIsInHours()
+        {
+            var start = DateTime.UtcNow.AddMinutes(-5);
+
+            var result = start.TimeRemaining(1, 100);
+
+            Assert.AreEqual("8h 15m 0s", result);
+        }
     }
 }
