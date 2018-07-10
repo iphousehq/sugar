@@ -88,19 +88,19 @@ namespace Sugar.Extensions
 
             if (daysAgo <= 366) value = "a year";
 
-            if (daysAgo < 365) value = "about " + Convert.ToInt32(daysAgo / 30) + " months";
+            if (daysAgo < 365) value = $"about {Convert.ToInt32(daysAgo / 30)} months";
 
             if (daysAgo < 45) value = "about a month";
 
-            if (daysAgo < 28) value = Convert.ToInt32(daysAgo) + " days";
+            if (daysAgo < 28) value = $"{Convert.ToInt32(daysAgo)} days";
 
             if (secondsAgo < 172800) value = "a day";
 
-            if (secondsAgo < 86400) value = Convert.ToInt32(secondsAgo / 3600) + " hours";
+            if (secondsAgo < 86400) value = $"{Convert.ToInt32(secondsAgo / 3600)} hours";
 
             if (secondsAgo < 7200) value = "an hour";
 
-            if (secondsAgo < 3600) value = Convert.ToInt32(secondsAgo / 60) + " minutes";
+            if (secondsAgo < 3600) value = $"{Convert.ToInt32(secondsAgo / 60)} minutes";
 
             if (secondsAgo < 300) value = "a few minutes";
 
@@ -316,7 +316,7 @@ namespace Sugar.Extensions
         /// <returns></returns>
         public static int MonthDifference(this DateTime lValue, DateTime rValue)
         {
-            return (lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year);
+            return lValue.Month - rValue.Month + 12 * (lValue.Year - rValue.Year);
         }
 
         /// <summary>
@@ -334,24 +334,24 @@ namespace Sugar.Extensions
             {
                 var timeTaken = (DateTime.UtcNow - start).TotalSeconds;
 
-                var remaining = TimeSpan.FromSeconds(((timeTaken / progress) * total) - timeTaken);
+                var remaining = TimeSpan.FromSeconds(timeTaken / progress * total - timeTaken);
 
                 if (remaining.Days > 0)
                 {
-                    result = remaining.Days + "d ";
+                    result += $"{remaining.Days}d ";
                 }
 
                 if (remaining.Hours > 0)
                 {
-                    result = remaining.Hours + "h ";
+                    result += $"{remaining.Hours}h ";
                 }
 
                 if (remaining.Minutes > 0)
                 {
-                    result = remaining.Minutes + "m ";
+                    result += $"{remaining.Minutes}m ";
                 }
 
-                result += remaining.Seconds + "s";
+                result += $"{remaining.Seconds}s";
             }
             catch (Exception)
             {
@@ -398,7 +398,7 @@ namespace Sugar.Extensions
         /// <returns></returns>
         public static string ToStringWithOrdinal(this DateTime dt)
         {
-            return $"{dt.Day.AddOrdinal()} {dt.ToString("MMMM yyyy")}";
+            return $"{dt.Day.AddOrdinal()} {dt:MMMM yyyy}";
         }
 
         /// <summary>
