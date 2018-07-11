@@ -792,7 +792,7 @@ namespace Sugar
         /// India
         /// </summary>
         [Description("India")]
-        [LanguageTag("hi")]
+        [LanguageTag("en")]
         [TypeaheadToken("India")]
         IN,
         /// <summary>
@@ -1007,7 +1007,7 @@ namespace Sugar
         /// Macao
         /// </summary>
         [Description("Macao")]
-        [LanguageTag("zn-cn")]
+        [LanguageTag("zh-cn")]
         [TypeaheadToken("Macao")]
         MO,
         /// <summary>
@@ -1555,6 +1555,7 @@ namespace Sugar
         /// Slovakia
         /// </summary>
         [Description("Slovakia")]
+        [LanguageTag("sk")]
         [TypeaheadToken("Slovakia")]
         SK,
         /// <summary>
