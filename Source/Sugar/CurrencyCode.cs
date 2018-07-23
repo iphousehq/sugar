@@ -101,7 +101,9 @@ namespace Sugar
         [Description("Panamian Balboa")]
         PAB,
         [Description("Ukrainian Hryvnia")]
-        UAH
+        UAH,
+        [Description("Lebanese pound")]
+        LBP
         // ReSharper restore InconsistentNaming
     }
 }
