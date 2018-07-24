@@ -102,8 +102,12 @@ namespace Sugar
         PAB,
         [Description("Ukrainian Hryvnia")]
         UAH,
-        [Description("Lebanese pound")]
-        LBP
+        [Description("Lebanese Pound")]
+        LBP,
+        [Description("Egyptian Pound")]
+        EGP,
+        [Description("Jordanian Dinar")]
+        JOD
         // ReSharper restore InconsistentNaming
     }
 }

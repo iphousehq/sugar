@@ -63,15 +63,18 @@ namespace Sugar.Extensions
                 case CurrencyCode.DKK: return "kr";
                 case CurrencyCode.DOP: return "RD$";
                 case CurrencyCode.EEK: return "¤";
+                case CurrencyCode.EGP: return "E£";
                 case CurrencyCode.EUR: return "€";
                 case CurrencyCode.GBP: return "£";
                 case CurrencyCode.HKD: return "$";
                 case CurrencyCode.HRK: return "kn";
                 case CurrencyCode.HUF: return "Ft";
                 case CurrencyCode.IDR: return "Rp";
-                case CurrencyCode.INR: return "";
+                case CurrencyCode.INR: return "₹";
+                case CurrencyCode.JOD: return "د.ا";
                 case CurrencyCode.JPY: return "¥";
                 case CurrencyCode.KRW: return "₩";
+                case CurrencyCode.LBP: return "ل.ل";
                 case CurrencyCode.LTL: return "Lt";
                 case CurrencyCode.LVL: return "Ls";
                 case CurrencyCode.MXN: return "$";
@@ -96,7 +99,6 @@ namespace Sugar.Extensions
                 case CurrencyCode.VEF_DICOM: return "Bs";
                 case CurrencyCode.ZAR: return "R";
                 case CurrencyCode.UAH: return "₴";
-                case CurrencyCode.LBP: return "ل.ل";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
@@ -125,6 +127,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.DKK: return "kr ";
                 case CurrencyCode.DOP: return "&#36; ";
                 case CurrencyCode.EEK: return "&curren; ";
+                case CurrencyCode.EGP: return "E&pound; ";
                 case CurrencyCode.EUR: return "&#8364; ";
                 case CurrencyCode.GBP: return "&#163; ";
                 case CurrencyCode.HKD: return "&#36; ";
@@ -132,8 +135,10 @@ namespace Sugar.Extensions
                 case CurrencyCode.HUF: return "&#70;&#116; ";
                 case CurrencyCode.IDR: return "&#82;&#112; ";
                 case CurrencyCode.INR: return "";
+                case CurrencyCode.JOD: return "";
                 case CurrencyCode.JPY: return "&#165; ";
                 case CurrencyCode.KRW: return "&#8361; ";
+                case CurrencyCode.LBP: return "&#163;";
                 case CurrencyCode.LTL: return "Lt ";
                 case CurrencyCode.LVL: return "Ls ";
                 case CurrencyCode.MXN: return "&#36; ";
@@ -158,7 +163,6 @@ namespace Sugar.Extensions
                 case CurrencyCode.VEF_BLKMKT: return "&#66;&#115; ";
                 case CurrencyCode.ZAR: return "R ";
                 case CurrencyCode.UAH: return "&#8372;";
-                case CurrencyCode.LBP: return "&#163;";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");
@@ -179,13 +183,17 @@ namespace Sugar.Extensions
                 case "₡": return CurrencyCode.CRC;
                 case "¤": return CurrencyCode.CZK;
                 case "RD$": return CurrencyCode.DOP;
+                case "E£": return CurrencyCode.EGP;
                 case "€": return CurrencyCode.EUR;
                 case "£": return CurrencyCode.GBP;
                 case "kn": return CurrencyCode.HRK;
                 case "Ft": return CurrencyCode.HUF;
+                case "₹": return CurrencyCode.INR;
                 case "Rp": return CurrencyCode.IDR;
+                case "د.ا": return CurrencyCode.JOD;
                 case "¥": return CurrencyCode.JPY;
                 case "₩": return CurrencyCode.KRW;
+                case "ل.ل": return CurrencyCode.LBP;
                 case "Lt": return CurrencyCode.LTL;
                 case "Ls": return CurrencyCode.LVL;
                 case "RM": return CurrencyCode.MYR;
@@ -204,7 +212,6 @@ namespace Sugar.Extensions
                 case "Bs": return CurrencyCode.VEF_DICOM;
                 case "R": return CurrencyCode.ZAR;
                 case "₴": return CurrencyCode.UAH;
-                case "ل.ل": return CurrencyCode.LBP;
             }
 
             var success = Enum.TryParse(symbol, true, out CurrencyCode currency);
@@ -337,6 +344,8 @@ namespace Sugar.Extensions
                 case CountryCode.SH: return CurrencyCode.GBP;
                 case CountryCode.PM: return CurrencyCode.EUR;
                 case CountryCode.LB: return CurrencyCode.LBP;
+                case CountryCode.EG: return CurrencyCode.EGP;
+                case CountryCode.JO: return CurrencyCode.JOD;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
