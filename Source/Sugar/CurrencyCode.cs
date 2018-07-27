@@ -107,7 +107,9 @@ namespace Sugar
         [Description("Egyptian Pound")]
         EGP,
         [Description("Jordanian Dinar")]
-        JOD
+        JOD,
+        [Description("United Arab Emirates dirham")]
+        AED
         // ReSharper restore InconsistentNaming
     }
 }

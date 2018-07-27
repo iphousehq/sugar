@@ -48,7 +48,8 @@ namespace Sugar.Extensions
         public static string ToSymbol(this CurrencyCode code)
         {
             switch (code)
-            {
+            { 
+                case CurrencyCode.AED: return "د.إ";
                 case CurrencyCode.ARS: return "$";
                 case CurrencyCode.AUD: return "$";
                 case CurrencyCode.BGN: return "лв";
@@ -113,6 +114,7 @@ namespace Sugar.Extensions
         {
             switch (code)
             {
+                case CurrencyCode.AED: return "&#x62f;&#x2e;&#x625;";
                 case CurrencyCode.ARS: return "&#36; ";
                 case CurrencyCode.AUD: return "&#36; ";
                 case CurrencyCode.BGN: return "&#1083;&#1074; ";
@@ -177,6 +179,7 @@ namespace Sugar.Extensions
         {
             switch (symbol)
             {
+                case "د.إ": return CurrencyCode.AED;
                 case "лв": return CurrencyCode.BGN;
                 case "R$": return CurrencyCode.BRL;
                 case "Fr.": return CurrencyCode.CHF;
@@ -346,6 +349,7 @@ namespace Sugar.Extensions
                 case CountryCode.LB: return CurrencyCode.LBP;
                 case CountryCode.EG: return CurrencyCode.EGP;
                 case CountryCode.JO: return CurrencyCode.JOD;
+                case CountryCode.AE: return CurrencyCode.AED;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");

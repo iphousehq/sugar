@@ -10,6 +10,7 @@ namespace Sugar
     {
         // ReSharper disable InconsistentNaming
         /// <summary>
+        /// <summary>
         /// Afghanistan
         /// </summary>
         [Description("Afghanistan")]
