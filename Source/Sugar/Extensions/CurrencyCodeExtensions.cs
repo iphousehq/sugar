@@ -136,8 +136,8 @@ namespace Sugar.Extensions
                 case CurrencyCode.HRK: return "&#107;&#110; ";
                 case CurrencyCode.HUF: return "&#70;&#116; ";
                 case CurrencyCode.IDR: return "&#82;&#112; ";
-                case CurrencyCode.INR: return "";
-                case CurrencyCode.JOD: return "";
+                case CurrencyCode.INR: return "&#8377;";
+                case CurrencyCode.JOD: return "JOD";
                 case CurrencyCode.JPY: return "&#165; ";
                 case CurrencyCode.KRW: return "&#8361; ";
                 case CurrencyCode.LBP: return "&#163;";
