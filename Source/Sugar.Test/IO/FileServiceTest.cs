@@ -30,7 +30,7 @@ namespace Sugar.IO
         [Test]
         public void TestGetFilenames()
         {
-            Directory.SetCurrentDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../Samples/Child"));
+            Directory.SetCurrentDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Samples/Child"));
 
             var filenames = service.GetFilenames("*.txt");
 
@@ -41,7 +41,7 @@ namespace Sugar.IO
         [Test]
         public void TestGetFilenamesTwoDeep()
         {
-            Directory.SetCurrentDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../Samples/Child"));
+            Directory.SetCurrentDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Samples/Child"));
 
             var filenames = service.GetFilenames("*", 1);
 

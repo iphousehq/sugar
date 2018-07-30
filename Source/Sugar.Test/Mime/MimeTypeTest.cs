@@ -9,9 +9,9 @@ namespace Sugar.Mime
         public void TestApplicationMimeType()
         {
             var mime = new ApplicationMime
-            {
-                ApplicationMimeType = ApplicationMimeType.MicrosoftWord
-            };
+                       {
+                           ApplicationMimeType = ApplicationMimeType.MicrosoftWord
+                       };
 
             var result = mime.ToString();
 
@@ -22,9 +22,9 @@ namespace Sugar.Mime
         public void TestAudioMimeType()
         {
             var mime = new AudioMime
-            {
-                AudioMimeType = AudioMimeType.Midi
-            };
+                       {
+                           AudioMimeType = AudioMimeType.Midi
+                       };
 
             var result = mime.ToString();
 
@@ -35,9 +35,9 @@ namespace Sugar.Mime
         public void TestImageMimeType()
         {
             var mime = new ImageMime
-            {
-                ImageMimeType = ImageMimeType.Jpeg
-            };
+                       {
+                           ImageMimeType = ImageMimeType.Jpeg
+                       };
 
             var result = mime.ToString();
 
@@ -48,9 +48,9 @@ namespace Sugar.Mime
         public void TestTextMimeType()
         {
             var mime = new TextMime
-            {
-                TextMimeType = TextMimeType.Plain
-            };
+                       {
+                           TextMimeType = TextMimeType.Plain
+                       };
 
             var result = mime.ToString();
 
@@ -61,9 +61,9 @@ namespace Sugar.Mime
         public void TestVideoMimeType()
         {
             var mime = new VideoMime
-            {
-                VideoMimeType = VideoMimeType.Avi
-            };
+                       {
+                           VideoMimeType = VideoMimeType.Avi
+                       };
 
             var result = mime.ToString();
 

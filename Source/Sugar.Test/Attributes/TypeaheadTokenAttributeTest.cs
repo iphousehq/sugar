@@ -22,6 +22,7 @@ namespace Sugar.Attributes
             Assert.Throws<ArgumentException>(() => new TypeaheadTokenAttribute("  "));
         }
 
+        [Test]
         public void TestMultipleWordsNotAllowMultipleWords()
         {
             Assert.Throws<ArgumentException>(() => new TypeaheadTokenAttribute("great britain"));

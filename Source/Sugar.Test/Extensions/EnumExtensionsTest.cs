@@ -30,7 +30,7 @@ namespace Sugar.Extensions
 
             var result = input.GetFlags().ToList();
 
-            Assert.AreEqual(0, result.Count());
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace Sugar.Extensions
 
             var result = input.GetFlags().ToList();
 
-            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual(1, result.Count);
             Assert.AreEqual(SomeFlagsEnum.Bob, result[0]);
         }
 
@@ -51,7 +51,7 @@ namespace Sugar.Extensions
 
             var result = input.GetFlags().ToList();
 
-            Assert.AreEqual(2, result.Count());
+            Assert.AreEqual(2, result.Count);
             Assert.AreEqual(SomeFlagsEnum.Bob, result[0]);
             Assert.AreEqual(SomeFlagsEnum.Thursday, result[1]);
         }

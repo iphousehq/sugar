@@ -45,6 +45,7 @@ namespace Sugar.Command
             {
                 directory = System.IO.Directory.GetCurrentDirectory();
             }
+
             directory = directory.Replace("file:\\", "");
         }
 
@@ -217,11 +218,9 @@ namespace Sugar.Command
         /// <returns></returns>
         public int AsInteger(string name, int @default)
         {
-            int result;
-
             var resultAsString = AsString(name);
 
-            if (!int.TryParse(resultAsString, out result))
+            if (!int.TryParse(resultAsString, out var result))
             {
                 result = @default;
             }
@@ -249,11 +248,9 @@ namespace Sugar.Command
         /// <returns></returns>
         public DateTime AsDateTime(string name, DateTime @default)
         {
-            DateTime result;
-
             var resultAsString = AsString(name);
 
-            if (!DateTime.TryParse(resultAsString, out result))
+            if (!DateTime.TryParse(resultAsString, out var result))
             {
                 result = @default;
             }
@@ -331,11 +328,9 @@ namespace Sugar.Command
         /// <returns></returns>
         public bool AsBool(string name, bool @default)
         {
-            bool result;
-
             var resultAsString = AsString(name, @default.ToString());
 
-            if (!bool.TryParse(resultAsString, out result))
+            if (!bool.TryParse(resultAsString, out var result))
             {
                 result = @default;
             }
@@ -445,10 +440,9 @@ namespace Sugar.Command
 
                 if (Nullable.GetUnderlyingType(type) != null)
                 {
-                    DateTime date;
-                    if (DateTime.TryParse(value, out date))
+                    if (DateTime.TryParse(value, out var date))
                     {
-                        result = new DateTime?(date);
+                        result = date;
                     }
                 }
                 else

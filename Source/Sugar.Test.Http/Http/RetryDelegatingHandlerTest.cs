@@ -2,17 +2,18 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Xunit;
+using NUnit.Framework;
 
 namespace Sugar.Http
 {
+    [TestFixture]
     public class RetryDelegatingHandlerTest
     {
         private class FakeHandler : HttpMessageHandler
         {
-            public int FailedCount = 0;
-            public int AuthorizationAttempts = 0;
-            public int OkCount = 0;
+            public int FailedCount;
+            public int AuthorizationAttempts;
+            public int OkCount;
 
             protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
             {
@@ -35,61 +36,61 @@ namespace Sugar.Http
             }
         }
 
-        [Fact]
+        [Test]
         public async Task TestHttpClientWithoutIntercept()
         {
             var innerHandler = new FakeHandler();
 
             var retryHandler = new RetryDelegatingHandler
-            {
-                InnerHandler = innerHandler
-            };
+                               {
+                                   InnerHandler = innerHandler
+                               };
 
             var client = new HttpClient(retryHandler);
 
             var response = await client.GetAsync("http://hello.world/test");
 
-            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
 
-            Assert.Equal(1, innerHandler.FailedCount);
-            Assert.Equal(0, innerHandler.AuthorizationAttempts);
-            Assert.Equal(0, innerHandler.OkCount);
+            Assert.AreEqual(1, innerHandler.FailedCount);
+            Assert.AreEqual(0, innerHandler.AuthorizationAttempts);
+            Assert.AreEqual(0, innerHandler.OkCount);
         }
 
-        [Fact]
+        [Test]
         public async Task TestHttpClientWithRetryIntercept()
         {
             // The fake handler lets us track the number of 'actual' requests
             var innerHandler = new FakeHandler();
 
             var retryHandler = new RetryDelegatingHandler
-            {
-                InnerHandler = innerHandler,
-                RetryIntercept = async delegate (HttpResponseMessage responseMessage)
-                {
-                    if (responseMessage.StatusCode == HttpStatusCode.Unauthorized)
-                    {
-                        // Predent we authenticate
-                        var retryClient = new HttpClient(innerHandler);
+                               {
+                                   InnerHandler = innerHandler,
+                                   RetryIntercept = async delegate(HttpResponseMessage responseMessage)
+                                                    {
+                                                        if (responseMessage.StatusCode == HttpStatusCode.Unauthorized)
+                                                        {
+                                                            // Predent we authenticate
+                                                            var retryClient = new HttpClient(innerHandler);
 
-                        var authorizeResponse = await retryClient.GetAsync("http://hello.world/authorize?a=bcd");
+                                                            var authorizeResponse = await retryClient.GetAsync("http://hello.world/authorize?a=bcd");
 
-                        return authorizeResponse.IsSuccessStatusCode;
-                    }
+                                                            return authorizeResponse.IsSuccessStatusCode;
+                                                        }
 
-                    return false;
-                }
-            };
+                                                        return false;
+                                                    }
+                               };
 
             var client = new HttpClient(retryHandler);
 
             var response = await client.GetAsync("http://hello.world/test");
 
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
-            Assert.Equal(1, innerHandler.FailedCount);
-            Assert.Equal(1, innerHandler.AuthorizationAttempts);
-            Assert.Equal(1, innerHandler.OkCount);
+            Assert.AreEqual(1, innerHandler.FailedCount);
+            Assert.AreEqual(1, innerHandler.AuthorizationAttempts);
+            Assert.AreEqual(1, innerHandler.OkCount);
         }
     }
 }

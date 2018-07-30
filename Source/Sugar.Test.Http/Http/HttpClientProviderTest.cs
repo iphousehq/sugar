@@ -3,13 +3,14 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using Xunit;
+using NUnit.Framework;
 
 namespace Sugar.Http
 {
+    [TestFixture]
     public class HttpClientProviderTest
     {
-        [Fact]
+        [Test]
         public void TestHttpClientAlwaysReturnsNewInstance()
         {
             var provider = new HttpClientProvider();
@@ -17,25 +18,25 @@ namespace Sugar.Http
             var client1 = provider.Create();
             var client2 = provider.Create();
 
-            Assert.NotSame(client1, client2);
+            Assert.AreNotSame(client1, client2);
         }
 
-        [Fact]
+        [Test]
         public void TestHttpClientWithCustomInitialisation()
         {
             var provider = new HttpClientProvider
-            {
-                InitialiseWith = c => c.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Test", "1.0"))
-            };
+                           {
+                               InitialiseWith = c => c.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Test", "1.0"))
+                           };
 
             var client = provider.Create();
 
-            Assert.Equal("Test/1.0", client.DefaultRequestHeaders.UserAgent.ToString());
+            Assert.AreEqual("Test/1.0", client.DefaultRequestHeaders.UserAgent.ToString());
         }
 
         private class FakeHandler : HttpMessageHandler
         {
-            public int RequestCount = 0;
+            public int RequestCount;
 
             protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
             {
@@ -44,7 +45,7 @@ namespace Sugar.Http
             }
         }
 
-        [Fact]
+        [Test]
         public void TestHttpClientWithRetryIntercept()
         {
             var interceptCount = 0;
@@ -52,23 +53,23 @@ namespace Sugar.Http
             var innerHandler = new FakeHandler();
 
             var provider = new HttpClientProvider
-            {
-                RetryIntercept = delegate
-                {
-                    interceptCount++;
-                    return Task.FromResult(false);
-                }
-            };
+                           {
+                               RetryIntercept = delegate
+                                                {
+                                                    interceptCount++;
+                                                    return Task.FromResult(false);
+                                                }
+                           };
 
             var client = provider.Create(innerHandler);
 
             client.GetAsync("http://hello.world/boo");
 
-            Assert.Equal(1, interceptCount);
-            Assert.Equal(1, innerHandler.RequestCount);
+            Assert.AreEqual(1, interceptCount);
+            Assert.AreEqual(1, innerHandler.RequestCount);
         }
 
-        [Fact]
+        [Test]
         public void TestHttpClientWithRetryInterceptWhenShouldRetry()
         {
             var interceptCount = 0;
@@ -76,23 +77,23 @@ namespace Sugar.Http
             var innerHandler = new FakeHandler();
 
             var provider = new HttpClientProvider
-            {
-                RetryIntercept = delegate
-                {
-                    interceptCount++;
-                    return Task.FromResult(true);
-                }
-            };
+                           {
+                               RetryIntercept = delegate
+                                                {
+                                                    interceptCount++;
+                                                    return Task.FromResult(true);
+                                                }
+                           };
 
             var client = provider.Create(innerHandler);
 
             client.GetAsync("http://hello.world/boo");
 
-            Assert.Equal(1, interceptCount);
-            Assert.Equal(2, innerHandler.RequestCount);
+            Assert.AreEqual(1, interceptCount);
+            Assert.AreEqual(2, innerHandler.RequestCount);
         }
 
-        [Fact]
+        [Test]
         public void TestHttpClientWithRetryInterceptWithRetryInterceptSetButShouldNotRetry()
         {
             var interceptCount = 0;
@@ -100,20 +101,20 @@ namespace Sugar.Http
             var innerHandler = new FakeHandler();
 
             var provider = new HttpClientProvider
-            {
-                RetryIntercept = delegate
-                {
-                    interceptCount++;
-                    return Task.FromResult(true);
-                }
-            };
+                           {
+                               RetryIntercept = delegate
+                                                {
+                                                    interceptCount++;
+                                                    return Task.FromResult(true);
+                                                }
+                           };
 
             var client = provider.Create(innerHandler, false);
 
             client.GetAsync("http://hello.world/boo");
 
-            Assert.Equal(0, interceptCount);
-            Assert.Equal(1, innerHandler.RequestCount);
+            Assert.AreEqual(0, interceptCount);
+            Assert.AreEqual(1, innerHandler.RequestCount);
         }
     }
 }

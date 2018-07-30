@@ -52,10 +52,7 @@ namespace Sugar.Command
         /// <value>
         ///   <c>true</c> if this instance has name; otherwise, <c>false</c>.
         /// </value>
-        public bool HasName
-        {
-            get { return !string.IsNullOrWhiteSpace(name); }
-        }
+        public bool HasName => !string.IsNullOrWhiteSpace(name);
 
         /// <summary>
         /// Gets a value indicating whether this instance has position.
@@ -63,10 +60,7 @@ namespace Sugar.Command
         /// <value>
         /// 	<c>true</c> if this instance has position; otherwise, <c>false</c>.
         /// </value>
-        public bool HasPosition
-        {
-            get { return position > -1; }
-        }
+        public bool HasPosition => position > -1;
 
         /// <summary>
         /// Gets the name.
@@ -85,6 +79,5 @@ namespace Sugar.Command
         {
             return position;
         }
-
     }
 }

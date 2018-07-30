@@ -48,21 +48,9 @@ namespace Sugar.Extensions
 
             public DateTime DOB { get; set; }
 
-            public int Age
-            {
-                get
-                {
-                    throw new ApplicationException("oops");
-                }
-            }
+            public int Age => throw new ApplicationException("oops");
 
-            public ICollection<int> Stuff
-            {
-                get
-                {
-                    throw new ApplicationException("oops");
-                }
-            }
+            public ICollection<int> Stuff => throw new ApplicationException("oops");
         }
 
         [Test]

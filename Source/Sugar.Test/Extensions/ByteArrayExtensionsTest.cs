@@ -8,7 +8,7 @@ namespace Sugar.Extensions
     [TestFixture]
     public class ByteArrayExtensionsTest
     {
-        private readonly string imageLocation = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../Samples/grass.jpg");
+        private readonly string imageLocation = Path.Combine(TestContext.CurrentContext.TestDirectory, "Samples/grass.jpg");
 
         [Test]
         public void TestToBitmapFromExtractedBytes()

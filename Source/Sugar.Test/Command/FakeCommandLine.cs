@@ -5,7 +5,6 @@ namespace Sugar.Command
     internal class FakeCommandLine : CommandLine
     {
         public IEnumerable<int> CurrentProcessIds { get; set; }
-
         public int CurrentProcessId { get; set; }
 
         public FakeCommandLine(int currentProcessId, IEnumerable<int> currentProcessIds)

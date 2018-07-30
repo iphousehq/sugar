@@ -3,14 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Test", "Sugar.Test\Sugar.Test.csproj", "{10B86AFC-AD6C-477C-B53A-BC08E28C966F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Test.Integration", "Sugar.Test.Integration\Sugar.Test.Integration.csproj", "{14063FE3-6497-485F-8330-EA7CF5CDF997}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Drawing", "Sugar.Drawing\Sugar.Drawing.csproj", "{A4D2F6D8-C893-4F95-B2D6-E066CFD9E27D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Command", "Sugar.Command\Sugar.Command.csproj", "{C75F7339-F8F2-476A-A4DF-E259B3AEAE02}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar", "Sugar\Sugar.csproj", "{73B64458-AA4E-452A-9302-F58C4163E6EC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Http", "Sugar.Http\Sugar.Http.csproj", "{148AB465-5AC2-45A5-A0A1-4DAC6AE93090}"
@@ -27,9 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{85497C84-5
 		..\readme.md = ..\readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Core", "Sugar.Core\Sugar.Core.csproj", "{CD7A0586-A4B6-4A05-A502-D79CE66AB548}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Core", "Sugar.Core\Sugar.Core.csproj", "{CD7A0586-A4B6-4A05-A502-D79CE66AB548}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Moq", "Sugar.Moq\Sugar.Moq.csproj", "{B4831526-E22B-4EA3-8A20-845462D6B808}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Moq", "Sugar.Moq\Sugar.Moq.csproj", "{B4831526-E22B-4EA3-8A20-845462D6B808}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Test.Integration", "Sugar.Test.Integration\Sugar.Test.Integration.csproj", "{43A57B4C-37B4-4958-8EFA-591A561B7286}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sugar.Test", "Sugar.Test\Sugar.Test.csproj", "{F1899DDB-8E20-470F-9660-9E9B08718923}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,30 +34,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.ClientProfile|Any CPU.ActiveCfg = ClientProfile|Any CPU
-		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.ClientProfile|Any CPU.Build.0 = ClientProfile|Any CPU
-		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10B86AFC-AD6C-477C-B53A-BC08E28C966F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14063FE3-6497-485F-8330-EA7CF5CDF997}.ClientProfile|Any CPU.ActiveCfg = Release|Any CPU
-		{14063FE3-6497-485F-8330-EA7CF5CDF997}.ClientProfile|Any CPU.Build.0 = Release|Any CPU
-		{14063FE3-6497-485F-8330-EA7CF5CDF997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14063FE3-6497-485F-8330-EA7CF5CDF997}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14063FE3-6497-485F-8330-EA7CF5CDF997}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14063FE3-6497-485F-8330-EA7CF5CDF997}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4D2F6D8-C893-4F95-B2D6-E066CFD9E27D}.ClientProfile|Any CPU.ActiveCfg = Release|Any CPU
-		{A4D2F6D8-C893-4F95-B2D6-E066CFD9E27D}.ClientProfile|Any CPU.Build.0 = Release|Any CPU
-		{A4D2F6D8-C893-4F95-B2D6-E066CFD9E27D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4D2F6D8-C893-4F95-B2D6-E066CFD9E27D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4D2F6D8-C893-4F95-B2D6-E066CFD9E27D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4D2F6D8-C893-4F95-B2D6-E066CFD9E27D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C75F7339-F8F2-476A-A4DF-E259B3AEAE02}.ClientProfile|Any CPU.ActiveCfg = Release|Any CPU
-		{C75F7339-F8F2-476A-A4DF-E259B3AEAE02}.ClientProfile|Any CPU.Build.0 = Release|Any CPU
-		{C75F7339-F8F2-476A-A4DF-E259B3AEAE02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C75F7339-F8F2-476A-A4DF-E259B3AEAE02}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C75F7339-F8F2-476A-A4DF-E259B3AEAE02}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C75F7339-F8F2-476A-A4DF-E259B3AEAE02}.Release|Any CPU.Build.0 = Release|Any CPU
 		{73B64458-AA4E-452A-9302-F58C4163E6EC}.ClientProfile|Any CPU.ActiveCfg = Debug|Any CPU
 		{73B64458-AA4E-452A-9302-F58C4163E6EC}.ClientProfile|Any CPU.Build.0 = Debug|Any CPU
 		{73B64458-AA4E-452A-9302-F58C4163E6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -98,6 +70,18 @@ Global
 		{B4831526-E22B-4EA3-8A20-845462D6B808}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4831526-E22B-4EA3-8A20-845462D6B808}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4831526-E22B-4EA3-8A20-845462D6B808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43A57B4C-37B4-4958-8EFA-591A561B7286}.ClientProfile|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A57B4C-37B4-4958-8EFA-591A561B7286}.ClientProfile|Any CPU.Build.0 = Debug|Any CPU
+		{43A57B4C-37B4-4958-8EFA-591A561B7286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A57B4C-37B4-4958-8EFA-591A561B7286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43A57B4C-37B4-4958-8EFA-591A561B7286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43A57B4C-37B4-4958-8EFA-591A561B7286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1899DDB-8E20-470F-9660-9E9B08718923}.ClientProfile|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1899DDB-8E20-470F-9660-9E9B08718923}.ClientProfile|Any CPU.Build.0 = Debug|Any CPU
+		{F1899DDB-8E20-470F-9660-9E9B08718923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1899DDB-8E20-470F-9660-9E9B08718923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1899DDB-8E20-470F-9660-9E9B08718923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1899DDB-8E20-470F-9660-9E9B08718923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

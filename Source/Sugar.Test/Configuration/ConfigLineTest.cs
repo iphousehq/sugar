@@ -11,9 +11,7 @@ namespace Sugar.Configuration
         {
             const string input = "test=value";
 
-            ConfigLine line;
-
-            var result = ConfigLine.TryParse(input, out line);
+            var result = ConfigLine.TryParse(input, out var line);
 
             Assert.IsTrue(result);
             Assert.AreEqual("test", line.Key);
@@ -26,9 +24,7 @@ namespace Sugar.Configuration
         {
             const string input = "#comment";
 
-            ConfigLine line;
-
-            var result = ConfigLine.TryParse(input, out line);
+            var result = ConfigLine.TryParse(input, out var line);
 
             Assert.IsTrue(result);
             Assert.AreEqual(string.Empty, line.Key);
@@ -41,9 +37,7 @@ namespace Sugar.Configuration
         {
             const string input = @"//comment";
 
-            ConfigLine line;
-
-            var result = ConfigLine.TryParse(input, out line, @"//");
+            var result = ConfigLine.TryParse(input, out var line, @"//");
 
             Assert.IsTrue(result);
             Assert.AreEqual(string.Empty, line.Key);
@@ -57,9 +51,7 @@ namespace Sugar.Configuration
         {
             const string input = @"//comment";
 
-            ConfigLine line;
-
-            Assert.Throws<ArgumentException>(() => ConfigLine.TryParse(input, out line, ""));
+            Assert.Throws<ArgumentException>(() => ConfigLine.TryParse(input, out _, ""));
         }
 
         [Test]
@@ -67,9 +59,7 @@ namespace Sugar.Configuration
         {
             const string input = "test=value";
 
-            ConfigLine line;
-
-            ConfigLine.TryParse(input, out line, section: "Main");
+            ConfigLine.TryParse(input, out var line, section: "Main");
 
             Assert.AreEqual("Main", line.Section);
         }
@@ -79,9 +69,7 @@ namespace Sugar.Configuration
         {
             const string input = "test=value=something";
 
-            ConfigLine line;
-
-            ConfigLine.TryParse(input, out line);
+            ConfigLine.TryParse(input, out var line);
 
             Assert.AreEqual("value=something", line.Value);
         }
@@ -91,9 +79,7 @@ namespace Sugar.Configuration
         {
             const string input = "test value is here";
 
-            ConfigLine line;
-
-            ConfigLine.TryParse(input, out line);
+            ConfigLine.TryParse(input, out var line);
 
             Assert.AreEqual("test value is here", line.Key);
             Assert.AreEqual("", line.Value);

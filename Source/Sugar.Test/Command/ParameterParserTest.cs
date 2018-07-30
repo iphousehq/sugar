@@ -205,7 +205,7 @@ namespace Sugar.Command
         {
             var parameters = parser.Parse("-one two three");
 
-            Assert.AreEqual(2, parameters.AsStrings("four", new[] { "one", "two" }).Count);
+            Assert.AreEqual(2, parameters.AsStrings("four", "one", "two").Count);
         }
 
         [Test]

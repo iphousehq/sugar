@@ -1,142 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-  </PropertyGroup>
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{10B86AFC-AD6C-477C-B53A-BC08E28C966F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <IsPackable>false</IsPackable>
     <RootNamespace>Sugar</RootNamespace>
-    <AssemblyName>Sugar.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ClientProfile|AnyCPU'">
-    <OutputPath>bin\ClientProfile\</OutputPath>
-    <DefineConstants>TRACE;CLIENT</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
-    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Castle.Core" Version="4.3.1" />
+    <Content Include="Samples\Child\Test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Samples\node-extension.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Samples\One.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Samples\Two.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Samples\grass.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="Moq" Version="4.9.0" />
     <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Command\CommandLineTest.cs" />
-    <Compile Include="Command\FakeCommandLine.cs" />
-    <Compile Include="Extensions\ArrayExtensionsTest.cs" />
-    <Compile Include="Extensions\AssemblyExtensionsTest.cs" />
-    <Compile Include="Attributes\TypeaheadTokenAttributeTest.cs" />
-    <Compile Include="Extensions\BitmapExtensionsTest.cs" />
-    <Compile Include="Extensions\ByteArrayExtensionsTest.cs" />
-    <Compile Include="Command\BoundCommandFactoryTest.cs" />
-    <Compile Include="Extensions\CurrencyCodeExtensionsTest.cs" />
-    <Compile Include="Extensions\CountryCodeExtensionTests.cs" />
-    <Compile Include="Extensions\WebStringExtensionsTest.cs" />
-    <Compile Include="Extensions\GenericListExtensionsTest.cs" />
-    <Compile Include="Command\BoundCommandTest.cs" />
-    <Compile Include="Command\ParameterPrinterTest.cs" />
-    <Compile Include="Command\ParametersTest.cs" />
-    <Compile Include="Command\ParameterBinderTest.cs" />
-    <Compile Include="Command\ParameterParserTest.cs" />
-    <Compile Include="Configuration\ConfigLineTest.cs" />
-    <Compile Include="Configuration\ConfigTest.cs" />
-    <Compile Include="Extensions\DateTimeExtensionsTest.cs" />
-    <Compile Include="Extensions\DoubleExtensionsTest.cs" />
-    <Compile Include="Extensions\GenericEnumerableExtensionsTest.cs" />
-    <Compile Include="Extensions\EnumExtensionsTest.cs" />
-    <Compile Include="GeoLocationTest.cs" />
-    <Compile Include="HtmlBuilderTest.cs" />
-    <Compile Include="Extensions\IntExtensionsTest.cs" />
-    <Compile Include="IO\FileServiceTest.cs" />
-    <Compile Include="Mime\MimeTypeTest.cs" />
-    <Compile Include="Net\CommonTldsTest.cs" />
-    <Compile Include="Net\DomainNameTest.cs" />
-    <Compile Include="Net\HttpRequestTest.cs" />
-    <Compile Include="Net\HttpResponseTest.cs" />
-    <Compile Include="Net\UrlTest.cs" />
-    <Compile Include="Extensions\ObjectExtensionsTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflection\ReflectionExtensionsTests.cs" />
-    <Compile Include="Extensions\StringExtensionsTest.cs" />
-    <Compile Include="TextTableTest.cs" />
-    <Compile Include="Extensions\TimeSpanExtensionTest.cs" />
-    <Compile Include="Extensions\TypeExtensionsTest.cs" />
+    <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj" />
+    <ProjectReference Include="..\Sugar\Sugar.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Samples\Child\Test.txt" />
-    <Content Include="Samples\node-extension.html" />
-    <Content Include="Samples\Two.txt" />
-    <Content Include="Samples\One.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Drawing" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sugar.Command\Sugar.Command.csproj">
-      <Project>{c75f7339-f8f2-476a-a4df-e259b3aeae02}</Project>
-      <Name>Sugar.Command</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sugar.Drawing\Sugar.Drawing.csproj">
-      <Project>{a4d2f6d8-c893-4f95-b2d6-e066cfd9e27d}</Project>
-      <Name>Sugar.Drawing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj">
-      <Project>{cdd0e8a5-af3d-4fe6-9580-310730087630}</Project>
-      <Name>Sugar.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sugar\Sugar.csproj">
-      <Project>{73b64458-aa4e-452a-9302-f58c4163e6ec}</Project>
-      <Name>Sugar</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

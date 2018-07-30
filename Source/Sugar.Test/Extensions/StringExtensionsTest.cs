@@ -307,7 +307,7 @@ namespace Sugar.Extensions
         {
             var result = "one two".Split(" ");
 
-            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Length);
             Assert.AreEqual("one", result[0]);
             Assert.AreEqual("two", result[1]);
         }
@@ -317,7 +317,7 @@ namespace Sugar.Extensions
         {
             var result = "onethreetwothreefour".Split("three");
 
-            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(3, result.Length);
             Assert.AreEqual("one", result[0]);
             Assert.AreEqual("two", result[1]);
             Assert.AreEqual("four", result[2]);
@@ -328,7 +328,7 @@ namespace Sugar.Extensions
         {
             var result = "onethreetwothreethreefour".Split("three", StringSplitOptions.RemoveEmptyEntries);
 
-            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(3, result.Length);
         }
 
         [Test]

@@ -1,48 +1,49 @@
 ﻿using System.Net.Http;
-using Xunit;
+using NUnit.Framework;
 
 namespace Sugar.Http
 {
+    [TestFixture]
     public class HttpRequestMessageExtensionsTest
     {
-        [Fact]
+        [Test]
         public void TestSetAcceptHeaderToHtml()
         {
             var req = new HttpRequestMessage();
 
             req.SetAcceptHeaderToHtml();
 
-            Assert.Equal("text/html", req.Headers.Accept.ToString());
+            Assert.AreEqual("text/html", req.Headers.Accept.ToString());
         }
 
-        [Fact]
+        [Test]
         public void TestSetAcceptHeaderToJson()
         {
             var req = new HttpRequestMessage();
 
             req.SetAcceptHeaderToJson();
 
-            Assert.Equal("application/json", req.Headers.Accept.ToString());
+            Assert.AreEqual("application/json", req.Headers.Accept.ToString());
         }
 
-        [Fact]
+        [Test]
         public void TestSetAcceptEncodingToCompressed()
         {
             var req = new HttpRequestMessage();
 
             req.SetAcceptEncodingToCompressed();
 
-            Assert.Equal("gzip, deflate", req.Headers.AcceptEncoding.ToString());
+            Assert.AreEqual("gzip, deflate", req.Headers.AcceptEncoding.ToString());
         }
 
-        [Fact]
+        [Test]
         public void TestSetAcceptLanguageToUsEnglish()
         {
             var req = new HttpRequestMessage();
 
             req.SetAcceptLanguageToUsEnglish();
 
-            Assert.Equal("en-US, en", req.Headers.AcceptLanguage.ToString());
+            Assert.AreEqual("en-US, en", req.Headers.AcceptLanguage.ToString());
         }
     }
 }

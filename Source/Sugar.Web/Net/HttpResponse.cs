@@ -154,6 +154,9 @@ namespace Sugar.Net
         /// <returns></returns>
         public String ToString(Encoding encoding)
         {
+            // Ensure encodings are registered
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
             var result = string.Empty;
 
             if (Bytes != null && Bytes.Length > 0)
