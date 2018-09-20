@@ -95,9 +95,10 @@ namespace Sugar.Extensions
                 case CurrencyCode.TWD: return "NT$";
                 case CurrencyCode.USD: return "$";
                 case CurrencyCode.UYU: return "$U";
-                case CurrencyCode.VEF: return "Bs";
-                case CurrencyCode.VEF_BLKMKT: return "Bs";
-                case CurrencyCode.VEF_DICOM: return "Bs";
+                case CurrencyCode.VEF:
+                case CurrencyCode.VEF_BLKMKT:
+                case CurrencyCode.VEF_DICOM:
+                case CurrencyCode.VES: return "Bs";
                 case CurrencyCode.ZAR: return "R";
                 case CurrencyCode.UAH: return "₴";
             }
@@ -160,9 +161,10 @@ namespace Sugar.Extensions
                 case CurrencyCode.TWD: return "&#78;&#84;&#36; ";
                 case CurrencyCode.USD: return "&#36; ";
                 case CurrencyCode.UYU: return "&#36;&#85; ";
-                case CurrencyCode.VEF: return "&#66;&#115; ";
-                case CurrencyCode.VEF_DICOM: return "&#66;&#115; ";
-                case CurrencyCode.VEF_BLKMKT: return "&#66;&#115; ";
+                case CurrencyCode.VEF:
+                case CurrencyCode.VEF_DICOM:
+                case CurrencyCode.VEF_BLKMKT:
+                case CurrencyCode.VES: return "&#66;&#115; ";
                 case CurrencyCode.ZAR: return "R ";
                 case CurrencyCode.UAH: return "&#8372;";
             }
