@@ -20,16 +20,21 @@ namespace Sugar.Command
         {
             Type commandType = null;
 
-            foreach (var optionType in getOptionsTypes())
-            {
-                var flagAttribute = (FlagAttribute) optionType.GetCustomAttribute(typeof (FlagAttribute), false);
+            var types = getOptionsTypes();
 
-                var containsAllParameters = flagAttribute.Names.All(parameters.Contains);
+            var typesWithAttributes = types.Select(t => new KeyValuePair<Type, string[]>(t, ((FlagAttribute) t.GetCustomAttribute(typeof(FlagAttribute), false)).Names));
+
+            // Match parameters to commands with the most flags first
+            typesWithAttributes = typesWithAttributes.OrderByDescending(x => x.Value.Length);
+
+            foreach (var keyValuePair in typesWithAttributes)
+            {
+                var containsAllParameters = keyValuePair.Value.All(parameters.Contains);
 
                 if (containsAllParameters)
                 {
                     // Assumes that the options type is declared within the command
-                    commandType = optionType.DeclaringType;
+                    commandType = keyValuePair.Key.DeclaringType;
                     break;
                 }
             }

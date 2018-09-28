@@ -29,7 +29,37 @@ namespace Sugar.Command
             }
         }
 
+        private class FakeCommandThree : BoundCommand<FakeCommandThree.Options>
+        {
+            [Flag("fake", "group")]
+            public class Options {}
+
+            public override int Execute(Options options)
+            {
+                return 0;
+            }
+        }
+
+        private class FakeCommandFour : BoundCommand<FakeCommandFour.Options>
+        {
+            [Flag("fake", "one", "group")]
+            public class Options {}
+
+            public override int Execute(Options options)
+            {
+                return 0;
+            }
+        }
+
         private BoundCommandFactory factory;
+
+        private readonly IEnumerable<Type> availableCommandOptions = new[]
+        {
+            typeof(FakeCommandOne.Options),
+            typeof(FakeCommandTwo.Options),
+            typeof(FakeCommandThree.Options),
+            typeof(FakeCommandFour.Options)
+        };
 
         [SetUp]
         public void Setup()
@@ -42,7 +72,7 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("-blah -something -fake -one");
 
-            var result = factory.GetCommandType(parameters, () => new List<Type> { typeof (FakeCommandOne.Options), typeof (FakeCommandTwo.Options) });
+            var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
             Assert.AreEqual(typeof(FakeCommandOne), result);
         }
@@ -52,9 +82,29 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("-blah -something -fake");
 
-            var result = factory.GetCommandType(parameters, () => new List<Type> { typeof(FakeCommandOne.Options), typeof(FakeCommandTwo.Options) });
+            var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
             Assert.AreEqual(typeof(FakeCommandTwo), result);
+        }
+        
+        [Test]
+        public void TestResolveCommandThreeWhenAnotherCommandsSharesFlags()
+        {
+            var parameters = new Parameters("-fake -group");
+
+            var result = factory.GetCommandType(parameters, () => availableCommandOptions);
+
+            Assert.AreEqual(typeof(FakeCommandThree), result);
+        }
+
+        [Test]
+        public void TestResolveCommandFourWhenAnotherCommandsSharesFlags()
+        {
+            var parameters = new Parameters("-fake -one -group");
+
+            var result = factory.GetCommandType(parameters, () => availableCommandOptions);
+
+            Assert.AreEqual(typeof(FakeCommandFour), result);
         }
     }
 }
