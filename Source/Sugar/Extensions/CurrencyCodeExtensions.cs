@@ -101,6 +101,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.VES: return "Bs";
                 case CurrencyCode.ZAR: return "R";
                 case CurrencyCode.UAH: return "₴";
+                case CurrencyCode.VND: return "₫";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
@@ -167,6 +168,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.VES: return "&#66;&#115; ";
                 case CurrencyCode.ZAR: return "R ";
                 case CurrencyCode.UAH: return "&#8372;";
+                case CurrencyCode.VND: return "&#8363;";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");
@@ -217,6 +219,8 @@ namespace Sugar.Extensions
                 case "Bs": return CurrencyCode.VEF_DICOM;
                 case "R": return CurrencyCode.ZAR;
                 case "₴": return CurrencyCode.UAH;
+                case "₫": return CurrencyCode.VND;
+
             }
 
             var success = Enum.TryParse(symbol, true, out CurrencyCode currency);
@@ -352,6 +356,7 @@ namespace Sugar.Extensions
                 case CountryCode.EG: return CurrencyCode.EGP;
                 case CountryCode.JO: return CurrencyCode.JOD;
                 case CountryCode.AE: return CurrencyCode.AED;
+                case CountryCode.VN: return CurrencyCode.VND;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
