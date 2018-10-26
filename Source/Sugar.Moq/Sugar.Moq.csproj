@@ -12,6 +12,7 @@
     <PackageProjectUrl>http://comsechq.github.io/sugar/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/comsechq/sugar</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

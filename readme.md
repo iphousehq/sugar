@@ -5,10 +5,10 @@ A collection of .NET helper classes, extension methods and shortcuts for common 
 The project is divided in several class libraries:
 
 - Sugar: Core of the nice to have helpers and extensions methods (.NET Standard 2.0)
-- Sugar.Command: Helper classes and interface to help you build CLI applications (.NET Framework 4.6.x)
-- Sugar.Drawing: Helper classes to help you resize and qualify bitmap images (.NET Framework 4.6.x)
 - Sugar.Http: Helper classes and interface to leverage .NET's HttpClient (.NET Standard 2.0)
 - Sugar.Web: Handy helpers when dealing with domain names, URLs and downloading (.NET Standard 2.0)
+- Sugar.Core: Basic classes used in Sugar.Moq (.NET Standard 2.0)
+- Sugar.Moq: Handy mocking context to help write using tests with the moq framework (.NET Standard 2.0)
 
 - Sugar.Test: Unit tests (nunit + moq) (.NET Framework 4.6.x)
 - Sugar.Test.Http: xUnit tests (.NET Core 2.0)
