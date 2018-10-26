@@ -11,7 +11,7 @@ namespace Sugar.Moq
         public void TestMockContext()
         {
             var context = new MockContext().AddMock<ICloneable>();
-
+            
             var mockedObject = context.Of<ICloneable>();
 
             var clone = new object();
@@ -26,6 +26,19 @@ namespace Sugar.Moq
 
             context.Get<ICloneable>()
                    .Verify(call => call.Clone(), Times.Once());
+        }
+
+        [Test]
+        public void TestContainsKey()
+        {
+            var context = new MockContext();
+
+            Assert.IsFalse(context.ContainsKey<ICloneable>());
+
+            context.AddMock<ICloneable>();
+
+            Assert.IsTrue(context.ContainsKey<ICloneable>());
+
         }
     }
 }

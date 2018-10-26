@@ -12,6 +12,30 @@ namespace Sugar.Moq
         private readonly IDictionary<Type, object> mocks = new Dictionary<Type, object>();
 
         /// <summary>
+        /// Determines whether the context has a mocked object for the specified key.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified type contains key; otherwise, <c>false</c>.
+        /// </returns>
+        public bool ContainsKey(Type type)
+        {
+            return mocks.ContainsKey(type);
+        }
+
+        /// <summary>
+        /// Determines whether the context has a mocked object for the specified key.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>
+        ///   <c>true</c> if this instance contains key; otherwise, <c>false</c>.
+        /// </returns>
+        public bool ContainsKey<T>()
+        {
+            return ContainsKey(typeof(T));
+        }
+
+        /// <summary>
         /// Configures a mock for the given <see cref="T"/> and adds it to the underlying mocks dictionary.
         /// </summary>
         /// <typeparam name="T"></typeparam>
