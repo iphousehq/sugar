@@ -36,7 +36,7 @@ namespace Sugar.Moq
         }
 
         /// <summary>
-        /// Configures a mock for the given <see cref="T"/> and adds it to the underlying mocks dictionary.
+        /// Instantiates a mock of <see cref="T"/> in the underlying mocks dictionary.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -46,7 +46,17 @@ namespace Sugar.Moq
 
             var mock = new Mock<T>();
 
-            mocks.Add(type, mock);
+            return AddMock(type, mock);
+        }
+        
+        /// <summary>
+        /// Adds the specified <see cref="mock"/> for the given <see cref="key"/> in the underlying mocks dictionary.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public MockContext AddMock(Type key, Mock mock) 
+        {
+            mocks.Add(key, mock);
 
             return this;
         }
