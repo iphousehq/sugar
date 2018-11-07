@@ -11,6 +11,7 @@
     <PackageLicenseUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</PackageLicenseUrl>
     <PackageProjectUrl>http://comsechq.github.io/sugar/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/comsechq/sugar</RepositoryUrl>
+    <PackageId>comsec.sugar.command</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

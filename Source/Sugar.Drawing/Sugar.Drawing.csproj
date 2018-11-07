@@ -12,6 +12,7 @@
     <PackageProjectUrl>http://comsechq.github.io/sugar/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/comsechq/sugar</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageId>comsec.sugar.drawing</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
