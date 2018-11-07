@@ -14,16 +14,12 @@ namespace Sugar.Net
         /// <summary>
         /// Maps the specified <see cref="WebResponse" /> to the given <see cref="HttpResponse" />.
         /// </summary>
-        /// <param name="request">The request.</param>
         /// <param name="webResponse">The web response.</param>
         /// <param name="response">The HTTP response to map the <see cref="webResponse" />to.</param>
-        public static void Map(HttpRequest request, WebResponse webResponse, ref HttpResponse response)
+        public static void Map(WebResponse webResponse, ref HttpResponse response)
         {
             if (webResponse != null)
             {
-                // If the web response followed an http redirect, the URL will have changed. Reflect that change.
-                response.RedirectedUrl = webResponse.ResponseUri.ToString();
-
                 response.ContentLength = webResponse.ContentLength;
 
                 foreach (string header in webResponse.Headers)
@@ -31,11 +27,22 @@ namespace Sugar.Net
                     response.Headers.Add(header, webResponse.Headers[header]);
                 }
 
-                var httpWebResponse = webResponse as HttpWebResponse;
-                if (httpWebResponse != null)
+                if (webResponse is HttpWebResponse httpWebResponse)
                 {
                     response.StatusCode = httpWebResponse.StatusCode;
                     response.StatusDescription = httpWebResponse.StatusDescription;
+                }
+
+                // If the web response followed an http redirect, the URL will have changed. Reflect that change.
+                response.RedirectedUrl = webResponse.ResponseUri.ToString();
+
+                if (response.RedirectedUrl == response.Url)
+                {
+                    // Redirected url may be in location.
+                    if (response.Headers.ContainsKey("Location"))
+                    {
+                        response.RedirectedUrl = response.Headers["Location"];
+                    }
                 }
             }
         }
@@ -101,7 +108,7 @@ namespace Sugar.Net
                     }
                 }
 
-                Map(request, webResponse, ref result);
+                Map(webResponse, ref result);
             }
 
             return result;
@@ -177,7 +184,27 @@ namespace Sugar.Net
                                    Url = request.Url
                                };
 
-                Map(request, ex.Response, ref response);
+                Map(ex.Response, ref response);
+
+                // .NET Core does not auto-redirect in some cases (e.g. redirect changes protocol from HTTP -> HTTPS)
+                // In this case an exception will be thrown
+                // If this is the case then check for 3XX HTTP status codes AND if the AllowAutoRedirect setting is on
+                // If so then get re-download the redirected url request
+                // (Make sure we don't redirect too many times)
+                if ((response.StatusCode == HttpStatusCode.Moved ||
+                     response.StatusCode == HttpStatusCode.MovedPermanently ||
+                     response.StatusCode == HttpStatusCode.Found ||
+                     response.StatusCode == HttpStatusCode.Redirect ||
+                     response.StatusCode == HttpStatusCode.RedirectMethod ||
+                     response.StatusCode == HttpStatusCode.TemporaryRedirect) && request.AllowAutoRedirect)
+                {
+                    if (request.CurrentRedirects < request.MaximumRedirects)
+                    {
+                        request.Url = response.RedirectedUrl;
+                        request.CurrentRedirects++;
+                        response = Download(request);
+                    }
+                }
             }
             catch (Exception ex)
             {

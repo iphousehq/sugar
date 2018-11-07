@@ -23,6 +23,7 @@ namespace Sugar.Net
             Cookies = new CookieContainer();
             Encoding = null;
             AllowAutoRedirect = true;
+            MaximumRedirects = 10;
             Host = null;
             SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
@@ -170,6 +171,22 @@ namespace Sugar.Net
         public bool AllowAutoRedirect { get; set; }
 
         /// <summary>
+        /// Gets or sets the current redirects.
+        /// </summary>
+        /// <value>
+        /// The current redirects.
+        /// </value>
+        public int CurrentRedirects { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum redirects.
+        /// </summary>
+        /// <value>
+        /// The maximum redirects.
+        /// </value>
+        public int MaximumRedirects { get; set; }
+
+        /// <summary>
         /// Gets or sets the type of the security protocol.
         /// </summary>
         /// <value>
@@ -234,7 +251,7 @@ namespace Sugar.Net
 
                     var encoded = Convert.ToBase64String(Encoding.Default.GetBytes(header));
 
-                    request.Headers["Authorization"] = "Basic " + encoded;
+                    request.Headers["Authorization"] = $"Basic {encoded}";
                 }
                 else
                 {
