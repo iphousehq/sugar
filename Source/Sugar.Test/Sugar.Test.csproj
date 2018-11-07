@@ -33,6 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sugar.Command\Sugar.Command.csproj" />
+    <ProjectReference Include="..\Sugar.Drawing\Sugar.Drawing.csproj" />
     <ProjectReference Include="..\Sugar.Moq\Sugar.Moq.csproj" />
     <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj" />
     <ProjectReference Include="..\Sugar\Sugar.csproj" />

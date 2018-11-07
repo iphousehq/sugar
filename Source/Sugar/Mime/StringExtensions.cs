@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Sugar.Mime;
 
-namespace Sugar.Extensions
+namespace Sugar.Mime
 {
     /// <summary>
     /// String extension methods.

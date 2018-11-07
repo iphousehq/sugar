@@ -1,22 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Sugar</RootNamespace>
-    <PackageId>comsec.sugar</PackageId>
     <Version>2.0.0</Version>
     <Authors>Comsec</Authors>
     <Company>Comsec Investigations Ltd</Company>
-    <Product>Syntactic Sugar for .NET</Product>
-    <Description>A collection of .NET helper classes, extension methods and shortcuts for common .NETStandard operations.</Description>
-    <PackageReleaseNotes />
+    <Description>Extension methods to help handle Bitmap classes in .NET</Description>
     <Copyright>Comsec Investigations Ltd</Copyright>
     <PackageLicenseUrl>https://github.com/comsechq/sugar/blob/master/LICENSE.txt</PackageLicenseUrl>
     <PackageProjectUrl>http://comsechq.github.io/sugar/</PackageProjectUrl>
-    <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/comsechq/sugar</RepositoryUrl>
-    <AssemblyName>Sugar</AssemblyName>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+  </ItemGroup>
 
 </Project>

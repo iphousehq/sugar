@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Management;
-using Sugar.Extensions;
 
 namespace Sugar.Command
 {
@@ -121,11 +120,16 @@ namespace Sugar.Command
                 if (input.StartsWith(@""""))
                 {
                     // After 2nd quote
-                    result = input.SubstringAfterChar(@"""").SubstringAfterChar(@"""").Trim();
+                    result = input.Substring(2).Trim();
                 }
                 else
                 {
-                    result = input.SubstringAfterChar(" ");
+                    var indexOfSpace = input.IndexOf(" ", StringComparison.Ordinal);
+
+                    if (indexOfSpace > -1)
+                    {
+                        result = input.Substring(indexOfSpace + 1);
+                    }                    
                 }
             }
 

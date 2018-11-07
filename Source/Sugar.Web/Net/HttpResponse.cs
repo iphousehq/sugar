@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
-using Sugar.Extensions;
 
 namespace Sugar.Net
 {
@@ -41,10 +40,7 @@ namespace Sugar.Net
         /// <value>
         ///   <c>true</c> if [was redirected]; otherwise, <c>false</c>.
         /// </value>
-        public bool WasRedirected
-        {
-            get { return Url != RedirectedUrl; }
-        }
+        public bool WasRedirected => Url != RedirectedUrl;
 
         /// <summary>
         /// Gets or sets the stream.
@@ -78,10 +74,7 @@ namespace Sugar.Net
         /// Gets a value indicating whether the download operation completed successfully.
         /// </summary>
         /// <value><c>true</c> if [exception occured]; otherwise, <c>false</c>.</value>
-        public bool Success
-        {
-            get { return Exception == null; }
-        }
+        public bool Success => Exception == null;
 
         /// <summary>
         /// Gets or sets the status code.
@@ -119,8 +112,15 @@ namespace Sugar.Net
             {
                 var contentTypeHeader = Headers["Content-Type"];
 
-                var charset = contentTypeHeader.SubstringAfterChar("charset=");
+                string charset = null;
 
+                var indexOfCharset= contentTypeHeader.IndexOf("charset=", StringComparison.OrdinalIgnoreCase);
+
+                if (indexOfCharset >= 0)
+                {
+                    charset = contentTypeHeader.Substring(indexOfCharset + 8);
+                }
+                
                 try
                 {
                     encoding = Encoding.GetEncoding(charset);
@@ -152,7 +152,7 @@ namespace Sugar.Net
         /// </summary>
         /// <param name="encoding">The encoding.</param>
         /// <returns></returns>
-        public String ToString(Encoding encoding)
+        public string ToString(Encoding encoding)
         {
             // Ensure encodings are registered
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
