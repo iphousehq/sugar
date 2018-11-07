@@ -117,10 +117,20 @@ namespace Sugar.Command
 
             if (!string.IsNullOrEmpty(input))
             {
+                // Does the input start with a quoted path (e.g. "c:\program files\path\to\program.exe"?
                 if (input.StartsWith(@""""))
                 {
+                    result = input;
+
                     // After 2nd quote
-                    result = input.Substring(2).Trim();
+                    for (int i = 0; i < 2; i++)
+                    {
+                        var quoteIndex = result.IndexOf(@"""", StringComparison.Ordinal);
+
+                        result = result.Substring(quoteIndex + 1).Trim();
+                    }
+
+                    result = result.Trim();
                 }
                 else
                 {
