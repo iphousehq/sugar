@@ -201,7 +201,9 @@ namespace Sugar.Net
                     if (request.CurrentRedirects < request.MaximumRedirects)
                     {
                         request.Url = response.RedirectedUrl;
+                        request.Host = new Url(request.Url).Domain;
                         request.CurrentRedirects++;
+
                         response = Download(request);
                     }
                 }
