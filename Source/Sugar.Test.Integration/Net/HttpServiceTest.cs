@@ -104,8 +104,8 @@ namespace Sugar.Net
 
             var response = service.Download(request);
 
-            Assert.False(response.Success);
-            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+            Assert.True(response.Success);
+            Assert.AreEqual("http://page.1688.com/shtml/static/wrongpage.html", response.RedirectedUrl);
         }
     }
 }
