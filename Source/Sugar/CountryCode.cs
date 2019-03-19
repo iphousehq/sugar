@@ -9,7 +9,7 @@ namespace Sugar
     public enum CountryCode
     {
         // ReSharper disable InconsistentNaming
-        /// <summary>
+
         /// <summary>
         /// Afghanistan
         /// </summary>
@@ -1954,22 +1954,17 @@ namespace Sugar
         [TypeaheadToken("APO")]
         [TypeaheadToken("FPO")]
         AA,
+
         /// <summary>
         /// Unknown
         /// </summary>
         Unknown,
         /// <summary>
-        /// Former Yugoslavia
-        /// </summary>
-        [Description("Former Yugoslavia")]
-        [LanguageTag("sr")]
-        [TypeaheadToken("Former")]
-        [TypeaheadToken("Yugoslavia")]
-        FY,
-        /// <summary>
         /// Global
         /// </summary>
         Global,
+
+
         /// <summary>
         /// South Sudan
         /// </summary>

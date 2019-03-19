@@ -113,7 +113,9 @@ namespace Sugar
         [Description("Venezuelan Bolívar Soberano")]
         VES,
         [Description("Vietnamese Dong")]
-        VND
+        VND,
+        [Description("Saudi Arabian Riyal")]
+        SAR
         // ReSharper restore InconsistentNaming
     }
 }

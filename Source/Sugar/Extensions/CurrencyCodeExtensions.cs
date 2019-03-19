@@ -88,6 +88,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.PLN: return "zł";
                 case CurrencyCode.RON: return "lei";
                 case CurrencyCode.RUB: return "руб";
+                case CurrencyCode.SAR: return "﷼";
                 case CurrencyCode.SEK: return "kr";
                 case CurrencyCode.SGD: return "$";
                 case CurrencyCode.THB: return "฿";
@@ -155,6 +156,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.PLN: return "&#122;&#322; ";
                 case CurrencyCode.RON: return "&#108;&#101;&#105; ";
                 case CurrencyCode.RUB: return "&#1088;&#1091;&#1073; ";
+                case CurrencyCode.SAR: return "﷼ ";
                 case CurrencyCode.SEK: return "kr ";
                 case CurrencyCode.SGD: return "&#36; ";
                 case CurrencyCode.THB: return "&#3647; ";
@@ -210,6 +212,7 @@ namespace Sugar.Extensions
                 case "zł": return CurrencyCode.PLN;
                 case "lei": return CurrencyCode.RON;
                 case "руб": return CurrencyCode.RUB;
+                case "﷼": return CurrencyCode.SAR;
                 case "kr": return CurrencyCode.SEK;
                 case "฿": return CurrencyCode.THB;
                 case "TL": return CurrencyCode.TRY;
@@ -357,6 +360,7 @@ namespace Sugar.Extensions
                 case CountryCode.JO: return CurrencyCode.JOD;
                 case CountryCode.AE: return CurrencyCode.AED;
                 case CountryCode.VN: return CurrencyCode.VND;
+                case CountryCode.SA: return CurrencyCode.SAR;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
