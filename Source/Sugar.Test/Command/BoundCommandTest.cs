@@ -53,27 +53,13 @@ namespace Sugar.Command
         }
 
         [Test]
-        public void TestCommandDoesntExecutes()
+        public void TestCommandDoesNotExecutesWhenRequiredParameterIsMissing()
         {
             var parameters = new ParameterParser().Parse("-three two");
 
             var command = new FakeCommand();
-
-            command.BindParameters(parameters);
-
-            Assert.Null(command.GetOptions());
-        }
-
-        [Test]
-        public void TestCommandDoesntExecutesWithMinus()
-        {
-            var parameters = new ParameterParser().Parse(@"-three ""-two""");
-
-            var command = new FakeCommand();
-
-            command.BindParameters(parameters);
-
-            Assert.Null(command.GetOptions());
+            
+            Assert.Throws<RequiredParameterMissingException>(() => command.BindParameters(parameters));
         }
     }
 }

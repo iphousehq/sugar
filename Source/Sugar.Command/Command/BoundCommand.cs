@@ -14,7 +14,7 @@
         /// <returns>0</returns>
         public static int Success()
         {
-            return (int)ExitCode.Success;
+            return (int) ExitCode.Success;
         }
 
         /// <summary>
@@ -23,7 +23,7 @@
         /// <returns>-1</returns>
         public static int Fail()
         {
-            return (int)ExitCode.GeneralError;
+            return (int) ExitCode.GeneralError;
         }
 
         /// <summary>
@@ -48,6 +48,13 @@
         /// <returns></returns>
         public int Execute()
         {
+            if (OptionsBound == null)
+            {
+
+
+                return (int) ExitCode.NoCommand;
+            }
+
             return Execute(OptionsBound);
         }
     }

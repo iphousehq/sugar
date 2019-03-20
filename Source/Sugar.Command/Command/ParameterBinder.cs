@@ -14,7 +14,10 @@ namespace Sugar.Command
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="parameters">The parameters.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// An instance of <see cref="T"/> with values mapped to its properties.
+        /// Otherwise null is returned when a required parameter is missing.
+        /// </returns>
         public static T Bind<T>(Parameters parameters) where T : new()
         {
             var result = new T();
@@ -67,9 +70,7 @@ namespace Sugar.Command
                 // Attribute required check
                 if (set || !attribute.Required) continue;
 
-                result = default(T);
-
-                break;
+                throw new RequiredParameterMissingException($"Required parameter \"{attribute.GetName()}\" missing or without corresponding value", property.Name);
             }
 
             return result;

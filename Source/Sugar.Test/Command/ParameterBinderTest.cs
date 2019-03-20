@@ -100,23 +100,29 @@ namespace Sugar.Command
         }
 
         [Test]
-        public void TestBindObjectFailsWhenParametersRequired()
+        public void TestBindThrowsExceptionWhenRequiredParameterIsMissing()
         {
             var parameters = parser.Parse("-one -two");
 
-            var result = ParameterBinder.Bind<Bar>(parameters);
-
-            Assert.IsNull(result);
+            Assert.Throws<RequiredParameterMissingException>(() => ParameterBinder.Bind<Bar>(parameters), "Required parameter \"first\" missing or without corresponding value");
         }
 
         [Test]
-        public void TestBindObjectFailsWhenFlagNotSet()
+        public void TestBindThrowsExceptionWhenRequiredParameterHasNoValue()
         {
             var parameters = parser.Parse("-first");
+            
+            Assert.Throws<RequiredParameterMissingException>(() => ParameterBinder.Bind<Bar>(parameters), "Required parameter \"first\" missing or without corresponding value");
+        }
+
+        [Test]
+        public void TestBindThrowsExceptionWhenRequiredParameterHasValue()
+        {
+            var parameters = parser.Parse("-first value");
 
             var result = ParameterBinder.Bind<Bar>(parameters);
 
-            Assert.IsNull(result);
+            Assert.AreEqual("value", result.First);
         }
 
         [Test]
