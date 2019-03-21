@@ -1964,7 +1964,14 @@ namespace Sugar
         /// </summary>
         Global,
 
-
+        /// <summary>
+        /// Former Yugoslavia
+        /// </summary>
+        [Description("Former Yugoslavia")]
+        [LanguageTag("sr")]
+        [TypeaheadToken("Former")]
+        [TypeaheadToken("Yugoslavia")]
+        FY,
         /// <summary>
         /// South Sudan
         /// </summary>
