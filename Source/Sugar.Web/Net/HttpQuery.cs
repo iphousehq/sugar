@@ -7,22 +7,16 @@ namespace Sugar.Net
     /// </summary>
     public class HttpQuery
     {
+        private readonly IHttpService httpService;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpQuery"/> class.
         /// </summary>
         /// <param name="httpService">The HTTP service.</param>
         public HttpQuery(IHttpService httpService)
         {
-            HttpService = httpService;
+            this.httpService = httpService;
         }
-
-        /// <summary>
-        /// Gets or sets the HTTP service.
-        /// </summary>
-        /// <value>
-        /// The HTTP service.
-        /// </value>
-        public IHttpService HttpService { get; set; }
 
         /// <summary>
         /// Gets or sets the request.
@@ -30,7 +24,7 @@ namespace Sugar.Net
         /// <value>
         /// The request.
         /// </value>
-        public HttpRequest Request { get; set; }
+        public HttpRequest Request { get; private set; }
 
         /// <summary>
         /// Gets or sets the response.
@@ -38,7 +32,7 @@ namespace Sugar.Net
         /// <value>
         /// The response.
         /// </value>
-        public HttpResponse Response { get; set; }
+        public HttpResponse Response { get; private set; }
 
         /// <summary>
         /// Gets the specified URL.
@@ -54,7 +48,7 @@ namespace Sugar.Net
         /// <returns></returns>
         public virtual HttpQuery Get(string url, string agent, CookieContainer cookies = null, bool persistState = true, string referer = null, int retries = 0, int timeout = 2500)
         {
-            Request = HttpService.Build(url, HttpVerb.Get, agent, cookies, referer, retries, timeout);
+            Request = httpService.Build(url, HttpVerb.Get, agent, cookies, referer, retries, timeout);
 
             // Persist cookies across requests
             if (Response != null && persistState)
@@ -63,10 +57,9 @@ namespace Sugar.Net
                 Request.Cookies = Response.Cookies;
             }
 
-            Response = HttpService.Download(Request);
+            Response = httpService.Download(Request);
 
             return this;
         }
-
     }
 }

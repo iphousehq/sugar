@@ -13,10 +13,7 @@ namespace Sugar.Mime
         /// <value>
         /// The type of the base MIME.
         /// </value>
-        public override BaseMimeType BaseMimeType
-        {
-            get { return BaseMimeType.Application; }
-        }
+        public override BaseMimeType BaseMimeType => BaseMimeType.Application;
 
         /// <summary>
         /// Gets or sets the type of the MIME.
@@ -24,10 +21,7 @@ namespace Sugar.Mime
         /// <value>
         /// The type of the MIME.
         /// </value>
-        public override Enum MimeType
-        {
-            get { return ApplicationMimeType; }
-        }
+        public override Enum MimeType => ApplicationMimeType;
 
         /// <summary>
         /// Gets or sets the type of the application MIME.

@@ -5,7 +5,7 @@ namespace Sugar.Http
     /// <summary>
     /// Extension methods for <see cref="HttpRequestMessage"/>
     /// </summary>
-    public static class HttpRequestMesssageExtensions
+    public static class HttpRequestMessageExtensions
     {
         /// <summary>
         /// Sets the HTTP request accept header to HTML.

@@ -13,10 +13,7 @@ namespace Sugar.Mime
         /// <value>
         /// The type of the base MIME.
         /// </value>
-        public override BaseMimeType BaseMimeType
-        {
-            get { return BaseMimeType.Video; }
-        }
+        public override BaseMimeType BaseMimeType => BaseMimeType.Video;
 
         /// <summary>
         /// Gets or sets the type of the MIME.
@@ -24,10 +21,7 @@ namespace Sugar.Mime
         /// <value>
         /// The type of the MIME.
         /// </value>
-        public override Enum MimeType
-        {
-            get { return VideoMimeType; }
-        }
+        public override Enum MimeType => VideoMimeType;
 
         /// <summary>
         /// Gets or sets the type of the video MIME.

@@ -13,10 +13,7 @@ namespace Sugar.Mime
         /// <value>
         /// The type of the base MIME.
         /// </value>
-        public override BaseMimeType BaseMimeType
-        {
-            get { return BaseMimeType.Audio; }
-        }
+        public override BaseMimeType BaseMimeType => BaseMimeType.Audio;
 
         /// <summary>
         /// Gets or sets the type of the MIME.
@@ -24,10 +21,7 @@ namespace Sugar.Mime
         /// <value>
         /// The type of the MIME.
         /// </value>
-        public override Enum MimeType
-        {
-            get { return AudioMimeType; }
-        }
+        public override Enum MimeType => AudioMimeType;
 
         /// <summary>
         /// Gets or sets the type of the audio MIME.
