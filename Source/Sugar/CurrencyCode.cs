@@ -115,7 +115,11 @@ namespace Sugar
         [Description("Vietnamese Dong")]
         VND,
         [Description("Saudi Arabian Riyal")]
-        SAR
+        SAR,
+        [Description("Sri Lankan Rupee")]
+        LKR,
+        [Description("Nepalese Rupee")]
+        NPR
         // ReSharper restore InconsistentNaming
     }
 }

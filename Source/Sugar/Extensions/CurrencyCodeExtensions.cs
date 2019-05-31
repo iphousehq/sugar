@@ -77,10 +77,12 @@ namespace Sugar.Extensions
                 case CurrencyCode.KRW: return "₩";
                 case CurrencyCode.LBP: return "ل.ل";
                 case CurrencyCode.LTL: return "Lt";
+                case CurrencyCode.LKR: return "Rs";
                 case CurrencyCode.LVL: return "Ls";
                 case CurrencyCode.MXN: return "$";
                 case CurrencyCode.MYR: return "RM";
                 case CurrencyCode.NOK: return "kr";
+                case CurrencyCode.NPR: return "Rs";
                 case CurrencyCode.NZD: return "$";
                 case CurrencyCode.PAB: return "B/.";
                 case CurrencyCode.PEN: return "S/.";
@@ -145,10 +147,12 @@ namespace Sugar.Extensions
                 case CurrencyCode.KRW: return "&#8361; ";
                 case CurrencyCode.LBP: return "&#163;";
                 case CurrencyCode.LTL: return "Lt ";
+                case CurrencyCode.LKR: return "Rs ";
                 case CurrencyCode.LVL: return "Ls ";
                 case CurrencyCode.MXN: return "&#36; ";
                 case CurrencyCode.MYR: return "RM ";
                 case CurrencyCode.NOK: return "kr ";
+                case CurrencyCode.NPR: return "Rs ";
                 case CurrencyCode.NZD: return "&#36; ";
                 case CurrencyCode.PAB: return "B/. ";
                 case CurrencyCode.PEN: return "S/. ";
@@ -361,6 +365,10 @@ namespace Sugar.Extensions
                 case CountryCode.AE: return CurrencyCode.AED;
                 case CountryCode.VN: return CurrencyCode.VND;
                 case CountryCode.SA: return CurrencyCode.SAR;
+                case CountryCode.LK: return CurrencyCode.LKR;
+                case CountryCode.NP: return CurrencyCode.NPR;
+                case CountryCode.SK: return CurrencyCode.EUR;
+                case CountryCode.CY: return CurrencyCode.EUR;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
