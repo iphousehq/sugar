@@ -16,7 +16,7 @@ namespace Sugar.Extensions
         /// <returns></returns>
         public static CurrencyCode? FindCurrencyCode(this string text)
         {
-            var occurences = new List<(int Index, CurrencyCode Code)>();
+            var occurrences = new List<(int Index, CurrencyCode Code)>();
 
             foreach (CurrencyCode code in Enum.GetValues(typeof(CurrencyCode)))
             {
@@ -28,13 +28,13 @@ namespace Sugar.Extensions
 
                     if (index > -1)
                     {
-                        occurences.Add((index, code));
+                        occurrences.Add((index, code));
                     }
                 }
             }
 
-            return occurences.Any()
-                       ? occurences.OrderBy(o => o.Index)
+            return occurrences.Any()
+                       ? occurrences.OrderBy(o => o.Index)
                                    .Select(o => o.Code)
                                    .FirstOrDefault()
                        : (CurrencyCode?) null;
@@ -105,6 +105,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.ZAR: return "R";
                 case CurrencyCode.UAH: return "₴";
                 case CurrencyCode.VND: return "₫";
+                case CurrencyCode.MNT: return "₮";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
@@ -175,6 +176,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.ZAR: return "R ";
                 case CurrencyCode.UAH: return "&#8372;";
                 case CurrencyCode.VND: return "&#8363;";
+                case CurrencyCode.MNT: return "&#8366;";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");
@@ -227,6 +229,7 @@ namespace Sugar.Extensions
                 case "R": return CurrencyCode.ZAR;
                 case "₴": return CurrencyCode.UAH;
                 case "₫": return CurrencyCode.VND;
+                case "₮": return CurrencyCode.MNT;
 
             }
 
@@ -369,6 +372,7 @@ namespace Sugar.Extensions
                 case CountryCode.NP: return CurrencyCode.NPR;
                 case CountryCode.SK: return CurrencyCode.EUR;
                 case CountryCode.CY: return CurrencyCode.EUR;
+                case CountryCode.MN: return CurrencyCode.MNT;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");

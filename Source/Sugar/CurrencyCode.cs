@@ -119,7 +119,9 @@ namespace Sugar
         [Description("Sri Lankan Rupee")]
         LKR,
         [Description("Nepalese Rupee")]
-        NPR
+        NPR,
+        [Description("Mongolian Tögrög")]
+        MNT
         // ReSharper restore InconsistentNaming
     }
 }
