@@ -97,6 +97,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.TRY: return "TL";
                 case CurrencyCode.TWD: return "NT$";
                 case CurrencyCode.USD: return "$";
+                case CurrencyCode.XCD: return "$";
                 case CurrencyCode.UYU: return "$U";
                 case CurrencyCode.VEF:
                 case CurrencyCode.VEF_BLKMKT:
@@ -168,6 +169,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.TRY: return "TL ";
                 case CurrencyCode.TWD: return "&#78;&#84;&#36; ";
                 case CurrencyCode.USD: return "&#36; ";
+                case CurrencyCode.XCD: return "&#36; ";
                 case CurrencyCode.UYU: return "&#36;&#85; ";
                 case CurrencyCode.VEF:
                 case CurrencyCode.VEF_DICOM:
@@ -373,6 +375,7 @@ namespace Sugar.Extensions
                 case CountryCode.SK: return CurrencyCode.EUR;
                 case CountryCode.CY: return CurrencyCode.EUR;
                 case CountryCode.MN: return CurrencyCode.MNT;
+                case CountryCode.VC: return CurrencyCode.XCD;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");

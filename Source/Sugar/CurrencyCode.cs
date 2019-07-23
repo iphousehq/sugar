@@ -121,7 +121,9 @@ namespace Sugar
         [Description("Nepalese Rupee")]
         NPR,
         [Description("Mongolian Tögrög")]
-        MNT
+        MNT,
+        [Description("Eastern Caribbean dollar")]
+        XCD
         // ReSharper restore InconsistentNaming
     }
 }
