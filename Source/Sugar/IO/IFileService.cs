@@ -47,6 +47,13 @@ namespace Sugar.IO
         void WriteAllText(string path, string contents);
 
         /// <summary>
+        /// Create a new file, writes the bytes to the file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="bytes">The bytes.</param>
+        void WriteAllBytes(string path, byte[] bytes);
+
+        /// <summary>
         /// Gets the user's profile data directory.
         /// </summary>
         /// <returns></returns>

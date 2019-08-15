@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
+using System.Net.Http;
+using System.Text;
 using NUnit.Framework;
+using Sugar.Extensions;
 
 namespace Sugar.IO
 {
@@ -75,6 +79,21 @@ namespace Sugar.IO
             var ignored = service.IsIgnored("c:\\bin\\test.txt", "*bin\\*");
 
             Assert.IsTrue(ignored);
+        }
+
+        [Test]
+        public void TestWriteAllBytes()
+        {
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"test.txt");
+            var bytes = Encoding.ASCII.GetBytes("hello world");
+
+            service.WriteAllBytes(path, bytes);
+
+            var exists = File.Exists(path);
+
+            Assert.True(exists);
+
+            File.Delete(path);
         }
     }
 }
