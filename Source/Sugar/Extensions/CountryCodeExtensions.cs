@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Linq;
 
 namespace Sugar.Extensions
 {
@@ -513,6 +515,25 @@ namespace Sugar.Extensions
                 default:
                     throw new ArgumentOutOfRangeException(nameof(alpha3), alpha3, "Unknown country code");
             }
+        }
+
+        /// <summary>
+        /// Countries the name to country code.
+        /// </summary>
+        /// <param name="countryName">Name of the country.</param>
+        /// <returns></returns>
+        public static CountryCode? CountryNameToCountryCode(string countryName)
+        {
+            var countryCodes = Enum.GetValues(typeof(CountryCode)).Cast<CountryCode>();
+            foreach (var countryCode in countryCodes)
+            {
+                if (countryCode.GetAttribute<DescriptionAttribute>().Description == countryName)
+                {
+                    return countryCode;
+                }
+            }
+
+            return null;
         }
     }
 }
