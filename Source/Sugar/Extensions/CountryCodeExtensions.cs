@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Sugar.Extensions
 {
@@ -520,14 +523,25 @@ namespace Sugar.Extensions
         /// <summary>
         /// Countries the name to country code.
         /// </summary>
+        /// <param name="originCountry">The origin country. Used to determine the language in which the countryName string is supplied</param>
         /// <param name="countryName">Name of the country.</param>
         /// <returns></returns>
-        public static CountryCode? CountryNameToCountryCode(string countryName)
+        public static CountryCode? CountryNameToCountryCode(CountryCode originCountry, string countryName)
         {
+            var countryNamesJson = File.ReadAllText($"./Resources/CountryNames/country-names-amazon-{originCountry.ToString().ToLower()}.json");
+            var countryNamesDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(countryNamesJson);
+
+            if (!countryNamesDictionary.ContainsKey(countryName))
+            {
+                return null;
+            }
+
+            var translatedCountryName = countryNamesDictionary[countryName];
+
             var countryCodes = Enum.GetValues(typeof(CountryCode)).Cast<CountryCode>();
             foreach (var countryCode in countryCodes)
             {
-                if (countryCode.GetAttribute<DescriptionAttribute>().Description == countryName)
+                if (countryCode.GetAttribute<DescriptionAttribute>().Description == translatedCountryName)
                 {
                     return countryCode;
                 }

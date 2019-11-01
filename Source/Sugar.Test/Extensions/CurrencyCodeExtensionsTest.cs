@@ -91,10 +91,14 @@ namespace Sugar.Extensions
         [Test]
         public void TestCountryNameToCountryCode()
         {
-            var result = CountryCodeExtensions.CountryNameToCountryCode("United Kingdom");
+            var ukInCa = CountryCodeExtensions.CountryNameToCountryCode(CountryCode.CA, "United Kingdom");
+            var brInBr = CountryCodeExtensions.CountryNameToCountryCode(CountryCode.BR, "Brasil");
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual(CountryCode.GB, result);
+            Assert.IsNotNull(ukInCa);
+            Assert.AreEqual(CountryCode.GB, ukInCa);
+
+            Assert.IsNotNull(brInBr);
+            Assert.AreEqual(CountryCode.BR, brInBr);
         }
     }
 }
