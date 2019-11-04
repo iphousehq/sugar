@@ -87,18 +87,5 @@ namespace Sugar.Extensions
             Assert.True(result.HasValue);
             Assert.AreEqual(CurrencyCode.GBP, result.Value);
         }
-
-        [Test]
-        public void TestCountryNameToCountryCode()
-        {
-            var ukInCa = CountryCodeExtensions.CountryNameToCountryCode(CountryCode.CA, "United Kingdom");
-            var brInBr = CountryCodeExtensions.CountryNameToCountryCode(CountryCode.BR, "Brasil");
-
-            Assert.IsNotNull(ukInCa);
-            Assert.AreEqual(CountryCode.GB, ukInCa);
-
-            Assert.IsNotNull(brInBr);
-            Assert.AreEqual(CountryCode.BR, brInBr);
-        }
     }
 }
