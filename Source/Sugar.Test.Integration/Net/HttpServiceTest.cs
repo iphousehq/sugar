@@ -76,36 +76,13 @@ namespace Sugar.Net
 
             Assert.IsNull(response.Bytes);
         }
-        
+
         [Test]
         public void TestPostWithoutBody()
         {
             var response = service.Post("http://httpbin.org/post", string.Empty);
 
             Assert.True(response.Success);
-        }
-
-        [Test]
-        public void TestGetWhenRedirectedFromHttpsToHttp()
-        {
-            var request = new HttpRequest
-                          {
-                              Url = "https://detail.1688.com/offer/949129641.html",
-                              Verb = HttpVerb.Get,
-                              Accept = "text/html,application/xhtml+xml,application/xml",
-                              UserAgent = "Mozilla/5.0 (Windows NT 5.0; rv:21.0) Gecko/20100101 Firefox/21.0",
-                              AllowAutoRedirect = true,
-                              Encoding = Encoding.UTF8,
-                              Host = "detail.1688.com",
-                              KeepAlive = false,
-                              Retries = 0,
-                              Timeout = 60000
-                          };
-
-            var response = service.Download(request);
-
-            Assert.True(response.Success);
-            Assert.AreEqual("http://page.1688.com/shtml/static/wrongpage.html", response.RedirectedUrl);
         }
     }
 }
