@@ -35,8 +35,8 @@ namespace Sugar.Extensions
 
             return occurrences.Any()
                        ? occurrences.OrderBy(o => o.Index)
-                                   .Select(o => o.Code)
-                                   .FirstOrDefault()
+                                    .Select(o => o.Code)
+                                    .FirstOrDefault()
                        : (CurrencyCode?) null;
         }
 
@@ -52,6 +52,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.AED: return "د.إ";
                 case CurrencyCode.ARS: return "$";
                 case CurrencyCode.AUD: return "$";
+                case CurrencyCode.BOB: return "Bs";
                 case CurrencyCode.BGN: return "лв";
                 case CurrencyCode.BRL: return "R$";
                 case CurrencyCode.CAD: return "$";
@@ -67,7 +68,9 @@ namespace Sugar.Extensions
                 case CurrencyCode.EGP: return "E£";
                 case CurrencyCode.EUR: return "€";
                 case CurrencyCode.GBP: return "£";
+                case CurrencyCode.GTQ: return "Q";
                 case CurrencyCode.HKD: return "$";
+                case CurrencyCode.HML: return "L";
                 case CurrencyCode.HRK: return "kn";
                 case CurrencyCode.HUF: return "Ft";
                 case CurrencyCode.IDR: return "Rp";
@@ -81,6 +84,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.LVL: return "Ls";
                 case CurrencyCode.MXN: return "$";
                 case CurrencyCode.MYR: return "RM";
+                case CurrencyCode.NIO: return "C$";
                 case CurrencyCode.NOK: return "kr";
                 case CurrencyCode.NPR: return "Rs";
                 case CurrencyCode.NZD: return "$";
@@ -88,6 +92,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.PEN: return "S/.";
                 case CurrencyCode.PHP: return "Php";
                 case CurrencyCode.PLN: return "zł";
+                case CurrencyCode.PYG: return "₲";
                 case CurrencyCode.RON: return "lei";
                 case CurrencyCode.RUB: return "руб";
                 case CurrencyCode.SAR: return "﷼";
@@ -124,6 +129,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.AED: return "&#x62f;&#x2e;&#x625;";
                 case CurrencyCode.ARS: return "&#36; ";
                 case CurrencyCode.AUD: return "&#36; ";
+                case CurrencyCode.BOB: return "Bs ";
                 case CurrencyCode.BGN: return "&#1083;&#1074; ";
                 case CurrencyCode.BRL: return "&#82;&#36; ";
                 case CurrencyCode.CAD: return "&#36; ";
@@ -139,7 +145,9 @@ namespace Sugar.Extensions
                 case CurrencyCode.EGP: return "E&pound; ";
                 case CurrencyCode.EUR: return "&#8364; ";
                 case CurrencyCode.GBP: return "&#163; ";
+                case CurrencyCode.GTQ: return "Q ";
                 case CurrencyCode.HKD: return "&#36; ";
+                case CurrencyCode.HML: return "L ";
                 case CurrencyCode.HRK: return "&#107;&#110; ";
                 case CurrencyCode.HUF: return "&#70;&#116; ";
                 case CurrencyCode.IDR: return "&#82;&#112; ";
@@ -154,12 +162,14 @@ namespace Sugar.Extensions
                 case CurrencyCode.MXN: return "&#36; ";
                 case CurrencyCode.MYR: return "RM ";
                 case CurrencyCode.NOK: return "kr ";
+                case CurrencyCode.NIO: return "&#67;&#36; ";
                 case CurrencyCode.NPR: return "Rs ";
                 case CurrencyCode.NZD: return "&#36; ";
                 case CurrencyCode.PAB: return "B/. ";
                 case CurrencyCode.PEN: return "S/. ";
                 case CurrencyCode.PHP: return "Php ";
                 case CurrencyCode.PLN: return "&#122;&#322; ";
+                case CurrencyCode.PYG: return "&#8370; ";
                 case CurrencyCode.RON: return "&#108;&#101;&#105; ";
                 case CurrencyCode.RUB: return "&#1088;&#1091;&#1073; ";
                 case CurrencyCode.SAR: return "﷼ ";
@@ -203,6 +213,8 @@ namespace Sugar.Extensions
                 case "E£": return CurrencyCode.EGP;
                 case "€": return CurrencyCode.EUR;
                 case "£": return CurrencyCode.GBP;
+                case "Q": return CurrencyCode.GTQ;
+                case "L": return CurrencyCode.HML;
                 case "kn": return CurrencyCode.HRK;
                 case "Ft": return CurrencyCode.HUF;
                 case "₹": return CurrencyCode.INR;
@@ -214,10 +226,12 @@ namespace Sugar.Extensions
                 case "Lt": return CurrencyCode.LTL;
                 case "Ls": return CurrencyCode.LVL;
                 case "RM": return CurrencyCode.MYR;
+                case "C$": return CurrencyCode.NIO;
                 case "B/.": return CurrencyCode.PAB;
                 case "S/.": return CurrencyCode.PEN;
                 case "Php": return CurrencyCode.PHP;
                 case "zł": return CurrencyCode.PLN;
+                case "₲": return CurrencyCode.PYG;
                 case "lei": return CurrencyCode.RON;
                 case "руб": return CurrencyCode.RUB;
                 case "﷼": return CurrencyCode.SAR;
@@ -232,7 +246,6 @@ namespace Sugar.Extensions
                 case "₴": return CurrencyCode.UAH;
                 case "₫": return CurrencyCode.VND;
                 case "₮": return CurrencyCode.MNT;
-
             }
 
             var success = Enum.TryParse(symbol, true, out CurrencyCode currency);
@@ -376,10 +389,91 @@ namespace Sugar.Extensions
                 case CountryCode.CY: return CurrencyCode.EUR;
                 case CountryCode.MN: return CurrencyCode.MNT;
                 case CountryCode.VC: return CurrencyCode.XCD;
+                case CountryCode.BO: return CurrencyCode.BOB;
+                case CountryCode.GT: return CurrencyCode.GTQ;
+                case CountryCode.HN: return CurrencyCode.HML;
+                case CountryCode.NI: return CurrencyCode.NIO;
+                case CountryCode.PY: return CurrencyCode.PYG;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
             }
+        }
+
+        /// <summary>
+        /// Returns the country that this currency is issued by.
+        /// </summary>
+        /// <returns></returns>
+        public static CountryCode ToCountryCode(this CurrencyCode code)
+        {
+            switch (code)
+            {
+                case CurrencyCode.AED: return CountryCode.AE;
+                case CurrencyCode.AUD: return CountryCode.AU;
+                case CurrencyCode.BOB: return CountryCode.BO;
+                case CurrencyCode.BGN: return CountryCode.BG;
+                case CurrencyCode.BRL: return CountryCode.BR;
+                case CurrencyCode.CAD: return CountryCode.CA;
+                case CurrencyCode.CHF: return CountryCode.CH;
+                case CurrencyCode.CNY: return CountryCode.CN;
+                case CurrencyCode.CZK: return CountryCode.CZ;
+                case CurrencyCode.DKK: return CountryCode.DK;
+                case CurrencyCode.EEK: return CountryCode.EE;
+                case CurrencyCode.EGP: return CountryCode.EG;
+                case CurrencyCode.EUR: return CountryCode.EU;
+                case CurrencyCode.GBP: return CountryCode.GB;
+                case CurrencyCode.GTQ: return CountryCode.GT;
+                case CurrencyCode.HKD: return CountryCode.HK;
+                case CurrencyCode.HML: return CountryCode.HN;
+                case CurrencyCode.HRK: return CountryCode.HR;
+                case CurrencyCode.HUF: return CountryCode.HU;
+                case CurrencyCode.IDR: return CountryCode.ID;
+                case CurrencyCode.INR: return CountryCode.IN;
+                case CurrencyCode.JOD: return CountryCode.JO;
+                case CurrencyCode.JPY: return CountryCode.JP;
+                case CurrencyCode.KRW: return CountryCode.KR;
+                case CurrencyCode.LBP: return CountryCode.LB;
+                case CurrencyCode.LTL: return CountryCode.LT;
+                case CurrencyCode.LKR: return CountryCode.LK;
+                case CurrencyCode.LVL: return CountryCode.LV;
+                case CurrencyCode.MXN: return CountryCode.MX;
+                case CurrencyCode.MYR: return CountryCode.MY;
+                case CurrencyCode.NIO: return CountryCode.NI;
+                case CurrencyCode.NOK: return CountryCode.NO;
+                case CurrencyCode.NPR: return CountryCode.NP;
+                case CurrencyCode.NZD: return CountryCode.NZ;
+                case CurrencyCode.PHP: return CountryCode.PH;
+                case CurrencyCode.PLN: return CountryCode.PL;
+                case CurrencyCode.RON: return CountryCode.RO;
+                case CurrencyCode.RUB: return CountryCode.RU;
+                case CurrencyCode.SEK: return CountryCode.SE;
+                case CurrencyCode.SGD: return CountryCode.SG;
+                case CurrencyCode.THB: return CountryCode.TH;
+                case CurrencyCode.TRY: return CountryCode.TR;
+                case CurrencyCode.USD: return CountryCode.US;
+                case CurrencyCode.ZAR: return CountryCode.ZA;
+                case CurrencyCode.ARS: return CountryCode.AR;
+                case CurrencyCode.COP: return CountryCode.CO;
+                case CurrencyCode.CRC: return CountryCode.CR;
+                case CurrencyCode.CLP: return CountryCode.CL;
+                case CurrencyCode.DOP: return CountryCode.DO;
+                case CurrencyCode.PEN: return CountryCode.PE;
+                case CurrencyCode.UYU: return CountryCode.UY;
+                case CurrencyCode.VEF: return CountryCode.VE;
+                case CurrencyCode.VES: return CountryCode.VE;
+                case CurrencyCode.VEF_BLKMKT: return CountryCode.VE;
+                case CurrencyCode.VEF_DICOM: return CountryCode.VE;
+                case CurrencyCode.VND: return CountryCode.VN;
+                case CurrencyCode.PAB: return CountryCode.PA;
+                case CurrencyCode.PYG: return CountryCode.PY;
+                case CurrencyCode.TWD: return CountryCode.TW;
+                case CurrencyCode.UAH: return CountryCode.UA;
+                case CurrencyCode.SAR: return CountryCode.SA;
+                case CurrencyCode.MNT: return CountryCode.MN;
+                case CurrencyCode.XCD: return CountryCode.VC;
+            }
+
+            throw new ApplicationException($"Unknown currency / country code: {code}");
         }
     }
 }

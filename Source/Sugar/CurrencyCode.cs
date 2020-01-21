@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Security.Cryptography;
 
 namespace Sugar
 {
@@ -123,7 +124,17 @@ namespace Sugar
         [Description("Mongolian Tögrög")]
         MNT,
         [Description("Eastern Caribbean dollar")]
-        XCD
+        XCD,
+        [Description("Bolivian Boliviano")]
+        BOB,
+        [Description("Guatemalan Quetzal")]
+        GTQ,
+        [Description("Honduran Lempira")]
+        HML,
+        [Description("Nicaraguan Córdoba")]
+        NIO,
+        [Description("Paraguayan Guaraní")]
+        PYG
         // ReSharper restore InconsistentNaming
     }
 }
