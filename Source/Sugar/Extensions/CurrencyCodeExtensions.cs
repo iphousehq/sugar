@@ -70,7 +70,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.GBP: return "£";
                 case CurrencyCode.GTQ: return "Q";
                 case CurrencyCode.HKD: return "$";
-                case CurrencyCode.HML: return "L";
+                case CurrencyCode.HNL: return "L";
                 case CurrencyCode.HRK: return "kn";
                 case CurrencyCode.HUF: return "Ft";
                 case CurrencyCode.IDR: return "Rp";
@@ -147,7 +147,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.GBP: return "&#163; ";
                 case CurrencyCode.GTQ: return "Q ";
                 case CurrencyCode.HKD: return "&#36; ";
-                case CurrencyCode.HML: return "L ";
+                case CurrencyCode.HNL: return "L ";
                 case CurrencyCode.HRK: return "&#107;&#110; ";
                 case CurrencyCode.HUF: return "&#70;&#116; ";
                 case CurrencyCode.IDR: return "&#82;&#112; ";
@@ -214,7 +214,7 @@ namespace Sugar.Extensions
                 case "€": return CurrencyCode.EUR;
                 case "£": return CurrencyCode.GBP;
                 case "Q": return CurrencyCode.GTQ;
-                case "L": return CurrencyCode.HML;
+                case "L": return CurrencyCode.HNL;
                 case "kn": return CurrencyCode.HRK;
                 case "Ft": return CurrencyCode.HUF;
                 case "₹": return CurrencyCode.INR;
@@ -391,7 +391,7 @@ namespace Sugar.Extensions
                 case CountryCode.VC: return CurrencyCode.XCD;
                 case CountryCode.BO: return CurrencyCode.BOB;
                 case CountryCode.GT: return CurrencyCode.GTQ;
-                case CountryCode.HN: return CurrencyCode.HML;
+                case CountryCode.HN: return CurrencyCode.HNL;
                 case CountryCode.NI: return CurrencyCode.NIO;
                 case CountryCode.PY: return CurrencyCode.PYG;
                 
@@ -424,7 +424,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.GBP: return CountryCode.GB;
                 case CurrencyCode.GTQ: return CountryCode.GT;
                 case CurrencyCode.HKD: return CountryCode.HK;
-                case CurrencyCode.HML: return CountryCode.HN;
+                case CurrencyCode.HNL: return CountryCode.HN;
                 case CurrencyCode.HRK: return CountryCode.HR;
                 case CurrencyCode.HUF: return CountryCode.HU;
                 case CurrencyCode.IDR: return CountryCode.ID;
