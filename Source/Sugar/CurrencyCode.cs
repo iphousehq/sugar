@@ -130,7 +130,7 @@ namespace Sugar
         [Description("Guatemalan Quetzal")]
         GTQ,
         [Description("Honduran Lempira")]
-        HML,
+        HNL,
         [Description("Nicaraguan Córdoba")]
         NIO,
         [Description("Paraguayan Guaraní")]

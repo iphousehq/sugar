@@ -87,5 +87,17 @@ namespace Sugar.Extensions
             Assert.True(result.HasValue);
             Assert.AreEqual(CurrencyCode.GBP, result.Value);
         }
+
+        [Test]
+        public void TestCurrencyCodeToCountryCode()
+        {
+            Assert.AreEqual(CountryCode.GB, CurrencyCode.GBP.ToCountryCode());
+        }
+
+        [Test]
+        public void TestCurrencyToCountryCodeCodeForUnknownCountry()
+        {
+            Assert.Throws<ApplicationException>(() => ((CurrencyCode) 100000).ToCountryCode());
+        }
     }
 }
