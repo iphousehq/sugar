@@ -31,7 +31,7 @@ namespace Sugar.Net
         [Test]
         public void TestGet()
         {
-            var response = service.Get("http://arstechnica.com/", string.Empty);
+            var response = service.Get("http://www.nme.com/", string.Empty);
 
             Assert.IsTrue(response.Success);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -55,7 +55,7 @@ namespace Sugar.Net
         [Test]
         public void TestGetHttps()
         {
-            var response = service.Get("https://arstechnica.com/", string.Empty);
+            var response = service.Get("https://www.nme.com/", string.Empty);
 
             Assert.IsTrue(response.Success);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
