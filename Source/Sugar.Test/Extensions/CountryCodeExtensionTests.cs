@@ -16,5 +16,13 @@ namespace Sugar.Extensions
         {
             Assert.AreEqual(CountryCode.GB, CountryCode3.GBR.ToAlpha2());
         }
+
+        [Test]
+        public void TestCountryCodeToGoogleSearchCountry()
+        {
+            Assert.AreEqual("uk", CountryCode.GB.ToGoogleSearchCountry());
+            Assert.AreEqual("",CountryCode.US.ToGoogleSearchCountry());
+            Assert.AreEqual("se",CountryCode.SE.ToGoogleSearchCountry());
+        }
     }
 }

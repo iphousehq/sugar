@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using Newtonsoft.Json;
 
 namespace Sugar.Extensions
 {
@@ -12,6 +7,23 @@ namespace Sugar.Extensions
     /// </summary>
     public static class CountryCodeExtensions
     {
+        /// <summary>
+        /// Converts to iso3166.
+        /// </summary>
+        /// <param name="countryCode">The country code.</param>
+        /// <returns></returns>
+        public static string ToGoogleSearchCountry(this CountryCode countryCode)
+        {
+            switch (countryCode)
+            {
+                case CountryCode.AS: return "ws";
+                case CountryCode.GB: return "uk";
+                case CountryCode.US: return "";
+                default:
+                    return countryCode.ToString().ToLower();
+            }
+        }
+
         /// <summary>
         /// Converts an ISO 3166 alpha-2 country code to its alpha-3 counter part.
         /// </summary>
