@@ -12,7 +12,7 @@ namespace Sugar.Extensions
         /// </summary>
         /// <param name="countryCode">The country code.</param>
         /// <returns></returns>
-        public static string ToGoogleSearchCountry(this CountryCode countryCode)
+        public static string ToIso6381(this CountryCode countryCode)
         {
             switch (countryCode)
             {

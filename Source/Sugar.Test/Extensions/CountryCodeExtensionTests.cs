@@ -20,9 +20,9 @@ namespace Sugar.Extensions
         [Test]
         public void TestCountryCodeToGoogleSearchCountry()
         {
-            Assert.AreEqual("uk", CountryCode.GB.ToGoogleSearchCountry());
-            Assert.AreEqual("",CountryCode.US.ToGoogleSearchCountry());
-            Assert.AreEqual("se",CountryCode.SE.ToGoogleSearchCountry());
+            Assert.AreEqual("uk", CountryCode.GB.ToIso6381());
+            Assert.AreEqual("",CountryCode.US.ToIso6381());
+            Assert.AreEqual("se",CountryCode.SE.ToIso6381());
         }
     }
 }
