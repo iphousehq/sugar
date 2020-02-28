@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Text;
 using NUnit.Framework;
 
 namespace Sugar.Net
@@ -31,7 +30,7 @@ namespace Sugar.Net
         [Test]
         public void TestGet()
         {
-            var response = service.Get("http://arstechnica.com/", string.Empty);
+            var response = service.Get("http://www.eurogamer.net/", string.Empty);
 
             Assert.IsTrue(response.Success);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -55,7 +54,7 @@ namespace Sugar.Net
         [Test]
         public void TestGetHttps()
         {
-            var response = service.Get("https://arstechnica.com/", string.Empty);
+            var response = service.Get("https://www.eurogamer.net/", string.Empty);
 
             Assert.IsTrue(response.Success);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
