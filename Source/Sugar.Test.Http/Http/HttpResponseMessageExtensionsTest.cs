@@ -8,6 +8,22 @@ namespace Sugar.Http
     public class HttpResponseMessageExtensionsTest
     {
         [Test]
+        public void TestGetUrlWhenRequestIsNull()
+        {
+            var response = new HttpResponseMessage();
+
+            Assert.That(response.GetUrl(), Is.Null.Or.Empty);
+        }
+
+        [Test]
+        public void TestGetUrlWhenRequestUrlIsNull()
+        {
+            var response = new HttpResponseMessage { RequestMessage = new HttpRequestMessage() };
+
+            Assert.That(response.GetUrl(), Is.Null.Or.Empty);
+        }
+
+        [Test]
         public void TestGetUrl()
         {
             var response = new HttpResponseMessage {RequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://www.test.com")};

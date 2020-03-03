@@ -15,7 +15,7 @@ namespace Sugar.Http
         /// <returns></returns>
         public static string GetUrl(this HttpResponseMessage response)
         {
-            return response.RequestMessage.RequestUri.AbsoluteUri;
+            return response?.RequestMessage?.RequestUri?.AbsoluteUri;
         }
 
         /// <summary>
