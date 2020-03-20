@@ -7,6 +7,7 @@ namespace Sugar.Moq
     /// <summary>
     /// Helps keeping track of multiple mocks.
     /// </summary>
+    [Obsolete("The same functionality has been implemented by other frameworks e.g. LightInject.AutoMoq")]
     public class MockContext
     {
         private readonly IDictionary<Type, object> mocks = new Dictionary<Type, object>();
