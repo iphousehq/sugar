@@ -1,4 +1,6 @@
 ﻿using System.Net.Http;
+using LightInject;
+using Moq;
 using RichardSzalay.MockHttp;
 using Sugar.Core;
 
@@ -10,21 +12,22 @@ namespace Sugar.Moq
     public static class HttpClientMockContextExtensions
     {
         /// <summary>
-        /// Configures the HTTP client factory that returns a client with a mocked handler.
+        /// Registered an HTTP client factory that returns a client with a mocked handler.
         /// </summary>
-        /// <param name="context">The context.</param>
+        /// <param name="container">The service container.</param>
+        /// <param name="mockHttp">The <see cref="MockHttpMessageHandler" /> instance to register</param>
         /// <returns>The mock HTTP message handler</returns>
-        public static MockHttpMessageHandler ConfigureMockHttpClient(this MockContext context)
+        public static IServiceContainer RegisterMockHttp<T>(this IServiceContainer container, T mockHttp)
+            where T : MockHttpMessageHandler
         {
-            context.AddMock<IAccessor<HttpClient>>();
+            var mockedHttpClientAccessor = new Mock<IAccessor<HttpClient>>();
 
-            var mockHttp = new MockHttpMessageHandler();
+            container.RegisterInstance<IAccessor<HttpClient>>(mockedHttpClientAccessor.Object);
 
-            context.Get<IAccessor<HttpClient>>()
-                .Setup(call => call.Access())
-                .Returns(mockHttp.ToHttpClient());
+            mockedHttpClientAccessor.Setup(call => call.Access())
+                                    .Returns(mockHttp.ToHttpClient());
 
-            return mockHttp;
+            return container;
         }
     }
 }
