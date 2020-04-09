@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar", "Sugar\Sugar.csproj", "{73B64458-AA4E-452A-9302-F58C4163E6EC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Http", "Sugar.Http\Sugar.Http.csproj", "{148AB465-5AC2-45A5-A0A1-4DAC6AE93090}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Web", "Sugar.Web\Sugar.Web.csproj", "{CDD0E8A5-AF3D-4FE6-9580-310730087630}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Test.Http", "Sugar.Test.Http\Sugar.Test.Http.csproj", "{FC5C0E8E-DCCB-4400-B0E4-A5F0DB2BDD49}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{85497C84-5600-4F96-AFB4-DE8D52F3190F}"
 	ProjectSection(SolutionItems) = preProject
@@ -56,12 +54,6 @@ Global
 		{CDD0E8A5-AF3D-4FE6-9580-310730087630}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDD0E8A5-AF3D-4FE6-9580-310730087630}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDD0E8A5-AF3D-4FE6-9580-310730087630}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC5C0E8E-DCCB-4400-B0E4-A5F0DB2BDD49}.ClientProfile|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC5C0E8E-DCCB-4400-B0E4-A5F0DB2BDD49}.ClientProfile|Any CPU.Build.0 = Debug|Any CPU
-		{FC5C0E8E-DCCB-4400-B0E4-A5F0DB2BDD49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC5C0E8E-DCCB-4400-B0E4-A5F0DB2BDD49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC5C0E8E-DCCB-4400-B0E4-A5F0DB2BDD49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC5C0E8E-DCCB-4400-B0E4-A5F0DB2BDD49}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD7A0586-A4B6-4A05-A502-D79CE66AB548}.ClientProfile|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD7A0586-A4B6-4A05-A502-D79CE66AB548}.ClientProfile|Any CPU.Build.0 = Debug|Any CPU
 		{CD7A0586-A4B6-4A05-A502-D79CE66AB548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
