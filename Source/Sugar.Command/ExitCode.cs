@@ -1,7 +1,7 @@
 ﻿namespace Sugar.Command
 {
     /// <summary>
-    /// Enumeration centralising exit codes an console app can return.
+    /// Enumeration centralizing exit codes an console app can return.
     /// </summary>
     public enum ExitCode
     {

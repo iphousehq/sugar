@@ -1,14 +1,13 @@
 ﻿using System;
 using NUnit.Framework;
+using Sugar.Command.Binder;
 
 namespace Sugar.Command
 {
     [TestFixture]
+    [Parallelizable]
     public class ParameterPrinterTest
     {
-        private ParameterParser parser;
-        private ParameterPrinter printer;
-
         private class Foo
         {
             [Parameter("foo", Default = "bar")]
@@ -54,16 +53,11 @@ namespace Sugar.Command
             public bool First { get; set; }
         }
 
-        [SetUp]
-        public void SetUp()
-        {
-            parser = new ParameterParser();
-            printer = new ParameterPrinter();
-        }
-
         [Test]
         public void TestPrintObject()
         {
+            var printer = new ParameterPrinter();
+
             var results = printer.Print("-", typeof(Foo), typeof(Bar), typeof(Baz), typeof(Fizz), typeof(Bizz));
 
             Assert.AreEqual(5, results.Count);
@@ -77,6 +71,8 @@ namespace Sugar.Command
         [Test]
         public void TestPrintObjectsFromAssemly()
         {
+            var printer = new ParameterPrinter();
+
             var results = printer.Print("-", typeof(Foo).Assembly, "Fizz");
 
             Assert.AreEqual(2, results.Count);

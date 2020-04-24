@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Sugar.Command
+namespace Sugar.Command.Binder
 {
     /// <summary>
-    /// Class to bind command line parameters to objects
+    /// Class to output command line parameters.
     /// </summary>
     public class ParameterPrinter
     {
@@ -20,10 +20,9 @@ namespace Sugar.Command
         /// <returns></returns>
         public IList<string> Print(string @switch, Assembly assembly, string className = "Options")
         {
-            var types = assembly
-                .GetTypes()
-                .Where(t => t.Name == className)
-                .ToArray();
+            var types = assembly.GetTypes()
+                                .Where(t => t.Name == className)
+                                .ToArray();
 
             return Print(@switch, types);
         }

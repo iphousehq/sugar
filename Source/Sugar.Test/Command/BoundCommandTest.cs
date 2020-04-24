@@ -1,8 +1,10 @@
 ﻿using NUnit.Framework;
+using Sugar.Command.Binder;
 
 namespace Sugar.Command
 {
     [TestFixture]
+    [Parallelizable]
     public class BoundCommandTest
     {
         private class FakeCommand : BoundCommand<FakeCommand.Options>
@@ -43,7 +45,7 @@ namespace Sugar.Command
         [Test]
         public void TestCommandExecutes()
         {
-            var parameters = new ParameterParser().Parse("-one two");
+            var parameters = new Parameters("foo.exe -one two");
 
             var command = new FakeCommand();
 
@@ -55,7 +57,7 @@ namespace Sugar.Command
         [Test]
         public void TestCommandDoesNotExecutesWhenRequiredParameterIsMissing()
         {
-            var parameters = new ParameterParser().Parse("-three two");
+            var parameters = new Parameters("foo.exe -three two");
 
             var command = new FakeCommand();
             

@@ -1,4 +1,6 @@
-﻿namespace Sugar.Command
+﻿using Sugar.Command.Binder;
+
+namespace Sugar.Command
 {
     /// <summary>
     /// Represent a command bound to parameters (e.g. program.exe -parameter value)
@@ -50,8 +52,6 @@
         {
             if (OptionsBound == null)
             {
-
-
                 return (int) ExitCode.NoCommand;
             }
 

@@ -1,13 +1,13 @@
 ﻿using System;
 using NUnit.Framework;
+using Sugar.Command.Binder;
 
 namespace Sugar.Command
 {
     [TestFixture]
+    [Parallelizable]
     public class ParameterParameterBinderTest
     {
-        private ParameterParser parser;
-
         private class Foo
         {
             [Parameter("foo", Default = "bar")]
@@ -72,16 +72,10 @@ namespace Sugar.Command
             public string LevelTwoA { get; set; }
         }
         
-        [SetUp]
-        public void SetUp()
-        {
-            parser = new ParameterParser();
-        }
-
         [Test]
         public void TestBindObject()
         {
-            var parameters = parser.Parse("one two -foo first");
+            var parameters = new Parameters("foo.exe one two -foo first");
 
             var result = ParameterBinder.Bind<Foo>(parameters);
 
@@ -92,7 +86,7 @@ namespace Sugar.Command
         [Test]
         public void TestBindObjectWithDefaultValues()
         {
-            var parameters = parser.Parse("one two");
+            var parameters = new Parameters("");
 
             var result = ParameterBinder.Bind<Foo>(parameters);
 
@@ -102,7 +96,7 @@ namespace Sugar.Command
         [Test]
         public void TestBindThrowsExceptionWhenRequiredParameterIsMissing()
         {
-            var parameters = parser.Parse("-one -two");
+            var parameters = new Parameters("-one -two");
 
             Assert.Throws<RequiredParameterMissingException>(() => ParameterBinder.Bind<Bar>(parameters), "Required parameter \"first\" missing or without corresponding value");
         }
@@ -110,15 +104,15 @@ namespace Sugar.Command
         [Test]
         public void TestBindThrowsExceptionWhenRequiredParameterHasNoValue()
         {
-            var parameters = parser.Parse("-first");
+            var parameters = new Parameters("-first");
             
             Assert.Throws<RequiredParameterMissingException>(() => ParameterBinder.Bind<Bar>(parameters), "Required parameter \"first\" missing or without corresponding value");
         }
 
         [Test]
-        public void TestBindThrowsExceptionWhenRequiredParameterHasValue()
+        public void TestBindObjectWithRequiredValue()
         {
-            var parameters = parser.Parse("-first value");
+            var parameters = new Parameters("foo.exe -first value");
 
             var result = ParameterBinder.Bind<Bar>(parameters);
 
@@ -128,7 +122,7 @@ namespace Sugar.Command
         [Test]
         public void TestBindObjectWithCustomTypes()
         {
-            var parameters = parser.Parse("-flag -one 1 -two 2 -three 3.4 -four 2008-03-08");
+            var parameters = new Parameters("-flag -one 1 -two 2 -three 3.4 -four 2008-03-08");
 
             var result = ParameterBinder.Bind<Baz>(parameters);
 
@@ -141,7 +135,7 @@ namespace Sugar.Command
         [Test]
         public void TestBindObjectWithNullableDateSet()
         {
-            var parameters = parser.Parse("-flag -five 2014-03-05");
+            var parameters = new Parameters("-flag -five 2014-03-05");
 
             var result = ParameterBinder.Bind<Baz>(parameters);
 
@@ -151,7 +145,7 @@ namespace Sugar.Command
         [Test]
         public void TestBindObjectWithNullableDateAndTimeSetAsIso8601()
         {
-            var parameters = parser.Parse("-flag -five 2014-03-05T23:40:59");
+            var parameters = new Parameters("-flag -five 2014-03-05T23:40:59");
 
             var result = ParameterBinder.Bind<Baz>(parameters);
 
@@ -161,7 +155,7 @@ namespace Sugar.Command
         [Test]
         public void TestBindObjectWithNullableDateAndTimeSetAsIso8601CompactSyntaxIgnoresValue()
         {
-            var parameters = parser.Parse("-flag -five 20140305T234059");
+            var parameters = new Parameters("-flag -five 20140305T234059");
 
             var result = ParameterBinder.Bind<Baz>(parameters);
 
@@ -171,7 +165,7 @@ namespace Sugar.Command
         [Test]
         public void TestBindObjectWithNullableDateNotSet()
         {
-            var parameters = parser.Parse("-flag");
+            var parameters = new Parameters("-flag");
 
             var result = ParameterBinder.Bind<Baz>(parameters);
 
@@ -181,7 +175,7 @@ namespace Sugar.Command
         [Test]
         public void TestBindObjectWithFlags()
         {
-            var parameters = parser.Parse("-flag -first 1");
+            var parameters = new Parameters("-flag -first 1");
 
             var result = ParameterBinder.Bind<Fizz>(parameters);
 
@@ -191,7 +185,7 @@ namespace Sugar.Command
         [Test]
         public void TestBindObjectWithMulitpleFlags()
         {
-            var parameters = parser.Parse("-flag -command -set");
+            var parameters = new Parameters("-flag -command -set");
 
             var result = ParameterBinder.Bind<Bizz>(parameters);
 
@@ -201,7 +195,7 @@ namespace Sugar.Command
         [Test]
         public void TestBindObjectWithParentProperies()
         {
-            var parameters = parser.Parse("-flag -1a oneA -1b oneB -2a twoA");
+            var parameters = new Parameters("-flag -1a oneA -1b oneB -2a twoA");
 
             var result = ParameterBinder.Bind<Child>(parameters);
 

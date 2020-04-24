@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sugar.Command
+namespace Sugar.Command.Binder
 {
     /// <summary>
     /// Exception to throw when a required <see cref="ParameterAttribute"/> is missing.

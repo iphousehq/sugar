@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Sugar.Command.Binder;
 
 namespace Sugar.Command
 {
@@ -56,10 +57,10 @@ namespace Sugar.Command
         /// </summary>
         /// <param name="args">The args.</param>
         /// <returns>The exit code (0 for success)</returns>
-        public int Run(string[] args)
+        public int Run(string args)
         {
             // Get the command line arguments
-            Arguments = new ParameterParser().Parse(args, Switches);
+            Arguments = new Parameters(args, Switches);
 
             // Check user input
             var exitCode = Main();
@@ -76,7 +77,7 @@ namespace Sugar.Command
         /// <param name="args">The arguments.</param>
         protected void SetArguments(string args)
         {
-            Arguments = new ParameterParser().Parse(args, Switches);
+            Arguments = new Parameters(args, Switches);
         }
 
         /// <summary>
@@ -86,7 +87,7 @@ namespace Sugar.Command
         /// <param name="switches">The command switches, e.g. a leading "-", "--" or "/".</param>
         protected void SetArguments(string args, IList<string> switches)
         {
-            Arguments = new ParameterParser().Parse(args, switches);
+            Arguments = new Parameters(args, switches);
         }
 
         /// <summary>

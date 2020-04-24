@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sugar.Command
+namespace Sugar.Command.Binder
 {
     /// <summary>
     /// Attribute to allow bind a command line parameter to a class

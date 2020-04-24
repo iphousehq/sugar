@@ -7,6 +7,9 @@ using System.Management;
 
 namespace Sugar.Command
 {
+    /// <summary>
+    /// Helps find out if another instance of the same process is already running.
+    /// </summary>
     public class CommandLine
     {
         /// <summary>

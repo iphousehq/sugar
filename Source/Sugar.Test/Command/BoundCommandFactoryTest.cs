@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using Sugar.Command.Binder;
 
 namespace Sugar.Command
 {
@@ -70,7 +71,7 @@ namespace Sugar.Command
         [Test]
         public void TestResolveCommandOne()
         {
-            var parameters = new Parameters("-blah -something -fake -one");
+            var parameters = new Parameters("foo.exe -blah -something -fake -one");
 
             var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
@@ -80,7 +81,7 @@ namespace Sugar.Command
         [Test]
         public void TestResolveCommandTwo()
         {
-            var parameters = new Parameters("-blah -something -fake");
+            var parameters = new Parameters("foo.exe -blah -something -fake");
 
             var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
@@ -90,7 +91,7 @@ namespace Sugar.Command
         [Test]
         public void TestResolveCommandThreeWhenAnotherCommandsSharesFlags()
         {
-            var parameters = new Parameters("-fake -group");
+            var parameters = new Parameters("foo.exe -fake -group");
 
             var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
@@ -100,7 +101,7 @@ namespace Sugar.Command
         [Test]
         public void TestResolveCommandFourWhenAnotherCommandsSharesFlags()
         {
-            var parameters = new Parameters("-fake -one -group");
+            var parameters = new Parameters("foo.exe -fake -one -group");
 
             var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 

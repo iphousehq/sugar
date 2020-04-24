@@ -5,140 +5,86 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Sugar.Command
+namespace Sugar.Command.Binder
 {
     /// <summary>
     /// Class to represent the applications command line parameters.
     /// </summary>
-    public class Parameters : List<string>, ICloneable
+    public class Parameters : List<string>
     {
-        private static Parameters current;
-        private static string filename;
-        private static string directory;
+        public static IEnumerable<string> DefaultSwitches => new List<string> {"-", "--", "/"};
 
         /// <summary>
-        /// Initializes the static members.
+        /// Initializes a new instance of the <see cref="Parameters"/> class with
+        /// the <see cref="Environment.CommandLine" /> input and <see cref="DefaultSwitches"/>.
         /// </summary>
-        private static void InitializeStaticMembers()
+        public Parameters() : this(Environment.CommandLine, DefaultSwitches)
         {
-            // Only perform once
-            if (current != null) return;
-
-            // Get the current command line
-            var args = Environment.CommandLine;
-            current = new ParameterParser().Parse(args);
-
-            // Set current filename
-            filename = current[0];
-
-            // Remove filename from parameters
-            current.RemoveAt(0);
-
-            var codebase = Assembly.GetExecutingAssembly().GetName().CodeBase;
-
-            // Get assembly directory
-            if (!string.IsNullOrEmpty(codebase))
-            {
-                directory = Path.GetDirectoryName(codebase) ?? string.Empty;
-            }
-            else
-            {
-                directory = System.IO.Directory.GetCurrentDirectory();
-            }
-
-            directory = directory.Replace("file:\\", "");
         }
 
         /// <summary>
-        /// Sets the current command line to the given value.
-        /// </summary>
-        /// <param name="commandLine">The command line.</param>
-        public static void SetCurrent(string commandLine)
-        {
-            InitializeStaticMembers();
-
-            current = new ParameterParser().Parse(commandLine);
-        }
-
-        /// <summary>
-        /// Gets the current command line arguments.
-        /// </summary>
-        public static Parameters Current
-        {
-            get
-            {
-                InitializeStaticMembers();
-
-                return current;
-            }
-        }
-        
-        /// <summary>
-        /// Gets the current filename of the executable.
-        /// </summary>
-        public static string Filename
-        {
-            get
-            {
-                InitializeStaticMembers();
-
-                return filename;
-            }
-        }
-
-        /// <summary>
-        /// Gets the current directory of the executable.
-        /// </summary>
-        public static string Directory
-        {
-            get
-            {
-                InitializeStaticMembers();
-
-                return directory;
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Parameters"/> class.
-        /// </summary>
-        public Parameters()
-        {
-            Switches = new List<string> { "-", "--", "/" };
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Parameters"/> class.
+        /// Initializes a new instance of the <see cref="Parameters"/> class with
+        /// the specified <see cref="args"/> and <see cref="DefaultSwitches"/>.
         /// </summary>
         /// <param name="args">The args.</param>
-        public Parameters(string args) : this()
+        public Parameters(string args) : this(args, DefaultSwitches)
         {
-            if (string.IsNullOrEmpty(args)) return;
-
-            AddRange(new ParameterParser().Parse(args));
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Parameters"/> class.
+        /// Initializes a new instance of the <see cref="Parameters"/> class with
+        /// the specified <see cref="args"/> and <see cref="switches"/>.
         /// </summary>
         /// <param name="args">The args.</param>
         /// <param name="switches">The switches.</param>
         public Parameters(string args, IEnumerable<string> switches)
         {
-            if (string.IsNullOrEmpty(args)) return;
+            Switches = switches;
 
-            AddRange(new ParameterParser().Parse(args, switches));
+            if (string.IsNullOrWhiteSpace(args)) return;
+
+            var parsed = args.ParseCommandLine();
+
+            // The first parameter is the program's name
+            // Set current filename and remove it
+            Filename = parsed[0];
+            parsed.RemoveAt(0);
+
+            AddRange(parsed);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Parameters"/> class.
+        /// Gets the current filename of the executable.
         /// </summary>
-        /// <param name="parameters">The parameters.</param>
-        public Parameters(IEnumerable<string> parameters) : this()
+        public string Filename { get; }
+
+        private static string directory;
+
+        /// <summary>
+        /// Gets the current directory of the executing assembly.
+        /// </summary>
+        public static string Directory
         {
-            foreach (var parameter in parameters)
+            get
             {
-                Add(parameter);
+                if (string.IsNullOrEmpty(directory))
+                {
+                    var codebase = Assembly.GetExecutingAssembly().GetName().CodeBase;
+
+                    // Get assembly directory
+                    if (!string.IsNullOrEmpty(codebase))
+                    {
+                        directory = Path.GetDirectoryName(codebase) ?? string.Empty;
+                    }
+                    else
+                    {
+                        directory = System.IO.Directory.GetCurrentDirectory();
+                    }
+
+                    directory = directory.Replace("file:\\", "");
+                }
+
+                return directory;
             }
         }
 
@@ -148,7 +94,7 @@ namespace Sugar.Command
         /// <value>
         /// By default, values starting with "-", "--" or "/"
         /// </value>
-        public IList<string> Switches { get; private set; }
+        public IEnumerable<string> Switches { get; }
 
         /// <summary>
         /// Returns a parameter as a string value
@@ -168,7 +114,7 @@ namespace Sugar.Command
         /// <returns></returns>
         public string AsString(string name, string @default)
         {
-            return AsStrings(name, new[] { @default }).First();
+            return AsStrings(name, @default).First();
         }
 
         /// <summary>
@@ -185,7 +131,7 @@ namespace Sugar.Command
 
             while (index > -1 && Count > index + 1)
             {
-                if (IsFlag(this[index + 1]) && Switches.Count > 0)
+                if (IsFlag(this[index + 1]) && Switches.Any())
                 {
                     break;
                 }
@@ -288,7 +234,7 @@ namespace Sugar.Command
         }
 
         /// <summary>
-        /// Gets the index of the paramter with the given name
+        /// Gets the index of the parameter with the given name
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
@@ -336,15 +282,6 @@ namespace Sugar.Command
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// Clones this instance.
-        /// </summary>
-        /// <returns></returns>
-        public object Clone()
-        {
-            return new Parameters(this);
         }
 
         public override string ToString()
@@ -397,7 +334,7 @@ namespace Sugar.Command
 
             if (index <= -1) return;
 
-            if (Switches.Count > 0)
+            if (Switches.Any())
             {
                 var length = AsStrings(name).Count;
 
@@ -422,12 +359,12 @@ namespace Sugar.Command
         /// </returns>
         public bool IsFlag(string name)
         {
-            return Switches.Count == 0 || Switches.Any(name.StartsWith);
+            return !Switches.Any() || Switches.Any(name.StartsWith);
         }
 
         public T AsCustomType<T>(string name)
         {
-            return (T)AsCustomType(name, typeof(T));
+            return (T) AsCustomType(name, typeof(T));
         }
 
         public object AsCustomType(string name, Type type)

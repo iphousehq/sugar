@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace Sugar.Command
+namespace Sugar.Command.Binder
 {
     /// <summary>
     /// Class to bind command line parameters to objects
