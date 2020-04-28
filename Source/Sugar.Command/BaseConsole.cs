@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using Sugar.Command.Binder;
 
 namespace Sugar.Command
@@ -11,62 +9,22 @@ namespace Sugar.Command
     public abstract class BaseConsole
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseConsole"/> class.
-        /// </summary>
-        protected BaseConsole()
-        {
-            Switches = new List<string> { "-", "--", "/" };
-        }
-
-        /// <summary>
-        /// Pauses if a debugger is attached.
-        /// </summary>
-        private static void PauseIfInDebuggerAttached()
-        {
-            if (!Debugger.IsAttached) return;
-
-            Console.WriteLine("");
-            Console.Write("Press the return key to exit...");
-            Console.ReadLine();
-        }
-
-        /// <summary>
         /// Gets or sets the command line arguments.
         /// </summary>
         /// <value>The arguments.</value>
         public Parameters Arguments { get; private set; }
 
         /// <summary>
-        /// Gets the switches.
-        /// </summary>
-        /// <value>
-        /// The switches.
-        /// </value>
-        public IList<string> Switches { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the exit code enumeration.
-        /// </summary>
-        /// <value>
-        /// The exit code.
-        /// </value>
-        public static ExitCode ExitCode { get; set; }
-
-        /// <summary>
         /// Runs this console application.
         /// </summary>
-        /// <param name="args">The args.</param>
+        /// <param name="parameters">The CLI parameters wrapper.</param>
         /// <returns>The exit code (0 for success)</returns>
-        public int Run(string args)
+        public int Run(Parameters parameters)
         {
-            // Get the command line arguments
-            Arguments = new Parameters(args, Switches);
+            Arguments = parameters;
 
             // Check user input
             var exitCode = Main();
-
-            // Pause if in debug mode
-            PauseIfInDebuggerAttached();
 
             return exitCode;
         }
@@ -74,16 +32,16 @@ namespace Sugar.Command
         /// <summary>
         /// Sets the console arguments.
         /// </summary>
-        /// <param name="args">The arguments.</param>
-        protected void SetArguments(string args)
+        /// <param name="parameters">The CLI parameters wrapper.</param>
+        protected void SetArguments(Parameters parameters)
         {
-            Arguments = new Parameters(args, Switches);
+            Arguments = new Parameters(parameters);
         }
 
         /// <summary>
         /// Sets the console arguments.
         /// </summary>
-        /// <param name="args">The arguments.</param>
+        /// <param name="args">The arguments (including the executable name).</param>
         /// <param name="switches">The command switches, e.g. a leading "-", "--" or "/".</param>
         protected void SetArguments(string args, IList<string> switches)
         {

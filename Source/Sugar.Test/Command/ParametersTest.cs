@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using Sugar.Command.Binder;
 
@@ -25,6 +26,25 @@ namespace Sugar.Command
 
             Assert.AreEqual(1, parameters.Count);
             Assert.AreEqual("-bar", parameters[0]);
+        }
+
+        [Test]
+        public void TestCopyConstructorIsCalledByCloneMethod()
+        {
+            var original = new Parameters("foo.exe -bar", new[] {"-", "["});
+
+            var copy = (Parameters) original.Clone();
+
+            Assert.AreNotSame(original, copy);
+            
+            Assert.AreEqual(2, copy.Switches.Count());
+            Assert.AreEqual("-", copy.Switches.First());
+            Assert.AreEqual("[", copy.Switches.Skip(1).First());
+
+            Assert.AreEqual("foo.exe", copy.Filename);
+
+            Assert.AreEqual(1, copy.Count);
+            Assert.AreEqual("-bar", copy[0]);
         }
 
         [Test]

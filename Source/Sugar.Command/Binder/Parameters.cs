@@ -10,7 +10,7 @@ namespace Sugar.Command.Binder
     /// <summary>
     /// Class to represent the applications command line parameters.
     /// </summary>
-    public class Parameters : List<string>
+    public class Parameters : List<string>, ICloneable
     {
         public static IEnumerable<string> DefaultSwitches => new List<string> {"-", "--", "/"};
 
@@ -51,6 +51,22 @@ namespace Sugar.Command.Binder
             parsed.RemoveAt(0);
 
             AddRange(parsed);
+        }
+
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="original">The instance to be copied.</param>
+        public Parameters(Parameters original)
+        {
+            var switches = new List<string>();
+            switches.AddRange(original.Switches);
+
+            Switches = switches;
+
+            Filename = original.Filename;
+
+            AddRange(original);
         }
 
         /// <summary>
@@ -306,6 +322,15 @@ namespace Sugar.Command.Binder
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Clones this instance into a new copy.
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            return new Parameters(this);
         }
 
         /// <summary>
