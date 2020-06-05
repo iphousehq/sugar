@@ -8,6 +8,7 @@ namespace Sugar.Http
     /// <summary>
     /// HTTP Message handler that inspect status code in responses and automatically tries to refresh the token if a refresh token is set.
     /// </summary>
+    [Obsolete("About to be replaced by Microsoft's IHttpClientFactory that plays nice with Polly")]
     public class RetryDelegatingHandler : DelegatingHandler
     {
         /// <summary>

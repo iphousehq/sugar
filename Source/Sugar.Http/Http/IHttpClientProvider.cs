@@ -1,10 +1,12 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 
 namespace Sugar.Http
 {
     /// <summary>
     /// Interface to provide a HTTP client
     /// </summary>
+    [Obsolete("About to be replaced by Microsoft's IHttpClientFactory that plays nice with Polly")]
     public interface IHttpClientProvider
     {
         /// <summary>

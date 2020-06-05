@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace Sugar.Http
@@ -6,6 +7,7 @@ namespace Sugar.Http
     /// <summary>
     /// Extension methods for HttpResponseMessage.
     /// </summary>
+    [Obsolete("Code smell: Hiding the magic")]
     public static class HttpResponseMessageExtensions
     {
         /// <summary>

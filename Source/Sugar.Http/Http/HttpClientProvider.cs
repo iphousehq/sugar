@@ -12,6 +12,7 @@ namespace Sugar.Http
     /// Most of the time only one instance of <see cref="HttpClient"/> should be used per request: 
     /// If you hang on to one instance of HTTP client and change its Timeout setting after a fist request was issued an exception will be thrown.
     /// </remarks>
+    [Obsolete("About to be replaced by IHttpClientFactory that plays nice with Polly")]
     public class HttpClientProvider : IHttpClientProvider
     {
         /// <summary>
