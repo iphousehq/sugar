@@ -394,7 +394,7 @@ namespace Sugar.Extensions
                 case CountryCode.HN: return CurrencyCode.HNL;
                 case CountryCode.NI: return CurrencyCode.NIO;
                 case CountryCode.PY: return CurrencyCode.PYG;
-                case CountryCode.AZ: return CurrencyCode.ZAR;
+                case CountryCode.ZA: return CurrencyCode.ZAR;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
