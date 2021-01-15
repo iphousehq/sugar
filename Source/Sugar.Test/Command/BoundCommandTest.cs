@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Threading.Tasks;
+using NUnit.Framework;
 using Sugar.Command.Binder;
 
 namespace Sugar.Command
@@ -20,9 +21,9 @@ namespace Sugar.Command
                 return OptionsBound;
             }
 
-            public override int Execute(Options options)
+            public override Task<int> Execute(Options options)
             {
-                return 0;
+                return Task.FromResult(0);
             }           
         }
 

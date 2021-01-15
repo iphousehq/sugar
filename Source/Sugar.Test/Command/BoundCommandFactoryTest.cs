@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Sugar.Command.Binder;
 
@@ -13,9 +14,9 @@ namespace Sugar.Command
             [Flag("fake", "one")]
             public class Options { }
 
-            public override int Execute(Options options)
+            public override Task<int> Execute(Options options)
             {
-                return 0;
+                return Task.FromResult(0);
             }  
         }
 
@@ -24,9 +25,9 @@ namespace Sugar.Command
             [Flag("fake")]
             public class Options { }
 
-            public override int Execute(Options options)
+            public override Task<int> Execute(Options options)
             {
-                return 0;
+                return Task.FromResult(0);
             }
         }
 
@@ -35,9 +36,9 @@ namespace Sugar.Command
             [Flag("fake", "group")]
             public class Options {}
 
-            public override int Execute(Options options)
+            public override Task<int> Execute(Options options)
             {
-                return 0;
+                return Task.FromResult(0);
             }
         }
 
@@ -46,21 +47,21 @@ namespace Sugar.Command
             [Flag("fake", "one", "group")]
             public class Options {}
 
-            public override int Execute(Options options)
+            public override Task<int> Execute(Options options)
             {
-                return 0;
+                return Task.FromResult(0);
             }
         }
 
         private BoundCommandFactory factory;
 
         private readonly IEnumerable<Type> availableCommandOptions = new[]
-        {
-            typeof(FakeCommandOne.Options),
-            typeof(FakeCommandTwo.Options),
-            typeof(FakeCommandThree.Options),
-            typeof(FakeCommandFour.Options)
-        };
+                                                                     {
+                                                                         typeof(FakeCommandOne.Options),
+                                                                         typeof(FakeCommandTwo.Options),
+                                                                         typeof(FakeCommandThree.Options),
+                                                                         typeof(FakeCommandFour.Options)
+                                                                     };
 
         [SetUp]
         public void Setup()
