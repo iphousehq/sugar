@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Sugar.Command.Binder;
+﻿using Sugar.Command.Binder;
 
 namespace Sugar.Command
 {
@@ -12,7 +11,7 @@ namespace Sugar.Command
         /// Executes this command.
         /// </summary>
         /// <returns></returns>
-        Task<int> Execute();
+        int Execute();
 
         /// <summary>
         /// Binds the parameters.

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Sugar.Command.Binder;
 
@@ -14,10 +13,10 @@ namespace Sugar.Command
             [Flag("fake", "one")]
             public class Options { }
 
-            public override Task<int> Execute(Options options)
+            public override int Execute(Options options)
             {
-                return Task.FromResult(0);
-            }  
+                return 0;
+            }
         }
 
         private class FakeCommandTwo : BoundCommand<FakeCommandTwo.Options>
@@ -25,9 +24,9 @@ namespace Sugar.Command
             [Flag("fake")]
             public class Options { }
 
-            public override Task<int> Execute(Options options)
+            public override int Execute(Options options)
             {
-                return Task.FromResult(0);
+                return 0;
             }
         }
 
@@ -36,9 +35,9 @@ namespace Sugar.Command
             [Flag("fake", "group")]
             public class Options {}
 
-            public override Task<int> Execute(Options options)
+            public override int Execute(Options options)
             {
-                return Task.FromResult(0);
+                return 0;
             }
         }
 
@@ -47,9 +46,9 @@ namespace Sugar.Command
             [Flag("fake", "one", "group")]
             public class Options {}
 
-            public override Task<int> Execute(Options options)
+            public override int Execute(Options options)
             {
-                return Task.FromResult(0);
+                return 0;
             }
         }
 

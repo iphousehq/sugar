@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Sugar.Command.Binder;
+﻿using Sugar.Command.Binder;
 
 namespace Sugar.Command
 {
@@ -34,7 +33,7 @@ namespace Sugar.Command
         /// </summary>
         /// <param name="options">The options.</param>
         /// <returns></returns>
-        public abstract Task<int> Execute(T options);
+        public abstract int Execute(T options);
 
         /// <summary>
         /// Binds the parameters.
@@ -49,14 +48,14 @@ namespace Sugar.Command
         /// Executes this command.
         /// </summary>
         /// <returns></returns>
-        public async Task<int> Execute()
+        public int Execute()
         {
             if (OptionsBound == null)
             {
                 return (int) ExitCode.NoCommand;
             }
 
-            return await Execute(OptionsBound);
+            return Execute(OptionsBound);
         }
     }
 }

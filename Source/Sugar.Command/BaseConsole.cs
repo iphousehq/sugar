@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Sugar.Command.Binder;
 
 namespace Sugar.Command
@@ -20,12 +19,12 @@ namespace Sugar.Command
         /// </summary>
         /// <param name="parameters">The CLI parameters wrapper.</param>
         /// <returns>The exit code (0 for success)</returns>
-        public async Task<int> Run(Parameters parameters)
+        public int Run(Parameters parameters)
         {
             Arguments = parameters;
 
             // Check user input
-            var exitCode = await Main();
+            var exitCode = Main();
 
             return exitCode;
         }
@@ -53,15 +52,15 @@ namespace Sugar.Command
         /// Entry point for the program logic
         /// </summary>
         /// <returns>The exit code (0 for success)</returns>
-        protected abstract Task<int> Main();
+        protected abstract int Main();
 
         /// <summary>
         /// Validates the user command line parameters.
         /// </summary>
         /// <returns>true is command line parameters are correct, false if not.</returns>
-        public virtual Task<bool> Validate()
+        public virtual bool Validate()
         {
-            return Task.FromResult(true);
+            return true;
         }
     }
 }
