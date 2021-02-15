@@ -11,7 +11,8 @@ namespace Sugar.Net
     /// </summary>
     public class Url
     {
-        private readonly Uri uri;
+        public readonly Uri Uri;
+        
         private string domain;
         private string subdomain;
 
@@ -23,13 +24,13 @@ namespace Sugar.Net
         {
             Query = new NameValueCollection();
 
-            Uri.TryCreate(url, UriKind.Absolute, out uri);
+            Uri.TryCreate(url, UriKind.Absolute, out Uri);
 
-            if (uri != null)
+            if (Uri != null)
             {
-                Query = HttpUtility.ParseQueryString(uri.Query);
+                Query = HttpUtility.ParseQueryString(Uri.Query);
 
-                Fragment = uri.Fragment;
+                Fragment = Uri.Fragment;
             }
         }
 
@@ -39,7 +40,7 @@ namespace Sugar.Net
         /// <param name="uri">The URI.</param>
         public Url(Uri uri)
         {
-            this.uri = uri;
+            this.Uri = uri;
 
             Query = HttpUtility.ParseQueryString(uri.Query);
 
@@ -50,7 +51,7 @@ namespace Sugar.Net
         /// Gets a value indicating whether this instance is valid.
         /// </summary>
         /// <value><c>true</c> if this instance is valid; otherwise, <c>false</c>.</value>
-        public bool IsValid => uri != null;
+        public bool IsValid => Uri != null;
 
         /// <summary>
         /// Gets the query.
@@ -105,13 +106,13 @@ namespace Sugar.Net
                 {
                     domain = string.Empty;
 
-                    if (uri != null)
+                    if (Uri != null)
                     {
                         try
                         {
-                            var host = uri.Host;
+                            var host = Uri.Host;
 
-                            if (!uri.IsDefaultPort) host += ":" + uri.Port;
+                            if (!Uri.IsDefaultPort) host += ":" + Uri.Port;
 
                             domain = host.ToLower();
                         }
@@ -134,9 +135,9 @@ namespace Sugar.Net
         {
             get
             {
-                if (uri == null) return string.Empty;
+                if (Uri == null) return string.Empty;
 
-                return uri.Scheme + "://" + Domain;
+                return Uri.Scheme + "://" + Domain;
             }
         }
 
@@ -154,7 +155,7 @@ namespace Sugar.Net
         /// </returns>
         public override string ToString()
         {
-            return uri?.OriginalString.Trim() ?? string.Empty;
+            return Uri?.OriginalString.Trim() ?? string.Empty;
         }
 
         /// <summary>
@@ -163,7 +164,7 @@ namespace Sugar.Net
         /// <returns></returns>
         public string ToStringWithQueryAndFragment()
         {
-            var builder = new UriBuilder(uri)
+            var builder = new UriBuilder(Uri)
                               {
                                   Query = Query.ToString(),
                                   Fragment = Fragment
@@ -180,9 +181,9 @@ namespace Sugar.Net
         {
             get
             {
-                if (uri == null) return string.Empty;
+                if (Uri == null) return string.Empty;
 
-                var page = uri.AbsolutePath;
+                var page = Uri.AbsolutePath;
 
                 if (page == "/") page = "Site Root";
 
@@ -198,9 +199,9 @@ namespace Sugar.Net
         {
             get
             {
-                if (uri == null) return string.Empty;
+                if (Uri == null) return string.Empty;
 
-                var page = uri.Segments[uri.Segments.Length - 1];
+                var page = Uri.Segments[Uri.Segments.Length - 1];
 
                 if (page == "/") page = "Site Root";
 
@@ -212,7 +213,7 @@ namespace Sugar.Net
         /// Gets the full page with query string.
         /// </summary>
         /// <value>The full page with query string.</value>
-        public string FullPageWithQueryString => $"{FullPage}{uri.Query}";
+        public string FullPageWithQueryString => $"{FullPage}{Uri.Query}";
 
         /// <summary>
         /// Gets the path.
@@ -222,11 +223,11 @@ namespace Sugar.Net
         {
             get
             {
-                if (uri == null) return string.Empty;
+                if (Uri == null) return string.Empty;
 
                 var path = "/";
 
-                foreach (var segment in uri.Segments)
+                foreach (var segment in Uri.Segments)
                 {
                     if (segment == "/")
                     {
@@ -320,5 +321,11 @@ namespace Sugar.Net
                 return tld;
             }
         }
+
+        /// <summary>
+        /// Gets the scheme name for this URL (e.g. "http")
+        /// </summary>
+        public string Scheme => Uri.Scheme;
+
     }
 }
