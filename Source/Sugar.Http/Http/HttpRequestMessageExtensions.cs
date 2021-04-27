@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace Sugar.Http
 {
@@ -38,9 +40,11 @@ namespace Sugar.Http
         /// <returns>HttpRequestMessage.</returns>
         public static HttpRequestMessage SetAcceptEncodingToCompressed(this HttpRequestMessage req)
         {
-            req.Headers.AcceptEncoding.TryParseAdd("gzip");
-            req.Headers.AcceptEncoding.TryParseAdd("deflate");
-
+            req.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("br", 1.0));
+            req.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip", 0.75));
+            req.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("compress", 0.75));
+            req.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate", 0.50));
+            
             return req;
         }
 

@@ -4,6 +4,7 @@ using NUnit.Framework;
 namespace Sugar.Http
 {
     [TestFixture]
+    [Parallelizable]
     public class HttpRequestMessageExtensionsTest
     {
         [Test]
@@ -33,9 +34,11 @@ namespace Sugar.Http
 
             req.SetAcceptEncodingToCompressed();
 
-            Assert.AreEqual("gzip, deflate", req.Headers.AcceptEncoding.ToString());
-        }
+            var value = req.Headers.AcceptEncoding.ToString();
 
+            Assert.AreEqual("", value);
+        }
+        
         [Test]
         public void TestSetAcceptLanguageToUsEnglish()
         {
