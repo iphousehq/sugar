@@ -36,7 +36,7 @@ namespace Sugar.Http
 
             var value = req.Headers.AcceptEncoding.ToString();
 
-            Assert.AreEqual("", value);
+            Assert.AreEqual("br; q=1.0, gzip; q=0.75, compress; q=0.75, deflate; q=0.5", value);
         }
         
         [Test]
