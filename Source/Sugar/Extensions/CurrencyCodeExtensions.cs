@@ -52,6 +52,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.AED: return "د.إ";
                 case CurrencyCode.ARS: return "$";
                 case CurrencyCode.AUD: return "$";
+                case CurrencyCode.BDT: return "৳";
                 case CurrencyCode.BOB: return "Bs";
                 case CurrencyCode.BGN: return "лв";
                 case CurrencyCode.BRL: return "R$";
@@ -129,6 +130,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.AED: return "&#x62f;&#x2e;&#x625;";
                 case CurrencyCode.ARS: return "&#36; ";
                 case CurrencyCode.AUD: return "&#36; ";
+                case CurrencyCode.BDT: return "&#2547; ";
                 case CurrencyCode.BOB: return "Bs ";
                 case CurrencyCode.BGN: return "&#1083;&#1074; ";
                 case CurrencyCode.BRL: return "&#82;&#36; ";
@@ -204,6 +206,7 @@ namespace Sugar.Extensions
             switch (symbol)
             {
                 case "د.إ": return CurrencyCode.AED;
+                case "৳": return CurrencyCode.BDT;
                 case "лв": return CurrencyCode.BGN;
                 case "R$": return CurrencyCode.BRL;
                 case "Fr.": return CurrencyCode.CHF;
@@ -284,6 +287,7 @@ namespace Sugar.Extensions
                 case CountryCode.NR: return CurrencyCode.AUD;
                 case CountryCode.NF: return CurrencyCode.AUD;
                 case CountryCode.TV: return CurrencyCode.AUD;
+                case CountryCode.BD: return CurrencyCode.BDT;
                 case CountryCode.AS: return CurrencyCode.EUR;
                 case CountryCode.AD: return CurrencyCode.EUR;
                 case CountryCode.AT: return CurrencyCode.EUR;
@@ -410,6 +414,7 @@ namespace Sugar.Extensions
             {
                 case CurrencyCode.AED: return CountryCode.AE;
                 case CurrencyCode.AUD: return CountryCode.AU;
+                case CurrencyCode.BDT: return CountryCode.BD;
                 case CurrencyCode.BOB: return CountryCode.BO;
                 case CurrencyCode.BGN: return CountryCode.BG;
                 case CurrencyCode.BRL: return CountryCode.BR;
