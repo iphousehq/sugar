@@ -134,7 +134,9 @@ namespace Sugar
         [Description("Nicaraguan Córdoba")]
         NIO,
         [Description("Paraguayan Guaraní")]
-        PYG
+        PYG,
+        [Description("Bangladeshi Taka")]
+        BDT
         // ReSharper restore InconsistentNaming
     }
 }
