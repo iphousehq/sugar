@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Command", "Sugar.Comm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Drawing", "Sugar.Drawing\Sugar.Drawing.csproj", "{44E679CD-E029-45B3-98F6-CC51B479795E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sugar.Amazon.Lambda", "Sugar.Amazon.Lambda\Sugar.Amazon.Lambda.csproj", "{23FCCEFF-6659-4023-BD17-B3C01627AE1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		ClientProfile|Any CPU = ClientProfile|Any CPU
@@ -90,6 +92,12 @@ Global
 		{44E679CD-E029-45B3-98F6-CC51B479795E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44E679CD-E029-45B3-98F6-CC51B479795E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44E679CD-E029-45B3-98F6-CC51B479795E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23FCCEFF-6659-4023-BD17-B3C01627AE1E}.ClientProfile|Any CPU.ActiveCfg = Debug|Any CPU
+		{23FCCEFF-6659-4023-BD17-B3C01627AE1E}.ClientProfile|Any CPU.Build.0 = Debug|Any CPU
+		{23FCCEFF-6659-4023-BD17-B3C01627AE1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23FCCEFF-6659-4023-BD17-B3C01627AE1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23FCCEFF-6659-4023-BD17-B3C01627AE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23FCCEFF-6659-4023-BD17-B3C01627AE1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
