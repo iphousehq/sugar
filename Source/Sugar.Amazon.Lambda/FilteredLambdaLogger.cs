@@ -11,13 +11,20 @@ namespace Sugar.Amazon.Lambda
         private readonly bool isLoggingEnabled;
 
         /// <summary>
+        /// Default constructor (the environment variable name will default to "logToCloudwatch").
+        /// </summary>
+        public FilteredLambdaLogger() : this("logToCloudwatch")
+        {
+        }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="environmentVariableName">Defaults to "logToCloudwatch" if missing or cannot be parsed to a bool, logging will be enabled.</param>
-        public FilteredLambdaLogger(string environmentVariableName = "logToCloudwatch")
+        /// <param name="environmentVariableName">If missing or cannot be parsed to a bool, logging will be enabled.</param>
+        public FilteredLambdaLogger(string environmentVariableName)
         {
             // Defaults to logging if the environment variable is missing
-            var value = Environment.GetEnvironmentVariable(environmentVariableName) ?? "true";
+            var value = Environment.GetEnvironmentVariable(environmentVariableName) ?? "True";
 
             isLoggingEnabled = bool.Parse(value);
         }

@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Sugar.Amazon.Lambda</RootNamespace>
     <PackageId>comsec.sugar.amazon.lambda</PackageId>
+    <Version>2.0.0</Version>
     <Authors>Comsec</Authors>
     <Company>Comsec Investigations Ltd</Company>
     <RepositoryType>git</RepositoryType>
