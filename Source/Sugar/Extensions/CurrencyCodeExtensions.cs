@@ -113,6 +113,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.UAH: return "₴";
                 case CurrencyCode.VND: return "₫";
                 case CurrencyCode.MNT: return "₮";
+                case CurrencyCode.MAD: return "DH";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
@@ -191,6 +192,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.UAH: return "&#8372;";
                 case CurrencyCode.VND: return "&#8363;";
                 case CurrencyCode.MNT: return "&#8366;";
+                case CurrencyCode.MAD: return "DH";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");
@@ -398,6 +400,7 @@ namespace Sugar.Extensions
                 case CountryCode.HN: return CurrencyCode.HNL;
                 case CountryCode.NI: return CurrencyCode.NIO;
                 case CountryCode.PY: return CurrencyCode.PYG;
+                case CountryCode.MA: return CurrencyCode.MAD;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
@@ -476,6 +479,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.SAR: return CountryCode.SA;
                 case CurrencyCode.MNT: return CountryCode.MN;
                 case CurrencyCode.XCD: return CountryCode.VC;
+                case CurrencyCode.MAD: return CountryCode.MA;
             }
 
             throw new ApplicationException($"Unknown currency / country code: {code}");

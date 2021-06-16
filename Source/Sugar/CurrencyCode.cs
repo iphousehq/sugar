@@ -136,7 +136,9 @@ namespace Sugar
         [Description("Paraguayan Guaraní")]
         PYG,
         [Description("Bangladeshi Taka")]
-        BDT
+        BDT,
+        [Description("Moroccan Dirham")]
+        MAD
         // ReSharper restore InconsistentNaming
     }
 }
