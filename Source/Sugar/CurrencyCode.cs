@@ -138,7 +138,9 @@ namespace Sugar
         [Description("Bangladeshi Taka")]
         BDT,
         [Description("Moroccan Dirham")]
-        MAD
+        MAD,
+        [Description("Cuban peso")]
+        CUP
         // ReSharper restore InconsistentNaming
     }
 }

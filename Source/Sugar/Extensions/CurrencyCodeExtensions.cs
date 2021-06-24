@@ -141,6 +141,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.CRC: return "&#8353; ";
                 case CurrencyCode.CLP: return "&#36; ";
                 case CurrencyCode.CNY: return "&#165; ";
+                case CurrencyCode.CUP: return "&#36; ";
                 case CurrencyCode.CZK: return "&#75;&#269; ";
                 case CurrencyCode.DKK: return "kr ";
                 case CurrencyCode.DOP: return "&#36; ";
@@ -276,31 +277,31 @@ namespace Sugar.Extensions
         {
             switch (country)
             {
-                case CountryCode.NZ: return CurrencyCode.NZD;
-                case CountryCode.CK: return CurrencyCode.NZD;
-                case CountryCode.NU: return CurrencyCode.NZD;
-                case CountryCode.PN: return CurrencyCode.NZD;
-                case CountryCode.TK: return CurrencyCode.NZD;
-                case CountryCode.AU: return CurrencyCode.AUD;
-                case CountryCode.CX: return CurrencyCode.AUD;
-                case CountryCode.CC: return CurrencyCode.AUD;
-                case CountryCode.HM: return CurrencyCode.AUD;
-                case CountryCode.KI: return CurrencyCode.AUD;
-                case CountryCode.NR: return CurrencyCode.AUD;
-                case CountryCode.NF: return CurrencyCode.AUD;
-                case CountryCode.TV: return CurrencyCode.AUD;
-                case CountryCode.BD: return CurrencyCode.BDT;
-                case CountryCode.AS: return CurrencyCode.EUR;
                 case CountryCode.AD: return CurrencyCode.EUR;
+                case CountryCode.AS: return CurrencyCode.EUR;
                 case CountryCode.AT: return CurrencyCode.EUR;
+                case CountryCode.AU: return CurrencyCode.AUD;
+                case CountryCode.BD: return CurrencyCode.BDT;
                 case CountryCode.BE: return CurrencyCode.EUR;
+                case CountryCode.CC: return CurrencyCode.AUD;
+                case CountryCode.CK: return CurrencyCode.NZD;
+                case CountryCode.CX: return CurrencyCode.AUD;
+                case CountryCode.DE: return CurrencyCode.EUR;
                 case CountryCode.FI: return CurrencyCode.EUR;
                 case CountryCode.FR: return CurrencyCode.EUR;
                 case CountryCode.GF: return CurrencyCode.EUR;
-                case CountryCode.TF: return CurrencyCode.EUR;
-                case CountryCode.DE: return CurrencyCode.EUR;
-                case CountryCode.GR: return CurrencyCode.EUR;
                 case CountryCode.GP: return CurrencyCode.EUR;
+                case CountryCode.GR: return CurrencyCode.EUR;
+                case CountryCode.HM: return CurrencyCode.AUD;
+                case CountryCode.KI: return CurrencyCode.AUD;
+                case CountryCode.NF: return CurrencyCode.AUD;
+                case CountryCode.NR: return CurrencyCode.AUD;
+                case CountryCode.NU: return CurrencyCode.NZD;
+                case CountryCode.NZ: return CurrencyCode.NZD;
+                case CountryCode.PN: return CurrencyCode.NZD;
+                case CountryCode.TK: return CurrencyCode.NZD;
+                case CountryCode.TV: return CurrencyCode.AUD;
+                case CountryCode.TF: return CurrencyCode.EUR;
                 case CountryCode.IE: return CurrencyCode.EUR;
                 case CountryCode.IT: return CurrencyCode.EUR;
                 case CountryCode.LU: return CurrencyCode.EUR;
@@ -401,6 +402,7 @@ namespace Sugar.Extensions
                 case CountryCode.NI: return CurrencyCode.NIO;
                 case CountryCode.PY: return CurrencyCode.PYG;
                 case CountryCode.MA: return CurrencyCode.MAD;
+                case CountryCode.CU: return CurrencyCode.CUP;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
@@ -462,6 +464,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.ZAR: return CountryCode.ZA;
                 case CurrencyCode.ARS: return CountryCode.AR;
                 case CurrencyCode.COP: return CountryCode.CO;
+                case CurrencyCode.CUP: return CountryCode.CU;
                 case CurrencyCode.CRC: return CountryCode.CR;
                 case CurrencyCode.CLP: return CountryCode.CL;
                 case CurrencyCode.DOP: return CountryCode.DO;
