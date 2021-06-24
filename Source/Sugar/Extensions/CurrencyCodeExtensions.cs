@@ -61,6 +61,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.CLP: return "$";
                 case CurrencyCode.CNY: return "¥";
                 case CurrencyCode.COP: return "$";
+                case CurrencyCode.CUP: return "$";
                 case CurrencyCode.CRC: return "₡";
                 case CurrencyCode.CZK: return "¤";
                 case CurrencyCode.DKK: return "kr";
