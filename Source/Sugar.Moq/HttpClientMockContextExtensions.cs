@@ -22,7 +22,7 @@ namespace Sugar.Moq
         {
             var mockedHttpClientAccessor = new Mock<IAccessor<HttpClient>>();
 
-            container.RegisterInstance<IAccessor<HttpClient>>(mockedHttpClientAccessor.Object);
+            container.RegisterInstance(mockedHttpClientAccessor.Object);
 
             mockedHttpClientAccessor.Setup(call => call.Access())
                                     .Returns(mockHttp.ToHttpClient());
