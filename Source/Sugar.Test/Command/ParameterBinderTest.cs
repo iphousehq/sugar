@@ -71,7 +71,67 @@ namespace Sugar.Command
             [Parameter("2a")]
             public string LevelTwoA { get; set; }
         }
-        
+
+        public enum FooBarEnum
+        {
+            Foo,
+            Bar
+        }
+
+        public class FooBarEnumOptions
+        {
+            [Parameter("fooBarEnum")]
+            public FooBarEnum FooBarEnum { get; set; }
+        }
+
+        [Flag("flag")]
+        public class FooBarNullableEnumOptions
+        {
+            [Parameter("fooBarNullableEnum")]
+            public FooBarEnum? FooBarNullableEnum { get; set; }
+        }
+
+        [Test]
+        public void TestBindEnum()
+        {
+            var parameters = new Parameters("-fooBarEnum Foo");
+
+            var result = ParameterBinder.Bind<FooBarEnumOptions>(parameters);
+
+            Assert.AreEqual(FooBarEnum.Foo, result.FooBarEnum);
+        }
+
+        [Test]
+        public void TestBindNullableEnumWithStringParameter()
+        {
+            var parameters = new Parameters("-flag -fooBarNullableEnum Foo");
+
+            var result = ParameterBinder.Bind<FooBarNullableEnumOptions>(parameters);
+
+            Assert.AreEqual(FooBarEnum.Foo, result.FooBarNullableEnum);
+        }
+
+
+        [Test]
+        public void TestBindNullableEnumWithIntParameter()
+        {
+            var parameters = new Parameters("-flag -fooBarNullableEnum 0");
+
+            var result = ParameterBinder.Bind<FooBarNullableEnumOptions>(parameters);
+
+            Assert.AreEqual(FooBarEnum.Foo, result.FooBarNullableEnum);
+        }
+
+        [Test]
+        public void TestBindNullableEnumWithNullParameter()
+        {
+            var parameters = new Parameters("-flag -fooBarNullableEnum");
+
+            var result = ParameterBinder.Bind<FooBarNullableEnumOptions>(parameters);
+
+            Assert.AreEqual(null, result.FooBarNullableEnum);
+        }
+
         [Test]
         public void TestBindObject()
         {

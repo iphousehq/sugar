@@ -400,11 +400,27 @@ namespace Sugar.Command.Binder
             {
                 var value = AsString(name);
 
-                if (Nullable.GetUnderlyingType(type) != null)
+                var underlyingType = Nullable.GetUnderlyingType(type);
+
+                if (underlyingType != null)
                 {
-                    if (DateTime.TryParse(value, out var date))
+                    if (underlyingType == typeof(DateTime))
                     {
-                        result = date;
+                        if (DateTime.TryParse(value, out var date))
+                        {
+                            result = date;
+                        }
+                    }
+                    else if (underlyingType.IsEnum)
+                    {
+                        if (Int32.TryParse(value, out var number))
+                        {
+                            result = Enum.ToObject(underlyingType, number);
+                        }
+                        else
+                        {
+                            result = Enum.Parse(underlyingType, value, true);
+                        }
                     }
                 }
                 else
