@@ -18,6 +18,11 @@ namespace Sugar.Extensions
         /// <returns></returns>
         public static string ToDump(this object @object, int depth = 1, bool enumerate = true)
         {
+            if (@object == null)
+            {
+                return "Object was null";
+            }
+
             var sb = new StringBuilder();
 
             sb.AppendLine("{");
@@ -38,11 +43,12 @@ namespace Sugar.Extensions
                     sb.AppendLine(string.Empty);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                sb.AppendLine(string.Empty);
-                sb.AppendLine("(errors occured during dumping)");
-                sb.AppendLine(string.Empty);
+                sb.AppendLine($"{ex.GetType().Name} caught during dumping:");
+                sb.AppendLine(ex.Message);
+                sb.AppendLine();
+                sb.AppendLine(ex.StackTrace);
             }
 
             sb.AppendLine("}");

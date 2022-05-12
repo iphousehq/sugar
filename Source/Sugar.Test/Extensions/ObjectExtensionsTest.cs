@@ -54,6 +54,16 @@ namespace Sugar.Extensions
         }
 
         [Test]
+        public void TestDumpNullObject()
+        {
+            object nullReference = null;
+
+            var dump = nullReference.ToDump();
+
+            Assert.AreEqual("Object was null", dump);
+        }
+
+        [Test]
         public void TestDumpString()
         {
             var dump = "Hello World".ToDump();
