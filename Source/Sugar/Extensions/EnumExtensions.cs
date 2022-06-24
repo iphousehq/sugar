@@ -75,6 +75,11 @@ namespace Sugar.Extensions
         /// <returns></returns>
         public static string GetDescription(this Enum value)
         {
+            if (value == null)
+            {
+                return string.Empty;
+            }
+
             return value.GetAttributePropertyFromEnumConstant<DescriptionAttribute, string>(p => p.Description, value.ToString());
         }
 

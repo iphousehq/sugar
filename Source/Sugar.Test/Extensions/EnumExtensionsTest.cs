@@ -97,6 +97,14 @@ namespace Sugar.Extensions
         }
 
         [Test]
+        public void TestGetDescriptionWhenNull()
+        {
+            var result = EnumExtensions.GetDescription(null);
+
+            Assert.AreSame(string.Empty, result);
+        }
+
+        [Test]
         public void TestGetDescription()
         {
             var result = SomeEnum.Bob.GetDescription();
