@@ -115,6 +115,9 @@ namespace Sugar.Extensions
                 case CurrencyCode.VND: return "₫";
                 case CurrencyCode.MNT: return "₮";
                 case CurrencyCode.MAD: return "DH";
+                case CurrencyCode.BAM: return "KM";
+                case CurrencyCode.UZS: return "у.е.";
+                case CurrencyCode.KZT: return "₸";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
@@ -195,6 +198,9 @@ namespace Sugar.Extensions
                 case CurrencyCode.VND: return "&#8363;";
                 case CurrencyCode.MNT: return "&#8366;";
                 case CurrencyCode.MAD: return "DH";
+                case CurrencyCode.BAM: return "KM";
+                case CurrencyCode.UZS: return "у.е.";
+                case CurrencyCode.KZT: return "&#8376;";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");
@@ -253,6 +259,9 @@ namespace Sugar.Extensions
                 case "₴": return CurrencyCode.UAH;
                 case "₫": return CurrencyCode.VND;
                 case "₮": return CurrencyCode.MNT;
+                case "KM": return CurrencyCode.BAM;
+                case "y.e.": return CurrencyCode.UZS;
+                case "₸": return CurrencyCode.KZT;
             }
 
             var success = Enum.TryParse(symbol, true, out CurrencyCode currency);
@@ -404,6 +413,9 @@ namespace Sugar.Extensions
                 case CountryCode.PY: return CurrencyCode.PYG;
                 case CountryCode.MA: return CurrencyCode.MAD;
                 case CountryCode.CU: return CurrencyCode.CUP;
+                case CountryCode.BA: return CurrencyCode.BAM;
+                case CountryCode.UZ: return CurrencyCode.UZS;
+                case CountryCode.KZ: return CurrencyCode.KZT;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
@@ -484,6 +496,9 @@ namespace Sugar.Extensions
                 case CurrencyCode.MNT: return CountryCode.MN;
                 case CurrencyCode.XCD: return CountryCode.VC;
                 case CurrencyCode.MAD: return CountryCode.MA;
+                case CurrencyCode.BAM: return CountryCode.BA;
+                case CurrencyCode.UZS: return CountryCode.UZ;
+                case CurrencyCode.KZT: return CountryCode.KZ;
             }
 
             throw new ApplicationException($"Unknown currency / country code: {code}");

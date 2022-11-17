@@ -123,7 +123,7 @@ namespace Sugar
         NPR,
         [Description("Mongolian Tögrög")]
         MNT,
-        [Description("Eastern Caribbean dollar")]
+        [Description("Eastern Caribbean Dollar")]
         XCD,
         [Description("Bolivian Boliviano")]
         BOB,
@@ -139,8 +139,14 @@ namespace Sugar
         BDT,
         [Description("Moroccan Dirham")]
         MAD,
-        [Description("Cuban peso")]
-        CUP
+        [Description("Cuban Peso")]
+        CUP,
+        [Description("Bosnian Mark")]
+        BAM,
+        [Description("Uzbekistan Som")]
+        UZS,
+        [Description("Kazakhstan Tenge")]
+        KZT
         // ReSharper restore InconsistentNaming
     }
 }
