@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Sugar.Command.Binder;
 
@@ -52,6 +53,17 @@ namespace Sugar.Command
             }
         }
 
+        private class FakeCommandFive : BoundAsyncCommand<FakeCommandFive.Options>
+        {
+            [Flag("fake", "five")]
+            public class Options { }
+
+            public override Task<int> Execute(Options options)
+            {
+                return Task.FromResult(0);
+            }
+        }
+
         private BoundCommandFactory factory;
 
         private readonly IEnumerable<Type> availableCommandOptions = new[]
@@ -59,7 +71,8 @@ namespace Sugar.Command
                                                                          typeof(FakeCommandOne.Options),
                                                                          typeof(FakeCommandTwo.Options),
                                                                          typeof(FakeCommandThree.Options),
-                                                                         typeof(FakeCommandFour.Options)
+                                                                         typeof(FakeCommandFour.Options),
+                                                                         typeof(FakeCommandFive.Options)
                                                                      };
 
         [SetUp]
@@ -106,6 +119,16 @@ namespace Sugar.Command
             var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
             Assert.AreEqual(typeof(FakeCommandFour), result);
+        }
+
+        [Test]
+        public void TestResolveCommandFiveWhichIsAsync()
+        {
+            var parameters = new Parameters("foo.exe -fake -five");
+
+            var result = factory.GetCommandType(parameters, () => availableCommandOptions);
+
+            Assert.AreEqual(typeof(FakeCommandFive), result);
         }
     }
 }
