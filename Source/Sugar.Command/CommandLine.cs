@@ -50,27 +50,38 @@ namespace Sugar.Command
         /// <returns></returns>
         public bool CheckProcessFileName(Process process, string match)
         {
-            bool result;
+            var result = false;
 
-            try
+            if (process.MainModule != null)
             {
-                var fileName = process.MainModule.FileName;
+                try
+                {
+                    var fileName = process.MainModule.FileName;
 
-                fileName = Path.GetFileName(fileName);
+                    fileName = Path.GetFileName(fileName);
 
-                result = string.Compare(fileName, match, StringComparison.InvariantCultureIgnoreCase) == 0;
+                    result = string.Compare(fileName, match, StringComparison.InvariantCultureIgnoreCase) == 0;
+                }
+                catch (PlatformNotSupportedException)
+                {
+                    result = false;
+                }
+                catch (NotSupportedException)
+                {
+                    result = false;
+                }
+                catch (Win32Exception)
+                {
+                    // Ignore this process - no access rights
+                    result = false;
+                }
+                catch (InvalidOperationException)
+                {
+                    // Ignore this process - no access rights
+                    result = false;
+                }
             }
-            catch (Win32Exception)
-            {
-                // Ignore this process - no access rights
-                result = false;
-            }
-            catch (InvalidOperationException)
-            {
-                // Ignore this process - no access rights
-                result = false;
-            }
-
+            
             return result;
         }
 
