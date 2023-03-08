@@ -52,11 +52,22 @@ namespace Sugar.Command
         {
             var result = false;
 
-            if (process.MainModule != null)
+            ProcessModule mainModule = null;
+
+            try
+            {
+                mainModule = process.MainModule;
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+
+            if (mainModule != null)
             {
                 try
                 {
-                    var fileName = process.MainModule.FileName;
+                    var fileName = mainModule.FileName;
 
                     fileName = Path.GetFileName(fileName);
 

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sugar.Command\Sugar.Command.csproj" />
     <ProjectReference Include="..\Sugar.Web\Sugar.Web.csproj" />
   </ItemGroup>
 
