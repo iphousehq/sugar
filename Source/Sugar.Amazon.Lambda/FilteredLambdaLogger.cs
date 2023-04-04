@@ -8,7 +8,7 @@ namespace Sugar.Amazon.Lambda
     /// </summary>
     public class FilteredLambdaLogger : ILambdaLogger
     {
-        private readonly bool isLoggingEnabled;
+        protected readonly bool IsLoggingEnabled;
 
         /// <summary>
         /// Default constructor (the environment variable name will default to "logToCloudwatch").
@@ -26,7 +26,7 @@ namespace Sugar.Amazon.Lambda
             // Defaults to logging if the environment variable is missing
             var value = Environment.GetEnvironmentVariable(environmentVariableName) ?? "True";
 
-            isLoggingEnabled = bool.Parse(value);
+            IsLoggingEnabled = bool.Parse(value);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Sugar.Amazon.Lambda
         /// <param name="message"></param>
         public void Log(string message)
         {
-            if (isLoggingEnabled)
+            if (IsLoggingEnabled)
             {
                 LambdaLogger.Log(message);
             }
@@ -53,7 +53,7 @@ namespace Sugar.Amazon.Lambda
         /// <param name="message"></param>
         public void LogLine(string message)
         {
-            if (isLoggingEnabled)
+            if (IsLoggingEnabled)
             {
                 LambdaLogger.Log(message + Environment.NewLine);
             }
