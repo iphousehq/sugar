@@ -730,5 +730,31 @@ namespace Sugar.Extensions
 
             Assert.AreEqual("Blah blah'blah <>blah=", result);
         }
+
+        [Test]
+        public void TestExtractNumericWhenValueIsEmpty()
+        {
+            var result = "".ExtractNumeric();
+
+            Assert.False(result.HasValue);
+        }
+
+        [Test]
+        public void TestExtractNumericWhenValueContainsNoNumeric()
+        {
+            var result = "abc".ExtractNumeric();
+
+            Assert.True(result.HasValue);
+            Assert.AreEqual(0, result.Value);
+        }
+
+        [Test]
+        public void TestExtractNumeric()
+        {
+            var result = "10abc45".ExtractNumeric();
+
+            Assert.True(result.HasValue);
+            Assert.AreEqual(1045, result.Value);
+        }
     }
 }

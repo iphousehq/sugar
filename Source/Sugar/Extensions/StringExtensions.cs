@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Sugar.Extensions
 {
@@ -66,6 +67,7 @@ namespace Sugar.Extensions
                     if (result) break;
                 }
             }
+
             return result;
         }
 
@@ -117,7 +119,7 @@ namespace Sugar.Extensions
         {
             var results = new List<T>();
 
-            var allValues = Enum.GetValues(typeof (T))
+            var allValues = Enum.GetValues(typeof(T))
                                 .Cast<T>()
                                 .ToList();
 
@@ -127,9 +129,7 @@ namespace Sugar.Extensions
 
                 foreach (var candidate in candidates)
                 {
-                    T status;
-
-                    if (Enum.TryParse(candidate, true, out status))
+                    if (Enum.TryParse(candidate, true, out T status))
                     {
                         if (!results.Contains(status) && allValues.Contains(status))
                         {
@@ -165,30 +165,35 @@ namespace Sugar.Extensions
 
                 foreach (var @char in value.ToCharArray())
                 {
-                    if (@char == ',' && !inQuotes)
+                    switch (@char)
                     {
-                        if (!string.IsNullOrEmpty(current))
+                        case ',' when !inQuotes:
                         {
-                            var newValue = (T) Convert.ChangeType(current, typeof (T));
+                            if (!string.IsNullOrEmpty(current))
+                            {
+                                var newValue = (T) Convert.ChangeType(current, typeof(T));
 
-                            if (newValue != null) results.Add(newValue);
+                                if (newValue != null) results.Add(newValue);
 
-                            current = string.Empty;
-                        } 
-                    }
-                    else if (@char == '"')
-                    {
-                        inQuotes = !inQuotes;
-                    }
-                    else
-                    {
-                        current += @char;
+                                current = string.Empty;
+                            }
+
+                            break;
+                        }
+
+                        case '"':
+                            inQuotes = !inQuotes;
+                            break;
+
+                        default:
+                            current += @char;
+                            break;
                     }
                 }
 
                 if (!string.IsNullOrEmpty(current))
                 {
-                    var newValue = (T) Convert.ChangeType(current, typeof (T));
+                    var newValue = (T) Convert.ChangeType(current, typeof(T));
 
                     if (newValue != null) results.Add(newValue);
                 }
@@ -196,7 +201,7 @@ namespace Sugar.Extensions
 
             return results;
         }
-        
+
         /// <summary>
         /// Keeps the alpha-numeric characters in this string.
         /// </summary>
@@ -220,8 +225,26 @@ namespace Sugar.Extensions
             if (value != null)
             {
                 result = value.ToCharArray()
-                    .Where(@char => keepTheseCharacters.Contains(@char.ToString()))
-                    .Aggregate(result, (current, @char) => current + @char);
+                              .Where(@char => keepTheseCharacters.Contains(@char.ToString()))
+                              .Aggregate(result, (current, @char) => current + @char);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Extracts the numeric characters from a string and converts that to a <see cref="long"/>.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static long? ExtractNumeric(this string value)
+        {
+            long? result = null;
+
+            if (!string.IsNullOrEmpty(value))
+            {
+                result = value.Keep("1234567890")
+                              .ToLong(0);
             }
 
             return result;
@@ -236,9 +259,7 @@ namespace Sugar.Extensions
         /// </returns>
         public static bool IsNumeric(this string value)
         {
-            double temp;
-
-            return double.TryParse(value, out temp);
+            return double.TryParse(value, out _);
         }
 
         /// <summary>
@@ -310,7 +331,7 @@ namespace Sugar.Extensions
 
             while (enumerator.MoveNext())
             {
-                graphemes.Add((string)enumerator.Current);
+                graphemes.Add((string) enumerator.Current);
             }
 
             return string.Join("", graphemes.AsEnumerable().Reverse().ToArray());
@@ -460,7 +481,7 @@ namespace Sugar.Extensions
             text = new Regex("[\u201c\u201d\u201e\u201f\u2033]").Replace(text, "\"");
             text = new Regex("[ ]{2,}").Replace(text, " ");
             text = new Regex("[\u2013\u2014\u2015]").Replace(text, "-");
-            
+
             return text.Trim();
         }
 
@@ -600,9 +621,7 @@ namespace Sugar.Extensions
                               "yyyyMMdd"
                           };
 
-            DateTime resultForFormat;
-
-            if (DateTime.TryParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out resultForFormat))
+            if (DateTime.TryParseExact(value, formats, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out var resultForFormat))
             {
                 result = resultForFormat;
             }
@@ -700,7 +719,7 @@ namespace Sugar.Extensions
 
             if (!string.IsNullOrEmpty(value))
             {
-                if(encoding == null) encoding = Encoding.UTF8;
+                if (encoding == null) encoding = Encoding.UTF8;
 
                 var bytes = encoding.GetBytes(value);
 
@@ -718,7 +737,7 @@ namespace Sugar.Extensions
 
             return result;
         }
-        
+
         /// <summary>
         /// Converts this string to Title Case.
         /// </summary>
@@ -744,7 +763,7 @@ namespace Sugar.Extensions
         /// <returns>System.String.</returns>
         public static string TrimTo(this string value, int length)
         {
-            return TrimTo(value, length, String.Empty);
+            return TrimTo(value, length, string.Empty);
         }
 
         /// <summary>
