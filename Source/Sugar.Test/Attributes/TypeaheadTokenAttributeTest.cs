@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 
 namespace Sugar.Attributes
@@ -11,7 +11,7 @@ namespace Sugar.Attributes
         {
             var result = new TypeaheadTokenAttribute("gb");
 
-            Assert.AreEqual("gb", result.Token);
+            Assert.That(result.Token, Is.EqualTo("gb"));
         }
 
         [Test]

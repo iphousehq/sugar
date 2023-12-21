@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using NUnit.Framework;
 using Sugar.Extensions.AssemblyExtensionsTestAdditional;
@@ -39,7 +39,7 @@ namespace Sugar.Extensions
             var types = AssemblyExtensions.GetTypes(assembly)
                                           .ToArray();
 
-            Assert.Less(10, types.Length);
+            Assert.That(types.Length, Is.GreaterThan(10));;
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Sugar.Extensions
         {
             var types = GetType().Assembly.GetTypes("Comsec.Foo.Bar.Baz");
 
-            Assert.AreEqual(0, types.Count());
+            Assert.That(types.Count(), Is.EqualTo(0));
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace Sugar.Extensions
             var types = GetType().Assembly.GetTypes("Sugar.Extensions.AssemblyExtensionsTestClasses")
                                  .ToArray();
 
-            Assert.AreEqual(3, types.Length);
+            Assert.That(types.Length, Is.EqualTo(3));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Sugar.Extensions
             var types = GetType().Assembly.GetTypes("Sugar.Extensions.AssemblyExtensionsTestClasses", "Sugar.Extensions.AssemblyExtensionsTestAdditional")
                                  .ToArray();
 
-            Assert.AreEqual(6, types.Length);
+            Assert.That(types.Length, Is.EqualTo(6));
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace Sugar.Extensions
             var types = GetType().Assembly.GetTypesWith<AttributeOne>()
                                  .ToArray();
 
-            Assert.AreEqual(1, types.Length);
+            Assert.That(types.Length, Is.EqualTo(1));
         }
     }
 }

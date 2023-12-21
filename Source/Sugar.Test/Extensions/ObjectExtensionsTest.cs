@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -60,7 +60,7 @@ namespace Sugar.Extensions
 
             var dump = nullReference.ToDump();
 
-            Assert.AreEqual("Object was null", dump);
+            Assert.That(dump, Is.EqualTo("Object was null"));
         }
 
         [Test]
@@ -70,9 +70,9 @@ namespace Sugar.Extensions
 
             var lines = dump.Split(Environment.NewLine);
 
-            Assert.AreEqual(@"{", lines[0]);
-            Assert.AreEqual(@"  String: ""Hello World""", lines[1]);
-            Assert.AreEqual(@"}", lines[2]);
+            Assert.That(lines[0], Is.EqualTo(@"{"));
+            Assert.That(lines[1], Is.EqualTo(@"  String: ""Hello World"""));
+            Assert.That(lines[2], Is.EqualTo(@"}"));
             Console.WriteLine(dump);
         }
 
@@ -83,9 +83,9 @@ namespace Sugar.Extensions
 
             var lines = dump.Split(Environment.NewLine);
 
-            Assert.AreEqual(@"{", lines[0]);
-            Assert.AreEqual(@"  Int32: ""123""", lines[1]);
-            Assert.AreEqual(@"}", lines[2]);
+            Assert.That(lines[0], Is.EqualTo(@"{"));
+            Assert.That(lines[1], Is.EqualTo(@"  Int32: ""123"""));
+            Assert.That(lines[2], Is.EqualTo(@"}"));
             Console.WriteLine(dump);
         }
 
@@ -99,7 +99,7 @@ namespace Sugar.Extensions
             var lines = dump.Split(Environment.NewLine);
 
             Console.WriteLine(dump);
-            Assert.AreEqual(@"{", lines[0]);
+            Assert.That(lines[0], Is.EqualTo(@"{"));
         }
 
         [Test]
@@ -115,7 +115,7 @@ namespace Sugar.Extensions
             var lines = dump.Split(Environment.NewLine);
 
             Console.WriteLine(dump);
-            Assert.AreEqual(@"{", lines[0]);
+            Assert.That(lines[0], Is.EqualTo(@"{"));
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace Sugar.Extensions
             var lines = dump.Split(Environment.NewLine);
 
             Console.WriteLine(dump);
-            Assert.AreEqual(@"{", lines[0]);
+            Assert.That(lines[0], Is.EqualTo(@"{"));
         }
 
         [Test]
@@ -147,7 +147,7 @@ namespace Sugar.Extensions
             var lines = dump.Split(Environment.NewLine);
 
             Console.WriteLine(dump);
-            Assert.AreEqual(@"{", lines[0]);
+            Assert.That(lines[0], Is.EqualTo(@"{"));
         }
     }
 }

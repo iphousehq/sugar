@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using Sugar.Command.Binder;
 
@@ -98,7 +98,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<FooBarEnumOptions>(parameters);
 
-            Assert.AreEqual(FooBarEnum.Foo, result.FooBarEnum);
+            Assert.That(result.FooBarEnum, Is.EqualTo(FooBarEnum.Foo));
         }
 
         [Test]
@@ -108,7 +108,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<FooBarNullableEnumOptions>(parameters);
 
-            Assert.AreEqual(FooBarEnum.Foo, result.FooBarNullableEnum);
+            Assert.That(result.FooBarNullableEnum, Is.EqualTo(FooBarEnum.Foo));
         }
 
 
@@ -119,7 +119,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<FooBarNullableEnumOptions>(parameters);
 
-            Assert.AreEqual(FooBarEnum.Foo, result.FooBarNullableEnum);
+            Assert.That(result.FooBarNullableEnum, Is.EqualTo(FooBarEnum.Foo));
         }
 
         [Test]
@@ -129,7 +129,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<FooBarNullableEnumOptions>(parameters);
 
-            Assert.AreEqual(null, result.FooBarNullableEnum);
+            Assert.That(result.FooBarNullableEnum, Is.EqualTo(null));
         }
 
         [Test]
@@ -139,8 +139,8 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Foo>(parameters);
 
-            Assert.AreEqual("first", result.First);
-            Assert.AreEqual("two", result.Second);
+            Assert.That(result.First, Is.EqualTo("first"));
+            Assert.That(result.Second, Is.EqualTo("two"));
         }
 
         [Test]
@@ -150,7 +150,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Foo>(parameters);
 
-            Assert.AreEqual("bar", result.First);
+            Assert.That(result.First, Is.EqualTo("bar"));
         }
 
         [Test]
@@ -176,7 +176,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Bar>(parameters);
 
-            Assert.AreEqual("value", result.First);
+            Assert.That(result.First, Is.EqualTo("value"));
         }
 
         [Test]
@@ -186,10 +186,10 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Baz>(parameters);
 
-            Assert.AreEqual("1", result.First);
-            Assert.AreEqual(2, result.Second);
-            Assert.AreEqual(3.4d, result.Third);
-            Assert.AreEqual(new DateTime(2008, 3, 8), result.Fourth);
+            Assert.That(result.First, Is.EqualTo("1"));
+            Assert.That(result.Second, Is.EqualTo(2));
+            Assert.That(result.Third, Is.EqualTo(3.4d));
+            Assert.That(result.Fourth, Is.EqualTo(new DateTime(2008, 3, 8)));
         }
 
         [Test]
@@ -199,7 +199,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Baz>(parameters);
 
-            Assert.AreEqual(new DateTime(2014, 3, 5), result.Fifth.Value);
+            Assert.That(result.Fifth.Value, Is.EqualTo(new DateTime(2014, 3, 5)));
         }
 
         [Test]
@@ -209,7 +209,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Baz>(parameters);
 
-            Assert.AreEqual(new DateTime(2014, 3, 5, 23, 40, 59), result.Fifth.Value);
+            Assert.That(result.Fifth.Value, Is.EqualTo(new DateTime(2014, 3, 5, 23, 40, 59)));
         }
 
         [Test]
@@ -219,7 +219,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Baz>(parameters);
 
-            Assert.IsFalse(result.Fifth.HasValue);
+            Assert.That(result.Fifth.HasValue, Is.False);
         }
 
         [Test]
@@ -229,7 +229,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Baz>(parameters);
 
-            Assert.AreEqual(false, result.Fifth.HasValue);
+            Assert.That(result.Fifth.HasValue, Is.EqualTo(false));
         }
 
         [Test]
@@ -239,7 +239,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Fizz>(parameters);
 
-            Assert.AreEqual("1", result.First);
+            Assert.That(result.First, Is.EqualTo("1"));
         }
 
         [Test]
@@ -249,7 +249,7 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Bizz>(parameters);
 
-            Assert.IsTrue(result.First);
+            Assert.That(result.First, Is.True);
         }
 
         [Test]
@@ -259,9 +259,9 @@ namespace Sugar.Command
 
             var result = ParameterBinder.Bind<Child>(parameters);
 
-            Assert.AreEqual("oneA", result.LevelOneA);
-            Assert.AreEqual("oneB", result.LevelOneB);
-            Assert.AreEqual("twoA", result.LevelTwoA);
+            Assert.That(result.LevelOneA, Is.EqualTo("oneA"));
+            Assert.That(result.LevelOneB, Is.EqualTo("oneB"));
+            Assert.That(result.LevelTwoA, Is.EqualTo("twoA"));
         }
     }
 }

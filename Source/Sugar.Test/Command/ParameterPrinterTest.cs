@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using Sugar.Command.Binder;
 
@@ -60,12 +60,12 @@ namespace Sugar.Command
 
             var results = printer.Print("-", typeof(Foo), typeof(Bar), typeof(Baz), typeof(Fizz), typeof(Bizz));
 
-            Assert.AreEqual(5, results.Count);
-            Assert.AreEqual(@"[-foo ""bar""]", results[0]);
-            Assert.AreEqual(@"-first ""abc""", results[1]);
-            Assert.AreEqual(@"-flag [-one ""abc""] [-two 123] [-three 123.4] [-four (DateTime)]", results[2]);
-            Assert.AreEqual(@"-flag -first ""abc""", results[3]);
-            Assert.AreEqual(@"-flag -command [-set]", results[4]);
+            Assert.That(results.Count, Is.EqualTo(5));
+            Assert.That(results[0], Is.EqualTo(@"[-foo ""bar""]"));
+            Assert.That(results[1], Is.EqualTo(@"-first ""abc"""));
+            Assert.That(results[2], Is.EqualTo(@"-flag [-one ""abc""] [-two 123] [-three 123.4] [-four (DateTime)]"));
+            Assert.That(results[3], Is.EqualTo(@"-flag -first ""abc"""));
+            Assert.That(results[4], Is.EqualTo(@"-flag -command [-set]"));
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace Sugar.Command
 
             var results = printer.Print("-", typeof(Foo).Assembly, "Fizz");
 
-            Assert.AreEqual(2, results.Count);
+            Assert.That(results.Count, Is.EqualTo(2));
         }
     }
 }

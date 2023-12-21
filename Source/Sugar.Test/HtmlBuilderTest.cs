@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 namespace Sugar
 {
@@ -14,7 +14,7 @@ namespace Sugar
             {                
             }
 
-            Assert.AreEqual("<p></p>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo("<p></p>"));
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace Sugar
             {
             }
 
-            Assert.AreEqual("<p></p><p></p>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo("<p></p><p></p>"));
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace Sugar
             {
             }
 
-            Assert.AreEqual("<p></p><p></p><p></p>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo("<p></p><p></p><p></p>"));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Sugar
                 }
             }
 
-            Assert.AreEqual("<p><p></p></p>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo("<p><p></p></p>"));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Sugar
             {
             }
 
-            Assert.AreEqual(@"<p name=""paragraph""></p>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo(@"<p name=""paragraph""></p>"));
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace Sugar
             {
             }
 
-            Assert.AreEqual(@"<p name=""paragraph"" id=""para""></p>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo(@"<p name=""paragraph"" id=""para""></p>"));
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace Sugar
                 p.Attribute("id", "para");
             }
 
-            Assert.AreEqual(@"<p name=""paragraph"" id=""para""></p>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo(@"<p name=""paragraph"" id=""para""></p>"));
         }
 
         [Test]
@@ -116,7 +116,7 @@ namespace Sugar
                 p.Attribute("class", "para2");
             }
 
-            Assert.AreEqual(@"<p class=""para1 para2""></p>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo(@"<p class=""para1 para2""></p>"));
         }
 
         [Test]
@@ -130,7 +130,7 @@ namespace Sugar
                 p.Attribute("class", "para2", true);
             }
 
-            Assert.AreEqual(@"<p class=""para2""></p>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo(@"<p class=""para2""></p>"));
         }
 
         [Test]
@@ -143,7 +143,7 @@ namespace Sugar
                 p.Class("para1");
             }
 
-            Assert.AreEqual(@"<p class=""para1""></p>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo(@"<p class=""para1""></p>"));
         }
 
 
@@ -160,7 +160,7 @@ namespace Sugar
                 }
             }
 
-            Assert.AreEqual(@"<div><p class=""para1"" id=""test"" for=""div""></p></div>", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo(@"<div><p class=""para1"" id=""test"" for=""div""></p></div>"));
         }
     }
 }

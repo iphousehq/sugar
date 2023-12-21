@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 namespace Sugar.Net
 {
@@ -10,7 +10,7 @@ namespace Sugar.Net
         {
             var sansSubDomain = new DomainName("www.domainname.com").DomainSansSubDomain;
 
-            Assert.AreEqual("domainname.com", sansSubDomain);
+            Assert.That(sansSubDomain, Is.EqualTo("domainname.com"));
         }
 
         [Test]
@@ -18,7 +18,7 @@ namespace Sugar.Net
         {
             var subDomain = new DomainName("www.domainname.com").SubDomain;
 
-            Assert.AreEqual("www", subDomain);
+            Assert.That(subDomain, Is.EqualTo("www"));
         }
     }
 }

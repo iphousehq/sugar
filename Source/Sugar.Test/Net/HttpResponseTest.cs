@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 
@@ -12,8 +12,8 @@ namespace Sugar.Net
         {
             var response = new HttpResponse();
 
-            Assert.IsNotNull(response.Cookies);
-            Assert.AreEqual(0, response.Headers.Count);
+            Assert.That(response.Cookies, Is.Not.Null);
+            Assert.That(response.Headers.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace Sugar.Net
         {
             var response = new HttpResponse();
 
-            Assert.AreEqual(string.Empty, response.ToString());
+            Assert.That(response.ToString(), Is.EqualTo(string.Empty));
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace Sugar.Net
                                                }
                                };
 
-            Assert.AreEqual("0\0︹策︴", response.ToString(Encoding.GetEncoding(936)));
+            Assert.That(response.ToString(Encoding.GetEncoding(936)), Is.EqualTo("0\0︹策︴"));
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace Sugar.Net
                                          }
                            };
 
-            Assert.AreEqual("0\0︹策︴", response.ToString());
+            Assert.That(response.ToString(), Is.EqualTo("0\0︹策︴"));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using NUnit.Framework;
 
@@ -30,7 +30,7 @@ namespace Sugar.Extensions
 
             var result = input.GetFlags().ToList();
 
-            Assert.AreEqual(0, result.Count);
+            Assert.That(result.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -40,8 +40,8 @@ namespace Sugar.Extensions
 
             var result = input.GetFlags().ToList();
 
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(SomeFlagsEnum.Bob, result[0]);
+            Assert.That(result.Count, Is.EqualTo(1));
+            Assert.That(result[0], Is.EqualTo(SomeFlagsEnum.Bob));
         }
 
         [Test]
@@ -51,9 +51,9 @@ namespace Sugar.Extensions
 
             var result = input.GetFlags().ToList();
 
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(SomeFlagsEnum.Bob, result[0]);
-            Assert.AreEqual(SomeFlagsEnum.Thursday, result[1]);
+            Assert.That(result.Count, Is.EqualTo(2));
+            Assert.That(result[0], Is.EqualTo(SomeFlagsEnum.Bob));
+            Assert.That(result[1], Is.EqualTo(SomeFlagsEnum.Thursday));
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Sugar.Extensions
         {
             var result = SomeEnum.Bob.GetAttributeFromEnumConstant<System.ComponentModel.DescriptionAttribute>();
 
-            Assert.NotNull(result);
+            Assert.That(result, Is.Not.Null);
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace Sugar.Extensions
         {
             var result = SomeEnum.Thursday.GetAttributeFromEnumConstant<System.ComponentModel.DescriptionAttribute>();
 
-            Assert.Null(result);
+            Assert.That(result, Is.Null);
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Sugar.Extensions
         {
             var result = SomeEnum.Bob.GetAttributesFromEnumConstant<System.ComponentModel.DescriptionAttribute>();
 
-            Assert.AreEqual(1, result.Count());
+            Assert.That(result.Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace Sugar.Extensions
         {
             var result = SomeEnum.Bob.GetAttributePropertyFromEnumConstant<System.ComponentModel.DescriptionAttribute, string>(x => x.Description, "default");
 
-            Assert.AreEqual("Bob Value", result);
+            Assert.That(result, Is.EqualTo("Bob Value"));
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace Sugar.Extensions
         {
             var result = SomeEnum.Thursday.GetAttributePropertyFromEnumConstant<System.ComponentModel.DescriptionAttribute, string>(x => x.Description, "default");
 
-            Assert.AreEqual("default", result);
+            Assert.That(result, Is.EqualTo("default"));
         }
 
         [Test]
@@ -101,7 +101,7 @@ namespace Sugar.Extensions
         {
             var result = EnumExtensions.GetDescription(null);
 
-            Assert.AreSame(string.Empty, result);
+            Assert.That(result, Is.SameAs(string.Empty));
         }
 
         [Test]
@@ -109,7 +109,7 @@ namespace Sugar.Extensions
         {
             var result = SomeEnum.Bob.GetDescription();
 
-            Assert.AreEqual("Bob Value", result);
+            Assert.That(result, Is.EqualTo("Bob Value"));
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace Sugar.Extensions
         {
             var result = SomeEnum.Thursday.GetDescription();
 
-            Assert.AreEqual("Thursday", result);
+            Assert.That(result, Is.EqualTo("Thursday"));
         }
 
         [Test]
@@ -125,7 +125,7 @@ namespace Sugar.Extensions
         {
             var result = SomeEnum.Equals.GetDescription();
 
-            Assert.AreEqual("Equals Value", result);
+            Assert.That(result, Is.EqualTo("Equals Value"));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -16,7 +16,7 @@ namespace Sugar.Extensions
             var list = new List<string> { s };
             list.AddIfNotExists(s);
 
-            Assert.AreEqual(1, list.Count);
+            Assert.That(list.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace Sugar.Extensions
             var list = new List<string>();
             list.AddIfNotExists(s);
 
-            Assert.AreEqual(1, list.Count);
+            Assert.That(list.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -55,9 +55,9 @@ namespace Sugar.Extensions
 
             var results = collection.RemoveAndInsertAt(1, 0);
 
-            Assert.AreEqual("test2", results[0]);
-            Assert.AreEqual("test1", results[1]);
-            Assert.AreEqual("test3", results[2]);
+            Assert.That(results[0], Is.EqualTo("test2"));
+            Assert.That(results[1], Is.EqualTo("test1"));
+            Assert.That(results[2], Is.EqualTo("test3"));
         }
 
         [Test]
@@ -72,9 +72,9 @@ namespace Sugar.Extensions
 
             var results = collection.RemoveAndInsertAt(0, 0);
 
-            Assert.AreEqual("test1", results[0]);
-            Assert.AreEqual("test2", results[1]);
-            Assert.AreEqual("test3", results[2]);
+            Assert.That(results[0], Is.EqualTo("test1"));
+            Assert.That(results[1], Is.EqualTo("test2"));
+            Assert.That(results[2], Is.EqualTo("test3"));
         }
 
         [Test]
@@ -89,9 +89,9 @@ namespace Sugar.Extensions
 
             var results = collection.RemoveAndInsertAt(0, 1);
 
-            Assert.AreEqual("test2", results[0]);
-            Assert.AreEqual("test1", results[1]);
-            Assert.AreEqual("test3", results[2]);
+            Assert.That(results[0], Is.EqualTo("test2"));
+            Assert.That(results[1], Is.EqualTo("test1"));
+            Assert.That(results[2], Is.EqualTo("test3"));
         }
 
         [Test]
@@ -106,9 +106,9 @@ namespace Sugar.Extensions
 
             var results = collection.RemoveAndInsertAt(0, 2);
 
-            Assert.AreEqual("test2", results[0]);
-            Assert.AreEqual("test3", results[1]);
-            Assert.AreEqual("test1", results[2]);
+            Assert.That(results[0], Is.EqualTo("test2"));
+            Assert.That(results[1], Is.EqualTo("test3"));
+            Assert.That(results[2], Is.EqualTo("test1"));
         }
 
         [Test]
@@ -123,7 +123,7 @@ namespace Sugar.Extensions
         
             collection.RemoveIf(s => s == "test4");
 
-            Assert.AreEqual(3, collection.Count);
+            Assert.That(collection.Count, Is.EqualTo(3));
         }
 
         [Test]
@@ -138,7 +138,7 @@ namespace Sugar.Extensions
 
             collection.RemoveIf(s => s == "test3");
 
-            Assert.AreEqual(2, collection.Count);
+            Assert.That(collection.Count, Is.EqualTo(2));
         }
 
         [Test]
@@ -156,13 +156,13 @@ namespace Sugar.Extensions
 
             var results = collection.Chunkify(2).ToList();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual(2, results[0].Count());
-            Assert.AreEqual(2, results[1].Count());
-            Assert.AreEqual(2, results[2].Count());
-            Assert.AreEqual("one", results[0].ElementAt(0));
-            Assert.AreEqual("three", results[1].ElementAt(0));
-            Assert.AreEqual("five", results[2].ElementAt(0));
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0].Count(), Is.EqualTo(2));
+            Assert.That(results[1].Count(), Is.EqualTo(2));
+            Assert.That(results[2].Count(), Is.EqualTo(2));
+            Assert.That(results[0].ElementAt(0), Is.EqualTo("one"));
+            Assert.That(results[1].ElementAt(0), Is.EqualTo("three"));
+            Assert.That(results[2].ElementAt(0), Is.EqualTo("five"));
         }
     }
 }

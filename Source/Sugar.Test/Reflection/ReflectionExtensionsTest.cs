@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 namespace Sugar.Reflection
 {
     [TestFixture]
-    public class ReflectionExtensionsTests
+    public class ReflectionExtensionsTest
     {
         public class TestA
         {
@@ -27,7 +27,7 @@ namespace Sugar.Reflection
         {
             var testA = new TestA();
             var result = testA.GetValueOf<TestA, int>("testInt");
-            Assert.AreEqual(5, result);
+            Assert.That(result, Is.EqualTo(5));
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace Sugar.Reflection
         {
             var testA = new TestA();
             testA.SetValueOf<TestA, int>("testInt", 3);
-            Assert.AreEqual(3, testA.TestInt);
+            Assert.That(testA.TestInt, Is.EqualTo(3));
         }
 
         [Test]
@@ -43,11 +43,11 @@ namespace Sugar.Reflection
         {
             var a = new TestA();
 
-            Assert.AreEqual(0, a.PrivateSetter);
+            Assert.That(a.PrivateSetter, Is.EqualTo(0));
 
             a.SetProtectedPropertyValue("PrivateSetter", 123);
 
-            Assert.AreEqual(123, a.PrivateSetter);
+            Assert.That(a.PrivateSetter, Is.EqualTo(123));
         }
 
         [Test]
@@ -55,11 +55,11 @@ namespace Sugar.Reflection
         {
             var childOfA = new ChildOfA();
 
-            Assert.AreEqual(0, childOfA.PrivateSetter);
+            Assert.That(childOfA.PrivateSetter, Is.EqualTo(0));
 
             childOfA.SetProtectedPropertyValue("PrivateSetter", 123);
 
-            Assert.AreEqual(123, childOfA.PrivateSetter);
+            Assert.That(childOfA.PrivateSetter, Is.EqualTo(123));
         }
     }
 }

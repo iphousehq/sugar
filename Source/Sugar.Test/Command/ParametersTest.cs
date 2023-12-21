@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using NUnit.Framework;
 using Sugar.Command.Binder;
@@ -14,7 +14,7 @@ namespace Sugar.Command
         {
             var result = Parameters.Directory;
 
-            Assert.IsNotEmpty(result);
+            Assert.That(result, Is.Not.Empty);
         }
 
         [Test]
@@ -22,10 +22,10 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -bar");
 
-            Assert.AreEqual("foo.exe", parameters.Filename);
+            Assert.That(parameters.Filename, Is.EqualTo("foo.exe"));
 
-            Assert.AreEqual(1, parameters.Count);
-            Assert.AreEqual("-bar", parameters[0]);
+            Assert.That(parameters.Count, Is.EqualTo(1));
+            Assert.That(parameters[0], Is.EqualTo("-bar"));
         }
 
         [Test]
@@ -35,16 +35,16 @@ namespace Sugar.Command
 
             var copy = (Parameters) original.Clone();
 
-            Assert.AreNotSame(original, copy);
+            Assert.That(copy, Is.Not.SameAs(original));
             
-            Assert.AreEqual(2, copy.Switches.Count());
-            Assert.AreEqual("-", copy.Switches.First());
-            Assert.AreEqual("[", copy.Switches.Skip(1).First());
+            Assert.That(copy.Switches.Count(), Is.EqualTo(2));
+            Assert.That(copy.Switches.First(), Is.EqualTo("-"));
+            Assert.That(copy.Switches.Skip(1).First(), Is.EqualTo("["));
 
-            Assert.AreEqual("foo.exe", copy.Filename);
+            Assert.That(copy.Filename, Is.EqualTo("foo.exe"));
 
-            Assert.AreEqual(1, copy.Count);
-            Assert.AreEqual("-bar", copy[0]);
+            Assert.That(copy.Count, Is.EqualTo(1));
+            Assert.That(copy[0], Is.EqualTo("-bar"));
         }
 
         [Test]
@@ -52,10 +52,10 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -one --two /three four");
 
-            Assert.AreEqual(true, parameters.Contains("one"));
-            Assert.AreEqual(true, parameters.Contains("two"));
-            Assert.AreEqual(true, parameters.Contains("three"));
-            Assert.AreEqual(false, parameters.Contains("four"));
+            Assert.That(parameters.Contains("one"), Is.EqualTo(true));
+            Assert.That(parameters.Contains("two"), Is.EqualTo(true));
+            Assert.That(parameters.Contains("three"), Is.EqualTo(true));
+            Assert.That(parameters.Contains("four"), Is.EqualTo(false));
         }
 
         [Test]
@@ -63,8 +63,8 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -one two", new string[0]);
             
-            Assert.AreEqual(false, parameters.Contains("one"));
-            Assert.AreEqual(true, parameters.Contains("two"));
+            Assert.That(parameters.Contains("one"), Is.EqualTo(false));
+            Assert.That(parameters.Contains("two"), Is.EqualTo(true));
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -one two");
 
-            Assert.AreEqual("two", parameters.AsString("one"));
+            Assert.That(parameters.AsString("one"), Is.EqualTo("two"));
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace Sugar.Command
 
             var result = parameters.AsString("two");
 
-            Assert.AreEqual(string.Empty, result);
+            Assert.That(result, Is.EqualTo(string.Empty));
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -one -two");
 
-            Assert.AreEqual(string.Empty, parameters.AsString("one"));
+            Assert.That(parameters.AsString("one"), Is.EqualTo(string.Empty));
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -one two");
 
-            Assert.AreEqual("default", parameters.AsString("two", "default"));
+            Assert.That(parameters.AsString("two", "default"), Is.EqualTo("default"));
         }
 
         [Test]
@@ -106,9 +106,9 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -one two three");
 
-            Assert.AreEqual(2, parameters.AsStrings("one").Count);
-            Assert.AreEqual("two", parameters.AsStrings("one")[0]);
-            Assert.AreEqual("three", parameters.AsStrings("one")[1]);
+            Assert.That(parameters.AsStrings("one").Count, Is.EqualTo(2));
+            Assert.That(parameters.AsStrings("one")[0], Is.EqualTo("two"));
+            Assert.That(parameters.AsStrings("one")[1], Is.EqualTo("three"));
         }
 
         [Test]
@@ -116,7 +116,7 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -one -three");
 
-            Assert.AreEqual(0, parameters.AsStrings("one").Count);
+            Assert.That(parameters.AsStrings("one").Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -124,8 +124,8 @@ namespace Sugar.Command
         {
             var parameters = new Parameters(@"foo.exe -one ""-three""");
 
-            Assert.AreEqual(1, parameters.AsStrings("one").Count);
-            Assert.AreEqual(@"""-three""", parameters.AsStrings("one")[0]);
+            Assert.That(parameters.AsStrings("one").Count, Is.EqualTo(1));
+            Assert.That(parameters.AsStrings("one")[0], Is.EqualTo(@"""-three"""));
         }
 
         [Test]
@@ -135,7 +135,7 @@ namespace Sugar.Command
 
             var value = parameters.AsString("two");
 
-            Assert.AreEqual("\"-05:00:00\"", value);
+            Assert.That(value, Is.EqualTo("\"-05:00:00\""));
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace Sugar.Command
 
             var value = parameters.AsString("two");
 
-            Assert.AreEqual("\"-05:00:00\"", value);
+            Assert.That(value, Is.EqualTo("\"-05:00:00\""));
         }
 
         [Test]
@@ -153,7 +153,7 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -one two three");
 
-            Assert.AreEqual(2, parameters.AsStrings("four", "one", "two").Count);
+            Assert.That(parameters.AsStrings("four", "one", "two").Count, Is.EqualTo(2));
         }
 
         [Test]
@@ -161,20 +161,20 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -one two three -four");
 
-            Assert.AreEqual(2, parameters.AsStrings("one").Count);
-            Assert.AreEqual("two", parameters.AsStrings("one")[0]);
-            Assert.AreEqual("two", parameters.AsStrings("one")[0]);
+            Assert.That(parameters.AsStrings("one").Count, Is.EqualTo(2));
+            Assert.That(parameters.AsStrings("one")[0], Is.EqualTo("two"));
+            Assert.That(parameters.AsStrings("one")[0], Is.EqualTo("two"));
         }
 
         [Test]
         public void TestGetParametersWhenNoFlagPrefix()
         {
-            var parameters = new Parameters("foo.exe one two three four", new string[0]);
+            var parameters = new Parameters("foo.exe one two three four", Array.Empty<string>());
 
-            Assert.AreEqual(3, parameters.AsStrings("one").Count);
-            Assert.AreEqual("two", parameters.AsStrings("one")[0]);
-            Assert.AreEqual("three", parameters.AsStrings("one")[1]);
-            Assert.AreEqual("four", parameters.AsStrings("one")[2]);
+            Assert.That(parameters.AsStrings("one").Count, Is.EqualTo(3));
+            Assert.That(parameters.AsStrings("one")[0], Is.EqualTo("two"));
+            Assert.That(parameters.AsStrings("one")[1], Is.EqualTo("three"));
+            Assert.That(parameters.AsStrings("one")[2], Is.EqualTo("four"));
         }
 
         [Test]
@@ -182,18 +182,18 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("");
 
-            Assert.AreEqual(true, parameters.IsFlag("-one"));
-            Assert.AreEqual(true, parameters.IsFlag("--two"));
-            Assert.AreEqual(true, parameters.IsFlag("/three"));
-            Assert.AreEqual(false, parameters.IsFlag(":four"));
+            Assert.That(parameters.IsFlag("-one"), Is.EqualTo(true));
+            Assert.That(parameters.IsFlag("--two"), Is.EqualTo(true));
+            Assert.That(parameters.IsFlag("/three"), Is.EqualTo(true));
+            Assert.That(parameters.IsFlag(":four"), Is.EqualTo(false));
         }
 
         [Test]
         public void TestIsFlagWhenNoPrefix()
         {
-            var parameters = new Parameters("", new string[0]);
+            var parameters = new Parameters("", Array.Empty<string>());
 
-            Assert.AreEqual(true, parameters.IsFlag("one"));
+            Assert.That(parameters.IsFlag("one"), Is.EqualTo(true));
         }
 
         [Test]
@@ -203,7 +203,7 @@ namespace Sugar.Command
 
             var result = parameters.AsInteger("flag");
 
-            Assert.AreEqual(1, result);
+            Assert.That(result, Is.EqualTo(1));
         }
 
         [Test]
@@ -213,7 +213,7 @@ namespace Sugar.Command
 
             var result = parameters.AsInteger("two");
 
-            Assert.AreEqual(0, result);
+            Assert.That(result, Is.EqualTo(0));
         }
 
         [Test]
@@ -223,7 +223,7 @@ namespace Sugar.Command
 
             var result = parameters.AsInteger("two", 2);
 
-            Assert.AreEqual(2, result);
+            Assert.That(result, Is.EqualTo(2));
         }
 
         [Test]
@@ -233,7 +233,7 @@ namespace Sugar.Command
 
             var result = parameters.AsDateTime("flag");
 
-            Assert.AreEqual(new DateTime(2001, 1, 1), result);
+            Assert.That(result, Is.EqualTo(new DateTime(2001, 1, 1)));
         }
 
         [Test]
@@ -243,7 +243,7 @@ namespace Sugar.Command
 
             var result = parameters.AsDateTime("two");
 
-            Assert.AreEqual(DateTime.Today, result);
+            Assert.That(result, Is.EqualTo(DateTime.Today));
         }
 
         [Test]
@@ -253,7 +253,7 @@ namespace Sugar.Command
 
             var result = parameters.AsDateTime("two", DateTime.Today.AddDays(1));
 
-            Assert.AreEqual(DateTime.Today.AddDays(1), result);
+            Assert.That(result, Is.EqualTo(DateTime.Today.AddDays(1)));
         }
 
         [Test]
@@ -263,7 +263,7 @@ namespace Sugar.Command
 
             var result = parameters.AsBool("flag");
 
-            Assert.AreEqual(true, result);
+            Assert.That(result, Is.EqualTo(true));
         }
 
         [Test]
@@ -273,7 +273,7 @@ namespace Sugar.Command
 
             var result = parameters.AsBool("two");
 
-            Assert.AreEqual(false, result);
+            Assert.That(result, Is.EqualTo(false));
         }
 
         [Test]
@@ -283,7 +283,7 @@ namespace Sugar.Command
 
             var result = parameters.AsBool("two", true);
 
-            Assert.AreEqual(true, result);
+            Assert.That(result, Is.EqualTo(true));
         }
 
 
@@ -292,7 +292,7 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -flag one -two");
 
-            Assert.AreEqual(2, parameters.IndexOf("two"));
+            Assert.That(parameters.IndexOf("two"), Is.EqualTo(2));
         }
 
         [Test]
@@ -300,7 +300,7 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -flag one -two");
 
-            Assert.AreEqual(-1, parameters.IndexOf("three"));
+            Assert.That(parameters.IndexOf("three"), Is.EqualTo(-1));
         }
 
         [Test]
@@ -310,7 +310,7 @@ namespace Sugar.Command
 
             parameters.Remove("flag");
 
-            Assert.AreEqual("-two", parameters.ToString());
+            Assert.That(parameters.ToString(), Is.EqualTo("-two"));
         }
 
         [Test]
@@ -320,7 +320,7 @@ namespace Sugar.Command
 
             parameters.Remove("flag");
 
-            Assert.AreEqual("-four", parameters.ToString());
+            Assert.That(parameters.ToString(), Is.EqualTo("-four"));
         }
 
         [Test]
@@ -330,7 +330,7 @@ namespace Sugar.Command
 
             parameters.Replace("flag", "two");
 
-            Assert.AreEqual("-flag two", parameters.ToString());
+            Assert.That(parameters.ToString(), Is.EqualTo("-flag two"));
         }
 
         [Test]
@@ -340,7 +340,7 @@ namespace Sugar.Command
 
             parameters.Replace("flag", "two", "three");
 
-            Assert.AreEqual("-flag two three", parameters.ToString());
+            Assert.That(parameters.ToString(), Is.EqualTo("-flag two three"));
         }
 
         [Test]
@@ -350,7 +350,7 @@ namespace Sugar.Command
 
             parameters.Replace("four", "two", "three");
 
-            Assert.AreEqual("-flag one", parameters.ToString());
+            Assert.That(parameters.ToString(), Is.EqualTo("-flag one"));
         }
 
         [Test]
@@ -360,7 +360,7 @@ namespace Sugar.Command
 
             parameters.Replace("flag", "three");
 
-            Assert.AreEqual("three one", parameters.ToString());
+            Assert.That(parameters.ToString(), Is.EqualTo("three one"));
         }
 
         [Test]
@@ -370,7 +370,7 @@ namespace Sugar.Command
 
             var result = parameters.AsCustomType<double>("flag");
 
-            Assert.AreEqual(123.45d, result);
+            Assert.That(result, Is.EqualTo(123.45d));
         }
 
         [Test]
@@ -380,7 +380,7 @@ namespace Sugar.Command
 
             var result = parameters.AsCustomType(1, typeof(double));
 
-            Assert.AreEqual(123.45d, result);
+            Assert.That(result, Is.EqualTo(123.45d));
         }
 
         [Test]
@@ -388,8 +388,8 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -flag");
 
-            Assert.AreEqual(true, parameters.Contains("flag"));
-            Assert.AreEqual(false, parameters.Contains("boat"));
+            Assert.That(parameters.Contains("flag"), Is.EqualTo(true));
+            Assert.That(parameters.Contains("boat"), Is.EqualTo(false));
         }
 
         [Test]
@@ -397,8 +397,8 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -flag -another");
 
-            Assert.AreEqual(true, parameters.ContainsAny("flag", "another"));
-            Assert.AreEqual(false, parameters.ContainsAny("boat", "another", "flag"));
+            Assert.That(parameters.ContainsAny("flag", "another"), Is.EqualTo(true));
+            Assert.That(parameters.ContainsAny("boat", "another", "flag"), Is.EqualTo(false));
         }
 
         [Test]
@@ -406,9 +406,9 @@ namespace Sugar.Command
         {
             var parameters = new Parameters("foo.exe -flag red -boat -fish");
 
-            Assert.AreEqual(true, parameters.HasValue("flag"));
-            Assert.AreEqual(false, parameters.HasValue("boat"));
-            Assert.AreEqual(false, parameters.HasValue("dog"));
+            Assert.That(parameters.HasValue("flag"), Is.EqualTo(true));
+            Assert.That(parameters.HasValue("boat"), Is.EqualTo(false));
+            Assert.That(parameters.HasValue("dog"), Is.EqualTo(false));
         }
 
         [Test]
@@ -416,7 +416,7 @@ namespace Sugar.Command
         {
             var parameters = new Parameters(@"foo.exe flag ""red boat""", new[] { "" }).ToString();
 
-            Assert.AreEqual(@"flag ""red boat""", parameters);
+            Assert.That(parameters, Is.EqualTo(@"flag ""red boat"""));
         }
     }
 }

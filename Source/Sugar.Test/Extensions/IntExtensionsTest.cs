@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 namespace Sugar.Extensions
 {
@@ -10,7 +10,7 @@ namespace Sugar.Extensions
         {
             var result = (-1).AddOrdinal();
 
-            Assert.AreEqual("-1", result);
+            Assert.That(result, Is.EqualTo("-1"));
         }
 
         [Test]
@@ -18,7 +18,7 @@ namespace Sugar.Extensions
         {
             var result = 0.AddOrdinal();
 
-            Assert.AreEqual("0", result);
+            Assert.That(result, Is.EqualTo("0"));
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace Sugar.Extensions
         {
             var result = 1.AddOrdinal();
 
-            Assert.AreEqual("1st", result);
+            Assert.That(result, Is.EqualTo("1st"));
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Sugar.Extensions
         {
             var result = 2.AddOrdinal();
 
-            Assert.AreEqual("2nd", result);
+            Assert.That(result, Is.EqualTo("2nd"));
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Sugar.Extensions
         {
             var result = 3.AddOrdinal();
 
-            Assert.AreEqual("3rd", result);
+            Assert.That(result, Is.EqualTo("3rd"));
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace Sugar.Extensions
         {
             var result = 4.AddOrdinal();
 
-            Assert.AreEqual("4th", result);
+            Assert.That(result, Is.EqualTo("4th"));
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace Sugar.Extensions
         {
             var result = 11.AddOrdinal();
 
-            Assert.AreEqual("11th", result);
+            Assert.That(result, Is.EqualTo("11th"));
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace Sugar.Extensions
         {
             var result = 12.AddOrdinal();
 
-            Assert.AreEqual("12th", result);
+            Assert.That(result, Is.EqualTo("12th"));
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace Sugar.Extensions
         {
             var result = 13.AddOrdinal();
 
-            Assert.AreEqual("13th", result);
+            Assert.That(result, Is.EqualTo("13th"));
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace Sugar.Extensions
         {
             var result = 14.AddOrdinal();
 
-            Assert.AreEqual("14th", result);
+            Assert.That(result, Is.EqualTo("14th"));
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace Sugar.Extensions
         {
             var result = 21.AddOrdinal();
 
-            Assert.AreEqual("21st", result);
+            Assert.That(result, Is.EqualTo("21st"));
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace Sugar.Extensions
         {
             var result = 22.AddOrdinal();
 
-            Assert.AreEqual("22nd", result);
+            Assert.That(result, Is.EqualTo("22nd"));
         }
 
         [Test]
@@ -106,7 +106,7 @@ namespace Sugar.Extensions
         {
             var result = 23.AddOrdinal();
 
-            Assert.AreEqual("23rd", result);
+            Assert.That(result, Is.EqualTo("23rd"));
         }
 
         [Test]
@@ -114,7 +114,7 @@ namespace Sugar.Extensions
         {
             var result = 24.AddOrdinal();
 
-            Assert.AreEqual("24th", result);
+            Assert.That(result, Is.EqualTo("24th"));
         }
 
         [Test]
@@ -122,7 +122,7 @@ namespace Sugar.Extensions
         {
             var result = 25.PercentOf(1000);
 
-            Assert.AreEqual(2.5, result);
+            Assert.That(result, Is.EqualTo(2.5));
         }       
     }
 }

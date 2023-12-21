@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 
 namespace Sugar.Extensions
@@ -11,7 +11,7 @@ namespace Sugar.Extensions
         {
             var time = 1293840000.0d.FromUnixTimestamp();
 
-            Assert.AreEqual(new DateTime(2011, 1, 1, 0, 0, 0), time.ToUniversalTime());
+            Assert.That(time.ToUniversalTime(), Is.EqualTo(new DateTime(2011, 1, 1, 0, 0, 0)));
         }
 
         [Test]
@@ -19,7 +19,7 @@ namespace Sugar.Extensions
         {
             var result = 156700.00.Humanise();
 
-            Assert.AreEqual("156,700", result);
+            Assert.That(result, Is.EqualTo("156,700"));
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace Sugar.Extensions
         {
             var result = 500.6789.Humanise(true);
 
-            Assert.AreEqual("500.68", result);
+            Assert.That(result, Is.EqualTo("500.68"));
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace Sugar.Extensions
         {
             var result = 500.00.Humanise(true);
 
-            Assert.AreEqual("500", result);
+            Assert.That(result, Is.EqualTo("500"));
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Sugar.Extensions
         {
             var result = (-500.00).Humanise(true);
 
-            Assert.AreEqual("-500", result);
+            Assert.That(result, Is.EqualTo("-500"));
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace Sugar.Extensions
         {
             var result = 1500.00.Humanise(true);
 
-            Assert.AreEqual("1,500", result);
+            Assert.That(result, Is.EqualTo("1,500"));
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace Sugar.Extensions
         {
             var result = 1555.55.Humanise(true);
 
-            Assert.AreEqual("1,555.55", result);
+            Assert.That(result, Is.EqualTo("1,555.55"));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace Sugar.Extensions
         {
             var result = 150000.00.Humanise(true);
 
-            Assert.AreEqual("150 thousand", result);
+            Assert.That(result, Is.EqualTo("150 thousand"));
         }
 
         [Test]
@@ -75,14 +75,14 @@ namespace Sugar.Extensions
         {
             var result = 155555.55.Humanise(true);
 
-            Assert.AreEqual("156 thousand", result);
+            Assert.That(result, Is.EqualTo("156 thousand"));
         }
         [Test]
         public void TestHumaniseAMillion()
         {
             var result = 1000000.00.Humanise(true);
 
-            Assert.AreEqual("1 million", result);
+            Assert.That(result, Is.EqualTo("1 million"));
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace Sugar.Extensions
         {
             var result = 1555555.55.Humanise(true);
 
-            Assert.AreEqual("1.6 million", result);
+            Assert.That(result, Is.EqualTo("1.6 million"));
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace Sugar.Extensions
         {
             var result = 1000000000.00.Humanise(true);
 
-            Assert.AreEqual("1 billion", result);
+            Assert.That(result, Is.EqualTo("1 billion"));
         }
 
         [Test]
@@ -106,7 +106,7 @@ namespace Sugar.Extensions
         {
             var result = 1555555555.55.Humanise(true);
 
-            Assert.AreEqual("1.6 billion", result);
+            Assert.That(result, Is.EqualTo("1.6 billion"));
         }
     }
 }

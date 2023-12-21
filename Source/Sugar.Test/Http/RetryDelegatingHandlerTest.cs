@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -50,11 +50,11 @@ namespace Sugar.Http
 
             var response = await client.GetAsync("http://hello.world/test");
 
-            Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
 
-            Assert.AreEqual(1, innerHandler.FailedCount);
-            Assert.AreEqual(0, innerHandler.AuthorizationAttempts);
-            Assert.AreEqual(0, innerHandler.OkCount);
+            Assert.That(innerHandler.FailedCount, Is.EqualTo(1));
+            Assert.That(innerHandler.AuthorizationAttempts, Is.EqualTo(0));
+            Assert.That(innerHandler.OkCount, Is.EqualTo(0));
         }
 
         [Test]
@@ -86,11 +86,11 @@ namespace Sugar.Http
 
             var response = await client.GetAsync("http://hello.world/test");
 
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
-            Assert.AreEqual(1, innerHandler.FailedCount);
-            Assert.AreEqual(1, innerHandler.AuthorizationAttempts);
-            Assert.AreEqual(1, innerHandler.OkCount);
+            Assert.That(innerHandler.FailedCount, Is.EqualTo(1));
+            Assert.That(innerHandler.AuthorizationAttempts, Is.EqualTo(1));
+            Assert.That(innerHandler.OkCount, Is.EqualTo(1));
         }
     }
 }

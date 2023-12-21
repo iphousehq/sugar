@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using Sugar.Command.Binder;
 
@@ -13,10 +13,10 @@ namespace Sugar.Command
         {
             var parameters = ParametersExtensions.ParseCommandLine("one two three");
 
-            Assert.AreEqual(3, parameters.Count);
-            Assert.AreEqual("one", parameters[0]);
-            Assert.AreEqual("two", parameters[1]);
-            Assert.AreEqual("three", parameters[2]);
+            Assert.That(parameters.Count, Is.EqualTo(3));
+            Assert.That(parameters[0], Is.EqualTo("one"));
+            Assert.That(parameters[1], Is.EqualTo("two"));
+            Assert.That(parameters[2], Is.EqualTo("three"));
         }
 
         [Test]
@@ -24,10 +24,10 @@ namespace Sugar.Command
         {
             var parameters = ParametersExtensions.ParseCommandLine(@"one ""two three"" four");
 
-            Assert.AreEqual(3, parameters.Count);
-            Assert.AreEqual("one", parameters[0]);
-            Assert.AreEqual("two three", parameters[1]);
-            Assert.AreEqual("four", parameters[2]);
+            Assert.That(parameters.Count, Is.EqualTo(3));
+            Assert.That(parameters[0], Is.EqualTo("one"));
+            Assert.That(parameters[1], Is.EqualTo("two three"));
+            Assert.That(parameters[2], Is.EqualTo("four"));
         }
 
         [Test]
@@ -35,11 +35,11 @@ namespace Sugar.Command
         {
             var parameters = ParametersExtensions.ParseCommandLine(@"one ""two three"" four ""five six""");
 
-            Assert.AreEqual(4, parameters.Count);
-            Assert.AreEqual("one", parameters[0]);
-            Assert.AreEqual("two three", parameters[1]);
-            Assert.AreEqual("four", parameters[2]);
-            Assert.AreEqual("five six", parameters[3]);
+            Assert.That(parameters.Count, Is.EqualTo(4));
+            Assert.That(parameters[0], Is.EqualTo("one"));
+            Assert.That(parameters[1], Is.EqualTo("two three"));
+            Assert.That(parameters[2], Is.EqualTo("four"));
+            Assert.That(parameters[3], Is.EqualTo("five six"));
         }
 
         [Test]
@@ -47,8 +47,8 @@ namespace Sugar.Command
         {
             var parameters = ParametersExtensions.ParseCommandLine(@"""http://www.google.com""");
 
-            Assert.AreEqual(1, parameters.Count);
-            Assert.AreEqual("http://www.google.com", parameters[0]);
+            Assert.That(parameters.Count, Is.EqualTo(1));
+            Assert.That(parameters[0], Is.EqualTo("http://www.google.com"));
         }
 
         [Test]
@@ -56,9 +56,9 @@ namespace Sugar.Command
         {
             var parameters = ParametersExtensions.ParseCommandLine(@"one ""two three four");
 
-            Assert.AreEqual(2, parameters.Count);
-            Assert.AreEqual("one", parameters[0]);
-            Assert.AreEqual("two three four", parameters[1]);
+            Assert.That(parameters.Count, Is.EqualTo(2));
+            Assert.That(parameters[0], Is.EqualTo("one"));
+            Assert.That(parameters[1], Is.EqualTo("two three four"));
         }
 
         [Test]
@@ -66,11 +66,11 @@ namespace Sugar.Command
         {
             var parameters = ParametersExtensions.ParseCommandLine(@"-one ""two three"" --four /five");
 
-            Assert.AreEqual(4, parameters.Count);
-            Assert.AreEqual("-one", parameters[0]);
-            Assert.AreEqual("two three", parameters[1]);
-            Assert.AreEqual("--four", parameters[2]);
-            Assert.AreEqual("/five", parameters[3]);
+            Assert.That(parameters.Count, Is.EqualTo(4));
+            Assert.That(parameters[0], Is.EqualTo("-one"));
+            Assert.That(parameters[1], Is.EqualTo("two three"));
+            Assert.That(parameters[2], Is.EqualTo("--four"));
+            Assert.That(parameters[3], Is.EqualTo("/five"));
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace Sugar.Command
         {
             var parameters = ParametersExtensions.ParseCommandLine(@"""-05:00:00""");
 
-            Assert.AreEqual(@"""-05:00:00""",  parameters[0]);
+            Assert.That(parameters[0], Is.EqualTo(@"""-05:00:00"""));
         }
     }
 }

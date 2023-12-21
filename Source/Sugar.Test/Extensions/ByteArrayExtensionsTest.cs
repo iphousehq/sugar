@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using NUnit.Framework;
@@ -19,7 +19,7 @@ namespace Sugar.Extensions
 
                 var reconstructedImage = bytes.ToBitmap();
 
-                Assert.AreEqual(512, reconstructedImage.Width);
+                Assert.That(reconstructedImage.Width, Is.EqualTo(512));
             }
         }
 
@@ -30,7 +30,7 @@ namespace Sugar.Extensions
 
             var reconstructedImage = bytes.ToBitmap();
 
-            Assert.IsNull(reconstructedImage);
+            Assert.That(reconstructedImage, Is.Null);
         }
     }
 }

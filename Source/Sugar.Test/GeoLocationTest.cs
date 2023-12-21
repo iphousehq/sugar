@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using Sugar.Extensions;
 
@@ -20,8 +20,8 @@ namespace Sugar
         {
             var loc = GeoLocation.FromDegrees(1, 1);
 
-            Assert.AreEqual(1, loc.Latitude);
-            Assert.AreEqual(1, loc.Longitude);
+            Assert.That(loc.Latitude, Is.EqualTo(1));
+            Assert.That(loc.Longitude, Is.EqualTo(1));
         }
 
         [Test]
@@ -29,8 +29,8 @@ namespace Sugar
         {
             var loc = GeoLocation.FromRadians(1d.ToRadians(), 1d.ToRadians());
 
-            Assert.AreEqual(1, loc.Latitude);
-            Assert.AreEqual(1, loc.Longitude);
+            Assert.That(loc.Latitude, Is.EqualTo(1));
+            Assert.That(loc.Longitude, Is.EqualTo(1));
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace Sugar
         {
             var exception = Assert.Throws<ArgumentException>(() => GeoLocation.FromDegrees(-95, 1));
             
-            Assert.AreEqual(exception.Message, "Latitude must not be less than the minimum value. (-90)");
+            Assert.That("Latitude must not be less than the minimum value. (-90)", Is.EqualTo(exception.Message));
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace Sugar
         {
             var exception = Assert.Throws<ArgumentException>(() => GeoLocation.FromDegrees(95, 1));
 
-            Assert.AreEqual(exception.Message, "Latitude must not be greater than the maximum value. (90)");
+            Assert.That("Latitude must not be greater than the maximum value. (90)", Is.EqualTo(exception.Message));
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace Sugar
         {
             var exception = Assert.Throws<ArgumentException>(() => GeoLocation.FromDegrees(1, -185));
 
-            Assert.AreEqual(exception.Message, "Longitude must not be less than the minimum value. (-180)");
+            Assert.That("Longitude must not be less than the minimum value. (-180)", Is.EqualTo(exception.Message));
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace Sugar
         {
             var exception = Assert.Throws<ArgumentException>(() => GeoLocation.FromDegrees(1, 185));
 
-            Assert.AreEqual(exception.Message, "Longitude must not be greater than the maximum value. (180)");
+            Assert.That("Longitude must not be greater than the maximum value. (180)", Is.EqualTo(exception.Message));
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace Sugar
 
             var distance = location.GetDistanceTo(toLocation);
 
-            Assert.AreEqual(3112.44992, distance, 0.0001);
+            Assert.That(distance, Is.EqualTo(3112.44992).Within(0.0001));
         }
 
         [Test]
@@ -135,10 +135,10 @@ namespace Sugar
 
             var box = location.GetBoundingBox(1000);
 
-            Assert.AreEqual(-8.99320193, box[0], 0.0001);
-            Assert.AreEqual(-8.99320193, box[1], 0.0001);
-            Assert.AreEqual(8.99320193, box[2], 0.0001);
-            Assert.AreEqual(8.99320193, box[3], 0.0001);
+            Assert.That(box[0], Is.EqualTo(-8.99320193).Within(0.0001));
+            Assert.That(box[1], Is.EqualTo(-8.99320193).Within(0.0001));
+            Assert.That(box[2], Is.EqualTo(8.99320193).Within(0.0001));
+            Assert.That(box[3], Is.EqualTo(8.99320193).Within(0.0001));
         }
 
         [Test]
@@ -160,10 +160,10 @@ namespace Sugar
 
             var box = loc.GetBoundingBox(1000);
 
-            Assert.AreEqual(79.0067982, box[0], 0.0001);
-            Assert.AreEqual(-180, box[1], 0.0001);
-            Assert.AreEqual(90, box[2], 0.0001);
-            Assert.AreEqual(180, box[3], 0.0001);
+            Assert.That(box[0], Is.EqualTo(79.0067982).Within(0.0001));
+            Assert.That(box[1], Is.EqualTo(-180).Within(0.0001));
+            Assert.That(box[2], Is.EqualTo(90).Within(0.0001));
+            Assert.That(box[3], Is.EqualTo(180).Within(0.0001));
         }
     }
 }

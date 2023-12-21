@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 namespace Sugar.Command
 {
@@ -14,7 +14,7 @@ namespace Sugar.Command
             // Checking unexpected exception are not thrown
             var isAlreadyRunning = commandline.AlreadyRunning("foo.exe");
 
-            Assert.IsFalse(isAlreadyRunning);
+            Assert.That(isAlreadyRunning, Is.False);
         }
     }
 }

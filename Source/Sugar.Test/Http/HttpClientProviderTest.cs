@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
@@ -18,7 +18,7 @@ namespace Sugar.Http
             var client1 = provider.Create();
             var client2 = provider.Create();
 
-            Assert.AreNotSame(client1, client2);
+            Assert.That(client2, Is.Not.SameAs(client1));
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace Sugar.Http
 
             var client = provider.Create();
 
-            Assert.AreEqual("Test/1.0", client.DefaultRequestHeaders.UserAgent.ToString());
+            Assert.That(client.DefaultRequestHeaders.UserAgent.ToString(), Is.EqualTo("Test/1.0"));
         }
 
         private class FakeHandler : HttpMessageHandler
@@ -65,8 +65,8 @@ namespace Sugar.Http
 
             client.GetAsync("http://hello.world/boo");
 
-            Assert.AreEqual(1, interceptCount);
-            Assert.AreEqual(1, innerHandler.RequestCount);
+            Assert.That(interceptCount, Is.EqualTo(1));
+            Assert.That(innerHandler.RequestCount, Is.EqualTo(1));
         }
 
         [Test]
@@ -89,8 +89,8 @@ namespace Sugar.Http
 
             client.GetAsync("http://hello.world/boo");
 
-            Assert.AreEqual(1, interceptCount);
-            Assert.AreEqual(2, innerHandler.RequestCount);
+            Assert.That(interceptCount, Is.EqualTo(1));
+            Assert.That(innerHandler.RequestCount, Is.EqualTo(2));
         }
 
         [Test]
@@ -113,8 +113,8 @@ namespace Sugar.Http
 
             client.GetAsync("http://hello.world/boo");
 
-            Assert.AreEqual(0, interceptCount);
-            Assert.AreEqual(1, innerHandler.RequestCount);
+            Assert.That(interceptCount, Is.EqualTo(0));
+            Assert.That(innerHandler.RequestCount, Is.EqualTo(1));
         }
     }
 }

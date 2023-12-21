@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 
 namespace Sugar.Net
@@ -11,8 +11,8 @@ namespace Sugar.Net
         {
             var url = new Url((string) null);
 
-            Assert.IsFalse(url.IsValid);
-            Assert.AreEqual(string.Empty, url.ToString());
+            Assert.That(url.IsValid, Is.False);
+            Assert.That(url.ToString(), Is.EqualTo(string.Empty));
         }
 
         [Test]
@@ -20,8 +20,8 @@ namespace Sugar.Net
         {
             var url = new Url(string.Empty);
 
-            Assert.IsFalse(url.IsValid);
-            Assert.AreEqual(string.Empty, url.ToString());
+            Assert.That(url.IsValid, Is.False);
+            Assert.That(url.ToString(), Is.EqualTo(string.Empty));
         }
 
         [Test]
@@ -29,8 +29,8 @@ namespace Sugar.Net
         {
             var url = new Url("i'm invalid");
 
-            Assert.IsFalse(url.IsValid);
-            Assert.AreEqual(string.Empty, url.ToString());
+            Assert.That(url.IsValid, Is.False);
+            Assert.That(url.ToString(), Is.EqualTo(string.Empty));
         }
 
         [Test]
@@ -38,11 +38,11 @@ namespace Sugar.Net
         {
             var url = new Url("http://watchdogapp.com/folder1/page1.html");
 
-            Assert.IsTrue(url.IsValid);
-            Assert.AreEqual("http://watchdogapp.com/folder1/page1.html", url.ToString());
+            Assert.That(url.IsValid, Is.True);
+            Assert.That(url.ToString(), Is.EqualTo("http://watchdogapp.com/folder1/page1.html"));
 
             url = new Url("http://gizmodo.com/5678421/11+inch-macbook-air-review-a-tiny-miracle");
-            Assert.IsTrue(url.IsValid);
+            Assert.That(url.IsValid, Is.True);
         }
 
         [Test]
@@ -52,8 +52,8 @@ namespace Sugar.Net
             
             var url = new Url(uri);
 
-            Assert.IsTrue(url.IsValid);
-            Assert.AreEqual("http://watchdogapp.com/folder1/page1.html", url.ToString());
+            Assert.That(url.IsValid, Is.True);
+            Assert.That(url.ToString(), Is.EqualTo("http://watchdogapp.com/folder1/page1.html"));
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://watchdogapp.com/folder1/page1.html");
 
-            Assert.AreEqual("watchdogapp.com", url.Domain);
+            Assert.That(url.Domain, Is.EqualTo("watchdogapp.com"));
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://watchdogapp.com:8080/folder1/page1.html");
 
-            Assert.AreEqual("watchdogapp.com:8080", url.Domain);
+            Assert.That(url.Domain, Is.EqualTo("watchdogapp.com:8080"));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://sub.watchdogapp.com/folder1/page1.html");
 
-            Assert.AreEqual("sub.watchdogapp.com", url.Domain);
+            Assert.That(url.Domain, Is.EqualTo("sub.watchdogapp.com"));
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://watchdogapp.com/folder1/page1.html");
 
-            Assert.AreEqual("http://watchdogapp.com", url.DomainWithProtocol);
+            Assert.That(url.DomainWithProtocol, Is.EqualTo("http://watchdogapp.com"));
         }
 
 
@@ -94,7 +94,7 @@ namespace Sugar.Net
         {
             var url = new Url("https://watchdogapp.com:666/folder1/page1.html");
 
-            Assert.AreEqual("https://watchdogapp.com:666", url.DomainWithProtocol);
+            Assert.That(url.DomainWithProtocol, Is.EqualTo("https://watchdogapp.com:666"));
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com/folder1/page1.html");
 
-            Assert.AreEqual("watchdogapp.com", url.DomainSansWww);
+            Assert.That(url.DomainSansWww, Is.EqualTo("watchdogapp.com"));
         }
 
         [Test]
@@ -110,7 +110,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://sub.watchdogapp.com/folder1/page1.html");
 
-            Assert.AreEqual("sub.watchdogapp.com", url.DomainSansWww);
+            Assert.That(url.DomainSansWww, Is.EqualTo("sub.watchdogapp.com"));
         }
 
         [Test]
@@ -118,7 +118,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com/folder1/page1.html");
 
-            Assert.AreEqual("/folder1/page1.html", url.FullPage);
+            Assert.That(url.FullPage, Is.EqualTo("/folder1/page1.html"));
         }
 
         [Test]
@@ -126,7 +126,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com");
 
-            Assert.AreEqual("Site Root", url.FullPage);
+            Assert.That(url.FullPage, Is.EqualTo("Site Root"));
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com/");
 
-            Assert.AreEqual("Site Root", url.FullPage);
+            Assert.That(url.FullPage, Is.EqualTo("Site Root"));
         }
 
         [Test]
@@ -142,7 +142,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com/folder1/page1.html");
 
-            Assert.AreEqual("page1.html", url.Page);
+            Assert.That(url.Page, Is.EqualTo("page1.html"));
         }
 
         [Test]
@@ -150,7 +150,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com");
 
-            Assert.AreEqual("Site Root", url.Page);
+            Assert.That(url.Page, Is.EqualTo("Site Root"));
         }
 
         [Test]
@@ -158,7 +158,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com/folder1/page1.html?parameter=first");
 
-            Assert.AreEqual("/folder1/page1.html?parameter=first", url.FullPageWithQueryString);
+            Assert.That(url.FullPageWithQueryString, Is.EqualTo("/folder1/page1.html?parameter=first"));
         }
 
         [Test]
@@ -166,7 +166,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com/folder1/page1.html");
 
-            Assert.AreEqual("/folder1/page1.html", url.FullPageWithQueryString);
+            Assert.That(url.FullPageWithQueryString, Is.EqualTo("/folder1/page1.html"));
         }
 
         [Test]
@@ -174,7 +174,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com");
 
-            Assert.AreEqual("/", url.Path);
+            Assert.That(url.Path, Is.EqualTo("/"));
         }
 
         [Test]
@@ -182,7 +182,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com/folder/");
 
-            Assert.AreEqual("/folder/", url.Path);
+            Assert.That(url.Path, Is.EqualTo("/folder/"));
         }
 
         [Test]
@@ -190,7 +190,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com/folder/second/");
 
-            Assert.AreEqual("/folder/second/", url.Path);
+            Assert.That(url.Path, Is.EqualTo("/folder/second/"));
         }
 
         [Test]
@@ -198,7 +198,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.watchdogapp.com/folder/second/page.html");
 
-            Assert.AreEqual("/folder/second/", url.Path);
+            Assert.That(url.Path, Is.EqualTo("/folder/second/"));
         }
 
         [Test]
@@ -206,7 +206,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.google.com");
 
-            Assert.AreEqual("http://www.google.com/", url.ToStringWithQueryAndFragment());
+            Assert.That(url.ToStringWithQueryAndFragment(), Is.EqualTo("http://www.google.com/"));
         }
 
         [Test]
@@ -214,7 +214,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.google.com") { Fragment = "5" };
 
-            Assert.AreEqual("http://www.google.com/#5", url.ToStringWithQueryAndFragment());
+            Assert.That(url.ToStringWithQueryAndFragment(), Is.EqualTo("http://www.google.com/#5"));
         }
 
         [Test]
@@ -222,7 +222,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.google.com").AddToQuery("page", 5);
 
-            Assert.AreEqual("http://www.google.com/?page=5", url.ToStringWithQueryAndFragment());
+            Assert.That(url.ToStringWithQueryAndFragment(), Is.EqualTo("http://www.google.com/?page=5"));
         }
 
         [Test]
@@ -230,7 +230,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.google.com") { Fragment = "5" }.AddToQuery("page", 5);
 
-            Assert.AreEqual("http://www.google.com/?page=5#5", url.ToStringWithQueryAndFragment());
+            Assert.That(url.ToStringWithQueryAndFragment(), Is.EqualTo("http://www.google.com/?page=5#5"));
         }
 
         [Test]
@@ -238,7 +238,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.google.com/?page=5").RemoveFromQuery("page");
 
-            Assert.AreEqual("http://www.google.com/", url.ToStringWithQueryAndFragment());
+            Assert.That(url.ToStringWithQueryAndFragment(), Is.EqualTo("http://www.google.com/"));
         }
 
         [Test]
@@ -246,7 +246,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.news.bbc.co.uk/");
 
-            Assert.AreEqual("bbc.co.uk", url.DomainSansSubDomain);
+            Assert.That(url.DomainSansSubDomain, Is.EqualTo("bbc.co.uk"));
         }
 
         [Test]
@@ -254,7 +254,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://stackoverflow.com/");
 
-            Assert.AreEqual("stackoverflow.com", url.DomainSansSubDomain);
+            Assert.That(url.DomainSansSubDomain, Is.EqualTo("stackoverflow.com"));
         }
 
         [Test]
@@ -262,7 +262,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.sales.stores.ebay.co.uk/");
 
-            Assert.AreEqual("ebay.co.uk", url.DomainSansSubDomain);
+            Assert.That(url.DomainSansSubDomain, Is.EqualTo("ebay.co.uk"));
         }
 
         [Test]
@@ -270,7 +270,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://WWW.EBAY.CO.UK/");
 
-            Assert.AreEqual("ebay.co.uk", url.DomainSansSubDomain);
+            Assert.That(url.DomainSansSubDomain, Is.EqualTo("ebay.co.uk"));
         }
 
         [Test]
@@ -278,7 +278,7 @@ namespace Sugar.Net
         {
             var url = new Url("http:///search?id=50");
 
-            Assert.AreEqual(string.Empty, url.DomainSansSubDomain);
+            Assert.That(url.DomainSansSubDomain, Is.EqualTo(string.Empty));
         }
 
         [Test]
@@ -286,7 +286,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://www.eed.eg/index.html");
 
-            Assert.AreEqual("eed.eg", url.DomainSansSubDomain);
+            Assert.That(url.DomainSansSubDomain, Is.EqualTo("eed.eg"));
         }
 
         [Test]
@@ -294,7 +294,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://company.watchdogapp.org");
 
-            Assert.AreEqual("org", url.Tld);
+            Assert.That(url.Tld, Is.EqualTo("org"));
         }
 
         [Test]
@@ -302,7 +302,7 @@ namespace Sugar.Net
         {
             var url = new Url("http://company.watchdogapp.com");
 
-            Assert.AreEqual("company", url.SubDomain);
+            Assert.That(url.SubDomain, Is.EqualTo("company"));
         }
     }
 }

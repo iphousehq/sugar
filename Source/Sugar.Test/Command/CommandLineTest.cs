@@ -18,10 +18,10 @@ namespace Sugar.Command
         {
             var results = commandLine.GetCommandLines(string.Empty);
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual("-arg 1", results[1]);
-            Assert.AreEqual("-arg 2", results[2]);
-            Assert.AreEqual("-arg 3", results[3]);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[1], Is.EqualTo("-arg 1"));
+            Assert.That(results[2], Is.EqualTo("-arg 2"));
+            Assert.That(results[3], Is.EqualTo("-arg 3"));
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace Sugar.Command
         {
             var result = commandLine.AlreadyRunning(string.Empty);
 
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace Sugar.Command
         {
             var result = commandLine.CleanUpCommandLine("watchdog -sub sky -search 1");
 
-            Assert.AreEqual("-sub sky -search 1", result);
+            Assert.That(result, Is.EqualTo("-sub sky -search 1"));
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Sugar.Command
         {
             var result = commandLine.CleanUpCommandLine(@"""C:\Program Files\WATCHDOG\watchdog.exe"" -sub sky -search 1");
 
-            Assert.AreEqual("-sub sky -search 1", result);
+            Assert.That(result, Is.EqualTo("-sub sky -search 1"));
         }
     }
 }

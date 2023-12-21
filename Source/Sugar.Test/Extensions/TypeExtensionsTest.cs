@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -12,7 +12,7 @@ namespace Sugar.Extensions
         {
             var type = typeof(string).ToGenericFullName();
 
-            Assert.AreEqual("System.String", type);
+            Assert.That(type, Is.EqualTo("System.String"));
         }
 
         [Test]
@@ -20,7 +20,7 @@ namespace Sugar.Extensions
         {
             var type = typeof(IList<string>).ToGenericFullName();
 
-            Assert.AreEqual("System.Collections.Generic.IList<String>", type);
+            Assert.That(type, Is.EqualTo("System.Collections.Generic.IList<String>"));
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace Sugar.Extensions
         {
             var type = typeof(IList<>).ToGenericFullName();
 
-            Assert.AreEqual("System.Collections.Generic.IList<T>", type);
+            Assert.That(type, Is.EqualTo("System.Collections.Generic.IList<T>"));
         }
 
         private class TestType : IDisposable
@@ -45,13 +45,13 @@ namespace Sugar.Extensions
         [Test]
         public void TestTypeIsDisposable()
         {
-            Assert.IsTrue(typeof(TestType).ImplementsInterface(typeof(IDisposable)));
+            Assert.That(typeof(TestType).ImplementsInterface(typeof(IDisposable)), Is.True);
         }
 
         [Test]
         public void TestTypeIsNotDisposable()
         {
-            Assert.IsFalse(typeof(TypeExtensionsTest).ImplementsInterface(typeof(IDisposable)));
+            Assert.That(typeof(TypeExtensionsTest).ImplementsInterface(typeof(IDisposable)), Is.False);
         }
     }
 }

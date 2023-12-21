@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using NUnit.Framework;
 
 namespace Sugar.Http
@@ -14,7 +14,7 @@ namespace Sugar.Http
 
             req.SetAcceptHeaderToHtml();
 
-            Assert.AreEqual("text/html", req.Headers.Accept.ToString());
+            Assert.That(req.Headers.Accept.ToString(), Is.EqualTo("text/html"));
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace Sugar.Http
 
             req.SetAcceptHeaderToJson();
 
-            Assert.AreEqual("application/json", req.Headers.Accept.ToString());
+            Assert.That(req.Headers.Accept.ToString(), Is.EqualTo("application/json"));
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace Sugar.Http
 
             var value = req.Headers.AcceptEncoding.ToString();
 
-            Assert.AreEqual("br; q=1.0, gzip; q=0.75, compress; q=0.75, deflate; q=0.5", value);
+            Assert.That(value, Is.EqualTo("br; q=1.0, gzip; q=0.75, compress; q=0.75, deflate; q=0.5"));
         }
         
         [Test]
@@ -46,7 +46,7 @@ namespace Sugar.Http
 
             req.SetAcceptLanguageToUsEnglish();
 
-            Assert.AreEqual("en-US, en", req.Headers.AcceptLanguage.ToString());
+            Assert.That(req.Headers.AcceptLanguage.ToString(), Is.EqualTo("en-US, en"));
         }
     }
 }

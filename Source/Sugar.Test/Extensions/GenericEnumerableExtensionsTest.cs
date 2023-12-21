@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -15,7 +15,7 @@ namespace Sugar.Extensions
 
             var csv = list.ToCsv();
 
-            Assert.IsEmpty(csv);
+            Assert.That(csv, Is.Empty);
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace Sugar.Extensions
 
             var csv = list.ToCsv();
 
-            Assert.AreEqual("1", csv);
+            Assert.That(csv, Is.EqualTo("1"));
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace Sugar.Extensions
 
             var csv = list.ToCsv();
 
-            Assert.AreEqual("1,2,3", csv);
+            Assert.That(csv, Is.EqualTo("1,2,3"));
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Sugar.Extensions
 
             var csv = list.ToCsv(", ", " and ");
 
-            Assert.AreEqual("1, 2 and 3", csv);
+            Assert.That(csv, Is.EqualTo("1, 2 and 3"));
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace Sugar.Extensions
 
             var csv = list.ToCsv(", ", " and ");
 
-            Assert.AreEqual("One, Two and Three", csv);
+            Assert.That(csv, Is.EqualTo("One, Two and Three"));
         }
 
         [Test]
@@ -67,9 +67,9 @@ namespace Sugar.Extensions
 
             var result = list.ToCsv(builder, ", ", " and ");
 
-            Assert.AreSame(builder, result);
+            Assert.That(result, Is.SameAs(builder));
 
-            Assert.AreEqual("One, Two and Three", builder.ToString());
+            Assert.That(builder.ToString(), Is.EqualTo("One, Two and Three"));
         }
 
         #region Distinct Test Class
@@ -108,10 +108,10 @@ namespace Sugar.Extensions
 
             var results = list.Distinct(l => l.Integer).ToList();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual(1, results[0].Integer);
-            Assert.AreEqual(2, results[1].Integer);
-            Assert.AreEqual(3, results[2].Integer);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0].Integer, Is.EqualTo(1));
+            Assert.That(results[1].Integer, Is.EqualTo(2));
+            Assert.That(results[2].Integer, Is.EqualTo(3));
         }
 
         [Test]
@@ -127,10 +127,10 @@ namespace Sugar.Extensions
 
             var results = list.Distinct(l => l.UnsignedInteger).ToList();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual(1, results[0].UnsignedInteger);
-            Assert.AreEqual(2, results[1].UnsignedInteger);
-            Assert.AreEqual(3, results[2].UnsignedInteger);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0].UnsignedInteger, Is.EqualTo(1));
+            Assert.That(results[1].UnsignedInteger, Is.EqualTo(2));
+            Assert.That(results[2].UnsignedInteger, Is.EqualTo(3));
         }
 
         [Test]
@@ -146,10 +146,10 @@ namespace Sugar.Extensions
 
             var results = list.Distinct(l => l.Byte).ToList();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual(1, results[0].Byte);
-            Assert.AreEqual(2, results[1].Byte);
-            Assert.AreEqual(3, results[2].Byte);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0].Byte, Is.EqualTo(1));
+            Assert.That(results[1].Byte, Is.EqualTo(2));
+            Assert.That(results[2].Byte, Is.EqualTo(3));
         }
 
         [Test]
@@ -165,10 +165,10 @@ namespace Sugar.Extensions
 
             var results = list.Distinct(l => l.Float).ToList();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual(1.0f, results[0].Float);
-            Assert.AreEqual(2.0f, results[1].Float);
-            Assert.AreEqual(3.0f, results[2].Float);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0].Float, Is.EqualTo(1.0f));
+            Assert.That(results[1].Float, Is.EqualTo(2.0f));
+            Assert.That(results[2].Float, Is.EqualTo(3.0f));
         }
 
         [Test]
@@ -184,10 +184,10 @@ namespace Sugar.Extensions
 
             var results = list.Distinct(l => l.Double).ToList();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual(1.0, results[0].Double);
-            Assert.AreEqual(2.0, results[1].Double);
-            Assert.AreEqual(3.0, results[2].Double);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0].Double, Is.EqualTo(1.0));
+            Assert.That(results[1].Double, Is.EqualTo(2.0));
+            Assert.That(results[2].Double, Is.EqualTo(3.0));
         }
 
         [Test]
@@ -202,9 +202,9 @@ namespace Sugar.Extensions
 
             var results = list.Distinct(l => l.Boolean).ToList();
 
-            Assert.AreEqual(2, results.Count);
-            Assert.False(results[0].Boolean);
-            Assert.True(results[1].Boolean);
+            Assert.That(results.Count, Is.EqualTo(2));
+            Assert.That(results[0].Boolean, Is.False);
+            Assert.That(results[1].Boolean, Is.True);
         }
 
         [Test]
@@ -220,10 +220,10 @@ namespace Sugar.Extensions
 
             var results = list.Distinct(l => l.String).ToList();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual("1", results[0].String);
-            Assert.AreEqual("2", results[1].String);
-            Assert.AreEqual("3", results[2].String);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0].String, Is.EqualTo("1"));
+            Assert.That(results[1].String, Is.EqualTo("2"));
+            Assert.That(results[2].String, Is.EqualTo("3"));
         }
 
         [Test]
@@ -239,10 +239,10 @@ namespace Sugar.Extensions
 
             var results = list.Distinct(l => l.Char).ToList();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual('1', results[0].Char);
-            Assert.AreEqual('2', results[1].Char);
-            Assert.AreEqual('3', results[2].Char);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0].Char, Is.EqualTo('1'));
+            Assert.That(results[1].Char, Is.EqualTo('2'));
+            Assert.That(results[2].Char, Is.EqualTo('3'));
         }
     }
 }

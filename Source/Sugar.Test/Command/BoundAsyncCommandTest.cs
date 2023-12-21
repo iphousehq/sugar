@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Sugar.Command.Binder;
 
@@ -32,7 +32,7 @@ namespace Sugar.Command
         {
             var result = FakeCommand.Success();
 
-            Assert.AreEqual(0, result);
+            Assert.That(result, Is.EqualTo(0));
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace Sugar.Command
         {
             var result = FakeCommand.Fail();
 
-            Assert.AreEqual(-1, result);
+            Assert.That(result, Is.EqualTo(-1));
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Sugar.Command
 
             command.BindParameters(parameters);
 
-            Assert.NotNull(command.GetOptions());
+            Assert.That(command.GetOptions(), Is.Not.Null);
         }
 
         [Test]

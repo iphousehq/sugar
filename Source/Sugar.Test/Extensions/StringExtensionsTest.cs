@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing.Imaging;
 using NUnit.Framework;
 using Sugar.Mime;
@@ -13,12 +13,12 @@ namespace Sugar.Extensions
         {
             var result = "2010-05-20 15:10:50".ToDateTime();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(05, result.Month);
-            Assert.AreEqual(20, result.Day);
-            Assert.AreEqual(15, result.Hour);
-            Assert.AreEqual(10, result.Minute);
-            Assert.AreEqual(50, result.Second);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(05));
+            Assert.That(result.Day, Is.EqualTo(20));
+            Assert.That(result.Hour, Is.EqualTo(15));
+            Assert.That(result.Minute, Is.EqualTo(10));
+            Assert.That(result.Second, Is.EqualTo(50));
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace Sugar.Extensions
         {
             var result = "bonjour".ToDateTime();
 
-            Assert.AreEqual(1753, result.Year);
+            Assert.That(result.Year, Is.EqualTo(1753));
         }
 
         [Test]
@@ -34,12 +34,12 @@ namespace Sugar.Extensions
         {
             var result = "23-45-59 2011_01_30".ToDateTime("HH-mm-ss yyyy_MM_dd");
 
-            Assert.AreEqual(2011, result.Year);
-            Assert.AreEqual(1, result.Month);
-            Assert.AreEqual(30, result.Day);
-            Assert.AreEqual(23, result.Hour);
-            Assert.AreEqual(45, result.Minute);
-            Assert.AreEqual(59, result.Second);
+            Assert.That(result.Year, Is.EqualTo(2011));
+            Assert.That(result.Month, Is.EqualTo(1));
+            Assert.That(result.Day, Is.EqualTo(30));
+            Assert.That(result.Hour, Is.EqualTo(23));
+            Assert.That(result.Minute, Is.EqualTo(45));
+            Assert.That(result.Second, Is.EqualTo(59));
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Sugar.Extensions
         {
             var result = "bonjour".ToDateTime("HH-mm-ss yyyy_MM_dd");
 
-            Assert.AreEqual(1753, result.Year);
+            Assert.That(result.Year, Is.EqualTo(1753));
         }
 
         [Test]
@@ -55,53 +55,53 @@ namespace Sugar.Extensions
         {
             var result = "20101231T235955+0100".ToDateTimeFromIso8601();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(12, result.Month);
-            Assert.AreEqual(31, result.Day);
-            Assert.AreEqual(22, result.Hour);
-            Assert.AreEqual(59, result.Minute);
-            Assert.AreEqual(55, result.Second);
-            Assert.AreEqual(0, result.Millisecond);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(12));
+            Assert.That(result.Day, Is.EqualTo(31));
+            Assert.That(result.Hour, Is.EqualTo(22));
+            Assert.That(result.Minute, Is.EqualTo(59));
+            Assert.That(result.Second, Is.EqualTo(55));
+            Assert.That(result.Millisecond, Is.EqualTo(0));
 
             result = "20101231T235955".ToDateTimeFromIso8601();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(12, result.Month);
-            Assert.AreEqual(31, result.Day);
-            Assert.AreEqual(23, result.Hour);
-            Assert.AreEqual(59, result.Minute);
-            Assert.AreEqual(55, result.Second);
-            Assert.AreEqual(0, result.Millisecond);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(12));
+            Assert.That(result.Day, Is.EqualTo(31));
+            Assert.That(result.Hour, Is.EqualTo(23));
+            Assert.That(result.Minute, Is.EqualTo(59));
+            Assert.That(result.Second, Is.EqualTo(55));
+            Assert.That(result.Millisecond, Is.EqualTo(0));
 
             result = "20101231T2359".ToDateTimeFromIso8601();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(12, result.Month);
-            Assert.AreEqual(31, result.Day);
-            Assert.AreEqual(23, result.Hour);
-            Assert.AreEqual(59, result.Minute);
-            Assert.AreEqual(0, result.Second);
-            Assert.AreEqual(0, result.Millisecond);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(12));
+            Assert.That(result.Day, Is.EqualTo(31));
+            Assert.That(result.Hour, Is.EqualTo(23));
+            Assert.That(result.Minute, Is.EqualTo(59));
+            Assert.That(result.Second, Is.EqualTo(0));
+            Assert.That(result.Millisecond, Is.EqualTo(0));
 
             result = "20101231T23".ToDateTimeFromIso8601();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(12, result.Month);
-            Assert.AreEqual(31, result.Day);
-            Assert.AreEqual(23, result.Hour);
-            Assert.AreEqual(0, result.Minute);
-            Assert.AreEqual(0, result.Second);
-            Assert.AreEqual(0, result.Millisecond);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(12));
+            Assert.That(result.Day, Is.EqualTo(31));
+            Assert.That(result.Hour, Is.EqualTo(23));
+            Assert.That(result.Minute, Is.EqualTo(0));
+            Assert.That(result.Second, Is.EqualTo(0));
+            Assert.That(result.Millisecond, Is.EqualTo(0));
 
             result = "20101231".ToDateTimeFromIso8601();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(12, result.Month);
-            Assert.AreEqual(31, result.Day);
-            Assert.AreEqual(0, result.Hour);
-            Assert.AreEqual(0, result.Minute);
-            Assert.AreEqual(0, result.Second);
-            Assert.AreEqual(0, result.Millisecond);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(12));
+            Assert.That(result.Day, Is.EqualTo(31));
+            Assert.That(result.Hour, Is.EqualTo(0));
+            Assert.That(result.Minute, Is.EqualTo(0));
+            Assert.That(result.Second, Is.EqualTo(0));
+            Assert.That(result.Millisecond, Is.EqualTo(0));
         }
 
         [Test]
@@ -109,53 +109,53 @@ namespace Sugar.Extensions
         {
             var result = "2010-12-31T23:59:55+01:00".ToDateTimeFromIso8601();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(12, result.Month);
-            Assert.AreEqual(31, result.Day);
-            Assert.AreEqual(22, result.Hour);
-            Assert.AreEqual(59, result.Minute);
-            Assert.AreEqual(55, result.Second);
-            Assert.AreEqual(0, result.Millisecond);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(12));
+            Assert.That(result.Day, Is.EqualTo(31));
+            Assert.That(result.Hour, Is.EqualTo(22));
+            Assert.That(result.Minute, Is.EqualTo(59));
+            Assert.That(result.Second, Is.EqualTo(55));
+            Assert.That(result.Millisecond, Is.EqualTo(0));
 
             result = "2010-12-31T23:59:55".ToDateTimeFromIso8601();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(12, result.Month);
-            Assert.AreEqual(31, result.Day);
-            Assert.AreEqual(23, result.Hour);
-            Assert.AreEqual(59, result.Minute);
-            Assert.AreEqual(55, result.Second);
-            Assert.AreEqual(0, result.Millisecond);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(12));
+            Assert.That(result.Day, Is.EqualTo(31));
+            Assert.That(result.Hour, Is.EqualTo(23));
+            Assert.That(result.Minute, Is.EqualTo(59));
+            Assert.That(result.Second, Is.EqualTo(55));
+            Assert.That(result.Millisecond, Is.EqualTo(0));
 
             result = "2010-12-31T23:59".ToDateTimeFromIso8601();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(12, result.Month);
-            Assert.AreEqual(31, result.Day);
-            Assert.AreEqual(23, result.Hour);
-            Assert.AreEqual(59, result.Minute);
-            Assert.AreEqual(0, result.Second);
-            Assert.AreEqual(0, result.Millisecond);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(12));
+            Assert.That(result.Day, Is.EqualTo(31));
+            Assert.That(result.Hour, Is.EqualTo(23));
+            Assert.That(result.Minute, Is.EqualTo(59));
+            Assert.That(result.Second, Is.EqualTo(0));
+            Assert.That(result.Millisecond, Is.EqualTo(0));
 
             result = "2010-12-31T23".ToDateTimeFromIso8601();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(12, result.Month);
-            Assert.AreEqual(31, result.Day);
-            Assert.AreEqual(23, result.Hour);
-            Assert.AreEqual(0, result.Minute);
-            Assert.AreEqual(0, result.Second);
-            Assert.AreEqual(0, result.Millisecond);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(12));
+            Assert.That(result.Day, Is.EqualTo(31));
+            Assert.That(result.Hour, Is.EqualTo(23));
+            Assert.That(result.Minute, Is.EqualTo(0));
+            Assert.That(result.Second, Is.EqualTo(0));
+            Assert.That(result.Millisecond, Is.EqualTo(0));
 
             result = "2010-12-31".ToDateTimeFromIso8601();
 
-            Assert.AreEqual(2010, result.Year);
-            Assert.AreEqual(12, result.Month);
-            Assert.AreEqual(31, result.Day);
-            Assert.AreEqual(0, result.Hour);
-            Assert.AreEqual(0, result.Minute);
-            Assert.AreEqual(0, result.Second);
-            Assert.AreEqual(0, result.Millisecond);
+            Assert.That(result.Year, Is.EqualTo(2010));
+            Assert.That(result.Month, Is.EqualTo(12));
+            Assert.That(result.Day, Is.EqualTo(31));
+            Assert.That(result.Hour, Is.EqualTo(0));
+            Assert.That(result.Minute, Is.EqualTo(0));
+            Assert.That(result.Second, Is.EqualTo(0));
+            Assert.That(result.Millisecond, Is.EqualTo(0));
         }
 
         [Test]
@@ -163,7 +163,7 @@ namespace Sugar.Extensions
         {
             var format = "image/png".ToImageFormat();
 
-            Assert.AreEqual(ImageFormat.Png, format);
+            Assert.That(format, Is.EqualTo(ImageFormat.Png));
         }
 
         [Test]
@@ -171,111 +171,111 @@ namespace Sugar.Extensions
         {
             var format = "wtf".ToImageFormat();
 
-            Assert.AreEqual(ImageFormat.Jpeg, format);
+            Assert.That(format, Is.EqualTo(ImageFormat.Jpeg));
         }
 
         [Test]
         public void TestSubStringEmptyString()
         {
-            Assert.AreEqual(string.Empty, string.Empty.SubstringAfterChar("c"));
+            Assert.That(string.Empty.SubstringAfterChar("c"), Is.EqualTo(string.Empty));
         }
 
         [Test]
         public void TestSubStringWithNonMatchingString()
         {
-            Assert.AreEqual("banana", "banana".SubstringAfterChar("c"));
+            Assert.That("banana".SubstringAfterChar("c"), Is.EqualTo("banana"));
         }
 
         [Test]
         public void TestSubStringWithMatchingString()
         {
-            Assert.AreEqual("ana", "banana".SubstringAfterChar("n"));
+            Assert.That("banana".SubstringAfterChar("n"), Is.EqualTo("ana"));
         }
 
         [Test]
         public void TestSubStringAfterLastChar()
         {
-            Assert.AreEqual("ba", "ab-ban-ba".SubstringAfterLastChar("-"));
+            Assert.That("ab-ban-ba".SubstringAfterLastChar("-"), Is.EqualTo("ba"));
         }
 
         [Test]
         public void TestSubStringBeforeWithMatchingString()
         {
-            Assert.AreEqual("ba", "banana".SubstringBeforeChar("n"));
+            Assert.That("banana".SubstringBeforeChar("n"), Is.EqualTo("ba"));
         }
 
         [Test]
         public void TestSubStringBeforeLastWithMatchingString()
         {
-            Assert.AreEqual("bana", "banana".SubstringBeforeLastChar("n"));
+            Assert.That("banana".SubstringBeforeLastChar("n"), Is.EqualTo("bana"));
         }
 
         [Test]
         public void TestSanitiseHandlesDoubleQuotes()
         {
-            Assert.AreEqual("‟boo”".Sanitise(), @"""boo""");
+            Assert.That(@"""boo""", Is.EqualTo("‟boo”".Sanitise()));
         }
         [Test]
         public void TestSanitiseHandlesSingleQuotes()
         {
-            Assert.AreEqual("‘foo’".Sanitise(),"'foo'");
+            Assert.That("'foo'", Is.EqualTo("‘foo’".Sanitise()));
         }
 
         [Test]
         public void TestSanitiseHandlesHyphens()
         {
-            Assert.AreEqual("–melon —passionfruit ―mangosteen".Sanitise(),"-melon -passionfruit -mangosteen");
+            Assert.That("-melon -passionfruit -mangosteen", Is.EqualTo("–melon —passionfruit ―mangosteen".Sanitise()));
         }
 
         [Test]
         public void TestSanitiseHandlesMultipleSpaces()
         {
-            Assert.AreEqual("kiwi   papaya       watermelon".Sanitise(), "kiwi papaya watermelon");
+            Assert.That("kiwi papaya watermelon", Is.EqualTo("kiwi   papaya       watermelon".Sanitise()));
         }
 
         [Test]
         public void TestSanitiseTrims()
         {
-            Assert.AreEqual("    food  ".Sanitise(),"food");
+            Assert.That("food", Is.EqualTo("    food  ".Sanitise()));
         }
    
         [Test]
         public void TestKeep()
         {
-            Assert.AreEqual("12", "1234".Keep("12"));
+            Assert.That("1234".Keep("12"), Is.EqualTo("12"));
         }
 
         [Test]
         public void TestKeepWhenNull()
         {
-            Assert.AreEqual(string.Empty, ((string)null).Keep("12"));
+            Assert.That(((string)null).Keep("12"), Is.EqualTo(string.Empty));
         }
 
         [Test]
         public void TestKeepAlphaNumeric()
         {
-            Assert.AreEqual("100FOObar", "100£$£&*(FOO::>?>?\"bar".KeepAlphaNumeric());
+            Assert.That("100£$£&*(FOO::>?>?\"bar".KeepAlphaNumeric(), Is.EqualTo("100FOObar"));
         }
 
         [Test]
         public void TestContainsAny()
         {
-            Assert.IsTrue("1234".ContainsAny("123"));
-            Assert.IsFalse("Hello".ContainsAny("123"));
+            Assert.That("1234".ContainsAny("123"), Is.True);
+            Assert.That("Hello".ContainsAny("123"), Is.False);
         }
 
         [Test]
         public void TestContainsAnyNumeric()
         {
-            Assert.IsTrue("1234".ContainsAnyNumeric());
-            Assert.IsFalse("Hello".ContainsAnyNumeric());
+            Assert.That("1234".ContainsAnyNumeric(), Is.True);
+            Assert.That("Hello".ContainsAnyNumeric(), Is.False);
         }
 
         [Test]
         public void TestIsNumeric()
         {
-            Assert.IsTrue("1234".IsNumeric());
-            Assert.IsFalse("Hello".IsNumeric());
+            Assert.That("1234".IsNumeric(), Is.True);
+            Assert.That("Hello".IsNumeric(), Is.False);
         }
 
         [Test]
@@ -283,7 +283,7 @@ namespace Sugar.Extensions
         {
             var result = "Bonjour".TrimTo(32);
 
-            Assert.AreEqual("Bonjour", result);
+            Assert.That(result, Is.EqualTo("Bonjour"));
         }
 
         [Test]
@@ -291,7 +291,7 @@ namespace Sugar.Extensions
         {
             var result = "Hello World!".TrimTo(6);
 
-            Assert.AreEqual("Hello ", result);
+            Assert.That(result, Is.EqualTo("Hello "));
         }
 
         [Test]
@@ -299,7 +299,7 @@ namespace Sugar.Extensions
         {
             var result = "Hello World!".TrimTo(6, "...");
 
-            Assert.AreEqual("Hel...", result);
+            Assert.That(result, Is.EqualTo("Hel..."));
         }
 
         [Test]
@@ -307,9 +307,9 @@ namespace Sugar.Extensions
         {
             var result = "one two".Split(" ");
 
-            Assert.AreEqual(2, result.Length);
-            Assert.AreEqual("one", result[0]);
-            Assert.AreEqual("two", result[1]);
+            Assert.That(result.Length, Is.EqualTo(2));
+            Assert.That(result[0], Is.EqualTo("one"));
+            Assert.That(result[1], Is.EqualTo("two"));
         }
 
         [Test]
@@ -317,10 +317,10 @@ namespace Sugar.Extensions
         {
             var result = "onethreetwothreefour".Split("three");
 
-            Assert.AreEqual(3, result.Length);
-            Assert.AreEqual("one", result[0]);
-            Assert.AreEqual("two", result[1]);
-            Assert.AreEqual("four", result[2]);
+            Assert.That(result.Length, Is.EqualTo(3));
+            Assert.That(result[0], Is.EqualTo("one"));
+            Assert.That(result[1], Is.EqualTo("two"));
+            Assert.That(result[2], Is.EqualTo("four"));
         }
 
         [Test]
@@ -328,7 +328,7 @@ namespace Sugar.Extensions
         {
             var result = "onethreetwothreethreefour".Split("three", StringSplitOptions.RemoveEmptyEntries);
 
-            Assert.AreEqual(3, result.Length);
+            Assert.That(result.Length, Is.EqualTo(3));
         }
 
         [Test]
@@ -336,8 +336,8 @@ namespace Sugar.Extensions
         {
             var mimeType = "something.jpg".GetMimeType();
 
-            Assert.AreEqual(BaseMimeType.Image, mimeType.BaseMimeType);
-            Assert.AreEqual(ImageMimeType.Jpeg, mimeType.MimeType);
+            Assert.That(mimeType.BaseMimeType, Is.EqualTo(BaseMimeType.Image));
+            Assert.That(mimeType.MimeType, Is.EqualTo(ImageMimeType.Jpeg));
         }
 
         [Test]
@@ -351,8 +351,8 @@ namespace Sugar.Extensions
         {
             var mimeType = "something.JPG".GetMimeType();
 
-            Assert.AreEqual(BaseMimeType.Image, mimeType.BaseMimeType);
-            Assert.AreEqual(ImageMimeType.Jpeg, mimeType.MimeType);
+            Assert.That(mimeType.BaseMimeType, Is.EqualTo(BaseMimeType.Image));
+            Assert.That(mimeType.MimeType, Is.EqualTo(ImageMimeType.Jpeg));
         }
 
         [Test]
@@ -360,7 +360,7 @@ namespace Sugar.Extensions
         {
             var hash = "hello world".ToMd5();
 
-            Assert.AreEqual("5eb63bbbe01eeed093cb22bb8f5acdc3", hash);
+            Assert.That(hash, Is.EqualTo("5eb63bbbe01eeed093cb22bb8f5acdc3"));
         }
 
         [Test]
@@ -368,7 +368,7 @@ namespace Sugar.Extensions
         {
             var result = "hello world title case".ToTitleCase();
 
-            Assert.AreEqual("Hello World Title Case", result);
+            Assert.That(result, Is.EqualTo("Hello World Title Case"));
         }
 
         [Test]
@@ -376,7 +376,7 @@ namespace Sugar.Extensions
         {
             var result = ((string)null).ToTitleCase();
 
-            Assert.AreEqual("", result);
+            Assert.That(result, Is.EqualTo(""));
         }
 
         [Test]
@@ -384,7 +384,7 @@ namespace Sugar.Extensions
         {
             var result = "hello world".Reverse();
 
-            Assert.AreEqual("dlrow olleh", result);
+            Assert.That(result, Is.EqualTo("dlrow olleh"));
         }
 
         [Test]
@@ -392,7 +392,7 @@ namespace Sugar.Extensions
         {
             var result = "Les Mise\u0301rables".Reverse();
 
-            Assert.AreEqual("selbarésiM seL", result);
+            Assert.That(result, Is.EqualTo("selbarésiM seL"));
         }
 
         [Test]
@@ -400,7 +400,7 @@ namespace Sugar.Extensions
         {
             var result = "馬".ContainsNonStandardCharacters();
 
-            Assert.True(result);
+            Assert.That(result, Is.True);
         }
 
         [Test]
@@ -408,7 +408,7 @@ namespace Sugar.Extensions
         {
             var result = "G".ContainsNonStandardCharacters();
 
-            Assert.False(result);
+            Assert.That(result, Is.False);
         }
 
         [Test]
@@ -416,7 +416,7 @@ namespace Sugar.Extensions
         {
             var result = "".ContainsNonStandardCharacters();
 
-            Assert.False(result);
+            Assert.That(result, Is.False);
         }
 
         [Test]
@@ -426,7 +426,7 @@ namespace Sugar.Extensions
 
             var result = nullString.ContainsNonStandardCharacters();
 
-            Assert.False(result);
+            Assert.That(result, Is.False);
         }
 
         private enum SomeEnum
@@ -441,8 +441,8 @@ namespace Sugar.Extensions
         {
             var results = "Bob".FromEnumCsv<SomeEnum>();
 
-            Assert.AreEqual(1, results.Count);
-            Assert.AreEqual(SomeEnum.Bob, results[0]);
+            Assert.That(results.Count, Is.EqualTo(1));
+            Assert.That(results[0], Is.EqualTo(SomeEnum.Bob));
         }
 
         [Test]
@@ -450,9 +450,9 @@ namespace Sugar.Extensions
         {
             var results = "Bob,Thursday".FromEnumCsv<SomeEnum>();
 
-            Assert.AreEqual(2, results.Count);
-            Assert.AreEqual(SomeEnum.Bob, results[0]);
-            Assert.AreEqual(SomeEnum.Thursday, results[1]);
+            Assert.That(results.Count, Is.EqualTo(2));
+            Assert.That(results[0], Is.EqualTo(SomeEnum.Bob));
+            Assert.That(results[1], Is.EqualTo(SomeEnum.Thursday));
         }
 
         [Test]
@@ -460,9 +460,9 @@ namespace Sugar.Extensions
         {
             var results = "Bob,Thursday,Bob".FromEnumCsv<SomeEnum>();
 
-            Assert.AreEqual(2, results.Count);
-            Assert.AreEqual(SomeEnum.Bob, results[0]);
-            Assert.AreEqual(SomeEnum.Thursday, results[1]);
+            Assert.That(results.Count, Is.EqualTo(2));
+            Assert.That(results[0], Is.EqualTo(SomeEnum.Bob));
+            Assert.That(results[1], Is.EqualTo(SomeEnum.Thursday));
         }
 
         [Test]
@@ -470,9 +470,9 @@ namespace Sugar.Extensions
         {
             var results = "Ducky,Thursday,Bob".FromEnumCsv<SomeEnum>();
 
-            Assert.AreEqual(2, results.Count);
-            Assert.AreEqual(SomeEnum.Thursday, results[0]);
-            Assert.AreEqual(SomeEnum.Bob, results[1]);
+            Assert.That(results.Count, Is.EqualTo(2));
+            Assert.That(results[0], Is.EqualTo(SomeEnum.Thursday));
+            Assert.That(results[1], Is.EqualTo(SomeEnum.Bob));
         }
 
         [Test]
@@ -480,9 +480,9 @@ namespace Sugar.Extensions
         {
             var results = "40,Thursday".FromEnumCsv<SomeEnum>();
 
-            Assert.AreEqual(2, results.Count);
-            Assert.AreEqual(SomeEnum.Bob, results[0]);
-            Assert.AreEqual(SomeEnum.Thursday, results[1]);
+            Assert.That(results.Count, Is.EqualTo(2));
+            Assert.That(results[0], Is.EqualTo(SomeEnum.Bob));
+            Assert.That(results[1], Is.EqualTo(SomeEnum.Thursday));
         }
 
         [Test]
@@ -490,8 +490,8 @@ namespace Sugar.Extensions
         {
             var results = "400,Thursday".FromEnumCsv<SomeEnum>();
 
-            Assert.AreEqual(1, results.Count);
-            Assert.AreEqual(SomeEnum.Thursday, results[0]);
+            Assert.That(results.Count, Is.EqualTo(1));
+            Assert.That(results[0], Is.EqualTo(SomeEnum.Thursday));
         }
 
         [Test]
@@ -499,8 +499,8 @@ namespace Sugar.Extensions
         {
             var results = "Thursday,,Thursday".FromEnumCsv<SomeEnum>();
 
-            Assert.AreEqual(1, results.Count);
-            Assert.AreEqual(SomeEnum.Thursday, results[0]);
+            Assert.That(results.Count, Is.EqualTo(1));
+            Assert.That(results[0], Is.EqualTo(SomeEnum.Thursday));
         }
 
         [Test]
@@ -508,8 +508,8 @@ namespace Sugar.Extensions
         {
             var results = ",,".FromEnumCsv<SomeEnum>();
 
-            Assert.AreEqual(2, results.Count);
-            Assert.AreEqual(SomeEnum.Bob, results[0]);
+            Assert.That(results.Count, Is.EqualTo(2));
+            Assert.That(results[0], Is.EqualTo(SomeEnum.Bob));
         }
 
         [Test]
@@ -517,8 +517,8 @@ namespace Sugar.Extensions
         {
             var results = "".FromEnumCsv<SomeEnum>();
 
-            Assert.AreEqual(2, results.Count);
-            Assert.AreEqual(SomeEnum.Bob, results[0]);
+            Assert.That(results.Count, Is.EqualTo(2));
+            Assert.That(results[0], Is.EqualTo(SomeEnum.Bob));
         }
 
         [Test]
@@ -526,8 +526,8 @@ namespace Sugar.Extensions
         {
             var results = "One".FromCsv();
 
-            Assert.AreEqual(1, results.Count);
-            Assert.AreEqual("One", results[0]);
+            Assert.That(results.Count, Is.EqualTo(1));
+            Assert.That(results[0], Is.EqualTo("One"));
         }
 
         [Test]
@@ -535,9 +535,9 @@ namespace Sugar.Extensions
         {
             var results = "One,Two".FromCsv();
 
-            Assert.AreEqual(2, results.Count);
-            Assert.AreEqual("One", results[0]);
-            Assert.AreEqual("Two", results[1]);
+            Assert.That(results.Count, Is.EqualTo(2));
+            Assert.That(results[0], Is.EqualTo("One"));
+            Assert.That(results[1], Is.EqualTo("Two"));
         }
 
         [Test]
@@ -545,10 +545,10 @@ namespace Sugar.Extensions
         {
             var results = "One,Two,Three".FromCsv();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual("One", results[0]);
-            Assert.AreEqual("Two", results[1]);
-            Assert.AreEqual("Three", results[2]);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0], Is.EqualTo("One"));
+            Assert.That(results[1], Is.EqualTo("Two"));
+            Assert.That(results[2], Is.EqualTo("Three"));
         }
 
         [Test]
@@ -556,10 +556,10 @@ namespace Sugar.Extensions
         {
             var results = @"One,""Two,Three,Four"",Three".FromCsv();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual("One", results[0]);
-            Assert.AreEqual("Two,Three,Four", results[1]);
-            Assert.AreEqual("Three", results[2]);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0], Is.EqualTo("One"));
+            Assert.That(results[1], Is.EqualTo("Two,Three,Four"));
+            Assert.That(results[2], Is.EqualTo("Three"));
         }
 
         [Test]
@@ -567,46 +567,46 @@ namespace Sugar.Extensions
         {
             var results = "1,2,3".FromCsv<int>();
 
-            Assert.AreEqual(3, results.Count);
-            Assert.AreEqual(1, results[0]);
-            Assert.AreEqual(2, results[1]);
-            Assert.AreEqual(3, results[2]);
+            Assert.That(results.Count, Is.EqualTo(3));
+            Assert.That(results[0], Is.EqualTo(1));
+            Assert.That(results[1], Is.EqualTo(2));
+            Assert.That(results[2], Is.EqualTo(3));
         }
 
         [Test]
         public void TestAsInt32()
         {
-            Assert.AreEqual(100, "100".ToInt());
+            Assert.That("100".ToInt(), Is.EqualTo(100));
         }
 
         [Test]
         public void TestAsInt32WithEmptyValue()
         {
-            Assert.AreEqual(0, "".ToInt());
+            Assert.That("".ToInt(), Is.EqualTo(0));
         }
 
         [Test]
         public void TestAsInt32WithWhiteSpaceValue()
         {
-            Assert.AreEqual(0, " ".ToInt());
+            Assert.That(" ".ToInt(), Is.EqualTo(0));
         }
 
         [Test]
         public void TestAsInt64()
         {
-            Assert.AreEqual(1000000000000000, "1000000000000000".ToLong());
+            Assert.That("1000000000000000".ToLong(), Is.EqualTo(1000000000000000));
         }
 
         [Test]
         public void TestAsInt64WhenEmptyString()
         {
-            Assert.AreEqual(0, "".ToLong());
+            Assert.That("".ToLong(), Is.EqualTo(0));
         }
 
         [Test]
         public void TestAsInt64WhenWhiteSpaceString()
         {
-            Assert.AreEqual(0, " ".ToLong());
+            Assert.That(" ".ToLong(), Is.EqualTo(0));
         }
 
         [Test]
@@ -616,7 +616,7 @@ namespace Sugar.Extensions
 
             var dateTime = dateTimeValue.ToDateTime();
 
-            Assert.AreEqual(new DateTime(2010, 11, 11, 20, 30, 00), dateTime);
+            Assert.That(dateTime, Is.EqualTo(new DateTime(2010, 11, 11, 20, 30, 00)));
         }
 
         [Test]
@@ -626,7 +626,7 @@ namespace Sugar.Extensions
 
             var dateTime = dateTimeValue.ToDateTime(new DateTime(1666, 9, 2, 16, 00, 00));
 
-            Assert.AreEqual(new DateTime(2010, 11, 11, 20, 30, 00), dateTime);
+            Assert.That(dateTime, Is.EqualTo(new DateTime(2010, 11, 11, 20, 30, 00)));
         }
 
         [Test]
@@ -636,7 +636,7 @@ namespace Sugar.Extensions
 
             var dateTime = dateTimeValue.ToDateTime(new DateTime(1666, 9, 2, 16, 00, 00));
 
-            Assert.AreEqual(new DateTime(1666, 9, 2, 16, 00, 00), dateTime);
+            Assert.That(dateTime, Is.EqualTo(new DateTime(1666, 9, 2, 16, 00, 00)));
         }
 
         [Test]
@@ -644,7 +644,7 @@ namespace Sugar.Extensions
         {
             var matches = ((string)null).FindOccurences(@"\d{4}");
 
-            Assert.AreEqual(0, matches.Count);
+            Assert.That(matches.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -652,7 +652,7 @@ namespace Sugar.Extensions
         {
             var matches = string.Empty.FindOccurences(@"\d{4}");
 
-            Assert.AreEqual(0, matches.Count);
+            Assert.That(matches.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -662,7 +662,7 @@ namespace Sugar.Extensions
 
             var matches = input.FindOccurences(@"\d{4}");
 
-            Assert.AreEqual(3, matches.Count);
+            Assert.That(matches.Count, Is.EqualTo(3));
         }
 
         [Test]
@@ -671,13 +671,13 @@ namespace Sugar.Extensions
             const string value = "Bonjour";
 
             var result = value.StartsWith("BON", true);
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
 
             result = value.StartsWith("bon", false);
-            Assert.IsTrue(result);
+            Assert.That(result, Is.True);
 
             result = value.StartsWith("jour", true);
-            Assert.IsFalse(result);
+            Assert.That(result, Is.False);
         }
 
         [Test]
@@ -685,10 +685,10 @@ namespace Sugar.Extensions
         {
             var result = "1,2,3".FromCsv<int>();
 
-            Assert.AreEqual(3, result.Count);
-            Assert.AreEqual(1, result[0]);
-            Assert.AreEqual(2, result[1]);
-            Assert.AreEqual(3, result[2]);
+            Assert.That(result.Count, Is.EqualTo(3));
+            Assert.That(result[0], Is.EqualTo(1));
+            Assert.That(result[1], Is.EqualTo(2));
+            Assert.That(result[2], Is.EqualTo(3));
         }
 
         [Test]
@@ -696,13 +696,13 @@ namespace Sugar.Extensions
         {
             var result = "".FromCsv<int>();
 
-            Assert.AreEqual(0, result.Count);
+            Assert.That(result.Count, Is.EqualTo(0));
         }
 
         [Test]
         public void TestHashValue()
         {
-            Assert.AreEqual("0cbc6611f5540bd0809a388dc95a615b", "Test".ToMd5());
+            Assert.That("Test".ToMd5(), Is.EqualTo("0cbc6611f5540bd0809a388dc95a615b"));
         }
 
         [Test]
@@ -712,13 +712,13 @@ namespace Sugar.Extensions
 
             const string pass = "Hellospank" + guid;
 
-            Assert.AreEqual("cea4d691cd2dc0de878e01a86f668355", pass.ToMd5());
+            Assert.That(pass.ToMd5(), Is.EqualTo("cea4d691cd2dc0de878e01a86f668355"));
         }
 
         [Test]
         public void TestHashNull()
         {
-            Assert.AreEqual(string.Empty, string.Empty.ToMd5());
+            Assert.That(string.Empty.ToMd5(), Is.EqualTo(string.Empty));
         }
 
         [Test]
@@ -728,7 +728,7 @@ namespace Sugar.Extensions
 
             var result = value.ReplaceUnicodeEscapeSequences();
 
-            Assert.AreEqual("Blah blah'blah <>blah=", result);
+            Assert.That(result, Is.EqualTo("Blah blah'blah <>blah="));
         }
 
         [Test]
@@ -736,7 +736,7 @@ namespace Sugar.Extensions
         {
             var result = "".ExtractNumeric();
 
-            Assert.False(result.HasValue);
+            Assert.That(result.HasValue, Is.False);
         }
 
         [Test]
@@ -744,8 +744,8 @@ namespace Sugar.Extensions
         {
             var result = "abc".ExtractNumeric();
 
-            Assert.True(result.HasValue);
-            Assert.AreEqual(0, result.Value);
+            Assert.That(result.HasValue, Is.True);
+            Assert.That(result.Value, Is.EqualTo(0));
         }
 
         [Test]
@@ -753,8 +753,8 @@ namespace Sugar.Extensions
         {
             var result = "10abc45".ExtractNumeric();
 
-            Assert.True(result.HasValue);
-            Assert.AreEqual(1045, result.Value);
+            Assert.That(result.HasValue, Is.True);
+            Assert.That(result.Value, Is.EqualTo(1045));
         }
     }
 }

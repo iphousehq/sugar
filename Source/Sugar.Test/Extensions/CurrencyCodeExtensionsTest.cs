@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 
 namespace Sugar.Extensions
@@ -13,10 +13,10 @@ namespace Sugar.Extensions
             foreach (CurrencyCode value in values)
             {
                 var symbol = value.ToSymbol();
-                Assert.IsNotNull(symbol);
+                Assert.That(symbol, Is.Not.Null);
 
                 var htmlSymbol = value.ToHtmlSymbol();
-                Assert.IsNotNull(htmlSymbol);
+                Assert.That(htmlSymbol, Is.Not.Null);
             }
         }
 
@@ -25,7 +25,7 @@ namespace Sugar.Extensions
         {
             var result = "¥".ToCurrencyCode();
 
-            Assert.AreEqual(CurrencyCode.JPY, result);
+            Assert.That(result, Is.EqualTo(CurrencyCode.JPY));
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace Sugar.Extensions
         {
             var result = "GBP".ToCurrencyCode();
 
-            Assert.AreEqual(CurrencyCode.GBP, result);
+            Assert.That(result, Is.EqualTo(CurrencyCode.GBP));
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace Sugar.Extensions
         {
             var result = "eur".ToCurrencyCode();
 
-            Assert.AreEqual(CurrencyCode.EUR, result);
+            Assert.That(result, Is.EqualTo(CurrencyCode.EUR));
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace Sugar.Extensions
         [Test]
         public void TestToCountryCodetoCurrency()
         {
-            Assert.AreEqual(CurrencyCode.GBP, CountryCode.GB.ToCurrencyCode());
+            Assert.That(CountryCode.GB.ToCurrencyCode(), Is.EqualTo(CurrencyCode.GBP));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace Sugar.Extensions
         {
             var result = "3,500".FindCurrencyCode();
 
-            Assert.False(result.HasValue);
+            Assert.That(result.HasValue, Is.False);
         }
 
         [Test]
@@ -75,8 +75,8 @@ namespace Sugar.Extensions
         {
             var result = "$3,500".FindCurrencyCode();
 
-            Assert.True(result.HasValue);
-            Assert.AreEqual(CurrencyCode.USD, result.Value);
+            Assert.That(result.HasValue, Is.True);
+            Assert.That(result.Value, Is.EqualTo(CurrencyCode.USD));
         }
 
         [Test]
@@ -84,14 +84,14 @@ namespace Sugar.Extensions
         {
             var result = "There is a £ symbol here before $3,500".FindCurrencyCode();
 
-            Assert.True(result.HasValue);
-            Assert.AreEqual(CurrencyCode.GBP, result.Value);
+            Assert.That(result.HasValue, Is.True);
+            Assert.That(result.Value, Is.EqualTo(CurrencyCode.GBP));
         }
 
         [Test]
         public void TestCurrencyCodeToCountryCode()
         {
-            Assert.AreEqual(CountryCode.GB, CurrencyCode.GBP.ToCountryCode());
+            Assert.That(CurrencyCode.GBP.ToCountryCode(), Is.EqualTo(CountryCode.GB));
         }
 
         [Test]

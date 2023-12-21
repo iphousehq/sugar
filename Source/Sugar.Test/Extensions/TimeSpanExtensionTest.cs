@@ -13,7 +13,7 @@ namespace Sugar.Extensions
 
             var result = timeSpan.Years();
 
-            Assert.AreEqual(1, result);
+            Assert.That(result, Is.EqualTo(1));
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace Sugar.Extensions
 
             var result = timeSpan.Months();
 
-            Assert.AreEqual(1, result);
+            Assert.That(result, Is.EqualTo(1));
         }
 
 
@@ -32,8 +32,8 @@ namespace Sugar.Extensions
         {
             var timespan = new TimeSpan();
 
-            Assert.AreEqual(0, timespan.Ticks);
-            Assert.IsEmpty(timespan.Humanise());
+            Assert.That(timespan.Ticks, Is.EqualTo(0));
+            Assert.That(timespan.Humanise(), Is.Empty);
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromSeconds(1).Humanise();
 
-            Assert.AreEqual("1 second", result);
+            Assert.That(result, Is.EqualTo("1 second"));
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromSeconds(5).Humanise();
 
-            Assert.AreEqual("5 seconds", result);
+            Assert.That(result, Is.EqualTo("5 seconds"));
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromMinutes(1).Humanise();
 
-            Assert.AreEqual("1 minute", result);
+            Assert.That(result, Is.EqualTo("1 minute"));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromMinutes(5).Humanise();
 
-            Assert.AreEqual("5 minutes", result);
+            Assert.That(result, Is.EqualTo("5 minutes"));
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromHours(1).Humanise();
 
-            Assert.AreEqual("1 hour", result);
+            Assert.That(result, Is.EqualTo("1 hour"));
         }
 
         [Test]
@@ -81,7 +81,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromHours(5).Humanise();
 
-            Assert.AreEqual("5 hours", result);
+            Assert.That(result, Is.EqualTo("5 hours"));
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromDays(1).Humanise();
 
-            Assert.AreEqual("1 day", result);
+            Assert.That(result, Is.EqualTo("1 day"));
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromDays(5).Humanise();
 
-            Assert.AreEqual("5 days", result);
+            Assert.That(result, Is.EqualTo("5 days"));
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromDays(5).Add(TimeSpan.FromHours(5)).Humanise();
 
-            Assert.AreEqual("5 days, 5 hours", result);
+            Assert.That(result, Is.EqualTo("5 days, 5 hours"));
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromDays(5).Add(TimeSpan.FromHours(5)).Humanise(TimeSpanPart.Day);
 
-            Assert.AreEqual("5 days", result);
+            Assert.That(result, Is.EqualTo("5 days"));
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromMilliseconds(10).Humanise();
 
-            Assert.AreEqual("Less than a second", result);
+            Assert.That(result, Is.EqualTo("Less than a second"));
         }
 
         [Test]
@@ -129,7 +129,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromMilliseconds(500).Humanise();
 
-            Assert.AreEqual("Less than a second", result);
+            Assert.That(result, Is.EqualTo("Less than a second"));
         }
 
         [Test]
@@ -137,7 +137,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromSeconds(30).Humanise(TimeSpanPart.Minute);
 
-            Assert.AreEqual("Less than a minute", result);
+            Assert.That(result, Is.EqualTo("Less than a minute"));
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace Sugar.Extensions
         {
             var result = TimeSpan.FromMinutes(180).Humanise(TimeSpanPart.Day);
 
-            Assert.AreEqual("Less than a day", result);
+            Assert.That(result, Is.EqualTo("Less than a day"));
         }
         
         [Test]
@@ -155,7 +155,7 @@ namespace Sugar.Extensions
 
             var result = timeSpan.Humanise(TimeSpanPart.Day | TimeSpanPart.Hour | TimeSpanPart.Minute);
 
-            Assert.AreEqual("27484 days, 19 hours, 26 minutes", result);
+            Assert.That(result, Is.EqualTo("27484 days, 19 hours, 26 minutes"));
         }
 
         [Test]
@@ -165,7 +165,7 @@ namespace Sugar.Extensions
 
             var result = timeSpan.Humanise(TimeSpanPart.Day | TimeSpanPart.Hour | TimeSpanPart.Minute);
 
-            Assert.AreEqual("Less than a minute", result);
+            Assert.That(result, Is.EqualTo("Less than a minute"));
         }
 
         [Test]
@@ -175,7 +175,7 @@ namespace Sugar.Extensions
             var timeSpan = new TimeSpan(-4, 0, 0);
             var result = timeSpan.Humanise();
 
-            Assert.AreEqual("-4 hours", result);
+            Assert.That(result, Is.EqualTo("-4 hours"));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 namespace Sugar.Mime
 {
@@ -15,7 +15,7 @@ namespace Sugar.Mime
 
             var result = mime.ToString();
 
-            Assert.AreEqual("application/msword", result);
+            Assert.That(result, Is.EqualTo("application/msword"));
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace Sugar.Mime
 
             var result = mime.ToString();
 
-            Assert.AreEqual("audio/midi", result);
+            Assert.That(result, Is.EqualTo("audio/midi"));
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace Sugar.Mime
 
             var result = mime.ToString();
 
-            Assert.AreEqual("image/jpeg", result);
+            Assert.That(result, Is.EqualTo("image/jpeg"));
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace Sugar.Mime
 
             var result = mime.ToString();
 
-            Assert.AreEqual("text/plain", result);
+            Assert.That(result, Is.EqualTo("text/plain"));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace Sugar.Mime
 
             var result = mime.ToString();
 
-            Assert.AreEqual("video/avi", result);
+            Assert.That(result, Is.EqualTo("video/avi"));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using NUnit.Framework;
@@ -17,8 +17,8 @@ namespace Sugar.Extensions
             {
                 var resizedImage = image.CropImage(320, 200);
 
-                Assert.AreEqual(320, resizedImage.Width);
-                Assert.AreEqual(200, resizedImage.Height);
+                Assert.That(resizedImage.Width, Is.EqualTo(320));
+                Assert.That(resizedImage.Height, Is.EqualTo(200));
 
                 resizedImage.Dispose();
             }
@@ -31,7 +31,7 @@ namespace Sugar.Extensions
             {
                 var resizedImage = image.CropImage(90);
 
-                Assert.AreEqual(90, resizedImage.Width);
+                Assert.That(resizedImage.Width, Is.EqualTo(90));
 
                 resizedImage.Dispose();
             }
@@ -44,7 +44,7 @@ namespace Sugar.Extensions
             {
                 var mime = image.GetMimeType();
 
-                Assert.AreEqual("image/jpeg", mime);
+                Assert.That(mime, Is.EqualTo("image/jpeg"));
             }
         }
 
@@ -55,8 +55,8 @@ namespace Sugar.Extensions
             {
                 var resizedImage = image.ResizeImage(320, 200);
 
-                Assert.AreEqual(320, resizedImage.Width);
-                Assert.AreEqual(200, resizedImage.Height);
+                Assert.That(resizedImage.Width, Is.EqualTo(320));
+                Assert.That(resizedImage.Height, Is.EqualTo(200));
 
                 resizedImage.Dispose();
             }
@@ -69,7 +69,7 @@ namespace Sugar.Extensions
             {
                 var resizedImage = image.ResizeImage(90);
 
-                Assert.AreEqual(90, resizedImage.Width);
+                Assert.That(resizedImage.Width, Is.EqualTo(90));
 
                 resizedImage.Dispose();
             }
@@ -82,7 +82,7 @@ namespace Sugar.Extensions
             {
                 var bytes = image.ToBytes(ImageFormat.Png);
 
-                Assert.Less(0, bytes.Length);
+                Assert.That(bytes.Length, Is.GreaterThan(0));;
             }
         }
     }

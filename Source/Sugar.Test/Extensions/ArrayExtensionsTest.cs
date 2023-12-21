@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 namespace Sugar.Extensions
 {
@@ -12,9 +12,9 @@ namespace Sugar.Extensions
 
             var slice = intArray.Slice(1, 2);
 
-            Assert.AreEqual(2, slice.Length);
-            Assert.AreEqual(1, slice[0]);
-            Assert.AreEqual(2, slice[1]);
+            Assert.That(slice.Length, Is.EqualTo(2));
+            Assert.That(slice[0], Is.EqualTo(1));
+            Assert.That(slice[1], Is.EqualTo(2));
         }
     }
 }

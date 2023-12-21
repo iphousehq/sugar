@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -13,14 +13,14 @@ namespace Sugar.Extensions
         {
             var time = new DateTime(2018, 5, 11);
 
-            Assert.AreEqual(DateTimeKind.Unspecified, time.Kind);
+            Assert.That(time.Kind, Is.EqualTo(DateTimeKind.Unspecified));
 
             var utcTime = time.SpecifyKind(DateTimeKind.Utc);
 
-            Assert.AreNotSame(utcTime, time);
+            Assert.That(time, Is.Not.SameAs(utcTime));
 
-            Assert.AreEqual(utcTime, time);
-            Assert.AreEqual(DateTimeKind.Utc, utcTime.Kind);
+            Assert.That(time, Is.EqualTo(utcTime));
+            Assert.That(utcTime.Kind, Is.EqualTo(DateTimeKind.Utc));
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace Sugar.Extensions
             
             var utcTime = time.SpecifyKind(DateTimeKind.Utc);
 
-            Assert.IsNull(utcTime);
+            Assert.That(utcTime, Is.Null);
         }
 
         [Test]
@@ -38,14 +38,14 @@ namespace Sugar.Extensions
         {
             DateTime? time = new DateTime(2018, 5, 11);
 
-            Assert.AreEqual(DateTimeKind.Unspecified, time.Value.Kind);
+            Assert.That(time.Value.Kind, Is.EqualTo(DateTimeKind.Unspecified));
 
             var utcTime = time.SpecifyKind(DateTimeKind.Utc);
 
-            Assert.AreNotSame(utcTime, time);
+            Assert.That(time, Is.Not.SameAs(utcTime));
 
-            Assert.AreEqual(utcTime, time);
-            Assert.AreEqual(DateTimeKind.Utc, utcTime.Value.Kind);
+            Assert.That(time, Is.EqualTo(utcTime));
+            Assert.That(utcTime.Value.Kind, Is.EqualTo(DateTimeKind.Utc));
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace Sugar.Extensions
 
             var offset = now.ToOffset(new TimeSpan(1, 30, 0));
 
-            Assert.AreEqual(new DateTime(2014, 4, 11, 9, 32, 23), offset);
+            Assert.That(offset, Is.EqualTo(new DateTime(2014, 4, 11, 9, 32, 23)));
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Sugar.Extensions
 
             var offset = now.ToOffset(new TimeSpan(1, 30, 0));
 
-            Assert.AreEqual(new DateTime(2014, 4, 11, 9, 32, 23), offset.ToLocalTime());
+            Assert.That(offset.ToLocalTime(), Is.EqualTo(new DateTime(2014, 4, 11, 9, 32, 23)));
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace Sugar.Extensions
 
             var results = new DateTime(2011, 1, 1).MonthsUntil(new DateTime(2011, 4, 1));
 
-            Assert.AreEqual(expected.Count, results.Count());
+            Assert.That(results.Count(), Is.EqualTo(expected.Count));
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace Sugar.Extensions
 
             var results = new DateTime(2011, 1, 15).MonthsUntil(new DateTime(2011, 4, 23));
 
-            Assert.AreEqual(expected.Count, results.Count());
+            Assert.That(results.Count(), Is.EqualTo(expected.Count));
         }
 
         [Test]
@@ -108,7 +108,7 @@ namespace Sugar.Extensions
         {
             var results = new DateTime(2011, 2, 1).MonthsUntil(new DateTime(2011, 1, 1));
 
-            Assert.AreEqual(0, results.Count());
+            Assert.That(results.Count(), Is.EqualTo(0));
         }
 
         [Test]
@@ -116,8 +116,8 @@ namespace Sugar.Extensions
         {
             var results = new DateTime(2011, 1, 1).MonthsUntil(new DateTime(2011, 1, 1)).ToList();
 
-            Assert.AreEqual(1, results.Count);
-            Assert.AreEqual(new DateTime(2011, 1, 1), results.First());
+            Assert.That(results.Count, Is.EqualTo(1));
+            Assert.That(results.First(), Is.EqualTo(new DateTime(2011, 1, 1)));
         }
 
         [Test]
@@ -149,7 +149,7 @@ namespace Sugar.Extensions
 
             var results = new DateTime(2011, 1, 1).DaysUntil(new DateTime(2011, 1, 20));
 
-            Assert.AreEqual(expected.Count, results.Count());
+            Assert.That(results.Count(), Is.EqualTo(expected.Count));
         }
 
         [Test]
@@ -168,9 +168,9 @@ namespace Sugar.Extensions
 
             var results = new DateTime(2011, 12, 29).WeeksUntil(new DateTime(2012, 2, 7)).ToList();
 
-            Assert.AreEqual(expected.Count, results.Count);
-            Assert.AreEqual(expected[0], results.ElementAt(0));
-            Assert.AreEqual(expected[6], results.ElementAt(6));
+            Assert.That(results.Count, Is.EqualTo(expected.Count));
+            Assert.That(results.ElementAt(0), Is.EqualTo(expected[0]));
+            Assert.That(results.ElementAt(6), Is.EqualTo(expected[6]));
         }
 
         [Test]
@@ -188,9 +188,9 @@ namespace Sugar.Extensions
 
             var results = new DateTime(2011, 12, 29).WeeksUntil(new DateTime(2012, 2, 7), DayOfWeek.Wednesday).ToList();
 
-            Assert.AreEqual(expected.Count, results.Count);
-            Assert.AreEqual(expected[0], results.ElementAt(0));
-            Assert.AreEqual(expected[5], results.ElementAt(5));
+            Assert.That(results.Count, Is.EqualTo(expected.Count));
+            Assert.That(results.ElementAt(0), Is.EqualTo(expected[0]));
+            Assert.That(results.ElementAt(5), Is.EqualTo(expected[5]));
         }
 
         [Test]
@@ -209,9 +209,9 @@ namespace Sugar.Extensions
 
             var results = new DateTime(2011, 12, 29).WeeksUntil(new DateTime(2012, 2, 7), DayOfWeek.Friday).ToList();
 
-            Assert.AreEqual(expected.Count, results.Count);
-            Assert.AreEqual(expected[0], results.ElementAt(0));
-            Assert.AreEqual(expected[6], results.ElementAt(6));
+            Assert.That(results.Count, Is.EqualTo(expected.Count));
+            Assert.That(results.ElementAt(0), Is.EqualTo(expected[0]));
+            Assert.That(results.ElementAt(6), Is.EqualTo(expected[6]));
         }
 
         [Test]
@@ -235,10 +235,10 @@ namespace Sugar.Extensions
 
             var results = new DateTime(2011, 12, 26).WeeksUntil(new DateTime(2012, 3, 12)).ToList();
 
-            Assert.AreEqual(expected.Count, results.Count);
-            Assert.AreEqual(expected[0], results.ElementAt(0));
-            Assert.AreEqual(expected[9], results.ElementAt(9));
-            Assert.AreEqual(expected[10], results.ElementAt(10));
+            Assert.That(results.Count, Is.EqualTo(expected.Count));
+            Assert.That(results.ElementAt(0), Is.EqualTo(expected[0]));
+            Assert.That(results.ElementAt(9), Is.EqualTo(expected[9]));
+            Assert.That(results.ElementAt(10), Is.EqualTo(expected[10]));
         }
 
         [Test]
@@ -261,10 +261,10 @@ namespace Sugar.Extensions
 
             var results = new DateTime(2011, 1, 1, 10, 15, 0, 0).HoursUntil(new DateTime(2011, 1, 1, 20, 15, 0, 0)).ToList();
 
-            Assert.AreEqual(expected.Count, results.Count);
-            Assert.AreEqual(expected[0], results.ElementAt(0));
-            Assert.AreEqual(expected[9], results.ElementAt(9));
-            Assert.AreEqual(expected[10], results.ElementAt(10));
+            Assert.That(results.Count, Is.EqualTo(expected.Count));
+            Assert.That(results.ElementAt(0), Is.EqualTo(expected[0]));
+            Assert.That(results.ElementAt(9), Is.EqualTo(expected[9]));
+            Assert.That(results.ElementAt(10), Is.EqualTo(expected[10]));
         }
 
         [Test]
@@ -272,35 +272,35 @@ namespace Sugar.Extensions
         {
             // Monday
             var result = new DateTime(2012, 1, 2).StartOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 2), result);
+            Assert.That(result, Is.EqualTo(new DateTime(2012, 1, 2)));
 
             // Tuesday
             var result2 = new DateTime(2012, 1, 3).StartOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 2), result2);
+            Assert.That(result2, Is.EqualTo(new DateTime(2012, 1, 2)));
 
             // Wednesday
             var result3 = new DateTime(2012, 1, 4).StartOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 2), result3);
+            Assert.That(result3, Is.EqualTo(new DateTime(2012, 1, 2)));
 
             // Thursday
             var result4 = new DateTime(2012, 1, 5).StartOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 2), result4);
+            Assert.That(result4, Is.EqualTo(new DateTime(2012, 1, 2)));
 
             // Friday
             var result5 = new DateTime(2012, 1, 6).StartOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 2), result5);
+            Assert.That(result5, Is.EqualTo(new DateTime(2012, 1, 2)));
 
             // Saturday
             var result6 = new DateTime(2012, 1, 7).StartOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 2), result6);
+            Assert.That(result6, Is.EqualTo(new DateTime(2012, 1, 2)));
 
             // Sunday
             var result7 = new DateTime(2012, 1, 8).StartOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 2), result7);
+            Assert.That(result7, Is.EqualTo(new DateTime(2012, 1, 2)));
 
             // Sunday
             var result8 = new DateTime(2011, 12, 11).StartOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2011, 12, 5), result8);
+            Assert.That(result8, Is.EqualTo(new DateTime(2011, 12, 5)));
         }
 
         [Test]
@@ -308,35 +308,35 @@ namespace Sugar.Extensions
         {
             // Monday
             var result = new DateTime(2012, 1, 2).EndOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 8), result);
+            Assert.That(result, Is.EqualTo(new DateTime(2012, 1, 8)));
 
             // Tuesday
             var result2 = new DateTime(2012, 1, 3).EndOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 8), result2);
+            Assert.That(result2, Is.EqualTo(new DateTime(2012, 1, 8)));
 
             // Wednesday
             var result3 = new DateTime(2012, 1, 4).EndOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 8), result3);
+            Assert.That(result3, Is.EqualTo(new DateTime(2012, 1, 8)));
 
             // Thursday
             var result4 = new DateTime(2012, 1, 5).EndOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 8), result4);
+            Assert.That(result4, Is.EqualTo(new DateTime(2012, 1, 8)));
 
             // Friday
             var result5 = new DateTime(2012, 1, 6).EndOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 8), result5);
+            Assert.That(result5, Is.EqualTo(new DateTime(2012, 1, 8)));
 
             // Saturday
             var result6 = new DateTime(2012, 1, 7).EndOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 8), result6);
+            Assert.That(result6, Is.EqualTo(new DateTime(2012, 1, 8)));
 
             // Sunday
             var result7 = new DateTime(2012, 1, 8).EndOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2012, 1, 8), result7);
+            Assert.That(result7, Is.EqualTo(new DateTime(2012, 1, 8)));
 
             // Sunday
             var result8 = new DateTime(2011, 12, 11).EndOfWeek(DayOfWeek.Monday);
-            Assert.AreEqual(new DateTime(2011, 12, 11), result8);
+            Assert.That(result8, Is.EqualTo(new DateTime(2011, 12, 11)));
         }
 
         [Test]
@@ -344,15 +344,15 @@ namespace Sugar.Extensions
         {
             //beginning
             var result = new DateTime(2012, 1, 1).EndOfMonth();
-            Assert.AreEqual(new DateTime(2012, 1, 31, 23, 59, 59), result);
+            Assert.That(result, Is.EqualTo(new DateTime(2012, 1, 31, 23, 59, 59)));
 
             //middle
             result = new DateTime(2012, 1, 10).EndOfMonth();
-            Assert.AreEqual(new DateTime(2012, 1, 31, 23, 59, 59), result);
+            Assert.That(result, Is.EqualTo(new DateTime(2012, 1, 31, 23, 59, 59)));
 
             //end
             result = new DateTime(2012, 1, 31).EndOfMonth();
-            Assert.AreEqual(new DateTime(2012, 1, 31, 23, 59, 59), result);
+            Assert.That(result, Is.EqualTo(new DateTime(2012, 1, 31, 23, 59, 59)));
         }
 
         [Test]
@@ -363,7 +363,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("never", result);
+            Assert.That(result, Is.EqualTo("never"));
         }
 
         [Test]
@@ -374,7 +374,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("over a year", result);
+            Assert.That(result, Is.EqualTo("over a year"));
         }
 
         [Test]
@@ -385,7 +385,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("a year", result);
+            Assert.That(result, Is.EqualTo("a year"));
         }
 
         [Test]
@@ -396,7 +396,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("about 4 months", result);
+            Assert.That(result, Is.EqualTo("about 4 months"));
         }
 
         [Test]
@@ -407,7 +407,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("about a month", result);
+            Assert.That(result, Is.EqualTo("about a month"));
         }
 
         [Test]
@@ -418,7 +418,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("5 days", result);
+            Assert.That(result, Is.EqualTo("5 days"));
         }
 
         [Test]
@@ -429,7 +429,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("a day", result);
+            Assert.That(result, Is.EqualTo("a day"));
         }
 
         [Test]
@@ -440,7 +440,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("5 hours", result);
+            Assert.That(result, Is.EqualTo("5 hours"));
         }
 
         [Test]
@@ -451,7 +451,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("an hour", result);
+            Assert.That(result, Is.EqualTo("an hour"));
         }
 
         [Test]
@@ -462,7 +462,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("10 minutes", result);
+            Assert.That(result, Is.EqualTo("10 minutes"));
         }
 
         [Test]
@@ -473,7 +473,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("a few minutes", result);
+            Assert.That(result, Is.EqualTo("a few minutes"));
         }
 
         [Test]
@@ -484,7 +484,7 @@ namespace Sugar.Extensions
 
             var result = dateOne.HumaniseTimeBetweenTwoDates(dateTwo);
 
-            Assert.AreEqual("a few seconds", result);
+            Assert.That(result, Is.EqualTo("a few seconds"));
         }
 
         [Test]
@@ -492,7 +492,7 @@ namespace Sugar.Extensions
         {
             var result = ((DateTime?)null).Humanise();
 
-            Assert.AreEqual("never", result);
+            Assert.That(result, Is.EqualTo("never"));
         }
 
         [Test]
@@ -502,7 +502,7 @@ namespace Sugar.Extensions
 
             var result = date.Humanise();
 
-            Assert.AreEqual("never", result);
+            Assert.That(result, Is.EqualTo("never"));
         }
 
         [Test]
@@ -512,7 +512,7 @@ namespace Sugar.Extensions
 
             var result = date.Humanise();
 
-            Assert.AreEqual("5 days ago", result);
+            Assert.That(result, Is.EqualTo("5 days ago"));
         }
 
         [Test]
@@ -522,7 +522,7 @@ namespace Sugar.Extensions
 
             var result = date.Humanise();
 
-            Assert.AreEqual("in 5 days", result);
+            Assert.That(result, Is.EqualTo("in 5 days"));
         }
 
         [Test]
@@ -532,7 +532,7 @@ namespace Sugar.Extensions
 
             var result = date.ToStringWithOrdinal();
 
-            Assert.AreEqual("1st January 2001", result);
+            Assert.That(result, Is.EqualTo("1st January 2001"));
         }
 
         [Test]
@@ -540,8 +540,8 @@ namespace Sugar.Extensions
         {
             var result = DateTime.UtcNow.GetPreviousDays(1);
 
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(DateTime.UtcNow.Date, result[0]);
+            Assert.That(result.Count, Is.EqualTo(1));
+            Assert.That(result[0], Is.EqualTo(DateTime.UtcNow.Date));
         }
 
         [Test]
@@ -549,9 +549,9 @@ namespace Sugar.Extensions
         {
             var result = DateTime.UtcNow.GetPreviousDays(2);
 
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(DateTime.UtcNow.Date, result[0]);
-            Assert.AreEqual(DateTime.UtcNow.AddDays(-1).Date, result[1]);
+            Assert.That(result.Count, Is.EqualTo(2));
+            Assert.That(result[0], Is.EqualTo(DateTime.UtcNow.Date));
+            Assert.That(result[1], Is.EqualTo(DateTime.UtcNow.AddDays(-1).Date));
         }
 
         [Test]
@@ -559,7 +559,7 @@ namespace Sugar.Extensions
         {
             var result = new DateTime(2005, 1, 1).InBounds(new DateTime(2000, 1, 1), new DateTime(2010, 1, 1));
 
-            Assert.AreEqual(2005, result.Year);
+            Assert.That(result.Year, Is.EqualTo(2005));
         }
 
         [Test]
@@ -567,7 +567,7 @@ namespace Sugar.Extensions
         {
             var result = new DateTime(1999, 1, 1).InBounds(new DateTime(2000, 1, 1), new DateTime(2010, 1, 1));
 
-            Assert.AreEqual(DateTime.UtcNow.Year, result.Year);
+            Assert.That(result.Year, Is.EqualTo(DateTime.UtcNow.Year));
         }
 
         [Test]
@@ -575,7 +575,7 @@ namespace Sugar.Extensions
         {
             var result = new DateTime(2015, 1, 1).InBounds(new DateTime(2000, 1, 1), new DateTime(2010, 1, 1));
 
-            Assert.AreEqual(DateTime.UtcNow.Year, result.Year);
+            Assert.That(result.Year, Is.EqualTo(DateTime.UtcNow.Year));
         }
 
         [Test]
@@ -585,7 +585,7 @@ namespace Sugar.Extensions
 
             var result = now.MonthDifference(new DateTime(2011, 05, 1));
 
-            Assert.AreEqual(1, result);
+            Assert.That(result, Is.EqualTo(1));
         }
 
         [Test]
@@ -595,7 +595,7 @@ namespace Sugar.Extensions
 
             var result = now.MonthDifference(new DateTime(2011, 07, 1));
 
-            Assert.AreEqual(-1, result);
+            Assert.That(result, Is.EqualTo(-1));
         }
 
         [Test]
@@ -605,13 +605,13 @@ namespace Sugar.Extensions
 
             var value = dateTime.ToIso8601String();
 
-            Assert.AreEqual("20101015T123025", value);
+            Assert.That(value, Is.EqualTo("20101015T123025"));
 
             dateTime = new DateTime(2010, 10, 15, 12, 30, 25, DateTimeKind.Unspecified);
 
             value = dateTime.ToIso8601String();
 
-            Assert.AreEqual("20101015T123025", value);
+            Assert.That(value, Is.EqualTo("20101015T123025"));
         }
 
         [Test]
@@ -621,7 +621,7 @@ namespace Sugar.Extensions
 
             var value = dateTime.ToIso8601String();
 
-            Assert.AreEqual("20101015T123025Z", value);
+            Assert.That(value, Is.EqualTo("20101015T123025Z"));
         }
 
         [Test]
@@ -629,7 +629,7 @@ namespace Sugar.Extensions
         {
             var time = new DateTime(2011, 1, 1).ToUnixTimestamp();
 
-            Assert.AreEqual(1293840000.0d, time);
+            Assert.That(time, Is.EqualTo(1293840000.0d));
         }
 
         [Test]
@@ -639,7 +639,7 @@ namespace Sugar.Extensions
 
             var result = start.TimeRemaining(0, 100);
 
-            Assert.AreEqual("unknown", result);
+            Assert.That(result, Is.EqualTo("unknown"));
         }
 
         [Test]
@@ -649,7 +649,7 @@ namespace Sugar.Extensions
 
             var result = start.TimeRemaining(90, 100);
 
-            Assert.AreEqual("33s", result);
+            Assert.That(result, Is.EqualTo("33s"));
         }
 
         [Test]
@@ -659,7 +659,7 @@ namespace Sugar.Extensions
 
             var result = start.TimeRemaining(50, 100);
 
-            Assert.AreEqual("5m 0s", result);
+            Assert.That(result, Is.EqualTo("5m 0s"));
         }
 
         [Test]
@@ -669,7 +669,7 @@ namespace Sugar.Extensions
 
             var result = start.TimeRemaining(1, 100);
 
-            Assert.AreEqual("8h 15m 0s", result);
+            Assert.That(result, Is.EqualTo("8h 15m 0s"));
         }
     }
 }

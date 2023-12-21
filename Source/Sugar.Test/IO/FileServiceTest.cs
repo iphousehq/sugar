@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Net.Http;
@@ -38,8 +38,8 @@ namespace Sugar.IO
 
             var filenames = service.GetFilenames("*.txt");
 
-            Assert.AreEqual(1, filenames.Count);
-            Assert.IsTrue(filenames[0].EndsWith("\\Samples\\Child\\Test.txt"));
+            Assert.That(filenames.Count, Is.EqualTo(1));
+            Assert.That(filenames[0].EndsWith("\\Samples\\Child\\Test.txt"), Is.True);
         }
 
         [Test]
@@ -49,12 +49,12 @@ namespace Sugar.IO
 
             var filenames = service.GetFilenames("*", 1);
 
-            Assert.AreEqual(5, filenames.Count);
-            Assert.IsTrue(filenames[0].EndsWith("\\Samples\\Child\\Test.txt"));
-            Assert.IsTrue(filenames[1].EndsWith("\\Samples\\grass.jpg"));
-            Assert.IsTrue(filenames[2].EndsWith("\\Samples\\node-extension.html"));
-            Assert.IsTrue(filenames[3].EndsWith("\\Samples\\One.txt"));
-            Assert.IsTrue(filenames[4].EndsWith("\\Samples\\Two.txt"));
+            Assert.That(filenames.Count, Is.EqualTo(5));
+            Assert.That(filenames[0].EndsWith("\\Samples\\Child\\Test.txt"), Is.True);
+            Assert.That(filenames[1].EndsWith("\\Samples\\grass.jpg"), Is.True);
+            Assert.That(filenames[2].EndsWith("\\Samples\\node-extension.html"), Is.True);
+            Assert.That(filenames[3].EndsWith("\\Samples\\One.txt"), Is.True);
+            Assert.That(filenames[4].EndsWith("\\Samples\\Two.txt"), Is.True);
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace Sugar.IO
         {
             var ignored = service.IsIgnored("c:\\test.txt", "*.txt");
 
-            Assert.IsTrue(ignored);
+            Assert.That(ignored, Is.True);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace Sugar.IO
         {
             var ignored = service.IsIgnored("c:\\test.cs", "*.txt");
 
-            Assert.IsFalse(ignored);
+            Assert.That(ignored, Is.False);
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace Sugar.IO
         {
             var ignored = service.IsIgnored("c:\\bin\\test.txt", "*bin\\*");
 
-            Assert.IsTrue(ignored);
+            Assert.That(ignored, Is.True);
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace Sugar.IO
 
             var exists = File.Exists(path);
 
-            Assert.True(exists);
+            Assert.That(exists, Is.True);
 
             File.Delete(path);
         }

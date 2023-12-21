@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using System.Threading.Tasks;
 using LightInject;
 using NUnit.Framework;
@@ -19,7 +19,7 @@ namespace Sugar.Moq
 
             var result = serviceContainer.RegisterMockHttp(mockHttp);
 
-            Assert.AreSame(serviceContainer, result);
+            Assert.That(result, Is.SameAs(serviceContainer));
 
             var httpClientAccessor = serviceContainer.GetInstance<IAccessor<HttpClient>>();
             
@@ -30,7 +30,7 @@ namespace Sugar.Moq
 
             var response = await httpClient.GetStringAsync("http://foo.bar/hello");
 
-            Assert.AreEqual("world", response);
+            Assert.That(response, Is.EqualTo("world"));
         }
     }
 }

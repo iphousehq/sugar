@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 namespace Sugar.Net
 {
@@ -10,7 +10,7 @@ namespace Sugar.Net
         {
             var tld = CommonTlds.Instance.GetTld("bbc.co.uk");
 
-            Assert.AreEqual("co.uk", tld);
+            Assert.That(tld, Is.EqualTo("co.uk"));
         }
 
         [Test]
@@ -19,7 +19,7 @@ namespace Sugar.Net
             // Both '.bs' and '.com.bs' are valid.
             var tld = CommonTlds.Instance.GetTld("something.com.bs");
 
-            Assert.AreEqual("com.bs", tld);
+            Assert.That(tld, Is.EqualTo("com.bs"));
         }
 
         [Test]
@@ -27,11 +27,11 @@ namespace Sugar.Net
         {
             var tld = CommonTlds.Instance.GetTld("amazon.ca");
 
-            Assert.AreEqual("ca", tld);
+            Assert.That(tld, Is.EqualTo("ca"));
 
             tld = CommonTlds.Instance.GetTld("amaz.on.ca");
 
-            Assert.AreEqual("on.ca", tld);
+            Assert.That(tld, Is.EqualTo("on.ca"));
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace Sugar.Net
         {
             var tld = CommonTlds.Instance.GetTld("zdssihsgifsd.sdiusfhisdfhs.sfisdfisdfsdif");
 
-            Assert.AreEqual("sfisdfisdfsdif", tld);
+            Assert.That(tld, Is.EqualTo("sfisdfisdfsdif"));
         }
     }
 }

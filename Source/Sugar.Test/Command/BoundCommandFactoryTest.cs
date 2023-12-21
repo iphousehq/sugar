@@ -88,7 +88,7 @@ namespace Sugar.Command
 
             var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
-            Assert.AreEqual(typeof(FakeCommandOne), result);
+            Assert.That(result, Is.EqualTo(typeof(FakeCommandOne)));
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace Sugar.Command
 
             var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
-            Assert.AreEqual(typeof(FakeCommandTwo), result);
+            Assert.That(result, Is.EqualTo(typeof(FakeCommandTwo)));
         }
         
         [Test]
@@ -108,7 +108,7 @@ namespace Sugar.Command
 
             var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
-            Assert.AreEqual(typeof(FakeCommandThree), result);
+            Assert.That(result, Is.EqualTo(typeof(FakeCommandThree)));
         }
 
         [Test]
@@ -118,7 +118,7 @@ namespace Sugar.Command
 
             var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
-            Assert.AreEqual(typeof(FakeCommandFour), result);
+            Assert.That(result, Is.EqualTo(typeof(FakeCommandFour)));
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace Sugar.Command
 
             var result = factory.GetCommandType(parameters, () => availableCommandOptions);
 
-            Assert.AreEqual(typeof(FakeCommandFive), result);
+            Assert.That(result, Is.EqualTo(typeof(FakeCommandFive)));
         }
     }
 }

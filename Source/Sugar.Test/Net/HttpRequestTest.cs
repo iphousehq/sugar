@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using NUnit.Framework;
 
 namespace Sugar.Net
@@ -11,12 +11,12 @@ namespace Sugar.Net
         {
             var request = new HttpRequest();
 
-            Assert.AreEqual(3, request.Retries);
-            Assert.AreEqual(30000, request.Timeout);
-            Assert.AreEqual(HttpVerb.Get, request.Verb);
+            Assert.That(request.Retries, Is.EqualTo(3));
+            Assert.That(request.Timeout, Is.EqualTo(30000));
+            Assert.That(request.Verb, Is.EqualTo(HttpVerb.Get));
 
-            Assert.AreEqual(0, request.Headers.Count);
-            Assert.IsNotNull(request.Cookies);
+            Assert.That(request.Headers.Count, Is.EqualTo(0));
+            Assert.That(request.Cookies, Is.Not.Null);
         }
 
         [Test]
@@ -34,21 +34,21 @@ namespace Sugar.Net
 
             var webRequest = (HttpWebRequest) request.ToWebRequest();
 
-            Assert.AreEqual("http://www.watchdogapp.com/", webRequest.RequestUri.ToString());
+            Assert.That(webRequest.RequestUri.ToString(), Is.EqualTo("http://www.watchdogapp.com/"));
 
-            Assert.AreEqual(5, webRequest.Headers.Count);
-            Assert.AreEqual(DecompressionMethods.GZip | DecompressionMethods.Deflate, webRequest.AutomaticDecompression);
-            Assert.AreEqual("GET", webRequest.Method);
-            Assert.AreEqual(30000, webRequest.Timeout);
-            Assert.AreEqual("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0", webRequest.UserAgent);
-            Assert.AreEqual("text/json", webRequest.ContentType);
-            Assert.AreEqual("referer", webRequest.Referer);
-            Assert.AreEqual("somehost.com", webRequest.Host);
-            Assert.AreEqual(WebRequest.DefaultWebProxy, webRequest.Proxy);
+            Assert.That(webRequest.Headers.Count, Is.EqualTo(5));
+            Assert.That(webRequest.AutomaticDecompression, Is.EqualTo(DecompressionMethods.GZip | DecompressionMethods.Deflate));
+            Assert.That(webRequest.Method, Is.EqualTo("GET"));
+            Assert.That(webRequest.Timeout, Is.EqualTo(30000));
+            Assert.That(webRequest.UserAgent, Is.EqualTo("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0"));
+            Assert.That(webRequest.ContentType, Is.EqualTo("text/json"));
+            Assert.That(webRequest.Referer, Is.EqualTo("referer"));
+            Assert.That(webRequest.Host, Is.EqualTo("somehost.com"));
+            Assert.That(webRequest.Proxy, Is.EqualTo(WebRequest.DefaultWebProxy));
 
-            Assert.AreEqual("text/xml", webRequest.Accept);
+            Assert.That(webRequest.Accept, Is.EqualTo("text/xml"));
 
-            Assert.AreEqual(request.Cookies, webRequest.CookieContainer);
+            Assert.That(webRequest.CookieContainer, Is.EqualTo(request.Cookies));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace Sugar.Net
 
             var values = webRequest.Headers.GetValues("Authorization");
 
-            Assert.AreEqual("Basic am9objpkb2UxMjMh", values[0]);
+            Assert.That(values[0], Is.EqualTo("Basic am9objpkb2UxMjMh"));
         }
     }
 }

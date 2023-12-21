@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using NUnit.Framework;
 
 namespace Sugar.Net
@@ -19,12 +19,12 @@ namespace Sugar.Net
         {
             var response = service.Head("http://www.bbc.co.uk", string.Empty);
 
-            Assert.IsTrue(response.Success);
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.That(response.Success, Is.True);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
-            Assert.Less(0, response.Headers.Count);
+            Assert.That(response.Headers.Count, Is.GreaterThan(0));;
 
-            Assert.IsNull(response.Bytes);
+            Assert.That(response.Bytes, Is.Null);
         }
 
         [Test]
@@ -32,12 +32,12 @@ namespace Sugar.Net
         {
             var response = service.Get("http://www.facebook.com/", string.Empty);
 
-            Assert.IsTrue(response.Success);
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.That(response.Success, Is.True);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
-            Assert.Less(0, response.Headers.Count);
+            Assert.That(response.Headers.Count, Is.GreaterThan(0));;
 
-            Assert.Less(0, response.Bytes.Length);
+            Assert.That(response.Bytes.Length, Is.GreaterThan(0));;
         }
 
         [Test]
@@ -45,10 +45,10 @@ namespace Sugar.Net
         {
             var response = service.Get("http://github.com", string.Empty);
 
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("http://github.com", response.Url);
-            Assert.AreEqual("https://github.com/", response.RedirectedUrl);
-            Assert.IsTrue(response.WasRedirected);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(response.Url, Is.EqualTo("http://github.com"));
+            Assert.That(response.RedirectedUrl, Is.EqualTo("https://github.com/"));
+            Assert.That(response.WasRedirected, Is.True);
         }
 
         [Test]
@@ -56,12 +56,12 @@ namespace Sugar.Net
         {
             var response = service.Get("https://www.google.com/", string.Empty);
 
-            Assert.IsTrue(response.Success);
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.That(response.Success, Is.True);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
-            Assert.Less(0, response.Headers.Count);
+            Assert.That(response.Headers.Count, Is.GreaterThan(0));;
 
-            Assert.Less(0, response.Bytes.Length);
+            Assert.That(response.Bytes.Length, Is.GreaterThan(0));;
         }
 
         [Test]
@@ -69,11 +69,11 @@ namespace Sugar.Net
         {
             var response = service.Get("https://github.com/does-no-exist", string.Empty);
 
-            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
 
-            Assert.Less(0, response.Headers.Count);
+            Assert.That(response.Headers.Count, Is.GreaterThan(0));;
 
-            Assert.IsNull(response.Bytes);
+            Assert.That(response.Bytes, Is.Null);
         }
 
         [Test]
@@ -81,7 +81,7 @@ namespace Sugar.Net
         {
             var response = service.Post("http://httpbin.org/post", string.Empty);
 
-            Assert.True(response.Success);
+            Assert.That(response.Success, Is.True);
         }
     }
 }

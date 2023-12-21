@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 
 namespace Sugar
@@ -15,8 +15,8 @@ namespace Sugar
 
             var result = table.ToString().Split(Environment.NewLine);
 
-            Assert.AreEqual("one  two", result[0]);
-            Assert.AreEqual("one    1", result[1]);
+            Assert.That(result[0], Is.EqualTo("one  two"));
+            Assert.That(result[1], Is.EqualTo("one    1"));
         }
 
         [Test]
@@ -29,9 +29,9 @@ namespace Sugar
 
             var result = table.ToString().Split(Environment.NewLine);
 
-            Assert.AreEqual("First    Second", result[0]);
-            Assert.AreEqual("one           1", result[1]);
-            Assert.AreEqual("one two     123", result[2]);
+            Assert.That(result[0], Is.EqualTo("First    Second"));
+            Assert.That(result[1], Is.EqualTo("one           1"));
+            Assert.That(result[2], Is.EqualTo("one two     123"));
         }
 
         [Test]
@@ -44,9 +44,9 @@ namespace Sugar
 
             var result = table.ToString().Split(Environment.NewLine);
 
-            Assert.AreEqual("One      Two", result[0]);
-            Assert.AreEqual("one", result[1]);
-            Assert.AreEqual("one two  123", result[2]);
+            Assert.That(result[0], Is.EqualTo("One      Two"));
+            Assert.That(result[1], Is.EqualTo("one"));
+            Assert.That(result[2], Is.EqualTo("one two  123"));
         }
 
         [Test]
@@ -60,10 +60,10 @@ namespace Sugar
 
             var result = table.ToStringList();
 
-            Assert.AreEqual("1    2", result[0]);
-            Assert.AreEqual("one        1", result[1]);
-            Assert.AreEqual("============", result[2]);
-            Assert.AreEqual("one two  123", result[3]);
+            Assert.That(result[0], Is.EqualTo("1    2"));
+            Assert.That(result[1], Is.EqualTo("one        1"));
+            Assert.That(result[2], Is.EqualTo("============"));
+            Assert.That(result[3], Is.EqualTo("one two  123"));
         }
     }
 }
