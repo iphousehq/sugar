@@ -373,10 +373,10 @@ namespace Sugar.Extensions
         {
             if (datetime.Kind == DateTimeKind.Utc)
             {
-                return datetime.ToString("yyyyMMddTHHmmssZ");
+                return datetime.ToString("yyyy-MM-ddTHH:mm:ssZ");
             }
 
-            return datetime.ToString("yyyyMMddTHHmmss");
+            return datetime.ToString("yyyy-MM-ddTHH:mm:ss");
         }
 
         /// <summary>

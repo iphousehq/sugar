@@ -605,13 +605,13 @@ namespace Sugar.Extensions
 
             var value = dateTime.ToIso8601String();
 
-            Assert.That(value, Is.EqualTo("20101015T123025"));
+            Assert.That(value, Is.EqualTo("2010-10-15T12:30:25"));
 
             dateTime = new DateTime(2010, 10, 15, 12, 30, 25, DateTimeKind.Unspecified);
 
             value = dateTime.ToIso8601String();
 
-            Assert.That(value, Is.EqualTo("20101015T123025"));
+            Assert.That(value, Is.EqualTo("2010-10-15T12:30:25"));
         }
 
         [Test]
@@ -621,7 +621,7 @@ namespace Sugar.Extensions
 
             var value = dateTime.ToIso8601String();
 
-            Assert.That(value, Is.EqualTo("20101015T123025Z"));
+            Assert.That(value, Is.EqualTo("2010-10-15T12:30:25Z"));
         }
 
         [Test]
