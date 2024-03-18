@@ -118,6 +118,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.BAM: return "KM";
                 case CurrencyCode.UZS: return "у.е.";
                 case CurrencyCode.KZT: return "KZ";
+                case CurrencyCode.ILS: return "₪";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
@@ -201,6 +202,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.BAM: return "KM";
                 case CurrencyCode.UZS: return "у.е.";
                 case CurrencyCode.KZT: return "KZ";
+                case CurrencyCode.ILS: return "&#8362; ";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");

@@ -34,7 +34,7 @@ namespace Sugar
         }
 
         [Test]
-        public void TestConstructorFromDegreesLatitideTooSmall()
+        public void TestConstructorFromDegreesLatitudeTooSmall()
         {
             var exception = Assert.Throws<ArgumentException>(() => GeoLocation.FromDegrees(-95, 1));
             
@@ -42,7 +42,7 @@ namespace Sugar
         }
 
         [Test]
-        public void TestConstructorFromDegreesLatitideTooLarge()
+        public void TestConstructorFromDegreesLatitudeTooLarge()
         {
             var exception = Assert.Throws<ArgumentException>(() => GeoLocation.FromDegrees(95, 1));
 
