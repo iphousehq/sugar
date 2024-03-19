@@ -76,6 +76,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.HRK: return "kn";
                 case CurrencyCode.HUF: return "Ft";
                 case CurrencyCode.IDR: return "Rp";
+                case CurrencyCode.ILS: return "₪";
                 case CurrencyCode.INR: return "₹";
                 case CurrencyCode.JOD: return "د.ا";
                 case CurrencyCode.JPY: return "¥";
@@ -118,7 +119,6 @@ namespace Sugar.Extensions
                 case CurrencyCode.BAM: return "KM";
                 case CurrencyCode.UZS: return "у.е.";
                 case CurrencyCode.KZT: return "KZ";
-                case CurrencyCode.ILS: return "₪";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
@@ -160,6 +160,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.HRK: return "&#107;&#110; ";
                 case CurrencyCode.HUF: return "&#70;&#116; ";
                 case CurrencyCode.IDR: return "&#82;&#112; ";
+                case CurrencyCode.ILS: return "&#8362; ";
                 case CurrencyCode.INR: return "&#8377;";
                 case CurrencyCode.JOD: return "JOD";
                 case CurrencyCode.JPY: return "&#165; ";
@@ -202,7 +203,6 @@ namespace Sugar.Extensions
                 case CurrencyCode.BAM: return "KM";
                 case CurrencyCode.UZS: return "у.е.";
                 case CurrencyCode.KZT: return "KZ";
-                case CurrencyCode.ILS: return "&#8362; ";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");
@@ -233,6 +233,7 @@ namespace Sugar.Extensions
                 case "kn": return CurrencyCode.HRK;
                 case "Ft": return CurrencyCode.HUF;
                 case "₹": return CurrencyCode.INR;
+                case "₪": return CurrencyCode.ILS;
                 case "Rp": return CurrencyCode.IDR;
                 case "د.ا": return CurrencyCode.JOD;
                 case "¥": return CurrencyCode.JPY;
@@ -417,7 +418,8 @@ namespace Sugar.Extensions
                 case CountryCode.CU: return CurrencyCode.CUP;
                 case CountryCode.BA: return CurrencyCode.BAM;
                 case CountryCode.UZ: return CurrencyCode.UZS;
-                case CountryCode.KZ: return CurrencyCode.KZT;
+                case CountryCode.KZ: return CurrencyCode.KZT; 
+                case CountryCode.IL: return CurrencyCode.ILS;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
@@ -453,6 +455,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.HRK: return CountryCode.HR;
                 case CurrencyCode.HUF: return CountryCode.HU;
                 case CurrencyCode.IDR: return CountryCode.ID;
+                case CurrencyCode.ILS: return CountryCode.IL;
                 case CurrencyCode.INR: return CountryCode.IN;
                 case CurrencyCode.JOD: return CountryCode.JO;
                 case CurrencyCode.JPY: return CountryCode.JP;
