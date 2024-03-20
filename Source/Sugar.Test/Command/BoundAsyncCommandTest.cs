@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Sugar.Command.Binder;
@@ -21,7 +22,7 @@ namespace Sugar.Command
                 return OptionsBound;
             }
 
-            public override Task<int> Execute(Options options)
+            public override Task<int> Execute(Options options, CancellationToken cancellationToken = default)
             {
                 return Task.FromResult(0);
             }           

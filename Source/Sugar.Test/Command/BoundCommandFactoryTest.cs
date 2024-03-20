@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Sugar.Command.Binder;
@@ -58,7 +59,7 @@ namespace Sugar.Command
             [Flag("fake", "five")]
             public class Options { }
 
-            public override Task<int> Execute(Options options)
+            public override Task<int> Execute(Options options, CancellationToken cancellationToken = default)
             {
                 return Task.FromResult(0);
             }

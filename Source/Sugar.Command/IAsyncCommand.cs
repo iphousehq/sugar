@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Sugar.Command.Binder;
 
 namespace Sugar.Command
@@ -12,7 +13,7 @@ namespace Sugar.Command
         /// Executes this command.
         /// </summary>
         /// <returns></returns>
-        Task<int> Execute();
+        Task<int> Execute(CancellationToken cancellationToken);
 
         /// <summary>
         /// Binds the parameters.
