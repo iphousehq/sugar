@@ -1,5 +1,10 @@
 ﻿using System.Collections.Generic;
 
+#if NET8_0_OR_GREATER
+using System.Threading;
+using System.Threading.Tasks;
+#endif
+
 namespace Sugar.IO
 {
     /// <summary>
@@ -39,6 +44,18 @@ namespace Sugar.IO
         /// <returns></returns>
         string ReadAllText(string path);
 
+#if NET8_0_OR_GREATER
+
+        /// <summary>
+        /// Opens a text file, reads all lines of the file, and then closes the file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<string> ReadAllTextAsync(string path, CancellationToken cancellationToken = default);
+
+#endif
+
         /// <summary>
         /// Creates a new file, writes the specified string to the file, and then closes the file. If the target file already exists, it is overwritten.
         /// </summary>
@@ -46,12 +63,36 @@ namespace Sugar.IO
         /// <param name="contents">The contents.</param>
         void WriteAllText(string path, string contents);
 
+#if NET8_0_OR_GREATER
+
+        /// <summary>
+        /// Creates a new file, writes the specified string to the file, and then closes the file. If the target file already exists, it is overwritten.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="contents">The contents.</param>
+        /// <param name="cancellationToken"></param>
+        Task WriteAllTextAsync(string path, string contents,CancellationToken cancellationToken = default);
+
+#endif
+
         /// <summary>
         /// Create a new file, writes the bytes to the file.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <param name="bytes">The bytes.</param>
         void WriteAllBytes(string path, byte[] bytes);
+
+#if NET8_0_OR_GREATER
+
+        /// <summary>
+        /// Create a new file, writes the bytes to the file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="bytes">The bytes.</param>
+        /// <param name="cancellationToken"></param>
+        Task WriteAllBytesAsync(string path, byte[] bytes, CancellationToken cancellationToken = default);
+
+#endif
 
         /// <summary>
         /// Gets the user's profile data directory.
@@ -63,8 +104,8 @@ namespace Sugar.IO
         /// Copies the specified source directory to the destination.
         /// </summary>
         /// <param name="sourceDirectory">The source directory.</param>
-        /// <param name="destinationDirectoy">The destination directoy.</param>
-        void Copy(string sourceDirectory, string destinationDirectoy);
+        /// <param name="destinationDirectory">The destination directory.</param>
+        void Copy(string sourceDirectory, string destinationDirectory);
 
         /// <summary>
         /// Deletes the specified directory and any files contained within it.

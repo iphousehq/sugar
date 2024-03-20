@@ -4,6 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+#if NET8_0_OR_GREATER
+using System.Threading;
+using System.Threading.Tasks;
+#endif
+
 namespace Sugar.IO
 {
     /// <summary>
@@ -92,6 +97,28 @@ namespace Sugar.IO
             return result;
         }
 
+#if NET8_0_OR_GREATER
+
+        /// <summary>
+        /// Opens a text file, reads all lines of the file, and then closes the file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<string> ReadAllTextAsync(string path, CancellationToken cancellationToken = default)
+        {
+            var result = string.Empty;
+
+            if (File.Exists(path))
+            {
+                result = await File.ReadAllTextAsync(path, cancellationToken);
+            }
+
+            return result;
+        }
+
+#endif
+
         /// <summary>
         /// Creates a new file, writes the specified string to the file, and then closes the file. If the target file already exists, it is overwritten.
         /// </summary>
@@ -101,6 +128,21 @@ namespace Sugar.IO
         {
             File.WriteAllText(path, contents);
         }
+
+#if NET8_0_OR_GREATER
+
+        /// <summary>
+        /// Creates a new file, writes the specified string to the file, and then closes the file. If the target file already exists, it is overwritten.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="contents">The contents.</param>
+        /// <param name="cancellationToken"></param>
+        public async Task WriteAllTextAsync(string path, string contents, CancellationToken cancellationToken = default)
+        {
+            await File.WriteAllTextAsync(path, contents, cancellationToken);
+        }
+
+#endif
 
         /// <summary>
         /// Create a new file, writes the bytes to the file.
@@ -112,6 +154,20 @@ namespace Sugar.IO
             File.WriteAllBytes(path, bytes);
         }
 
+#if NET8_0_OR_GREATER
+
+        /// <summary>
+        /// Create a new file, writes the bytes to the file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="bytes">The bytes.</param>
+        /// <param name="cancellationToken"></param>
+        public async Task WriteAllBytesAsync(string path, byte[] bytes, CancellationToken cancellationToken = default)
+        {
+            await File.WriteAllBytesAsync(path, bytes, cancellationToken);
+        }
+#endif
+        
         /// <summary>
         /// Gets the user's profile data directory.
         /// </summary>
@@ -125,9 +181,9 @@ namespace Sugar.IO
         /// Copies the specified source directory to the destination.
         /// </summary>
         /// <param name="sourceDirectory">The source directory.</param>
-        /// <param name="destinationDirectoy">The destination directoy.</param>
+        /// <param name="destinationDirectory">The destination directory.</param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public void Copy(string sourceDirectory, string destinationDirectoy)
+        public void Copy(string sourceDirectory, string destinationDirectory)
         {
             var files = GetFilenames("*", directory: sourceDirectory);
 
@@ -137,7 +193,7 @@ namespace Sugar.IO
 
                 if (string.IsNullOrEmpty(filename)) continue;
 
-                var destination = Path.Combine(destinationDirectoy, filename);
+                var destination = Path.Combine(destinationDirectory, filename);
 
                 File.Copy(file, destination);
             }
@@ -150,7 +206,7 @@ namespace Sugar.IO
         /// <exception cref="System.NotImplementedException"></exception>
         public void Delete(string directory)
         {
-            Delete(directory, false);            
+            Delete(directory, false);
         }
 
         /// <summary>
