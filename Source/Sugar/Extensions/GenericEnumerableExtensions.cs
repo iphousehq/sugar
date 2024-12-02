@@ -155,11 +155,11 @@ namespace Sugar.Extensions
         }
 
         /// <summary>
-        /// Returns a comma seperated value representation of this enumerable
+        /// Returns a comma separated value representation of this enumerable
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable">The enumerable.</param>
-        /// <param name="separator">The seperator.</param>
+        /// <param name="separator">The separator.</param>
         /// <param name="lastSeparator">The last separator (is set to separator when null or empty).</param>
         /// <returns></returns>
         public static string ToCsv<T>(this IEnumerable<T> enumerable, string separator = ",", string lastSeparator = null)
@@ -177,7 +177,7 @@ namespace Sugar.Extensions
         }
 
         /// <summary>
-        /// Appends CSV values represetning the <see cref="enumerable"/> to the provided <see cref="builder"/>.
+        /// Appends CSV values representing the <see cref="enumerable"/> to the provided <see cref="builder"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumerable">The enumerable.</param>
