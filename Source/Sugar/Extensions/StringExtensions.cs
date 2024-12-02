@@ -338,19 +338,19 @@ namespace Sugar.Extensions
         }
 
         /// <summary>
-        /// Splits this string using the given seperator.
+        /// Splits this string using the given separator.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="seperator">The seperator.</param>
+        /// <param name="separator">The separator.</param>
         /// <param name="options">The options.</param>
         /// <returns></returns>
-        public static IList<string> Split(this string value, string seperator, StringSplitOptions options = StringSplitOptions.None)
+        public static IList<string> Split(this string value, string separator, StringSplitOptions options = StringSplitOptions.None)
         {
             var results = new List<string>();
 
             if (!string.IsNullOrWhiteSpace(value))
             {
-                results.AddRange(value.Split(new[] { seperator }, options));
+                results.AddRange(value.Split(new[] { separator }, options));
             }
 
             return results;
@@ -723,7 +723,7 @@ namespace Sugar.Extensions
 
                 var bytes = encoding.GetBytes(value);
 
-                bytes = new MD5CryptoServiceProvider().ComputeHash(bytes);
+                bytes = MD5.Create().ComputeHash(bytes);
 
                 var builder = new StringBuilder();
 
