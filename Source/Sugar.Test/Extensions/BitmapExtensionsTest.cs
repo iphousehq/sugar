@@ -1,7 +1,6 @@
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using NUnit.Framework;
+using SkiaSharp;
 
 namespace Sugar.Extensions
 {
@@ -13,77 +12,61 @@ namespace Sugar.Extensions
         [Test]
         public void TestCropImage()
         {
-            using (var image = new Bitmap(imageLocation))
-            {
-                var resizedImage = image.CropImage(320, 200);
+            using var image = SKBitmap.Decode(imageLocation);
 
-                Assert.That(resizedImage.Width, Is.EqualTo(320));
-                Assert.That(resizedImage.Height, Is.EqualTo(200));
+            var resizedImage = image.CropImage(320, 200);
 
-                resizedImage.Dispose();
-            }
+            Assert.That(resizedImage.Width, Is.EqualTo(320));
+            Assert.That(resizedImage.Height, Is.EqualTo(200));
+
+            resizedImage.Dispose();
         }
 
         [Test]
         public void TestCropImageToMaximumDimension()
         {
-            using (var image = new Bitmap(imageLocation))
-            {
-                var resizedImage = image.CropImage(90);
+            using var image = SKBitmap.Decode(imageLocation);
 
-                Assert.That(resizedImage.Width, Is.EqualTo(90));
+            var resizedImage = image.CropImage(90);
 
-                resizedImage.Dispose();
-            }
-        }
+            Assert.That(resizedImage.Width, Is.EqualTo(90));
 
-        [Test]
-        public void TestGetMimeType()
-        {
-            using (var image = new Bitmap(imageLocation))
-            {
-                var mime = image.GetMimeType();
-
-                Assert.That(mime, Is.EqualTo("image/jpeg"));
-            }
+            resizedImage.Dispose();
         }
 
         [Test]
         public void TestResizeImage()
         {
-            using (var image = new Bitmap(imageLocation))
-            {
-                var resizedImage = image.ResizeImage(320, 200);
+            using var image = SKBitmap.Decode(imageLocation);
 
-                Assert.That(resizedImage.Width, Is.EqualTo(320));
-                Assert.That(resizedImage.Height, Is.EqualTo(200));
+            var resizedImage = image.ResizeImage(new SKSizeI(320, 200), SKSamplingOptions.Default);
 
-                resizedImage.Dispose();
-            }
+            Assert.That(resizedImage.Width, Is.EqualTo(320));
+            Assert.That(resizedImage.Height, Is.EqualTo(200));
+
+            resizedImage.Dispose();
         }
 
         [Test]
         public void TestResizeImageToMaximumDimension()
         {
-            using (var image = new Bitmap(imageLocation))
-            {
-                var resizedImage = image.ResizeImage(90);
+            using var image = SKBitmap.Decode(imageLocation);
 
-                Assert.That(resizedImage.Width, Is.EqualTo(90));
+            var resizedImage = image.ResizeImage(90, SKSamplingOptions.Default);
 
-                resizedImage.Dispose();
-            }
+            Assert.That(resizedImage.Width, Is.EqualTo(90));
+
+            resizedImage.Dispose();
         }
 
         [Test]
         public void TestToBytes()
         {
-            using (var image = new Bitmap(imageLocation))
-            {
-                var bytes = image.ToBytes(ImageFormat.Png);
+            using var image = SKBitmap.Decode(imageLocation);
 
-                Assert.That(bytes.Length, Is.GreaterThan(0));;
-            }
+            var bytes = image.ToBytes(SKEncodedImageFormat.Png, 100);
+
+            Assert.That(bytes.Length, Is.GreaterThan(0));;
         }
     }
 }

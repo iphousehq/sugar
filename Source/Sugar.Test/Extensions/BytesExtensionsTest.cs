@@ -1,26 +1,24 @@
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using NUnit.Framework;
+using SkiaSharp;
 
 namespace Sugar.Extensions
 {
     [TestFixture]
-    public class ByteArrayExtensionsTest
+    public class BytesExtensionsTest
     {
         private readonly string imageLocation = Path.Combine(TestContext.CurrentContext.TestDirectory, "Samples/grass.jpg");
 
         [Test]
         public void TestToBitmapFromExtractedBytes()
         {
-            using (var image = new Bitmap(imageLocation))
-            {
-                var bytes = image.ToBytes(ImageFormat.Png);
+            using var image = SKBitmap.Decode(imageLocation);
 
-                var reconstructedImage = bytes.ToBitmap();
+            var bytes = image.ToBytes(SKEncodedImageFormat.Png);
 
-                Assert.That(reconstructedImage.Width, Is.EqualTo(512));
-            }
+            var reconstructedImage = bytes.ToBitmap();
+
+            Assert.That(reconstructedImage.Width, Is.EqualTo(512));
         }
 
         [Test]

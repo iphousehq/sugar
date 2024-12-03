@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <LangVersion>latest</LangVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Sugar</RootNamespace>
     <Version>2.0.0</Version>
@@ -16,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
+    <PackageReference Include="SkiaSharp" Version="3.116.0" />
   </ItemGroup>
 
 </Project>

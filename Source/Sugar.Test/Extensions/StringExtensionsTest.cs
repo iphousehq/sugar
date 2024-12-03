@@ -1,5 +1,4 @@
 using System;
-using System.Drawing.Imaging;
 using NUnit.Framework;
 using Sugar.Mime;
 
@@ -156,22 +155,6 @@ namespace Sugar.Extensions
             Assert.That(result.Minute, Is.EqualTo(0));
             Assert.That(result.Second, Is.EqualTo(0));
             Assert.That(result.Millisecond, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void GetImageFormatFromMimeType()
-        {
-            var format = "image/png".ToImageFormat();
-
-            Assert.That(format, Is.EqualTo(ImageFormat.Png));
-        }
-
-        [Test]
-        public void GetImageFormatFromMimeTypeNotRecognised()
-        {
-            var format = "wtf".ToImageFormat();
-
-            Assert.That(format, Is.EqualTo(ImageFormat.Jpeg));
         }
 
         [Test]
