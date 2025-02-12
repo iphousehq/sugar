@@ -120,6 +120,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.UZS: return "у.е.";
                 case CurrencyCode.KZT: return "KZ";
                 case CurrencyCode.TTD: return "$";
+                case CurrencyCode.KHR: return "\u17db";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
@@ -204,7 +205,8 @@ namespace Sugar.Extensions
                 case CurrencyCode.BAM: return "KM";
                 case CurrencyCode.UZS: return "у.е.";
                 case CurrencyCode.KZT: return "KZ";
-                case CurrencyCode.TTD: return "&#36; ";
+                case CurrencyCode.TTD: return "&#36;";
+                case CurrencyCode.KHR: return "&#6107;";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");
@@ -268,6 +270,7 @@ namespace Sugar.Extensions
                 case "y.e.": return CurrencyCode.UZS;
                 case "KZ": return CurrencyCode.KZT;
                 case "TT$": return CurrencyCode.TTD;
+                case "\u17db": return CurrencyCode.KHR;
             }
 
             var success = Enum.TryParse(symbol, true, out CurrencyCode currency);
