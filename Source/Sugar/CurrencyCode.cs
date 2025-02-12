@@ -148,7 +148,9 @@ namespace Sugar
         [Description("Kazakhstan Tenge")]
         KZT,
         [Description("Israeli Shekel")]
-        ILS
+        ILS,
+        [Description("Trinidad and Tobago Dollar")]
+        TTD
         // ReSharper restore InconsistentNaming
     }
 }
