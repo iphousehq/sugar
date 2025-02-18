@@ -511,6 +511,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.UZS: return CountryCode.UZ;
                 case CurrencyCode.KZT: return CountryCode.KZ;
                 case CurrencyCode.TTD: return CountryCode.TT;
+                case CurrencyCode.KHR: return CountryCode.KH;
             }
 
             throw new ApplicationException($"Unknown currency / country code: {code}");
