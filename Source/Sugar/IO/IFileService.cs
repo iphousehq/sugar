@@ -44,8 +44,8 @@ namespace Sugar.IO
         /// <returns></returns>
         string ReadAllText(string path);
 
+        
 #if NET8_0_OR_GREATER
-
         /// <summary>
         /// Opens a text file, reads all lines of the file, and then closes the file.
         /// </summary>
@@ -53,7 +53,22 @@ namespace Sugar.IO
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<string> ReadAllTextAsync(string path, CancellationToken cancellationToken = default);
+#endif
 
+        /// <summary>
+        /// Opens a file, reads all the byes, and then closes the file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns></returns>
+        byte[] ReadAllBytes(string path);
+
+#if NET8_0_OR_GREATER
+        /// <summary>
+        /// Opens a file, reads all the byes, and then closes the file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns></returns>
+        Task<byte[]> ReadAllBytesAsync(string path, CancellationToken cancellation = default);
 #endif
 
         /// <summary>
@@ -64,7 +79,6 @@ namespace Sugar.IO
         void WriteAllText(string path, string contents);
 
 #if NET8_0_OR_GREATER
-
         /// <summary>
         /// Creates a new file, writes the specified string to the file, and then closes the file. If the target file already exists, it is overwritten.
         /// </summary>
@@ -72,7 +86,6 @@ namespace Sugar.IO
         /// <param name="contents">The contents.</param>
         /// <param name="cancellationToken"></param>
         Task WriteAllTextAsync(string path, string contents,CancellationToken cancellationToken = default);
-
 #endif
 
         /// <summary>
@@ -83,7 +96,6 @@ namespace Sugar.IO
         void WriteAllBytes(string path, byte[] bytes);
 
 #if NET8_0_OR_GREATER
-
         /// <summary>
         /// Create a new file, writes the bytes to the file.
         /// </summary>
@@ -91,7 +103,6 @@ namespace Sugar.IO
         /// <param name="bytes">The bytes.</param>
         /// <param name="cancellationToken"></param>
         Task WriteAllBytesAsync(string path, byte[] bytes, CancellationToken cancellationToken = default);
-
 #endif
 
         /// <summary>

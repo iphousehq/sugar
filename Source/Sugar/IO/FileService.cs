@@ -97,6 +97,16 @@ namespace Sugar.IO
             return result;
         }
 
+        public byte[] ReadAllBytes(string path)
+        {
+            byte[] result = null;
+            if (File.Exists(path))
+            {
+                result = File.ReadAllBytes(path);
+            }
+            return result;
+        }
+
 #if NET8_0_OR_GREATER
 
         /// <summary>
@@ -117,19 +127,23 @@ namespace Sugar.IO
             return result;
         }
 
-#endif
-
         /// <summary>
-        /// Creates a new file, writes the specified string to the file, and then closes the file. If the target file already exists, it is overwritten.
+        /// Opens a text file, reads all lines of the file, and then closes the file.
         /// </summary>
         /// <param name="path">The path.</param>
-        /// <param name="contents">The contents.</param>
-        public void WriteAllText(string path, string contents)
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<byte[]> ReadAllBytesAsync(string path, CancellationToken cancellationToken = default)
         {
-            File.WriteAllText(path, contents);
-        }
+            byte[] result = null;
 
-#if NET8_0_OR_GREATER
+            if (File.Exists(path))
+            {
+                result = await File.ReadAllBytesAsync(path, cancellationToken);
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// Creates a new file, writes the specified string to the file, and then closes the file. If the target file already exists, it is overwritten.
@@ -142,20 +156,6 @@ namespace Sugar.IO
             await File.WriteAllTextAsync(path, contents, cancellationToken);
         }
 
-#endif
-
-        /// <summary>
-        /// Create a new file, writes the bytes to the file.
-        /// </summary>
-        /// <param name="path">The path.</param>
-        /// <param name="bytes">The bytes.</param>
-        public void WriteAllBytes(string path, byte[] bytes)
-        {
-            File.WriteAllBytes(path, bytes);
-        }
-
-#if NET8_0_OR_GREATER
-
         /// <summary>
         /// Create a new file, writes the bytes to the file.
         /// </summary>
@@ -166,7 +166,28 @@ namespace Sugar.IO
         {
             await File.WriteAllBytesAsync(path, bytes, cancellationToken);
         }
+
 #endif
+
+        /// <summary>
+        /// Creates a new file, writes the specified string to the file, and then closes the file. If the target file already exists, it is overwritten.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="contents">The contents.</param>
+        public void WriteAllText(string path, string contents)
+        {
+            File.WriteAllText(path, contents);
+        }
+
+        /// <summary>
+        /// Create a new file, writes the bytes to the file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="bytes">The bytes.</param>
+        public void WriteAllBytes(string path, byte[] bytes)
+        {
+            File.WriteAllBytes(path, bytes);
+        }
         
         /// <summary>
         /// Gets the user's profile data directory.

@@ -1,10 +1,7 @@
-using System;
-using System.Drawing;
+﻿using System;
 using System.IO;
-using System.Net.Http;
 using System.Text;
 using NUnit.Framework;
-using Sugar.Extensions;
 
 namespace Sugar.IO
 {
@@ -82,16 +79,27 @@ namespace Sugar.IO
         }
 
         [Test]
-        public void TestWriteAllBytes()
+        public void TestWriteAllBytesChecksIfExistsThenReadAllBytes()
         {
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"test.txt");
-            var bytes = Encoding.ASCII.GetBytes("hello world");
 
-            service.WriteAllBytes(path, bytes);
+            var utf8Bytes = "hello world 👹!"u8.ToArray();
+
+            service.WriteAllBytes(path, utf8Bytes);
 
             var exists = File.Exists(path);
 
             Assert.That(exists, Is.True);
+
+            var readBytes = File.ReadAllBytes(path);
+
+            Assert.That(readBytes.Length, Is.EqualTo(utf8Bytes.Length));
+
+            Assert.That(readBytes[0], Is.EqualTo(utf8Bytes[0]));
+
+            var decodedText = Encoding.UTF8.GetString(readBytes);
+
+            Assert.That(decodedText, Is.EqualTo("hello world 👹!"));
 
             File.Delete(path);
         }
