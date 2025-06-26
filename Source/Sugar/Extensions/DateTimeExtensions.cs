@@ -380,6 +380,24 @@ namespace Sugar.Extensions
         }
 
         /// <summary>
+        /// Converts this date to an ISO 8601 date string.
+        /// </summary>
+        /// <remarks>
+        /// If <see cref="DateTimeKind"/> is unspecified, the time will be assumed to be local time.
+        /// </remarks>
+        /// <param name="datetime">The datetime.</param>
+        /// <returns></returns>
+        public static string ToIso8601String(this DateTime? datetime)
+        {
+            if (datetime.HasValue)
+            {
+                return ToIso8601String(datetime.Value);
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
         /// Converts this <see cref="DateTime"/> to a new <see cref="DateTime"/> specified by the time zone offset value
         /// </summary>
         /// <param name="value">The value (it will be converted to UTC time).</param>
