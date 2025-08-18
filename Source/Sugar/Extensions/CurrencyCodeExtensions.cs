@@ -121,6 +121,9 @@ namespace Sugar.Extensions
                 case CurrencyCode.KZT: return "KZ";
                 case CurrencyCode.TTD: return "$";
                 case CurrencyCode.KHR: return "\u17db";
+                case CurrencyCode.XOF: return "F.CFA";
+                case CurrencyCode.DZD: return "د.ج";
+                case CurrencyCode.NGN: return "₦";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
@@ -207,6 +210,9 @@ namespace Sugar.Extensions
                 case CurrencyCode.KZT: return "KZ";
                 case CurrencyCode.TTD: return "&#36;";
                 case CurrencyCode.KHR: return "&#6107;";
+                case CurrencyCode.XOF: return "F.CFA";
+                case CurrencyCode.DZD: return "د.ج";
+                case CurrencyCode.NGN: return "&#8358;";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");
@@ -271,6 +277,9 @@ namespace Sugar.Extensions
                 case "KZ": return CurrencyCode.KZT;
                 case "TT$": return CurrencyCode.TTD;
                 case "\u17db": return CurrencyCode.KHR;
+                case "F.CFA": return CurrencyCode.XOF;
+                case "د.ج": return CurrencyCode.DZD;
+                case "₦": return CurrencyCode.NGN;
             }
 
             var success = Enum.TryParse(symbol, true, out CurrencyCode currency);
@@ -426,6 +435,9 @@ namespace Sugar.Extensions
                 case CountryCode.UZ: return CurrencyCode.UZS;
                 case CountryCode.KZ: return CurrencyCode.KZT; 
                 case CountryCode.IL: return CurrencyCode.ILS;
+                case CountryCode.CI: return CurrencyCode.XOF;
+                case CountryCode.DZ: return CurrencyCode.DZD;
+                case CountryCode.NG: return CurrencyCode.NGN;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
@@ -512,6 +524,8 @@ namespace Sugar.Extensions
                 case CurrencyCode.KZT: return CountryCode.KZ;
                 case CurrencyCode.TTD: return CountryCode.TT;
                 case CurrencyCode.KHR: return CountryCode.KH;
+                case CurrencyCode.DZD: return CountryCode.DZ;
+                case CurrencyCode.NGN: return CountryCode.NG;
             }
 
             throw new ApplicationException($"Unknown currency / country code: {code}");
