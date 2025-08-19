@@ -524,6 +524,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.KZT: return CountryCode.KZ;
                 case CurrencyCode.TTD: return CountryCode.TT;
                 case CurrencyCode.KHR: return CountryCode.KH;
+                case CurrencyCode.XOF: return CountryCode.CI;
                 case CurrencyCode.DZD: return CountryCode.DZ;
                 case CurrencyCode.NGN: return CountryCode.NG;
             }
