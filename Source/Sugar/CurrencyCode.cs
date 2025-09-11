@@ -152,7 +152,13 @@ namespace Sugar
         [Description("Trinidad and Tobago Dollar")]
         TTD,
         [Description("Cambodian Riel")]
-        KHR
+        KHR,
+        [Description("West African CFA Franc")]
+        XOF,
+        [Description("Alegerian Dinar")]
+        DZD,
+        [Description("Nigerian Naira")]
+        NGN
         // ReSharper restore InconsistentNaming
     }
 }
