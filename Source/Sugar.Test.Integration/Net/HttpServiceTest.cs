@@ -17,7 +17,7 @@ namespace Sugar.Net
         [Test]
         public void TestHead()
         {
-            var response = service.Head("http://www.bbc.co.uk", string.Empty);
+            var response = service.Head("https://www.bbc.co.uk", string.Empty);
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
@@ -30,7 +30,7 @@ namespace Sugar.Net
         [Test]
         public void TestGet()
         {
-            var response = service.Get("http://www.facebook.com/", string.Empty);
+            var response = service.Get("https://www.facebook.com/", string.Empty);
 
             Assert.That(response.Success, Is.True);
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
@@ -79,7 +79,7 @@ namespace Sugar.Net
         [Test]
         public void TestPostWithoutBody()
         {
-            var response = service.Post("http://httpbin.org/post", string.Empty);
+            var response = service.Post("https://httpbin.org/post", string.Empty);
 
             Assert.That(response.Success, Is.True);
         }
