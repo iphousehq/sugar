@@ -14,8 +14,7 @@ The project is divided in several class libraries:
 - Sugar.Test.Http: xUnit tests (.NET Core 2.0)
 - Sugar.Test.Integration: Integration test (.NET Framework 4.6.x)
 
-
-[![Build status](https://ci.appveyor.com/api/projects/status/py4kl09udd0t7egy/branch/master?svg=true)](https://ci.appveyor.com/project/bounav/sugar/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/py4kl09udd0t7egy/branch/main?svg=true)](https://ci.appveyor.com/project/IPHouse/sugar/branch/main)
 
 ## Overview
 
