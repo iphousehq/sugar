@@ -158,7 +158,9 @@ namespace Sugar
         [Description("Alegerian Dinar")]
         DZD,
         [Description("Nigerian Naira")]
-        NGN
+        NGN,
+        [Description("Kuwaiti Dinar")]
+        KWD
         // ReSharper restore InconsistentNaming
     }
 }
