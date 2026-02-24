@@ -213,6 +213,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.XOF: return "F.CFA";
                 case CurrencyCode.DZD: return "د.ج";
                 case CurrencyCode.NGN: return "&#8358;";
+                case CurrencyCode.KWD: return "د.ك";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");
@@ -280,6 +281,7 @@ namespace Sugar.Extensions
                 case "F.CFA": return CurrencyCode.XOF;
                 case "د.ج": return CurrencyCode.DZD;
                 case "₦": return CurrencyCode.NGN;
+                case "د.ك": return CurrencyCode.KWD;
             }
 
             var success = Enum.TryParse(symbol, true, out CurrencyCode currency);
@@ -438,6 +440,7 @@ namespace Sugar.Extensions
                 case CountryCode.CI: return CurrencyCode.XOF;
                 case CountryCode.DZ: return CurrencyCode.DZD;
                 case CountryCode.NG: return CurrencyCode.NGN;
+                case CountryCode.KW: return CurrencyCode.KWD;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
@@ -527,6 +530,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.XOF: return CountryCode.CI;
                 case CurrencyCode.DZD: return CountryCode.DZ;
                 case CurrencyCode.NGN: return CountryCode.NG;
+                case CurrencyCode.KWD: return CountryCode.KW;
             }
 
             throw new ApplicationException($"Unknown currency / country code: {code}");
