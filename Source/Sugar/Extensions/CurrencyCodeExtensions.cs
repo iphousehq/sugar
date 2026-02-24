@@ -124,6 +124,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.XOF: return "F.CFA";
                 case CurrencyCode.DZD: return "د.ج";
                 case CurrencyCode.NGN: return "₦";
+                case CurrencyCode.KWD: return "د.ك";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
