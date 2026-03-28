@@ -162,7 +162,157 @@ namespace Sugar
         [Description("Kuwaiti Dinar")]
         KWD,
         [Description("Afghan Afghani")]
-        AFN
+        AFN,
+        [Description("Albanian Lek")]
+        ALL,
+        [Description("Armenian Dram")]
+        AMD,
+        [Description("Netherlands Antillean Guilder")]
+        ANG,
+        [Description("Angolan Kwanza")]
+        AOA,
+        [Description("Aruban Florin")]
+        AWG,
+        [Description("Azerbaijani Manat")]
+        AZN,
+        [Description("Barbadian Dollar")]
+        BBD,
+        [Description("Bahraini Dinar")]
+        BHD,
+        [Description("Bermudian Dollar")]
+        BMD,
+        [Description("Brunei Dollar")]
+        BND,
+        [Description("Bahamian Dollar")]
+        BSD,
+        [Description("Botswana Pula")]
+        BWP,
+        [Description("Belarusian Ruble")]
+        BYN,
+        [Description("Belize Dollar")]
+        BZD,
+        [Description("Congolese Franc")]
+        CDF,
+        [Description("Cape Verdean Escudo")]
+        CVE,
+        [Description("Djiboutian Franc")]
+        DJF,
+        [Description("Eritrean Nakfa")]
+        ERN,
+        [Description("Ethiopian Birr")]
+        ETB,
+        [Description("Fijian Dollar")]
+        FJD,
+        [Description("Falkland Islands Pound")]
+        FKP,
+        [Description("Georgian Lari")]
+        GEL,
+        [Description("Ghanaian Cedi")]
+        GHS,
+        [Description("Gibraltar Pound")]
+        GIP,
+        [Description("Guinean Franc")]
+        GNF,
+        [Description("Guyanese Dollar")]
+        GYD,
+        [Description("Haitian Gourde")]
+        HTG,
+        [Description("Iraqi Dinar")]
+        IQD,
+        [Description("Iranian Rial")]
+        IRR,
+        [Description("Icelandic Króna")]
+        ISK,
+        [Description("Jamaican Dollar")]
+        JMD,
+        [Description("Kenyan Shilling")]
+        KES,
+        [Description("Kyrgyzstani Som")]
+        KGS,
+        [Description("Comorian Franc")]
+        KMF,
+        [Description("North Korean Won")]
+        KPW,
+        [Description("Cayman Islands Dollar")]
+        KYD,
+        [Description("Lao Kip")]
+        LAK,
+        [Description("Liberian Dollar")]
+        LRD,
+        [Description("Lesotho Loti")]
+        LSL,
+        [Description("Libyan Dinar")]
+        LYD,
+        [Description("Malagasy Ariary")]
+        MGA,
+        [Description("Macedonian Denar")]
+        MKD,
+        [Description("Myanmar Kyat")]
+        MMK,
+        [Description("Macanese Pataca")]
+        MOP,
+        [Description("Mauritanian Ouguiya")]
+        MRU,
+        [Description("Mauritian Rupee")]
+        MUR,
+        [Description("Maldivian Rufiyaa")]
+        MVR,
+        [Description("Malawian Kwacha")]
+        MWK,
+        [Description("Mozambican Metical")]
+        MZN,
+        [Description("Namibian Dollar")]
+        NAD,
+        [Description("Omani Rial")]
+        OMR,
+        [Description("Papua New Guinean Kina")]
+        PGK,
+        [Description("Pakistani Rupee")]
+        PKR,
+        [Description("Qatari Riyal")]
+        QAR,
+        [Description("Rwandan Franc")]
+        RWF,
+        [Description("Solomon Islands Dollar")]
+        SBD,
+        [Description("Seychellois Rupee")]
+        SCR,
+        [Description("Sudanese Pound")]
+        SDG,
+        [Description("Sierra Leonean Leone")]
+        SLL,
+        [Description("Somali Shilling")]
+        SOS,
+        [Description("South Sudanese Pound")]
+        SSP,
+        [Description("Syrian Pound")]
+        SYP,
+        [Description("Swazi Lilangeni")]
+        SZL,
+        [Description("Tajikistani Somoni")]
+        TJS,
+        [Description("Turkmenistani Manat")]
+        TMT,
+        [Description("Tunisian Dinar")]
+        TND,
+        [Description("Tongan Paʻanga")]
+        TOP,
+        [Description("Tanzanian Shilling")]
+        TZS,
+        [Description("Ugandan Shilling")]
+        UGX,
+        [Description("Vanuatu Vatu")]
+        VUV,
+        [Description("Central African CFA Franc")]
+        XAF,
+        [Description("CFP Franc")]
+        XPF,
+        [Description("Yemeni Rial")]
+        YER,
+        [Description("Zambian Kwacha")]
+        ZMW,
+        [Description("Zimbabwean Dollar")]
+        ZWL
         // ReSharper restore InconsistentNaming
     }
 }
