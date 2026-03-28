@@ -714,11 +714,6 @@ namespace Sugar
         [HtmlSymbol("SM")]
         TJS,
 
-        [Description("Turkmenistani Manat")]
-        [Symbol("T")]
-        [HtmlSymbol("T")]
-        TMT,
-
         [Description("Tunisian Dinar")]
         [Symbol("د.ت")]
         [HtmlSymbol("د.ت")]
