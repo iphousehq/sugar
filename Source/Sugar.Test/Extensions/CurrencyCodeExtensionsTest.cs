@@ -105,5 +105,28 @@ namespace Sugar.Extensions
         {
             Assert.Throws<ApplicationException>(() => ((CurrencyCode) 100000).ToCountryCode());
         }
+
+        [Test]
+        public void TestCurrencyToCountryCodeRoundtrip()
+        {
+            // For every currency that has a primary country, converting back to currency must give the same code.
+            // This guards the BuildCountryLookup heuristic for multi-country currencies like EUR.
+            foreach (CurrencyCode currency in Enum.GetValues(typeof(CurrencyCode)))
+            {
+                CountryCode country;
+
+                try
+                {
+                    country = currency.ToCountryCode();
+                }
+                catch (ApplicationException)
+                {
+                    continue; // Currency has no primary country mapping — expected for some
+                }
+
+                var roundtripped = country.ToCurrencyCode();
+                Assert.That(roundtripped, Is.EqualTo(currency), $"Roundtrip failed: {currency} -> {country} -> {roundtripped}");
+            }
+        }
     }
 }
