@@ -125,6 +125,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.DZD: return "د.ج";
                 case CurrencyCode.NGN: return "₦";
                 case CurrencyCode.KWD: return "د.ك";
+                case CurrencyCode.AFN: return "؋";
             }
 
             throw new ApplicationException($"Unknown currency: {code}");
@@ -215,6 +216,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.DZD: return "د.ج";
                 case CurrencyCode.NGN: return "&#8358;";
                 case CurrencyCode.KWD: return "د.ك";
+                case CurrencyCode.AFN: return "&#1547;";
             }
 
             throw new ApplicationException($"Unknown currency / HTML code: {code}");
@@ -442,7 +444,8 @@ namespace Sugar.Extensions
                 case CountryCode.DZ: return CurrencyCode.DZD;
                 case CountryCode.NG: return CurrencyCode.NGN;
                 case CountryCode.KW: return CurrencyCode.KWD;
-                
+                case CountryCode.AF: return CurrencyCode.AFN;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, "Could not convert country code to currency code");
             }
@@ -532,6 +535,7 @@ namespace Sugar.Extensions
                 case CurrencyCode.DZD: return CountryCode.DZ;
                 case CurrencyCode.NGN: return CountryCode.NG;
                 case CurrencyCode.KWD: return CountryCode.KW;
+                case CurrencyCode.AFN: return CountryCode.AF;
             }
 
             throw new ApplicationException($"Unknown currency / country code: {code}");

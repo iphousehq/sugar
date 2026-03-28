@@ -57,9 +57,15 @@ namespace Sugar.Extensions
         }
 
         [Test]
+        public void TestToCountryCodetoCurrencyForAfghanistan()
+        {
+            Assert.That(CountryCode.AF.ToCurrencyCode(), Is.EqualTo(CurrencyCode.AFN));
+        }
+
+        [Test]
         public void TestToCountryCodetoCurrencyWhenUnknownCurrency()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => CountryCode.AF.ToCurrencyCode());
+            Assert.Throws<ArgumentOutOfRangeException>(() => CountryCode.Unknown.ToCurrencyCode());
         }
 
         [Test]
