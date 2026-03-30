@@ -89,20 +89,14 @@ namespace Sugar.Extensions
         /// </summary>
         public static CurrencyCode? FindCurrencyCode(this string text)
         {
-            var occurrences = new List<(int Index, CurrencyCode Code)>();
-
-            foreach (var kvp in Symbols)
-            {
-                if (!string.IsNullOrEmpty(kvp.Value))
-                {
-                    var index = text.IndexOf(kvp.Value, StringComparison.Ordinal);
-                    if (index > -1)
-                        occurrences.Add((index, kvp.Key));
-                }
-            }
+            var occurrences = Symbols
+                .Where(kvp => !string.IsNullOrEmpty(kvp.Value))
+                .Select(kvp => (Index: text.IndexOf(kvp.Value, StringComparison.Ordinal), Code: kvp.Key))
+                .Where(o => o.Index > -1)
+                .ToList();
 
             return occurrences.Any()
-                ? occurrences.OrderBy(o => o.Index).Select(o => o.Code).FirstOrDefault()
+                ? occurrences.OrderBy(o => o.Index).Select(o => o.Code).First()
                 : (CurrencyCode?)null;
         }
 
