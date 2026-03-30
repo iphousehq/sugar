@@ -1,5 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using NUnit.Framework;
+using Sugar.Attributes;
 
 namespace Sugar.Extensions
 {
@@ -57,9 +62,15 @@ namespace Sugar.Extensions
         }
 
         [Test]
+        public void TestToCountryCodetoCurrencyForAfghanistan()
+        {
+            Assert.That(CountryCode.AF.ToCurrencyCode(), Is.EqualTo(CurrencyCode.AFN));
+        }
+
+        [Test]
         public void TestToCountryCodetoCurrencyWhenUnknownCurrency()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => CountryCode.AF.ToCurrencyCode());
+            Assert.Throws<ArgumentOutOfRangeException>(() => CountryCode.Unknown.ToCurrencyCode());
         }
 
         [Test]
@@ -98,6 +109,52 @@ namespace Sugar.Extensions
         public void TestCurrencyToCountryCodeCodeForUnknownCountry()
         {
             Assert.Throws<ApplicationException>(() => ((CurrencyCode) 100000).ToCountryCode());
+        }
+
+        /// <summary>
+        /// Every CurrencyCode value must have [Description], [Symbol], and [HtmlSymbol].
+        /// If this test fails, add the missing attributes to the new enum value.
+        /// </summary>
+        [Test]
+        public void TestAllCurrencyCodesHaveRequiredAttributes()
+        {
+            var missing = new List<string>();
+
+            foreach (CurrencyCode code in Enum.GetValues(typeof(CurrencyCode)))
+            {
+                var field = typeof(CurrencyCode).GetField(code.ToString());
+                if (field.GetCustomAttribute<System.ComponentModel.DescriptionAttribute>() == null)
+                    missing.Add($"{code}: missing [Description]");
+                if (field.GetCustomAttribute<SymbolAttribute>() == null)
+                    missing.Add($"{code}: missing [Symbol]");
+                if (field.GetCustomAttribute<HtmlSymbolAttribute>() == null)
+                    missing.Add($"{code}: missing [HtmlSymbol]");
+            }
+
+            Assert.That(missing, Is.Empty, "CurrencyCode values with missing attributes:\n" + string.Join("\n", missing));
+        }
+
+        [Test]
+        public void TestCurrencyToCountryCodeRoundtrip()
+        {
+            // For every currency that has a primary country, converting back to currency must give the same code.
+            // This guards the BuildCountryLookup heuristic for multi-country currencies like EUR.
+            foreach (CurrencyCode currency in Enum.GetValues(typeof(CurrencyCode)))
+            {
+                CountryCode country;
+
+                try
+                {
+                    country = currency.ToCountryCode();
+                }
+                catch (ApplicationException)
+                {
+                    continue; // Currency has no primary country mapping — expected for some
+                }
+
+                var roundtripped = country.ToCurrencyCode();
+                Assert.That(roundtripped, Is.EqualTo(currency), $"Roundtrip failed: {currency} -> {country} -> {roundtripped}");
+            }
         }
     }
 }

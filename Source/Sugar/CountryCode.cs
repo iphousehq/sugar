@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using Sugar.Attributes;
 
 namespace Sugar
@@ -16,6 +16,8 @@ namespace Sugar
         [Description("Afghanistan")]
         [LanguageTag("af")]
         [TypeaheadToken("Afghanistan")]
+        [Alpha3(CountryCode3.AFG)]
+        [Currency(CurrencyCode.AFN)]
         AF,
         /// <summary>
         /// Aaland Aland
@@ -26,6 +28,8 @@ namespace Sugar
         [TypeaheadToken("Aland")]
         [TypeaheadToken("Åland")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.ALA)]
+        [Currency(CurrencyCode.EUR)]
         AX,
         /// <summary>
         /// Albania
@@ -33,6 +37,8 @@ namespace Sugar
         [Description("Albania")]
         [LanguageTag("sq")]
         [TypeaheadToken("Albania")]
+        [Alpha3(CountryCode3.ALB)]
+        [Currency(CurrencyCode.ALL)]
         AL,
         /// <summary>
         /// Algeria
@@ -40,6 +46,8 @@ namespace Sugar
         [Description("Algeria")]
         [LanguageTag("ar-dz")]
         [TypeaheadToken("Algeria")]
+        [Alpha3(CountryCode3.DZA)]
+        [Currency(CurrencyCode.DZD)]
         DZ,
         /// <summary>
         /// American Samoa
@@ -48,6 +56,8 @@ namespace Sugar
         [LanguageTag("en-us")]
         [TypeaheadToken("American")]
         [TypeaheadToken("Samoa")]
+        [Alpha3(CountryCode3.ASM)]
+        [Currency(CurrencyCode.EUR)]
         AS,
         /// <summary>
         /// Andorra
@@ -55,6 +65,8 @@ namespace Sugar
         [Description("Andorra")]
         [LanguageTag("es")]
         [TypeaheadToken("Andorra")]
+        [Alpha3(CountryCode3.AND)]
+        [Currency(CurrencyCode.EUR)]
         AD,
         /// <summary>
         /// Angola
@@ -62,6 +74,8 @@ namespace Sugar
         [Description("Angola")]
         [LanguageTag("pt")]
         [TypeaheadToken("Angola")]
+        [Alpha3(CountryCode3.AGO)]
+        [Currency(CurrencyCode.AOA)]
         AO,
         /// <summary>
         /// Anguilla
@@ -69,6 +83,8 @@ namespace Sugar
         [Description("Anguilla")]
         [LanguageTag("en")]
         [TypeaheadToken("Anguilla")]
+        [Alpha3(CountryCode3.AIA)]
+        [Currency(CurrencyCode.XCD)]
         AI,
         /// <summary>
         /// Antarctica
@@ -76,6 +92,7 @@ namespace Sugar
         [Description("Antarctica")]
         [LanguageTag("en")]
         [TypeaheadToken("Antarctica")]
+        [Alpha3(CountryCode3.ATA)]
         AQ,
         /// <summary>
         /// Antigua And Barbuda
@@ -84,6 +101,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Antigua")]
         [TypeaheadToken("Barbuda")]
+        [Alpha3(CountryCode3.ATG)]
+        [Currency(CurrencyCode.XCD)]
         AG,
         /// <summary>
         /// Argentina (please don't delete)
@@ -91,6 +110,8 @@ namespace Sugar
         [Description("Argentina")]
         [LanguageTag("es-ar")]
         [TypeaheadToken("Argentina")]
+        [Alpha3(CountryCode3.ARG)]
+        [Currency(CurrencyCode.ARS)]
         AR,
         /// <summary>
         /// Armenia
@@ -98,6 +119,8 @@ namespace Sugar
         [Description("Armenia")]
         [LanguageTag("hy")]
         [TypeaheadToken("Armenia")]
+        [Alpha3(CountryCode3.ARM)]
+        [Currency(CurrencyCode.AMD)]
         AM,
         /// <summary>
         /// Aruba
@@ -105,6 +128,8 @@ namespace Sugar
         [Description("Aruba")]
         [LanguageTag("nl")]
         [TypeaheadToken("Aruba")]
+        [Alpha3(CountryCode3.ABW)]
+        [Currency(CurrencyCode.AWG)]
         AW,
         /// <summary>
         /// Australia
@@ -112,6 +137,8 @@ namespace Sugar
         [Description("Australia")]
         [LanguageTag("en-au")]
         [TypeaheadToken("Australia")]
+        [Alpha3(CountryCode3.AUS)]
+        [Currency(CurrencyCode.AUD)]
         AU,
         /// <summary>
         /// Austria
@@ -121,6 +148,8 @@ namespace Sugar
         [TypeaheadToken("Austria")]
         [TypeaheadToken("Österreich")]
         [TypeaheadToken("Oesterreich")]
+        [Alpha3(CountryCode3.AUT)]
+        [Currency(CurrencyCode.EUR)]
         AT,
         /// <summary>
         /// Azerbaijan
@@ -128,6 +157,8 @@ namespace Sugar
         [Description("Azerbaijan")]
         [LanguageTag("de-az")]
         [TypeaheadToken("Azerbaijan")]
+        [Alpha3(CountryCode3.AZE)]
+        [Currency(CurrencyCode.AZN)]
         AZ,
         /// <summary>
         /// Bahamas
@@ -135,6 +166,8 @@ namespace Sugar
         [Description("Bahamas")]
         [LanguageTag("en")]
         [TypeaheadToken("Bahamas")]
+        [Alpha3(CountryCode3.BHS)]
+        [Currency(CurrencyCode.BSD)]
         BS,
         /// <summary>
         /// Bahrain
@@ -142,6 +175,8 @@ namespace Sugar
         [Description("Bahrain")]
         [LanguageTag("ar")]
         [TypeaheadToken("Bahrain")]
+        [Alpha3(CountryCode3.BHR)]
+        [Currency(CurrencyCode.BHD)]
         BH,
         /// <summary>
         /// Bangladesh
@@ -149,6 +184,8 @@ namespace Sugar
         [Description("Bangladesh")]
         [LanguageTag("bn")]
         [TypeaheadToken("Bangladesh")]
+        [Alpha3(CountryCode3.BGD)]
+        [Currency(CurrencyCode.BDT)]
         BD,
         /// <summary>
         /// Barbados
@@ -156,6 +193,8 @@ namespace Sugar
         [Description("Barbados")]
         [LanguageTag("en")]
         [TypeaheadToken("Barbados")]
+        [Alpha3(CountryCode3.BRB)]
+        [Currency(CurrencyCode.BBD)]
         BB,
         /// <summary>
         /// Belarus
@@ -163,6 +202,8 @@ namespace Sugar
         [Description("Belarus")]
         [LanguageTag("be")]
         [TypeaheadToken("Belarus")]
+        [Alpha3(CountryCode3.BLR)]
+        [Currency(CurrencyCode.BYN)]
         BY,
         /// <summary>
         /// Belgium
@@ -174,6 +215,8 @@ namespace Sugar
         [TypeaheadToken("Belgie")]
         [TypeaheadToken("Belgien")]
         [TypeaheadToken("Belgique")]
+        [Alpha3(CountryCode3.BEL)]
+        [Currency(CurrencyCode.EUR)]
         BE,
         /// <summary>
         /// Belize
@@ -181,6 +224,8 @@ namespace Sugar
         [Description("Belize")]
         [LanguageTag("en")]
         [TypeaheadToken("Belize")]
+        [Alpha3(CountryCode3.BLZ)]
+        [Currency(CurrencyCode.BZD)]
         BZ,
         /// <summary>
         /// Benin
@@ -188,6 +233,8 @@ namespace Sugar
         [Description("Benin")]
         [LanguageTag("fr")]
         [TypeaheadToken("Benin")]
+        [Alpha3(CountryCode3.BEN)]
+        [Currency(CurrencyCode.XOF)]
         BJ,
         /// <summary>
         /// Bermuda
@@ -195,6 +242,8 @@ namespace Sugar
         [Description("Bermuda")]
         [LanguageTag("en")]
         [TypeaheadToken("Bermuda")]
+        [Alpha3(CountryCode3.BMU)]
+        [Currency(CurrencyCode.BMD)]
         BM,
         /// <summary>
         /// Bhutan
@@ -202,6 +251,8 @@ namespace Sugar
         [Description("Bhutan")]
         [LanguageTag("dz")]
         [TypeaheadToken("Bhutan")]
+        [Alpha3(CountryCode3.BTN)]
+        [Currency(CurrencyCode.INR)]
         BT,
         /// <summary>
         /// Bolivia
@@ -209,6 +260,8 @@ namespace Sugar
         [Description("Bolivia")]
         [LanguageTag("es-bo")]
         [TypeaheadToken("Bolivia")]
+        [Alpha3(CountryCode3.BOL)]
+        [Currency(CurrencyCode.BOB)]
         BO,
         /// <summary>
         /// Bosnia And Herzegovina
@@ -217,6 +270,8 @@ namespace Sugar
         [LanguageTag("bs")]
         [TypeaheadToken("Bosnia")]
         [TypeaheadToken("Herzegovina")]
+        [Alpha3(CountryCode3.BIH)]
+        [Currency(CurrencyCode.BAM)]
         BA,
         /// <summary>
         /// Botswana
@@ -224,6 +279,8 @@ namespace Sugar
         [Description("Botswana")]
         [LanguageTag("en")]
         [TypeaheadToken("Botswana")]
+        [Alpha3(CountryCode3.BWA)]
+        [Currency(CurrencyCode.BWP)]
         BW,
         /// <summary>
         /// Bouvet Island
@@ -232,6 +289,8 @@ namespace Sugar
         [LanguageTag("no")]
         [TypeaheadToken("Bouvet")]
         [TypeaheadToken("Island")]
+        [Alpha3(CountryCode3.BVT)]
+        [Currency(CurrencyCode.NOK)]
         BV,
         /// <summary>
         /// Brazil
@@ -239,6 +298,8 @@ namespace Sugar
         [Description("Brazil")]
         [LanguageTag("pt-br")]
         [TypeaheadToken("Brazil")]
+        [Alpha3(CountryCode3.BRA)]
+        [Currency(CurrencyCode.BRL)]
         BR,
         /// <summary>
         /// British Indian Ocean Territory
@@ -249,6 +310,8 @@ namespace Sugar
         [TypeaheadToken("Indian")]
         [TypeaheadToken("Ocean")]
         [TypeaheadToken("Territory")]
+        [Alpha3(CountryCode3.IOT)]
+        [Currency(CurrencyCode.USD)]
         IO,
         /// <summary>
         /// Brunei Darussalam
@@ -257,6 +320,8 @@ namespace Sugar
         [LanguageTag("ms")]
         [TypeaheadToken("Brunei")]
         [TypeaheadToken("Darussalam")]
+        [Alpha3(CountryCode3.BRN)]
+        [Currency(CurrencyCode.BND)]
         BN,
         /// <summary>
         /// Bulgaria
@@ -264,6 +329,8 @@ namespace Sugar
         [Description("Bulgaria")]
         [LanguageTag("bg")]
         [TypeaheadToken("Bulgaria")]
+        [Alpha3(CountryCode3.BGR)]
+        [Currency(CurrencyCode.BGN)]
         BG,
         /// <summary>
         /// Burkina Faso
@@ -272,6 +339,7 @@ namespace Sugar
         [LanguageTag("fr")]
         [TypeaheadToken("Burkina")]
         [TypeaheadToken("Faso")]
+        [Alpha3(CountryCode3.BFA)]
         BF,
         /// <summary>
         /// Burundi
@@ -279,6 +347,7 @@ namespace Sugar
         [Description("Burundi")]
         [LanguageTag("rn")]
         [TypeaheadToken("Burundi")]
+        [Alpha3(CountryCode3.BDI)]
         BI,
         /// <summary>
         /// Cambodia
@@ -286,6 +355,7 @@ namespace Sugar
         [Description("Cambodia")]
         [LanguageTag("km")]
         [TypeaheadToken("Cambodia")]
+        [Alpha3(CountryCode3.KHM)]
         KH,
         /// <summary>
         /// Cameroon
@@ -293,6 +363,8 @@ namespace Sugar
         [Description("Cameroon")]
         [LanguageTag("en")]
         [TypeaheadToken("Cameroon")]
+        [Alpha3(CountryCode3.CMR)]
+        [Currency(CurrencyCode.XAF)]
         CM,
         /// <summary>
         /// Canada
@@ -300,6 +372,8 @@ namespace Sugar
         [Description("Canada")]
         [LanguageTag("en-ca")]
         [TypeaheadToken("Canada")]
+        [Alpha3(CountryCode3.CAN)]
+        [Currency(CurrencyCode.CAD)]
         CA,
         /// <summary>
         /// Cape Verde
@@ -308,6 +382,8 @@ namespace Sugar
         [LanguageTag("pt")]
         [TypeaheadToken("Cape")]
         [TypeaheadToken("Verde")]
+        [Alpha3(CountryCode3.CPV)]
+        [Currency(CurrencyCode.CVE)]
         CV,
         /// <summary>
         /// Cayman Islands
@@ -316,6 +392,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Cayman")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.CYM)]
+        [Currency(CurrencyCode.KYD)]
         KY,
         /// <summary>
         /// Central African Republic
@@ -325,6 +403,8 @@ namespace Sugar
         [TypeaheadToken("Central")]
         [TypeaheadToken("African")]
         [TypeaheadToken("Republic")]
+        [Alpha3(CountryCode3.CAF)]
+        [Currency(CurrencyCode.XAF)]
         CF,
         /// <summary>
         /// Chad
@@ -332,6 +412,8 @@ namespace Sugar
         [Description("Chad")]
         [LanguageTag("ar")]
         [TypeaheadToken("Chad")]
+        [Alpha3(CountryCode3.TCD)]
+        [Currency(CurrencyCode.XAF)]
         TD,
         /// <summary>
         /// Chile
@@ -339,6 +421,8 @@ namespace Sugar
         [Description("Chile")]
         [LanguageTag("es-cl")]
         [TypeaheadToken("Chile")]
+        [Alpha3(CountryCode3.CHL)]
+        [Currency(CurrencyCode.CLP)]
         CL,
         /// <summary>
         /// China
@@ -350,6 +434,8 @@ namespace Sugar
         [TypeaheadToken("Zhonghua")]
         [TypeaheadToken("Peoples")]
         [TypeaheadToken("Republic")]
+        [Alpha3(CountryCode3.CHN)]
+        [Currency(CurrencyCode.CNY)]
         CN,
         /// <summary>
         /// Christmas Island
@@ -358,6 +444,8 @@ namespace Sugar
         [LanguageTag("en-au")]
         [TypeaheadToken("Christmas")]
         [TypeaheadToken("Island")]
+        [Alpha3(CountryCode3.CXR)]
+        [Currency(CurrencyCode.AUD)]
         CX,
         /// <summary>
         /// Cocos (Keeling) Islands
@@ -367,6 +455,8 @@ namespace Sugar
         [TypeaheadToken("Cocos")]
         [TypeaheadToken("Keeling")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.CCK)]
+        [Currency(CurrencyCode.AUD)]
         CC,
         /// <summary>
         /// Colombia
@@ -374,6 +464,8 @@ namespace Sugar
         [Description("Colombia")]
         [LanguageTag("es-co")]
         [TypeaheadToken("Colombia")]
+        [Alpha3(CountryCode3.COL)]
+        [Currency(CurrencyCode.COP)]
         CO,
         /// <summary>
         /// Comoros
@@ -381,6 +473,8 @@ namespace Sugar
         [Description("Comoros")]
         [LanguageTag("ar")]
         [TypeaheadToken("Comoros")]
+        [Alpha3(CountryCode3.COM)]
+        [Currency(CurrencyCode.KMF)]
         KM,
         /// <summary>
         /// Congo
@@ -388,6 +482,8 @@ namespace Sugar
         [Description("Congo")]
         [LanguageTag("fr")]
         [TypeaheadToken("Congo")]
+        [Alpha3(CountryCode3.COG)]
+        [Currency(CurrencyCode.XAF)]
         CG,
         /// <summary>
         /// Congo, The Democratic Republic Of The
@@ -397,6 +493,8 @@ namespace Sugar
         [TypeaheadToken("Congo")]
         [TypeaheadToken("Democratic")]
         [TypeaheadToken("Republic")]
+        [Alpha3(CountryCode3.COD)]
+        [Currency(CurrencyCode.CDF)]
         CD,
         /// <summary>
         /// Cook Islands
@@ -405,6 +503,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Cook")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.COK)]
+        [Currency(CurrencyCode.NZD)]
         CK,
         /// <summary>
         /// Costa Rica
@@ -413,6 +513,8 @@ namespace Sugar
         [LanguageTag("en-sp")]
         [TypeaheadToken("Costa")]
         [TypeaheadToken("Rica")]
+        [Alpha3(CountryCode3.CRI)]
+        [Currency(CurrencyCode.CRC)]
         CR,
         /// <summary>
         /// Côte d'Ivoire
@@ -425,6 +527,8 @@ namespace Sugar
         [TypeaheadToken("Ivoire")]
         [TypeaheadToken("Ivoire")]
         [TypeaheadToken("Coast")]
+        [Alpha3(CountryCode3.CIV)]
+        [Currency(CurrencyCode.XOF)]
         CI,
         /// <summary>
         /// Croatia
@@ -433,6 +537,8 @@ namespace Sugar
         [LanguageTag("hr")]
         [TypeaheadToken("Croatia")]
         [TypeaheadToken("Hrvatska")]
+        [Alpha3(CountryCode3.HRV)]
+        [Currency(CurrencyCode.HRK)]
         HR,
         /// <summary>
         /// Cuba
@@ -440,6 +546,8 @@ namespace Sugar
         [Description("Cuba")]
         [LanguageTag("es")]
         [TypeaheadToken("Cuba")]
+        [Alpha3(CountryCode3.CUB)]
+        [Currency(CurrencyCode.CUP)]
         CU,
         /// <summary>
         /// Cyprus
@@ -447,6 +555,8 @@ namespace Sugar
         [Description("Cyprus")]
         [LanguageTag("el")]
         [TypeaheadToken("Cyprus")]
+        [Alpha3(CountryCode3.CYP)]
+        [Currency(CurrencyCode.EUR)]
         CY,
         /// <summary>
         /// Czech Republic
@@ -457,6 +567,8 @@ namespace Sugar
         [TypeaheadToken("Republic")]
         [TypeaheadToken("Česká")]
         [TypeaheadToken("Ceska")]
+        [Alpha3(CountryCode3.CZE)]
+        [Currency(CurrencyCode.CZK)]
         CZ,
         /// <summary>
         /// Denmark
@@ -464,6 +576,8 @@ namespace Sugar
         [Description("Denmark")]
         [LanguageTag("da")]
         [TypeaheadToken("Denmark")]
+        [Alpha3(CountryCode3.DNK)]
+        [Currency(CurrencyCode.DKK)]
         DK,
         /// <summary>
         /// Djibouti
@@ -471,6 +585,8 @@ namespace Sugar
         [Description("Djibouti")]
         [LanguageTag("ar")]
         [TypeaheadToken("Djibouti")]
+        [Alpha3(CountryCode3.DJI)]
+        [Currency(CurrencyCode.DJF)]
         DJ,
         /// <summary>
         /// Dominica
@@ -478,6 +594,8 @@ namespace Sugar
         [Description("Dominica")]
         [LanguageTag("en")]
         [TypeaheadToken("Dominica")]
+        [Alpha3(CountryCode3.DMA)]
+        [Currency(CurrencyCode.XCD)]
         DM,
         /// <summary>
         /// Dominican Republic
@@ -486,6 +604,8 @@ namespace Sugar
         [LanguageTag("es")]
         [TypeaheadToken("Dominican")]
         [TypeaheadToken("Republic")]
+        [Alpha3(CountryCode3.DOM)]
+        [Currency(CurrencyCode.DOP)]
         DO,
         /// <summary>
         /// Ecuador
@@ -493,6 +613,8 @@ namespace Sugar
         [Description("Ecuador")]
         [LanguageTag("es")]
         [TypeaheadToken("Ecuador")]
+        [Alpha3(CountryCode3.ECU)]
+        [Currency(CurrencyCode.USD)]
         EC,
         /// <summary>
         /// Egypt
@@ -500,6 +622,8 @@ namespace Sugar
         [Description("Egypt")]
         [LanguageTag("ar-eg")]
         [TypeaheadToken("Egypt")]
+        [Alpha3(CountryCode3.EGY)]
+        [Currency(CurrencyCode.EGP)]
         EG,
         /// <summary>
         /// El Salvador
@@ -508,6 +632,8 @@ namespace Sugar
         [LanguageTag("es")]
         [TypeaheadToken("El")]
         [TypeaheadToken("Salvador")]
+        [Alpha3(CountryCode3.SLV)]
+        [Currency(CurrencyCode.USD)]
         SV,
         /// <summary>
         /// Equatorial Guinea
@@ -516,6 +642,8 @@ namespace Sugar
         [LanguageTag("pt")]
         [TypeaheadToken("Equatorial")]
         [TypeaheadToken("Guinea")]
+        [Alpha3(CountryCode3.GNQ)]
+        [Currency(CurrencyCode.XAF)]
         GQ,
         /// <summary>
         /// Eritrea
@@ -523,6 +651,8 @@ namespace Sugar
         [Description("Eritrea")]
         [LanguageTag("ar")]
         [TypeaheadToken("Eritrea")]
+        [Alpha3(CountryCode3.ERI)]
+        [Currency(CurrencyCode.ERN)]
         ER,
         /// <summary>
         /// Estonia
@@ -531,6 +661,8 @@ namespace Sugar
         [LanguageTag("et")]
         [TypeaheadToken("Estonia")]
         [TypeaheadToken("Eesti")]
+        [Alpha3(CountryCode3.EST)]
+        [Currency(CurrencyCode.EEK)]
         EE,
         /// <summary>
         /// Ethiopia
@@ -538,6 +670,8 @@ namespace Sugar
         [Description("Ethiopia")]
         [LanguageTag("am")]
         [TypeaheadToken("Ethiopia")]
+        [Alpha3(CountryCode3.ETH)]
+        [Currency(CurrencyCode.ETB)]
         ET,
         /// <summary>
         /// Europe
@@ -545,6 +679,7 @@ namespace Sugar
         [Description("Europe")]
         [LanguageTag("eo")]
         [TypeaheadToken("Europe")]
+        [Currency(CurrencyCode.EUR)]
         EU,
         /// <summary>
         /// Falkland Islands (Malvinas)
@@ -554,6 +689,8 @@ namespace Sugar
         [TypeaheadToken("Falkland")]
         [TypeaheadToken("Islands")]
         [TypeaheadToken("Malvinas")]
+        [Alpha3(CountryCode3.FLK)]
+        [Currency(CurrencyCode.FKP)]
         FK,
         /// <summary>
         /// Faroe Islands
@@ -564,6 +701,8 @@ namespace Sugar
         [TypeaheadToken("Islands")]
         [TypeaheadToken("Føroyar")]
         [TypeaheadToken("Færøerne")]
+        [Alpha3(CountryCode3.FRO)]
+        [Currency(CurrencyCode.DKK)]
         FO,
         /// <summary>
         /// Fiji
@@ -571,6 +710,8 @@ namespace Sugar
         [Description("Fiji")]
         [LanguageTag("en")]
         [TypeaheadToken("Fiji")]
+        [Alpha3(CountryCode3.FJI)]
+        [Currency(CurrencyCode.FJD)]
         FJ,
         /// <summary>
         /// Finland
@@ -579,6 +720,8 @@ namespace Sugar
         [LanguageTag("fi")]
         [TypeaheadToken("Finland")]
         [TypeaheadToken("Suomi")]
+        [Alpha3(CountryCode3.FIN)]
+        [Currency(CurrencyCode.EUR)]
         FI,
         /// <summary>
         /// France
@@ -590,6 +733,8 @@ namespace Sugar
         [TypeaheadToken("République")]
         [TypeaheadToken("Francaise")]
         [TypeaheadToken("Française")]
+        [Alpha3(CountryCode3.FRA)]
+        [Currency(CurrencyCode.EUR)]
         FR,
         /// <summary>
         /// French Guiana
@@ -598,6 +743,8 @@ namespace Sugar
         [LanguageTag("fr")]
         [TypeaheadToken("French")]
         [TypeaheadToken("Guiana")]
+        [Alpha3(CountryCode3.GUF)]
+        [Currency(CurrencyCode.EUR)]
         GF,
         /// <summary>
         /// French Polynesia
@@ -606,6 +753,8 @@ namespace Sugar
         [LanguageTag("fr")]
         [TypeaheadToken("French")]
         [TypeaheadToken("Polynesia")]
+        [Alpha3(CountryCode3.PYF)]
+        [Currency(CurrencyCode.XPF)]
         PF,
         /// <summary>
         /// French Southern Territories
@@ -615,6 +764,8 @@ namespace Sugar
         [TypeaheadToken("French")]
         [TypeaheadToken("Southern")]
         [TypeaheadToken("Territories")]
+        [Alpha3(CountryCode3.ATF)]
+        [Currency(CurrencyCode.EUR)]
         TF,
         /// <summary>
         /// Gabon
@@ -622,6 +773,8 @@ namespace Sugar
         [Description("Gabon")]
         [LanguageTag("fr")]
         [TypeaheadToken("Gabon")]
+        [Alpha3(CountryCode3.GAB)]
+        [Currency(CurrencyCode.XAF)]
         GA,
         /// <summary>
         /// Gambia
@@ -629,6 +782,7 @@ namespace Sugar
         [Description("Gambia")]
         [LanguageTag("en")]
         [TypeaheadToken("Gambia")]
+        [Alpha3(CountryCode3.GMB)]
         GM,
         /// <summary>
         /// Georgia
@@ -636,6 +790,8 @@ namespace Sugar
         [Description("Georgia")]
         [LanguageTag("ka")]
         [TypeaheadToken("Georgia")]
+        [Alpha3(CountryCode3.GEO)]
+        [Currency(CurrencyCode.GEL)]
         GE,
         /// <summary>
         /// Germany
@@ -645,6 +801,8 @@ namespace Sugar
         [TypeaheadToken("Germany")]
         [TypeaheadToken("Bundesrepublik")]
         [TypeaheadToken("Deutschland")]
+        [Alpha3(CountryCode3.DEU)]
+        [Currency(CurrencyCode.EUR)]
         DE,
         /// <summary>
         /// Ghana
@@ -652,6 +810,8 @@ namespace Sugar
         [Description("Ghana")]
         [LanguageTag("en")]
         [TypeaheadToken("Ghana")]
+        [Alpha3(CountryCode3.GHA)]
+        [Currency(CurrencyCode.GHS)]
         GH,
         /// <summary>
         /// Gibraltar
@@ -659,6 +819,8 @@ namespace Sugar
         [Description("Gibraltar")]
         [LanguageTag("en")]
         [TypeaheadToken("Gibraltar")]
+        [Alpha3(CountryCode3.GIB)]
+        [Currency(CurrencyCode.GIP)]
         GI,
         /// <summary>
         /// Greece
@@ -666,6 +828,8 @@ namespace Sugar
         [Description("Greece")]
         [LanguageTag("el")]
         [TypeaheadToken("Greece")]
+        [Alpha3(CountryCode3.GRC)]
+        [Currency(CurrencyCode.EUR)]
         GR,
         /// <summary>
         /// Greenland
@@ -673,6 +837,8 @@ namespace Sugar
         [Description("Greenland")]
         [LanguageTag("da")]
         [TypeaheadToken("Greenland")]
+        [Alpha3(CountryCode3.GRL)]
+        [Currency(CurrencyCode.DKK)]
         GL,
         /// <summary>
         /// Grenada
@@ -680,6 +846,8 @@ namespace Sugar
         [Description("Grenada")]
         [LanguageTag("en")]
         [TypeaheadToken("Grenada")]
+        [Alpha3(CountryCode3.GRD)]
+        [Currency(CurrencyCode.XCD)]
         GD,
         /// <summary>
         /// Guadeloupe
@@ -687,6 +855,8 @@ namespace Sugar
         [Description("Guadeloupe")]
         [LanguageTag("fr")]
         [TypeaheadToken("Guadeloupe")]
+        [Alpha3(CountryCode3.GLP)]
+        [Currency(CurrencyCode.EUR)]
         GP,
         /// <summary>
         /// Guam
@@ -694,6 +864,8 @@ namespace Sugar
         [Description("Guam")]
         [LanguageTag("en")]
         [TypeaheadToken("Guam")]
+        [Alpha3(CountryCode3.GUM)]
+        [Currency(CurrencyCode.USD)]
         GU,
         /// <summary>
         /// Guatemala
@@ -701,6 +873,8 @@ namespace Sugar
         [Description("Guatemala")]
         [LanguageTag("es-gt")]
         [TypeaheadToken("Guatemala")]
+        [Alpha3(CountryCode3.GTM)]
+        [Currency(CurrencyCode.GTQ)]
         GT,
         /// <summary>
         /// Guernsey
@@ -708,6 +882,7 @@ namespace Sugar
         [Description("Guernsey")]
         [LanguageTag("en")]
         [TypeaheadToken("Guernsey")]
+        [Currency(CurrencyCode.GBP)]
         GG,
         /// <summary>
         /// Guinea
@@ -715,6 +890,8 @@ namespace Sugar
         [Description("Guinea")]
         [LanguageTag("fr")]
         [TypeaheadToken("Guinea")]
+        [Alpha3(CountryCode3.GIN)]
+        [Currency(CurrencyCode.GNF)]
         GN,
         /// <summary>
         /// Guinea-Bissau
@@ -723,6 +900,8 @@ namespace Sugar
         [LanguageTag("pt")]
         [TypeaheadToken("Guinea")]
         [TypeaheadToken("Bissau")]
+        [Alpha3(CountryCode3.GNB)]
+        [Currency(CurrencyCode.XOF)]
         GW,
         /// <summary>
         /// Guyana
@@ -730,6 +909,8 @@ namespace Sugar
         [Description("Guyana")]
         [LanguageTag("fr")]
         [TypeaheadToken("Guyana")]
+        [Alpha3(CountryCode3.GUY)]
+        [Currency(CurrencyCode.GYD)]
         GY,
         /// <summary>
         /// Haiti
@@ -737,6 +918,8 @@ namespace Sugar
         [Description("Haiti")]
         [LanguageTag("ht")]
         [TypeaheadToken("Haiti")]
+        [Alpha3(CountryCode3.HTI)]
+        [Currency(CurrencyCode.HTG)]
         HT,
         /// <summary>
         /// Heard Island And Mcdonald Islands
@@ -747,6 +930,8 @@ namespace Sugar
         [TypeaheadToken("HeardMcdonald")]
         [TypeaheadToken("Island")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.HMD)]
+        [Currency(CurrencyCode.AUD)]
         HM,
         /// <summary>
         /// Holy See (Vatican City State)
@@ -758,6 +943,8 @@ namespace Sugar
         [TypeaheadToken("Vatican")]
         [TypeaheadToken("City")]
         [TypeaheadToken("State")]
+        [Alpha3(CountryCode3.VAT)]
+        [Currency(CurrencyCode.EUR)]
         VA,
         /// <summary>
         /// Honduras
@@ -765,6 +952,8 @@ namespace Sugar
         [Description("Honduras")]
         [LanguageTag("es-hn")]
         [TypeaheadToken("Honduras")]
+        [Alpha3(CountryCode3.HND)]
+        [Currency(CurrencyCode.HNL)]
         HN,
         /// <summary>
         /// Hong Kong
@@ -773,6 +962,8 @@ namespace Sugar
         [LanguageTag("zh-hk")]
         [TypeaheadToken("Hong")]
         [TypeaheadToken("Kong")]
+        [Alpha3(CountryCode3.HKG)]
+        [Currency(CurrencyCode.HKD)]
         HK,
         /// <summary>
         /// Hungary
@@ -780,6 +971,8 @@ namespace Sugar
         [Description("Hungary")]
         [LanguageTag("hu")]
         [TypeaheadToken("Hungary")]
+        [Alpha3(CountryCode3.HUN)]
+        [Currency(CurrencyCode.HUF)]
         HU,
         /// <summary>
         /// Iceland
@@ -788,6 +981,8 @@ namespace Sugar
         [LanguageTag("is")]
         [TypeaheadToken("Iceland")]
         [TypeaheadToken("Island")]
+        [Alpha3(CountryCode3.ISL)]
+        [Currency(CurrencyCode.ISK)]
         IS,
         /// <summary>
         /// India
@@ -795,6 +990,8 @@ namespace Sugar
         [Description("India")]
         [LanguageTag("en")]
         [TypeaheadToken("India")]
+        [Alpha3(CountryCode3.IND)]
+        [Currency(CurrencyCode.INR)]
         IN,
         /// <summary>
         /// Indonesia
@@ -802,6 +999,8 @@ namespace Sugar
         [Description("Indonesia")]
         [LanguageTag("id")]
         [TypeaheadToken("Indonesia")]
+        [Alpha3(CountryCode3.IDN)]
+        [Currency(CurrencyCode.IDR)]
         ID,
         /// <summary>
         /// Iran, Islamic Republic Of
@@ -811,6 +1010,8 @@ namespace Sugar
         [TypeaheadToken("Iran")]
         [TypeaheadToken("Islamic")]
         [TypeaheadToken("Republic")]
+        [Alpha3(CountryCode3.IRN)]
+        [Currency(CurrencyCode.IRR)]
         IR,
         /// <summary>
         /// Iraq
@@ -818,6 +1019,8 @@ namespace Sugar
         [Description("Iraq")]
         [LanguageTag("ar-iq")]
         [TypeaheadToken("Iraq")]
+        [Alpha3(CountryCode3.IRQ)]
+        [Currency(CurrencyCode.IQD)]
         IQ,
         /// <summary>
         /// Ireland
@@ -826,6 +1029,8 @@ namespace Sugar
         [LanguageTag("en-ie")]
         [TypeaheadToken("Ireland")]
         [TypeaheadToken("Éire")]
+        [Alpha3(CountryCode3.IRL)]
+        [Currency(CurrencyCode.EUR)]
         IE,
         /// <summary>
         /// Isle of Man
@@ -834,6 +1039,7 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Isle")]
         [TypeaheadToken("Man")]
+        [Currency(CurrencyCode.GBP)]
         IM,
         /// <summary>
         /// Israel
@@ -841,6 +1047,8 @@ namespace Sugar
         [Description("Israel")]
         [LanguageTag("heb")]
         [TypeaheadToken("Israel")]
+        [Alpha3(CountryCode3.ISR)]
+        [Currency(CurrencyCode.ILS)]
         IL,
         /// <summary>
         /// Italy
@@ -849,6 +1057,8 @@ namespace Sugar
         [LanguageTag("it")]
         [TypeaheadToken("Italy")]
         [TypeaheadToken("Italia")]
+        [Alpha3(CountryCode3.ITA)]
+        [Currency(CurrencyCode.EUR)]
         IT,
         /// <summary>
         /// Jamaica
@@ -856,6 +1066,8 @@ namespace Sugar
         [Description("Jamaica")]
         [LanguageTag("en")]
         [TypeaheadToken("Jamaica")]
+        [Alpha3(CountryCode3.JAM)]
+        [Currency(CurrencyCode.JMD)]
         JM,
         /// <summary>
         /// Japan
@@ -865,6 +1077,8 @@ namespace Sugar
         [TypeaheadToken("Japan")]
         [TypeaheadToken("Nippon")]
         [TypeaheadToken("Nihon")]
+        [Alpha3(CountryCode3.JPN)]
+        [Currency(CurrencyCode.JPY)]
         JP,
         /// <summary>
         /// Jersey
@@ -872,6 +1086,7 @@ namespace Sugar
         [Description("Jersey")]
         [LanguageTag("en")]
         [TypeaheadToken("Jersey")]
+        [Currency(CurrencyCode.GBP)]
         JE,
         /// <summary>
         /// Jordan
@@ -879,6 +1094,8 @@ namespace Sugar
         [Description("Jordan")]
         [LanguageTag("ar")]
         [TypeaheadToken("Jordan")]
+        [Alpha3(CountryCode3.JOR)]
+        [Currency(CurrencyCode.JOD)]
         JO,
         /// <summary>
         /// Kazakhstan
@@ -886,6 +1103,8 @@ namespace Sugar
         [Description("Kazakhstan")]
         [LanguageTag("kk")]
         [TypeaheadToken("Kazakhstan")]
+        [Alpha3(CountryCode3.KAZ)]
+        [Currency(CurrencyCode.KZT)]
         KZ,
         /// <summary>
         /// Kenya
@@ -893,6 +1112,8 @@ namespace Sugar
         [Description("Kenya")]
         [LanguageTag("en")]
         [TypeaheadToken("Kenya")]
+        [Alpha3(CountryCode3.KEN)]
+        [Currency(CurrencyCode.KES)]
         KE,
         /// <summary>
         /// Kiribati
@@ -900,6 +1121,8 @@ namespace Sugar
         [Description("Kiribati")]
         [LanguageTag("en")]
         [TypeaheadToken("Kiribati")]
+        [Alpha3(CountryCode3.KIR)]
+        [Currency(CurrencyCode.AUD)]
         KI,
         /// <summary>
         /// Korea, Democratic People'S Republic Of
@@ -912,6 +1135,8 @@ namespace Sugar
         [TypeaheadToken("Republic")]
         [TypeaheadToken("North")]
         [TypeaheadToken("Korea")]
+        [Alpha3(CountryCode3.PRK)]
+        [Currency(CurrencyCode.KPW)]
         KP,
         /// <summary>
         /// Korea, Republic Of
@@ -921,6 +1146,8 @@ namespace Sugar
         [TypeaheadToken("Korea")]
         [TypeaheadToken("Republic")]
         [TypeaheadToken("South")]
+        [Alpha3(CountryCode3.KOR)]
+        [Currency(CurrencyCode.KRW)]
         KR,
         /// <summary>
         /// Kuwait
@@ -928,6 +1155,8 @@ namespace Sugar
         [Description("Kuwait")]
         [LanguageTag("ar-kw")]
         [TypeaheadToken("Kuwait")]
+        [Alpha3(CountryCode3.KWT)]
+        [Currency(CurrencyCode.KWD)]
         KW,
         /// <summary>
         /// Kyrgyzstan
@@ -935,6 +1164,8 @@ namespace Sugar
         [Description("Kyrgyzstan")]
         [LanguageTag("ky")]
         [TypeaheadToken("Kyrgyzstan")]
+        [Alpha3(CountryCode3.KGZ)]
+        [Currency(CurrencyCode.KGS)]
         KG,
         /// <summary>
         /// Lao People's Democratic Republic
@@ -945,6 +1176,8 @@ namespace Sugar
         [TypeaheadToken("People's")]
         [TypeaheadToken("Democratic")]
         [TypeaheadToken("Republic")]
+        [Alpha3(CountryCode3.LAO)]
+        [Currency(CurrencyCode.LAK)]
         LA,
         /// <summary>
         /// Latvia
@@ -952,6 +1185,8 @@ namespace Sugar
         [Description("Latvia")]
         [LanguageTag("lv")]
         [TypeaheadToken("Latvia")]
+        [Alpha3(CountryCode3.LVA)]
+        [Currency(CurrencyCode.LVL)]
         LV,
         /// <summary>
         /// Lebanon
@@ -959,6 +1194,8 @@ namespace Sugar
         [Description("Lebanon")]
         [LanguageTag("ar-lb")]
         [TypeaheadToken("Lebanon")]
+        [Alpha3(CountryCode3.LBN)]
+        [Currency(CurrencyCode.LBP)]
         LB,
         /// <summary>
         /// Lesotho
@@ -966,6 +1203,8 @@ namespace Sugar
         [Description("Lesotho")]
         [LanguageTag("st")]
         [TypeaheadToken("Lesotho")]
+        [Alpha3(CountryCode3.LSO)]
+        [Currency(CurrencyCode.LSL)]
         LS,
         /// <summary>
         /// Liberia
@@ -973,6 +1212,8 @@ namespace Sugar
         [Description("Liberia")]
         [LanguageTag("en")]
         [TypeaheadToken("Liberia")]
+        [Alpha3(CountryCode3.LBR)]
+        [Currency(CurrencyCode.LRD)]
         LR,
         /// <summary>
         /// Libyan Arab Jamahiriya
@@ -982,6 +1223,8 @@ namespace Sugar
         [TypeaheadToken("Libyan")]
         [TypeaheadToken("Arab")]
         [TypeaheadToken("Jamahiriya")]
+        [Alpha3(CountryCode3.LBY)]
+        [Currency(CurrencyCode.LYD)]
         LY,
         /// <summary>
         /// Liechtenstein
@@ -989,6 +1232,8 @@ namespace Sugar
         [Description("Liechtenstein")]
         [LanguageTag("de-li")]
         [TypeaheadToken("Liechtenstein")]
+        [Alpha3(CountryCode3.LIE)]
+        [Currency(CurrencyCode.CHF)]
         LI,
         /// <summary>
         /// Lithuania
@@ -996,6 +1241,8 @@ namespace Sugar
         [Description("Lithuania")]
         [LanguageTag("lt")]
         [TypeaheadToken("Lithuania")]
+        [Alpha3(CountryCode3.LTU)]
+        [Currency(CurrencyCode.LTL)]
         LT,
         /// <summary>
         /// Luxembourg
@@ -1003,6 +1250,8 @@ namespace Sugar
         [Description("Luxembourg")]
         [LanguageTag("de-lu")]
         [TypeaheadToken("Luxembourg")]
+        [Alpha3(CountryCode3.LUX)]
+        [Currency(CurrencyCode.EUR)]
         LU,
         /// <summary>
         /// Macao
@@ -1010,6 +1259,8 @@ namespace Sugar
         [Description("Macao")]
         [LanguageTag("zh-cn")]
         [TypeaheadToken("Macao")]
+        [Alpha3(CountryCode3.MAC)]
+        [Currency(CurrencyCode.MOP)]
         MO,
         /// <summary>
         /// Macedonia, The Former Yugoslav Republic Of
@@ -1020,6 +1271,8 @@ namespace Sugar
         [TypeaheadToken("Former")]
         [TypeaheadToken("Yugoslav")]
         [TypeaheadToken("Republic")]
+        [Alpha3(CountryCode3.MKD)]
+        [Currency(CurrencyCode.MKD)]
         MK,
         /// <summary>
         /// Madagascar
@@ -1027,6 +1280,8 @@ namespace Sugar
         [Description("Madagascar")]
         [LanguageTag("fr")]
         [TypeaheadToken("Madagascar")]
+        [Alpha3(CountryCode3.MDG)]
+        [Currency(CurrencyCode.MGA)]
         MG,
         /// <summary>
         /// Malawi
@@ -1034,6 +1289,8 @@ namespace Sugar
         [Description("Malawi")]
         [LanguageTag("en")]
         [TypeaheadToken("Malawi")]
+        [Alpha3(CountryCode3.MWI)]
+        [Currency(CurrencyCode.MWK)]
         MW,
         /// <summary>
         /// Malaysia
@@ -1041,6 +1298,8 @@ namespace Sugar
         [Description("Malaysia")]
         [LanguageTag("zsm")]
         [TypeaheadToken("Malaysia")]
+        [Alpha3(CountryCode3.MYS)]
+        [Currency(CurrencyCode.MYR)]
         MY,
         /// <summary>
         /// Maldives
@@ -1048,6 +1307,8 @@ namespace Sugar
         [Description("Maldives")]
         [LanguageTag("dv")]
         [TypeaheadToken("Maldives")]
+        [Alpha3(CountryCode3.MDV)]
+        [Currency(CurrencyCode.MVR)]
         MV,
         /// <summary>
         /// Mali
@@ -1055,6 +1316,8 @@ namespace Sugar
         [Description("Mali")]
         [LanguageTag("fr")]
         [TypeaheadToken("Mali")]
+        [Alpha3(CountryCode3.MLI)]
+        [Currency(CurrencyCode.XOF)]
         ML,
         /// <summary>
         /// Malta
@@ -1062,6 +1325,7 @@ namespace Sugar
         [Description("Malta")]
         [LanguageTag("en")]
         [TypeaheadToken("Malta")]
+        [Alpha3(CountryCode3.MLT)]
         MT,
         /// <summary>
         /// Marshall Islands
@@ -1070,6 +1334,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Marshall")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.MHL)]
+        [Currency(CurrencyCode.USD)]
         MH,
         /// <summary>
         /// Martinique
@@ -1077,6 +1343,8 @@ namespace Sugar
         [Description("Martinique")]
         [LanguageTag("fr")]
         [TypeaheadToken("Martinique")]
+        [Alpha3(CountryCode3.MTQ)]
+        [Currency(CurrencyCode.EUR)]
         MQ,
         /// <summary>
         /// Mauritania
@@ -1084,6 +1352,8 @@ namespace Sugar
         [Description("Mauritania")]
         [LanguageTag("ar")]
         [TypeaheadToken("Mauritania")]
+        [Alpha3(CountryCode3.MRT)]
+        [Currency(CurrencyCode.MRU)]
         MR,
         /// <summary>
         /// Mauritius
@@ -1092,6 +1362,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Mauritius")]
         [TypeaheadToken("Maurice")]
+        [Alpha3(CountryCode3.MUS)]
+        [Currency(CurrencyCode.MUR)]
         MU,
         /// <summary>
         /// Mayotte
@@ -1099,6 +1371,8 @@ namespace Sugar
         [Description("Mayotte")]
         [LanguageTag("fr")]
         [TypeaheadToken("Mayotte")]
+        [Alpha3(CountryCode3.MYT)]
+        [Currency(CurrencyCode.EUR)]
         YT,
         /// <summary>
         /// Mexico
@@ -1107,6 +1381,8 @@ namespace Sugar
         [LanguageTag("es-mx")]
         [TypeaheadToken("Mexico")]
         [TypeaheadToken("Mexicanos")]
+        [Alpha3(CountryCode3.MEX)]
+        [Currency(CurrencyCode.MXN)]
         MX,
         /// <summary>
         /// Micronesia, Federated States Of
@@ -1116,6 +1392,8 @@ namespace Sugar
         [TypeaheadToken("Micronesia")]
         [TypeaheadToken("Federated")]
         [TypeaheadToken("States")]
+        [Alpha3(CountryCode3.FSM)]
+        [Currency(CurrencyCode.USD)]
         FM,
         /// <summary>
         /// Moldova, Republic Of
@@ -1124,6 +1402,7 @@ namespace Sugar
         [LanguageTag("ro")]
         [TypeaheadToken("Moldova")]
         [TypeaheadToken("Republic")]
+        [Alpha3(CountryCode3.MDA)]
         MD,
         /// <summary>
         /// Monaco
@@ -1131,6 +1410,8 @@ namespace Sugar
         [Description("Monaco")]
         [LanguageTag("fr")]
         [TypeaheadToken("Monaco")]
+        [Alpha3(CountryCode3.MCO)]
+        [Currency(CurrencyCode.EUR)]
         MC,
         /// <summary>
         /// Mongolia
@@ -1138,6 +1419,8 @@ namespace Sugar
         [Description("Mongolia")]
         [LanguageTag("mn")]
         [TypeaheadToken("Mongolia")]
+        [Alpha3(CountryCode3.MNG)]
+        [Currency(CurrencyCode.MNT)]
         MN,
         /// <summary>
         /// Montenegro
@@ -1145,6 +1428,7 @@ namespace Sugar
         [Description("Montenegro")]
         [LanguageTag("sr")]
         [TypeaheadToken("Montenegro")]
+        [Currency(CurrencyCode.EUR)]
         ME,
         /// <summary>
         /// Montserrat
@@ -1152,6 +1436,8 @@ namespace Sugar
         [Description("Montserrat")]
         [LanguageTag("en")]
         [TypeaheadToken("Montserrat")]
+        [Alpha3(CountryCode3.MSR)]
+        [Currency(CurrencyCode.XCD)]
         MS,
         /// <summary>
         /// Morocco
@@ -1159,6 +1445,8 @@ namespace Sugar
         [Description("Morocco")]
         [LanguageTag("ar-ma")]
         [TypeaheadToken("Morocco")]
+        [Alpha3(CountryCode3.MAR)]
+        [Currency(CurrencyCode.MAD)]
         MA,
         /// <summary>
         /// Mozambique
@@ -1166,13 +1454,17 @@ namespace Sugar
         [Description("Mozambique")]
         [LanguageTag("pt")]
         [TypeaheadToken("Mozambique")]
+        [Alpha3(CountryCode3.MOZ)]
+        [Currency(CurrencyCode.MZN)]
         MZ,
         /// <summary>
-        /// Myanmar 
+        /// Myanmar
         /// </summary>
         [Description("Myanmar")]
         [LanguageTag("my")]
         [TypeaheadToken("Myanmar")]
+        [Alpha3(CountryCode3.MMR)]
+        [Currency(CurrencyCode.MMK)]
         MM,
         /// <summary>
         /// Namibia
@@ -1180,6 +1472,8 @@ namespace Sugar
         [Description("Namibia")]
         [LanguageTag("en")]
         [TypeaheadToken("Namibia")]
+        [Alpha3(CountryCode3.NAM)]
+        [Currency(CurrencyCode.NAD)]
         NA,
         /// <summary>
         /// Nauru
@@ -1187,6 +1481,8 @@ namespace Sugar
         [Description("Nauru")]
         [LanguageTag("na")]
         [TypeaheadToken("Nauru")]
+        [Alpha3(CountryCode3.NRU)]
+        [Currency(CurrencyCode.AUD)]
         NR,
         /// <summary>
         /// Nepal
@@ -1194,6 +1490,8 @@ namespace Sugar
         [Description("Nepal")]
         [LanguageTag("ne")]
         [TypeaheadToken("Nepal")]
+        [Alpha3(CountryCode3.NPL)]
+        [Currency(CurrencyCode.NPR)]
         NP,
         /// <summary>
         /// Netherlands
@@ -1205,6 +1503,8 @@ namespace Sugar
         [TypeaheadToken("Nederland")]
         [TypeaheadToken("Pays")]
         [TypeaheadToken("Bas")]
+        [Alpha3(CountryCode3.NLD)]
+        [Currency(CurrencyCode.EUR)]
         NL,
         /// <summary>
         /// Netherlands Antilles
@@ -1213,6 +1513,8 @@ namespace Sugar
         [LanguageTag("nl")]
         [TypeaheadToken("Netherlands")]
         [TypeaheadToken("Antilles")]
+        [Alpha3(CountryCode3.ANT)]
+        [Currency(CurrencyCode.ANG)]
         AN,
         /// <summary>
         /// New Caledonia
@@ -1221,6 +1523,8 @@ namespace Sugar
         [LanguageTag("fr")]
         [TypeaheadToken("New")]
         [TypeaheadToken("Caledonia")]
+        [Alpha3(CountryCode3.NCL)]
+        [Currency(CurrencyCode.XPF)]
         NC,
         /// <summary>
         /// New Zealand
@@ -1229,6 +1533,8 @@ namespace Sugar
         [LanguageTag("en-nz")]
         [TypeaheadToken("New")]
         [TypeaheadToken("Zealand")]
+        [Alpha3(CountryCode3.NZL)]
+        [Currency(CurrencyCode.NZD)]
         NZ,
         /// <summary>
         /// Nicaragua
@@ -1236,6 +1542,8 @@ namespace Sugar
         [Description("Nicaragua")]
         [LanguageTag("es-ni")]
         [TypeaheadToken("Nicaragua")]
+        [Alpha3(CountryCode3.NIC)]
+        [Currency(CurrencyCode.NIO)]
         NI,
         /// <summary>
         /// Niger
@@ -1243,6 +1551,8 @@ namespace Sugar
         [Description("Niger")]
         [LanguageTag("fr")]
         [TypeaheadToken("Niger")]
+        [Alpha3(CountryCode3.NER)]
+        [Currency(CurrencyCode.XOF)]
         NE,
         /// <summary>
         /// Nigeria
@@ -1250,6 +1560,8 @@ namespace Sugar
         [Description("Nigeria")]
         [LanguageTag("en")]
         [TypeaheadToken("Nigeria")]
+        [Alpha3(CountryCode3.NGA)]
+        [Currency(CurrencyCode.NGN)]
         NG,
         /// <summary>
         /// Niue
@@ -1257,6 +1569,8 @@ namespace Sugar
         [Description("Niue")]
         [LanguageTag("en")]
         [TypeaheadToken("Niue")]
+        [Alpha3(CountryCode3.NIU)]
+        [Currency(CurrencyCode.NZD)]
         NU,
         /// <summary>
         /// Norfolk Island
@@ -1265,6 +1579,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Norfolk")]
         [TypeaheadToken("Island")]
+        [Alpha3(CountryCode3.NFK)]
+        [Currency(CurrencyCode.AUD)]
         NF,
         /// <summary>
         /// Northern Mariana Islands
@@ -1274,6 +1590,8 @@ namespace Sugar
         [TypeaheadToken("Northern")]
         [TypeaheadToken("Mariana")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.MNP)]
+        [Currency(CurrencyCode.USD)]
         MP,
         /// <summary>
         /// Norway
@@ -1283,6 +1601,8 @@ namespace Sugar
         [TypeaheadToken("Norway")]
         [TypeaheadToken("Norge")]
         [TypeaheadToken("Noreg")]
+        [Alpha3(CountryCode3.NOR)]
+        [Currency(CurrencyCode.NOK)]
         NO,
         /// <summary>
         /// Oman
@@ -1290,6 +1610,8 @@ namespace Sugar
         [Description("Oman")]
         [LanguageTag("ar")]
         [TypeaheadToken("Oman")]
+        [Alpha3(CountryCode3.OMN)]
+        [Currency(CurrencyCode.OMR)]
         OM,
         /// <summary>
         /// Pakistan
@@ -1297,6 +1619,8 @@ namespace Sugar
         [Description("Pakistan")]
         [LanguageTag("en")]
         [TypeaheadToken("Pakistan")]
+        [Alpha3(CountryCode3.PAK)]
+        [Currency(CurrencyCode.PKR)]
         PK,
         /// <summary>
         /// Palau
@@ -1304,6 +1628,8 @@ namespace Sugar
         [Description("Palau")]
         [LanguageTag("en")]
         [TypeaheadToken("Palau")]
+        [Alpha3(CountryCode3.PLW)]
+        [Currency(CurrencyCode.USD)]
         PW,
         /// <summary>
         /// Palestinian Territory, Occupied
@@ -1313,6 +1639,8 @@ namespace Sugar
         [TypeaheadToken("Palestinian")]
         [TypeaheadToken("Territory")]
         [TypeaheadToken("Occupied")]
+        [Alpha3(CountryCode3.PSE)]
+        [Currency(CurrencyCode.ILS)]
         PS,
         /// <summary>
         /// Panama
@@ -1320,6 +1648,8 @@ namespace Sugar
         [Description("Panama")]
         [LanguageTag("es-pa")]
         [TypeaheadToken("Panama")]
+        [Alpha3(CountryCode3.PAN)]
+        [Currency(CurrencyCode.PAB)]
         PA,
         /// <summary>
         /// Papua New Guinea
@@ -1329,6 +1659,8 @@ namespace Sugar
         [TypeaheadToken("Papua")]
         [TypeaheadToken("New")]
         [TypeaheadToken("Guinea")]
+        [Alpha3(CountryCode3.PNG)]
+        [Currency(CurrencyCode.PGK)]
         PG,
         /// <summary>
         /// Paraguay
@@ -1336,6 +1668,8 @@ namespace Sugar
         [Description("Paraguay")]
         [LanguageTag("es-py")]
         [TypeaheadToken("Paraguay")]
+        [Alpha3(CountryCode3.PRY)]
+        [Currency(CurrencyCode.PYG)]
         PY,
         /// <summary>
         /// Peru
@@ -1343,6 +1677,8 @@ namespace Sugar
         [Description("Peru")]
         [LanguageTag("es-pe")]
         [TypeaheadToken("Peru")]
+        [Alpha3(CountryCode3.PER)]
+        [Currency(CurrencyCode.PEN)]
         PE,
         /// <summary>
         /// Philippines
@@ -1350,6 +1686,8 @@ namespace Sugar
         [Description("Philippines")]
         [LanguageTag("fil")]
         [TypeaheadToken("Philippines")]
+        [Alpha3(CountryCode3.PHL)]
+        [Currency(CurrencyCode.PHP)]
         PH,
         /// <summary>
         /// Pitcairn
@@ -1357,6 +1695,8 @@ namespace Sugar
         [Description("Pitcairn")]
         [LanguageTag("en")]
         [TypeaheadToken("Pitcairn")]
+        [Alpha3(CountryCode3.PCN)]
+        [Currency(CurrencyCode.NZD)]
         PN,
         /// <summary>
         /// Poland
@@ -1364,6 +1704,8 @@ namespace Sugar
         [Description("Poland")]
         [LanguageTag("pl")]
         [TypeaheadToken("Poland")]
+        [Alpha3(CountryCode3.POL)]
+        [Currency(CurrencyCode.PLN)]
         PL,
         /// <summary>
         /// Portugal
@@ -1371,6 +1713,8 @@ namespace Sugar
         [Description("Portugal")]
         [LanguageTag("pt")]
         [TypeaheadToken("Portugal")]
+        [Alpha3(CountryCode3.PRT)]
+        [Currency(CurrencyCode.EUR)]
         PT,
         /// <summary>
         /// Puerto Rico
@@ -1379,6 +1723,8 @@ namespace Sugar
         [LanguageTag("es-pr")]
         [TypeaheadToken("Puerto")]
         [TypeaheadToken("Rico")]
+        [Alpha3(CountryCode3.PRI)]
+        [Currency(CurrencyCode.USD)]
         PR,
         /// <summary>
         /// Qatar
@@ -1386,6 +1732,8 @@ namespace Sugar
         [Description("Qatar")]
         [LanguageTag("ar-qa")]
         [TypeaheadToken("Qatar")]
+        [Alpha3(CountryCode3.QAT)]
+        [Currency(CurrencyCode.QAR)]
         QA,
         /// <summary>
         /// Réunion
@@ -1395,6 +1743,8 @@ namespace Sugar
         [TypeaheadToken("Réunion")]
         [TypeaheadToken("Reunion")]
         [TypeaheadToken("Ile")]
+        [Alpha3(CountryCode3.REU)]
+        [Currency(CurrencyCode.EUR)]
         RE,
         /// <summary>
         /// Romania
@@ -1402,6 +1752,8 @@ namespace Sugar
         [Description("Romania")]
         [LanguageTag("ro")]
         [TypeaheadToken("Romania")]
+        [Alpha3(CountryCode3.ROU)]
+        [Currency(CurrencyCode.RON)]
         RO,
         /// <summary>
         /// Russian Federation
@@ -1412,6 +1764,8 @@ namespace Sugar
         [TypeaheadToken("Federation")]
         [TypeaheadToken("Russia")]
         [TypeaheadToken("Rossiya")]
+        [Alpha3(CountryCode3.RUS)]
+        [Currency(CurrencyCode.RUB)]
         RU,
         /// <summary>
         /// Rwanda
@@ -1419,6 +1773,8 @@ namespace Sugar
         [Description("Rwanda")]
         [LanguageTag("en")]
         [TypeaheadToken("Rwanda")]
+        [Alpha3(CountryCode3.RWA)]
+        [Currency(CurrencyCode.RWF)]
         RW,
         /// <summary>
         /// Saint Barthélemy
@@ -1431,7 +1787,7 @@ namespace Sugar
         [TypeaheadToken("St")]
         [TypeaheadToken("Barts")]
         [TypeaheadToken("Barth")]
-
+        [Currency(CurrencyCode.EUR)]
         BL,
         /// <summary>
         /// Saint Helena
@@ -1440,6 +1796,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Saint")]
         [TypeaheadToken("Helena")]
+        [Alpha3(CountryCode3.SHN)]
+        [Currency(CurrencyCode.GBP)]
         SH,
         /// <summary>
         /// Saint Kitts And Nevis
@@ -1449,6 +1807,8 @@ namespace Sugar
         [TypeaheadToken("Saint")]
         [TypeaheadToken("Kitts")]
         [TypeaheadToken("Nevis")]
+        [Alpha3(CountryCode3.KNA)]
+        [Currency(CurrencyCode.XCD)]
         KN,
         /// <summary>
         /// Saint Lucia
@@ -1457,6 +1817,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Saint")]
         [TypeaheadToken("Lucia")]
+        [Alpha3(CountryCode3.LCA)]
+        [Currency(CurrencyCode.XCD)]
         LC,
         /// <summary>
         /// Saint Martin
@@ -1465,6 +1827,7 @@ namespace Sugar
         [LanguageTag("fr")]
         [TypeaheadToken("Saint")]
         [TypeaheadToken("Martin")]
+        [Currency(CurrencyCode.EUR)]
         MF,
         /// <summary>
         /// Saint Pierre And Miquelon
@@ -1474,6 +1837,8 @@ namespace Sugar
         [TypeaheadToken("Saint")]
         [TypeaheadToken("Pierre")]
         [TypeaheadToken("Miquelon")]
+        [Alpha3(CountryCode3.SPM)]
+        [Currency(CurrencyCode.EUR)]
         PM,
         /// <summary>
         /// Saint Vincent And The Grenadines
@@ -1483,6 +1848,8 @@ namespace Sugar
         [TypeaheadToken("Saint")]
         [TypeaheadToken("Vincent")]
         [TypeaheadToken("Grenadines")]
+        [Alpha3(CountryCode3.VCT)]
+        [Currency(CurrencyCode.XCD)]
         VC,
         /// <summary>
         /// Samoa
@@ -1490,6 +1857,8 @@ namespace Sugar
         [Description("Samoa")]
         [LanguageTag("en")]
         [TypeaheadToken("Samoa")]
+        [Alpha3(CountryCode3.WSM)]
+        [Currency(CurrencyCode.EUR)]
         WS,
         /// <summary>
         /// San Marino
@@ -1498,6 +1867,8 @@ namespace Sugar
         [LanguageTag("it")]
         [TypeaheadToken("San")]
         [TypeaheadToken("Marino")]
+        [Alpha3(CountryCode3.SMR)]
+        [Currency(CurrencyCode.EUR)]
         SM,
         /// <summary>
         /// Sao Tome And Principe
@@ -1507,6 +1878,7 @@ namespace Sugar
         [TypeaheadToken("Sao")]
         [TypeaheadToken("Tome")]
         [TypeaheadToken("Principe")]
+        [Alpha3(CountryCode3.STP)]
         ST,
         /// <summary>
         /// Saudi Arabia
@@ -1515,6 +1887,8 @@ namespace Sugar
         [LanguageTag("ar-sa")]
         [TypeaheadToken("Saudi")]
         [TypeaheadToken("Arabia")]
+        [Alpha3(CountryCode3.SAU)]
+        [Currency(CurrencyCode.SAR)]
         SA,
         /// <summary>
         /// Senegal
@@ -1522,6 +1896,8 @@ namespace Sugar
         [Description("Senegal")]
         [LanguageTag("fr")]
         [TypeaheadToken("Senegal")]
+        [Alpha3(CountryCode3.SEN)]
+        [Currency(CurrencyCode.XOF)]
         SN,
         /// <summary>
         /// Serbia
@@ -1536,6 +1912,8 @@ namespace Sugar
         [Description("Seychelles")]
         [LanguageTag("en")]
         [TypeaheadToken("Seychelles")]
+        [Alpha3(CountryCode3.SYC)]
+        [Currency(CurrencyCode.SCR)]
         SC,
         /// <summary>
         /// Sierra Leone
@@ -1544,6 +1922,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Sierra")]
         [TypeaheadToken("Leone")]
+        [Alpha3(CountryCode3.SLE)]
+        [Currency(CurrencyCode.SLL)]
         SL,
         /// <summary>
         /// Singapore
@@ -1551,6 +1931,8 @@ namespace Sugar
         [Description("Singapore")]
         [LanguageTag("en")]
         [TypeaheadToken("Singapore")]
+        [Alpha3(CountryCode3.SGP)]
+        [Currency(CurrencyCode.SGD)]
         SG,
         /// <summary>
         /// Slovakia
@@ -1558,6 +1940,8 @@ namespace Sugar
         [Description("Slovakia")]
         [LanguageTag("sk")]
         [TypeaheadToken("Slovakia")]
+        [Alpha3(CountryCode3.SVK)]
+        [Currency(CurrencyCode.EUR)]
         SK,
         /// <summary>
         /// Slovenia
@@ -1565,6 +1949,8 @@ namespace Sugar
         [Description("Slovenia")]
         [LanguageTag("sl")]
         [TypeaheadToken("Slovenia")]
+        [Alpha3(CountryCode3.SVN)]
+        [Currency(CurrencyCode.EUR)]
         SI,
         /// <summary>
         /// Solomon Islands
@@ -1573,6 +1959,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Solomon")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.SLB)]
+        [Currency(CurrencyCode.SBD)]
         SB,
         /// <summary>
         /// Somalia
@@ -1580,6 +1968,8 @@ namespace Sugar
         [Description("Somalia")]
         [LanguageTag("so")]
         [TypeaheadToken("Somalia")]
+        [Alpha3(CountryCode3.SOM)]
+        [Currency(CurrencyCode.SOS)]
         SO,
         /// <summary>
         /// South Africa
@@ -1588,6 +1978,8 @@ namespace Sugar
         [LanguageTag("en-za")]
         [TypeaheadToken("South")]
         [TypeaheadToken("Africa")]
+        [Alpha3(CountryCode3.ZAF)]
+        [Currency(CurrencyCode.ZAR)]
         ZA,
         /// <summary>
         /// South Georgia And The South Sandwich Islands
@@ -1598,6 +1990,8 @@ namespace Sugar
         [TypeaheadToken("Georgia")]
         [TypeaheadToken("Sandwich")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.SGS)]
+        [Currency(CurrencyCode.GBP)]
         GS,
         /// <summary>
         /// Spain
@@ -1607,6 +2001,8 @@ namespace Sugar
         [TypeaheadToken("Spain")]
         [TypeaheadToken("España")]
         [TypeaheadToken("Espana")]
+        [Alpha3(CountryCode3.ESP)]
+        [Currency(CurrencyCode.EUR)]
         ES,
         /// <summary>
         /// Sri Lanka
@@ -1615,6 +2011,8 @@ namespace Sugar
         [LanguageTag("si")]
         [TypeaheadToken("Sri")]
         [TypeaheadToken("Lanka")]
+        [Alpha3(CountryCode3.LKA)]
+        [Currency(CurrencyCode.LKR)]
         LK,
         /// <summary>
         /// Sudan
@@ -1622,6 +2020,8 @@ namespace Sugar
         [Description("Sudan")]
         [LanguageTag("ar")]
         [TypeaheadToken("Sudan")]
+        [Alpha3(CountryCode3.SDN)]
+        [Currency(CurrencyCode.SDG)]
         SD,
         /// <summary>
         /// Suriname
@@ -1629,6 +2029,7 @@ namespace Sugar
         [Description("Suriname")]
         [LanguageTag("nl")]
         [TypeaheadToken("Suriname")]
+        [Alpha3(CountryCode3.SUR)]
         SR,
         /// <summary>
         /// Svalbard And Jan Mayen
@@ -1638,6 +2039,8 @@ namespace Sugar
         [TypeaheadToken("Svalbard")]
         [TypeaheadToken("Jan")]
         [TypeaheadToken("Mayen")]
+        [Alpha3(CountryCode3.SJM)]
+        [Currency(CurrencyCode.NOK)]
         SJ,
         /// <summary>
         /// Swaziland
@@ -1645,6 +2048,8 @@ namespace Sugar
         [Description("Swaziland")]
         [LanguageTag("ss")]
         [TypeaheadToken("Swaziland")]
+        [Alpha3(CountryCode3.SWZ)]
+        [Currency(CurrencyCode.SZL)]
         SZ,
         /// <summary>
         /// Sweden
@@ -1653,6 +2058,8 @@ namespace Sugar
         [LanguageTag("sw")]
         [TypeaheadToken("Sweden")]
         [TypeaheadToken("Sverige")]
+        [Alpha3(CountryCode3.SWE)]
+        [Currency(CurrencyCode.SEK)]
         SE,
         /// <summary>
         /// Switzerland
@@ -1666,6 +2073,8 @@ namespace Sugar
         [TypeaheadToken("Schweiz")]
         [TypeaheadToken("Svizzera")]
         [TypeaheadToken("Svizra")]
+        [Alpha3(CountryCode3.CHE)]
+        [Currency(CurrencyCode.CHF)]
         CH,
         /// <summary>
         /// Syrian Arab Republic
@@ -1676,6 +2085,8 @@ namespace Sugar
         [TypeaheadToken("Arab")]
         [TypeaheadToken("Republic")]
         [TypeaheadToken("Syria")]
+        [Alpha3(CountryCode3.SYR)]
+        [Currency(CurrencyCode.SYP)]
         SY,
         /// <summary>
         /// Taiwan, Province Of China
@@ -1685,6 +2096,8 @@ namespace Sugar
         [TypeaheadToken("Taiwan")]
         [TypeaheadToken("Province")]
         [TypeaheadToken("China")]
+        [Alpha3(CountryCode3.TWN)]
+        [Currency(CurrencyCode.TWD)]
         TW,
         /// <summary>
         /// Tajikistan
@@ -1692,6 +2105,8 @@ namespace Sugar
         [Description("Tajikistan")]
         [LanguageTag("tg")]
         [TypeaheadToken("Tajikistan")]
+        [Alpha3(CountryCode3.TJK)]
+        [Currency(CurrencyCode.TJS)]
         TJ,
         /// <summary>
         /// Tanzania, United Republic Of
@@ -1701,6 +2116,8 @@ namespace Sugar
         [TypeaheadToken("Tanzania")]
         [TypeaheadToken("United")]
         [TypeaheadToken("Republic")]
+        [Alpha3(CountryCode3.TZA)]
+        [Currency(CurrencyCode.TZS)]
         TZ,
         /// <summary>
         /// Thailand
@@ -1708,6 +2125,8 @@ namespace Sugar
         [Description("Thailand")]
         [LanguageTag("th")]
         [TypeaheadToken("Thailand")]
+        [Alpha3(CountryCode3.THA)]
+        [Currency(CurrencyCode.THB)]
         TH,
         /// <summary>
         /// Timor-Leste, East Timor
@@ -1717,6 +2136,8 @@ namespace Sugar
         [TypeaheadToken("Timor")]
         [TypeaheadToken("Leste")]
         [TypeaheadToken("East")]
+        [Alpha3(CountryCode3.TLS)]
+        [Currency(CurrencyCode.IDR)]
         TL,
         /// <summary>
         /// Togo
@@ -1724,6 +2145,8 @@ namespace Sugar
         [Description("Togo")]
         [LanguageTag("fr")]
         [TypeaheadToken("Togo")]
+        [Alpha3(CountryCode3.TGO)]
+        [Currency(CurrencyCode.XOF)]
         TG,
         /// <summary>
         /// Tokelau
@@ -1731,6 +2154,8 @@ namespace Sugar
         [Description("Tokelau")]
         [LanguageTag("en")]
         [TypeaheadToken("Tokelau")]
+        [Alpha3(CountryCode3.TKL)]
+        [Currency(CurrencyCode.NZD)]
         TK,
         /// <summary>
         /// Tonga
@@ -1738,6 +2163,8 @@ namespace Sugar
         [Description("Tonga")]
         [LanguageTag("en")]
         [TypeaheadToken("Tonga")]
+        [Alpha3(CountryCode3.TON)]
+        [Currency(CurrencyCode.TOP)]
         TO,
         /// <summary>
         /// Trinidad And Tobago
@@ -1746,6 +2173,8 @@ namespace Sugar
         [LanguageTag("en")]
         [TypeaheadToken("Trinidad")]
         [TypeaheadToken("Tobago")]
+        [Alpha3(CountryCode3.TTO)]
+        [Currency(CurrencyCode.TTD)]
         TT,
         /// <summary>
         /// Tunisia
@@ -1753,6 +2182,8 @@ namespace Sugar
         [Description("Tunisia")]
         [LanguageTag("ar-tn")]
         [TypeaheadToken("Tunisia")]
+        [Alpha3(CountryCode3.TUN)]
+        [Currency(CurrencyCode.TND)]
         TN,
         /// <summary>
         /// Turkey
@@ -1762,6 +2193,8 @@ namespace Sugar
         [TypeaheadToken("Turkey")]
         [TypeaheadToken("Türkiye")]
         [TypeaheadToken("Turkiye")]
+        [Alpha3(CountryCode3.TUR)]
+        [Currency(CurrencyCode.TRY)]
         TR,
         /// <summary>
         /// Turkmenistan
@@ -1769,6 +2202,7 @@ namespace Sugar
         [Description("Turkmenistan")]
         [LanguageTag("tk")]
         [TypeaheadToken("Turkmenistan")]
+        [Alpha3(CountryCode3.TKM)]
         TM,
         /// <summary>
         /// Turks And Caicos Islands
@@ -1778,6 +2212,8 @@ namespace Sugar
         [TypeaheadToken("Turks")]
         [TypeaheadToken("Caicos")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.TCA)]
+        [Currency(CurrencyCode.USD)]
         TC,
         /// <summary>
         /// Tuvalu
@@ -1785,6 +2221,8 @@ namespace Sugar
         [Description("Tuvalu")]
         [LanguageTag("en")]
         [TypeaheadToken("Tuvalu")]
+        [Alpha3(CountryCode3.TUV)]
+        [Currency(CurrencyCode.AUD)]
         TV,
         /// <summary>
         /// Uganda
@@ -1792,6 +2230,8 @@ namespace Sugar
         [Description("Uganda")]
         [LanguageTag("en")]
         [TypeaheadToken("Uganda")]
+        [Alpha3(CountryCode3.UGA)]
+        [Currency(CurrencyCode.UGX)]
         UG,
         /// <summary>
         /// Ukraine
@@ -1800,6 +2240,8 @@ namespace Sugar
         [LanguageTag("uk")]
         [TypeaheadToken("Ukraine")]
         [TypeaheadToken("Ukrayina")]
+        [Alpha3(CountryCode3.UKR)]
+        [Currency(CurrencyCode.UAH)]
         UA,
         /// <summary>
         /// United Arab Emirates
@@ -1809,6 +2251,8 @@ namespace Sugar
         [TypeaheadToken("United")]
         [TypeaheadToken("Arab")]
         [TypeaheadToken("Emirates")]
+        [Alpha3(CountryCode3.ARE)]
+        [Currency(CurrencyCode.AED)]
         AE,
         /// <summary>
         /// United Kingdom
@@ -1825,6 +2269,8 @@ namespace Sugar
         [TypeaheadToken("Scotland")]
         [TypeaheadToken("Northern")]
         [TypeaheadToken("Ireland")]
+        [Alpha3(CountryCode3.GBR)]
+        [Currency(CurrencyCode.GBP)]
         GB,
         /// <summary>
         /// United States
@@ -1835,6 +2281,8 @@ namespace Sugar
         [TypeaheadToken("United")]
         [TypeaheadToken("States")]
         [TypeaheadToken("America")]
+        [Alpha3(CountryCode3.USA)]
+        [Currency(CurrencyCode.USD)]
         US,
         /// <summary>
         /// United States Minor Outlying Islands
@@ -1846,6 +2294,8 @@ namespace Sugar
         [TypeaheadToken("Minor")]
         [TypeaheadToken("Outlying")]
         [TypeaheadToken("Islands")]
+        [Alpha3(CountryCode3.UMI)]
+        [Currency(CurrencyCode.USD)]
         UM,
         /// <summary>
         /// Uruguay
@@ -1853,6 +2303,8 @@ namespace Sugar
         [Description("Uruguay")]
         [LanguageTag("es-uy")]
         [TypeaheadToken("Uruguay")]
+        [Alpha3(CountryCode3.URY)]
+        [Currency(CurrencyCode.UYU)]
         UY,
         /// <summary>
         /// Uzbekistan
@@ -1860,6 +2312,8 @@ namespace Sugar
         [Description("Uzbekistan")]
         [LanguageTag("uz")]
         [TypeaheadToken("Uzbekistan")]
+        [Alpha3(CountryCode3.UZB)]
+        [Currency(CurrencyCode.UZS)]
         UZ,
         /// <summary>
         /// Vanuatu
@@ -1867,6 +2321,8 @@ namespace Sugar
         [Description("Vanuatu")]
         [LanguageTag("bi")]
         [TypeaheadToken("Vanuatu")]
+        [Alpha3(CountryCode3.VUT)]
+        [Currency(CurrencyCode.VUV)]
         VU,
         /// <summary>
         /// Venezuela
@@ -1874,6 +2330,8 @@ namespace Sugar
         [Description("Venezuela")]
         [LanguageTag("es-ve")]
         [TypeaheadToken("Venezuela")]
+        [Alpha3(CountryCode3.VEN)]
+        [Currency(CurrencyCode.VEF_DICOM)]
         VE,
         /// <summary>
         /// Vietnam
@@ -1881,6 +2339,8 @@ namespace Sugar
         [Description("Vietnam")]
         [LanguageTag("vi")]
         [TypeaheadToken("Vietnam")]
+        [Alpha3(CountryCode3.VNM)]
+        [Currency(CurrencyCode.VND)]
         VN,
         /// <summary>
         /// Virgin Islands, British
@@ -1890,6 +2350,8 @@ namespace Sugar
         [TypeaheadToken("Virgin")]
         [TypeaheadToken("Islands")]
         [TypeaheadToken("British")]
+        [Alpha3(CountryCode3.VGB)]
+        [Currency(CurrencyCode.USD)]
         VG,
         /// <summary>
         /// Virgin Islands, U.S.
@@ -1900,6 +2362,8 @@ namespace Sugar
         [TypeaheadToken("Islands")]
         [TypeaheadToken("U.S.")]
         [TypeaheadToken("US")]
+        [Alpha3(CountryCode3.VIR)]
+        [Currency(CurrencyCode.USD)]
         VI,
         /// <summary>
         /// Wallis And Futuna
@@ -1908,6 +2372,8 @@ namespace Sugar
         [LanguageTag("fr")]
         [TypeaheadToken("Wallis")]
         [TypeaheadToken("Futuna")]
+        [Alpha3(CountryCode3.WLF)]
+        [Currency(CurrencyCode.XPF)]
         WF,
         /// <summary>
         /// Western Sahara
@@ -1916,6 +2382,8 @@ namespace Sugar
         [LanguageTag("es")]
         [TypeaheadToken("Western")]
         [TypeaheadToken("Sahara")]
+        [Alpha3(CountryCode3.ESH)]
+        [Currency(CurrencyCode.MAD)]
         EH,
         /// <summary>
         /// Yemen
@@ -1923,6 +2391,8 @@ namespace Sugar
         [Description("Yemen")]
         [LanguageTag("ar-ye")]
         [TypeaheadToken("Yemen")]
+        [Alpha3(CountryCode3.YEM)]
+        [Currency(CurrencyCode.YER)]
         YE,
         /// <summary>
         /// Zambia
@@ -1930,6 +2400,8 @@ namespace Sugar
         [Description("Zambia")]
         [LanguageTag("en")]
         [TypeaheadToken("Zambia")]
+        [Alpha3(CountryCode3.ZMB)]
+        [Currency(CurrencyCode.ZMW)]
         ZM,
         /// <summary>
         /// Zimbabwe
@@ -1937,6 +2409,8 @@ namespace Sugar
         [Description("Zimbabwe")]
         [LanguageTag("en")]
         [TypeaheadToken("Zimbabwe")]
+        [Alpha3(CountryCode3.ZWE)]
+        [Currency(CurrencyCode.ZWL)]
         ZW,
         /// <summary>
         /// Custom Code
@@ -1981,6 +2455,7 @@ namespace Sugar
         [TypeaheadToken("Sudan")]
         [TypeaheadToken("Southern")]
         [TypeaheadToken("Republic")]
+        [Currency(CurrencyCode.SSP)]
         SS,
         /// <summary>
         /// Curaçao
@@ -1989,6 +2464,7 @@ namespace Sugar
         [LanguageTag("pap")]
         [TypeaheadToken("Curaçao")]
         [TypeaheadToken("Curacao")]
+        [Currency(CurrencyCode.ANG)]
         CW,
         /// <summary>
         /// Sint Maarten
@@ -1998,6 +2474,7 @@ namespace Sugar
         [TypeaheadToken("Sint")]
         [TypeaheadToken("Maarten")]
         [TypeaheadToken("Martin")]
+        [Currency(CurrencyCode.ANG)]
         SX,
         // ReSharper restore InconsistentNaming
     }
