@@ -356,6 +356,7 @@ namespace Sugar
         [LanguageTag("km")]
         [TypeaheadToken("Cambodia")]
         [Alpha3(CountryCode3.KHM)]
+        [Currency(CurrencyCode.KHR)]
         KH,
         /// <summary>
         /// Cameroon
