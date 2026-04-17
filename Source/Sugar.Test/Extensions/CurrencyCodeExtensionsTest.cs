@@ -56,19 +56,19 @@ namespace Sugar.Extensions
         }
 
         [Test]
-        public void TestToCountryCodetoCurrency()
+        public void TestToCountryCodeToCurrency()
         {
             Assert.That(CountryCode.GB.ToCurrencyCode(), Is.EqualTo(CurrencyCode.GBP));
         }
 
         [Test]
-        public void TestToCountryCodetoCurrencyForAfghanistan()
+        public void TestToCountryCodeToCurrencyForAfghanistan()
         {
             Assert.That(CountryCode.AF.ToCurrencyCode(), Is.EqualTo(CurrencyCode.AFN));
         }
 
         [Test]
-        public void TestToCountryCodetoCurrencyWhenUnknownCurrency()
+        public void TestToCountryCodeToCurrencyWhenUnknownCurrency()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => CountryCode.Unknown.ToCurrencyCode());
         }
@@ -87,7 +87,7 @@ namespace Sugar.Extensions
             var result = "$3,500".FindCurrencyCode();
 
             Assert.That(result.HasValue, Is.True);
-            Assert.That(result.Value, Is.EqualTo(CurrencyCode.USD));
+            Assert.That(result, Is.EqualTo(CurrencyCode.USD));
         }
 
         [Test]
@@ -96,7 +96,7 @@ namespace Sugar.Extensions
             var result = "There is a £ symbol here before $3,500".FindCurrencyCode();
 
             Assert.That(result.HasValue, Is.True);
-            Assert.That(result.Value, Is.EqualTo(CurrencyCode.GBP));
+            Assert.That(result, Is.EqualTo(CurrencyCode.GBP));
         }
 
         [Test]
@@ -132,6 +132,29 @@ namespace Sugar.Extensions
             }
 
             Assert.That(missing, Is.Empty, "CurrencyCode values with missing attributes:\n" + string.Join("\n", missing));
+        }
+
+        [Test]
+        public void TestAllCurrencyCodesCanBeConvertedToCountry()
+        {
+            var missing = new List<string>();
+
+            foreach (CurrencyCode code in Enum.GetValues(typeof(CurrencyCode)))
+            {
+                try
+                {
+                    code.ToCountryCode();
+                }
+                catch (ApplicationException)
+                {
+                    if (code is not (CurrencyCode.VEF or CurrencyCode.VES or CurrencyCode.VEF_BLKMKT))
+                    {
+                        missing.Add(code.ToString());
+                    }
+                }
+            }
+
+            Assert.That(missing, Is.Empty, "CurrencyCode values that cannot be converted:\n" + string.Join("\n", missing));
         }
 
         [Test]
