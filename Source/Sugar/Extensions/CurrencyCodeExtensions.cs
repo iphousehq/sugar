@@ -178,7 +178,10 @@ namespace Sugar.Extensions
                 if (field == null) continue;
 
                 var attr = field.GetCustomAttribute<CurrencyAttribute>();
-                if (attr != null) result[c] = attr.Currencies.First();
+                if (attr == null) continue;
+                if (attr.Currencies.Length == 0) continue;
+
+                result[c] = attr.Currencies[0];
             }
 
             return result;
