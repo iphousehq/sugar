@@ -56,13 +56,16 @@ namespace Sugar.Extensions
         private static Dictionary<CountryCode, CountryCode3> BuildAlpha2ToAlpha3()
         {
             var result = new Dictionary<CountryCode, CountryCode3>();
+
             foreach (CountryCode c in Enum.GetValues(typeof(CountryCode)))
             {
                 var field = typeof(CountryCode).GetField(c.ToString());
                 if (field == null) continue;
+
                 var attr = field.GetCustomAttribute<Alpha3Attribute>();
                 if (attr != null) result[c] = attr.Alpha3;
             }
+
             return result;
         }
     }

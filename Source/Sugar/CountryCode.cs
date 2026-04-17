@@ -2332,7 +2332,7 @@ namespace Sugar
         [LanguageTag("es-ve")]
         [TypeaheadToken("Venezuela")]
         [Alpha3(CountryCode3.VEN)]
-        [Currency(CurrencyCode.VEF_DICOM)]
+        [Currency(CurrencyCode.VEF_DICOM, CurrencyCode.VEF_BLKMKT, CurrencyCode.VEF, CurrencyCode.VES)]
         VE,
         /// <summary>
         /// Vietnam

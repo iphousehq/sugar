@@ -158,24 +158,29 @@ namespace Sugar.Extensions
             where TAttr : Attribute
         {
             var result = new Dictionary<CurrencyCode, string>();
+
             foreach (CurrencyCode c in Enum.GetValues(typeof(CurrencyCode)))
             {
                 var attr = typeof(CurrencyCode).GetField(c.ToString()).GetCustomAttribute<TAttr>();
                 if (attr != null) result[c] = selector(attr);
             }
+
             return result;
         }
 
         private static Dictionary<CountryCode, CurrencyCode> BuildCurrencyLookup()
         {
             var result = new Dictionary<CountryCode, CurrencyCode>();
+
             foreach (CountryCode c in Enum.GetValues(typeof(CountryCode)))
             {
                 var field = typeof(CountryCode).GetField(c.ToString());
                 if (field == null) continue;
+
                 var attr = field.GetCustomAttribute<CurrencyAttribute>();
-                if (attr != null) result[c] = attr.Currency;
+                if (attr != null) result[c] = attr.Currencies.First();
             }
+
             return result;
         }
 
@@ -184,24 +189,35 @@ namespace Sugar.Extensions
             // When multiple countries share a currency (e.g. EUR for 30+ countries), prefer the one whose
             // alpha-2 code is a prefix of the currency code (US→USD, AU→AUD). Fall back to first in enum order.
             var groups = new Dictionary<CurrencyCode, List<CountryCode>>();
+
             foreach (CountryCode c in Enum.GetValues(typeof(CountryCode)))
             {
                 var field = typeof(CountryCode).GetField(c.ToString());
                 if (field == null) continue;
+
                 var attr = field.GetCustomAttribute<CurrencyAttribute>();
                 if (attr == null) continue;
-                if (!groups.ContainsKey(attr.Currency)) groups[attr.Currency] = new List<CountryCode>();
-                groups[attr.Currency].Add(c);
+                if (attr.Currencies.Length == 0) continue;
+
+                foreach (var attrCurrency in attr.Currencies)
+                {
+                    if (!groups.ContainsKey(attrCurrency)) groups[attrCurrency] = new List<CountryCode>();
+                    groups[attrCurrency].Add(c);
+                }
+
             }
 
             var result = new Dictionary<CurrencyCode, CountryCode>();
+
             foreach (var kvp in groups)
             {
                 var currencyStr = kvp.Key.ToString();
-                var preferred = kvp.Value.FirstOrDefault(c =>
-                    currencyStr.StartsWith(c.ToString(), StringComparison.OrdinalIgnoreCase));
+
+                var preferred = kvp.Value.FirstOrDefault(c => currencyStr.StartsWith(c.ToString(), StringComparison.OrdinalIgnoreCase));
+
                 result[kvp.Key] = preferred != default ? preferred : kvp.Value[0];
             }
+
             return result;
         }
     }
