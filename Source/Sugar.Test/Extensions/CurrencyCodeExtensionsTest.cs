@@ -97,6 +97,35 @@ namespace Sugar.Extensions
             Assert.That(result, Is.EqualTo(CurrencyCode.GBP));
         }
 
+        // Regression: inputs like "25.00 GBP" were resolving to HTG because HTG's
+        // symbol "G" substring-matched inside "GBP". ISO codes must win over symbol
+        // substrings, and single-letter symbols must require word boundaries.
+        [TestCase("25.00 GBP", CurrencyCode.GBP)]
+        [TestCase("15.00 GBP", CurrencyCode.GBP)]
+        [TestCase("GBP",       CurrencyCode.GBP)]
+        [TestCase(" GBP ",     CurrencyCode.GBP)]
+        [TestCase("100 ZAR",   CurrencyCode.ZAR)]
+        [TestCase("50.00 USD", CurrencyCode.USD)]
+        [TestCase("£25",       CurrencyCode.GBP)]
+        [TestCase("25 £",      CurrencyCode.GBP)]
+        [TestCase("$25",       CurrencyCode.USD)]
+        public void TestFindCurrencyCode_PrefersIsoCodeOverSymbolSubstring(string input, CurrencyCode expected)
+        {
+            var result = input.FindCurrencyCode();
+
+            Assert.That(result.HasValue, Is.True, $"no match for '{input}'");
+            Assert.That(result.Value, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void TestFindCurrencyCode_SingleLetterSymbolRequiresBoundary()
+        {
+            // Standalone "G" still matches HTG.
+            Assert.That("G".FindCurrencyCode(), Is.EqualTo(CurrencyCode.HTG));
+            // But "G" inside a word must not.
+            Assert.That("25G".FindCurrencyCode().HasValue, Is.False);
+        }
+
         [Test]
         public void TestCurrencyCodeToCountryCode()
         {

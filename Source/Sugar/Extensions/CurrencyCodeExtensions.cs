@@ -85,19 +85,62 @@ namespace Sugar.Extensions
             };
 
         /// <summary>
-        /// Finds the first currency code symbol in a string.
+        /// Finds the first currency code symbol in a string. Prefers whole-word ISO
+        /// matches (e.g. "GBP", "USD") over symbol substring matches so that inputs
+        /// like "25.00 GBP" don't resolve to HTG (whose symbol is "G").
         /// </summary>
         public static CurrencyCode? FindCurrencyCode(this string text)
         {
+            if (string.IsNullOrEmpty(text)) return null;
+
+            // Pass 1: whole-word 3-letter ISO code (e.g. "GBP" inside "25.00 GBP").
+            var isoHit = Enum.GetValues(typeof(CurrencyCode))
+                .Cast<CurrencyCode>()
+                .Select(c => (Index: IndexOfWord(text, c.ToString()), Code: c))
+                .Where(o => o.Index > -1)
+                .OrderBy(o => o.Index)
+                .Select(o => (CurrencyCode?)o.Code)
+                .FirstOrDefault();
+
+            if (isoHit.HasValue) return isoHit;
+
+            // Pass 2: symbol scan. Pure-ASCII-letter symbols (e.g. "G" for HTG, "R" for
+            // ZAR) must have non-letter boundaries; otherwise they match inside words.
             var occurrences = Symbols
                 .Where(kvp => !string.IsNullOrEmpty(kvp.Value))
-                .Select(kvp => (Index: text.IndexOf(kvp.Value, StringComparison.Ordinal), Code: kvp.Key))
+                .Select(kvp => (Index: FindSymbol(text, kvp.Value), Code: kvp.Key))
                 .Where(o => o.Index > -1)
                 .ToList();
 
             return occurrences.Any()
                 ? occurrences.OrderBy(o => o.Index).Select(o => o.Code).First()
                 : (CurrencyCode?)null;
+        }
+
+        private static int IndexOfWord(string text, string word)
+        {
+            var idx = 0;
+            while (idx <= text.Length - word.Length)
+            {
+                var found = text.IndexOf(word, idx, StringComparison.Ordinal);
+                if (found < 0) return -1;
+                var before = found == 0 || !char.IsLetterOrDigit(text[found - 1]);
+                var afterIdx = found + word.Length;
+                var after = afterIdx == text.Length || !char.IsLetterOrDigit(text[afterIdx]);
+                if (before && after) return found;
+                idx = found + 1;
+            }
+            return -1;
+        }
+
+        private static int FindSymbol(string text, string symbol)
+        {
+            // Plain substring match — except if the symbol is entirely ASCII letters,
+            // require that neighbouring chars are not letters. This blocks "G" from
+            // matching inside "GBP" while still letting "£", "$", "¥" etc. match anywhere.
+            var requiresBoundary = symbol.All(c => c >= 'A' && c <= 'z' && char.IsLetter(c));
+            if (!requiresBoundary) return text.IndexOf(symbol, StringComparison.Ordinal);
+            return IndexOfWord(text, symbol);
         }
 
         /// <summary>
