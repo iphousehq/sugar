@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 using Sugar.Attributes;
@@ -123,10 +121,13 @@ namespace Sugar.Extensions
             foreach (CurrencyCode code in Enum.GetValues(typeof(CurrencyCode)))
             {
                 var field = typeof(CurrencyCode).GetField(code.ToString());
+
                 if (field.GetCustomAttribute<System.ComponentModel.DescriptionAttribute>() == null)
                     missing.Add($"{code}: missing [Description]");
+
                 if (field.GetCustomAttribute<SymbolAttribute>() == null)
                     missing.Add($"{code}: missing [Symbol]");
+
                 if (field.GetCustomAttribute<HtmlSymbolAttribute>() == null)
                     missing.Add($"{code}: missing [HtmlSymbol]");
             }
@@ -147,10 +148,7 @@ namespace Sugar.Extensions
                 }
                 catch (ApplicationException)
                 {
-                    if (code is not (CurrencyCode.VEF or CurrencyCode.VES or CurrencyCode.VEF_BLKMKT))
-                    {
-                        missing.Add(code.ToString());
-                    }
+                    missing.Add(code.ToString());
                 }
             }
 
@@ -175,8 +173,9 @@ namespace Sugar.Extensions
                     continue; // Currency has no primary country mapping — expected for some
                 }
 
-                var roundtripped = country.ToCurrencyCode();
-                Assert.That(roundtripped, Is.EqualTo(currency), $"Roundtrip failed: {currency} -> {country} -> {roundtripped}");
+                var roundTripped = country.ToCurrencyCode();
+                Assert.That(roundTripped.ToCountryCode(), Is.EqualTo(country), 
+                    $"Country-preserving roundtrip failed: {currency} -> {country} -> {roundTripped} -> {roundTripped.ToCountryCode()}");
             }
         }
     }

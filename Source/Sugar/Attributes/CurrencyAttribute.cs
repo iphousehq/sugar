@@ -8,11 +8,11 @@ namespace Sugar.Attributes
     [AttributeUsage(AttributeTargets.Field)]
     public class CurrencyAttribute : Attribute
     {
-        public CurrencyAttribute(CurrencyCode currency)
+        public CurrencyAttribute(params CurrencyCode[] currencies)
         {
-            Currency = currency;
+            Currencies = currencies;
         }
 
-        public CurrencyCode Currency { get; }
+        public CurrencyCode[] Currencies { get; }
     }
 }

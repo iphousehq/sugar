@@ -71,8 +71,10 @@ namespace Sugar.Extensions
                 if (AttributeExceptions.Contains(code)) continue;
 
                 var field = typeof(CountryCode).GetField(code.ToString());
+
                 if (field.GetCustomAttribute<System.ComponentModel.DescriptionAttribute>() == null)
                     missing.Add($"{code}: missing [Description]");
+
                 if (field.GetCustomAttribute<LanguageTagAttribute>() == null)
                     missing.Add($"{code}: missing [LanguageTag]");
             }
